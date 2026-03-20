@@ -44,3 +44,4 @@ cache/
 broadcast/
 >>>>>>> 61e9a1a (Initial commit: frontend with wasm-bindgen, BTFS daemon, and project structure)
 .env
+.env
