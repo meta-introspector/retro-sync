@@ -4,33 +4,39 @@ import { Shield, Music, Zap, Globe, BarChart3, Wallet } from "lucide-react";
 const features = [
   {
     icon: Wallet,
-    title: "Transparent Royalties",
-    description: "Every royalty payment is cryptographically verified on-chain. See exactly who gets paid, how much, and when — no black boxes.",
+    title: "See Every Dollar",
+    description:
+      "Know exactly how much you earned, where it came from, and when you'll get paid. No more mystery statements.",
   },
   {
     icon: Music,
-    title: "Global Distribution",
-    description: "Submit your catalog to 50+ collecting societies worldwide with automated DDEX-compliant rights registration.",
+    title: "Reach Every Listener",
+    description:
+      "Your music goes live on Spotify, Apple Music, TikTok, YouTube, and 150+ other platforms worldwide.",
   },
   {
     icon: Zap,
-    title: "Track Rarity Classification",
-    description: "Our Master Pattern algorithm analyzes every track and assigns a rarity tier — Common, Rare, or Legendary — driving collector interest.",
+    title: "Fast Releases",
+    description:
+      "Upload your track today, and it can be live everywhere within 24 hours. No waiting weeks.",
   },
   {
     icon: Globe,
-    title: "Permanent Storage",
-    description: "Your masters are stored on decentralized infrastructure with archival mirroring. Your music can never be deleted or lost.",
+    title: "Your Music Is Safe Forever",
+    description:
+      "Your masters are stored with multiple backups so they're never lost, even if a service goes down.",
   },
   {
     icon: Shield,
-    title: "Rights Protection",
-    description: "Built-in DMCA takedown workflow, EU Article 17 compliance, and automated mechanical licensing through The MLC.",
+    title: "Your Rights Are Protected",
+    description:
+      "We handle copyright registration and takedowns so nobody can steal or misuse your work.",
   },
   {
     icon: BarChart3,
-    title: "Real-Time Analytics",
-    description: "Track your streams, royalty accruals, and distribution performance across every territory in real time.",
+    title: "Simple Analytics",
+    description:
+      "See which songs are performing, which countries love your music, and how your earnings are growing.",
   },
 ];
 
@@ -40,17 +46,17 @@ const Features = () => {
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Everything You Need to{" "}
-            <span className="text-gradient-primary">Own Your Music</span>
+            Everything You Need,{" "}
+            <span className="text-gradient-primary">Nothing You Don't</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            From upload to payout — a complete platform built for independent artists and labels.
+            Built for artists who want to focus on making music — not paperwork.
           </p>
         </motion.div>
 
@@ -59,10 +65,10 @@ const Features = () => {
             <motion.div
               key={feature.title}
               className="glass rounded-xl p-6 hover:border-primary/30 transition-colors group"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <feature.icon className="w-5 h-5 text-primary" />

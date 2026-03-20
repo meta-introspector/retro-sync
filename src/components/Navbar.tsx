@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import ConnectWallet from "./ConnectWallet";
 
 const Navbar = () => {
   return (
@@ -14,11 +15,9 @@ const Navbar = () => {
           <a href="#features" className="hover:text-foreground transition-colors">Features</a>
           <a href="#how-it-works" className="hover:text-foreground transition-colors">How It Works</a>
           <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
-          <a href="#compliance" className="hover:text-foreground transition-colors">Trust</a>
+          <a href="#trust" className="hover:text-foreground transition-colors">Trust</a>
         </div>
-        <button className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all">
-          Get Started
-        </button>
+        <ConnectWallet />
       </div>
     </motion.nav>
   );

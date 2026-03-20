@@ -3,50 +3,50 @@ import { Check } from "lucide-react";
 
 const plans = [
   {
-    name: "Indie",
+    name: "Starter",
     price: "Free",
     period: "",
-    description: "For solo artists getting started",
+    description: "Try it out — no credit card needed",
     features: [
-      "Unlimited uploads",
-      "15 collecting societies",
-      "On-chain royalty verification",
-      "Basic analytics",
-      "Community support",
+      "Unlimited song uploads",
+      "Release on 15+ platforms",
+      "See your earnings in real time",
+      "Basic stats & reports",
+      "Email support",
     ],
-    cta: "Get Started Free",
+    cta: "Sign Up Free",
     highlighted: false,
   },
   {
     name: "Pro",
     price: "$19",
     period: "/mo",
-    description: "For serious artists and producers",
+    description: "For artists ready to grow",
     features: [
-      "Everything in Indie",
-      "50+ collecting societies",
-      "Master Pattern rarity classification",
-      "Priority distribution (< 12h)",
-      "Dedicated support",
-      "Custom splits (up to 16 collaborators)",
+      "Everything in Starter",
+      "Release on 150+ platforms",
+      "Faster releases (under 12 hours)",
+      "Split royalties with up to 16 people",
+      "Priority support",
+      "Detailed listener insights",
     ],
-    cta: "Start Pro Trial",
+    cta: "Try Pro Free for 14 Days",
     highlighted: true,
   },
   {
     name: "Label",
     price: "Custom",
     period: "",
-    description: "For labels and enterprise catalogs",
+    description: "For labels managing multiple artists",
     features: [
       "Everything in Pro",
-      "Unlimited artists",
-      "SAP/ERP integration",
-      "API access",
-      "White-label options",
+      "Unlimited artist accounts",
+      "Connect to your existing tools",
+      "Full API access",
+      "Your own branding",
       "Dedicated account manager",
     ],
-    cta: "Contact Sales",
+    cta: "Talk to Us",
     highlighted: false,
   },
 ];
@@ -57,16 +57,17 @@ const Pricing = () => {
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Simple, <span className="text-gradient-primary">Fair Pricing</span>
+            Simple{" "}
+            <span className="text-gradient-primary">Pricing</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            No hidden fees. No middlemen. Just transparent music distribution.
+            No hidden fees. No surprise charges. You always know what you're paying.
           </p>
         </motion.div>
 
@@ -79,13 +80,13 @@ const Pricing = () => {
                   ? "border-2 border-primary/50 bg-primary/5 glow-primary"
                   : "glass"
               }`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               {plan.highlighted && (
-                <div className="text-xs font-mono font-semibold text-primary mb-3 tracking-wider uppercase">
+                <div className="text-xs font-semibold text-primary mb-3 tracking-wider uppercase">
                   Most Popular
                 </div>
               )}
@@ -108,7 +109,7 @@ const Pricing = () => {
               </ul>
 
               <button
-                className={`w-full py-3 rounded-lg font-semibold text-sm transition-all ${
+                className={`w-full py-3 rounded-lg font-semibold text-sm transition-all active:scale-[0.97] ${
                   plan.highlighted
                     ? "bg-primary text-primary-foreground hover:brightness-110"
                     : "glass hover:bg-secondary"
