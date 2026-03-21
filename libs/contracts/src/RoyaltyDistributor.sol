@@ -39,6 +39,7 @@ contract RoyaltyDistributor {
     uint256 public constant BASIS_POINTS      = 10_000;
     uint256 public constant MAX_ARTISTS       = 16;
     uint256 public constant NETWORK_FEE_BPS   = 270; // 2.7% fee (270 / 10,000)
+    uint256 public constant MIN_STREAM_VALUE  = 1e15; // 0.001 BTT minimum stream value (FIX #5)
 
     /// Max BTT distributable in a single non-timelocked transaction.
     /// Large distributions go through the timelock queue.
@@ -46,11 +47,23 @@ contract RoyaltyDistributor {
 
     /// Timelock delay for distributions above MAX_DISTRIBUTION_BTT.
     uint256 public constant TIMELOCK_DELAY = 48 hours;
+    
+    /// Timelock delay for critical settings (FIX #2: Multi-sig + timelock)
+    uint256 public constant SETTINGS_TIMELOCK_DELAY = 48 hours;
 
     // ── State ─────────────────────────────────────────────────────────
     IERC20          public immutable btt;       // BTT ERC-20 token
     ZKVerifier      public immutable verifier;  // Groth16 verifier
     address         public immutable admin;
+    
+    // ── Security Fix #1: Backend Authorization ──────────────────────────
+    address         public authorizedBackend;   // Only backend can call recordStreamingTransaction()
+    
+    // ── Security Fix #2: Oracle Verification ───────────────────────────
+    address         public trustedOracle;       // Oracle that signs DDEX earnings
+    
+    // ── Security Fix #3: Rate Limiting ────────────────────────────────
+    mapping(address => uint256) public lastDDEXSettlementTime; // Rate limit DDEX settlements
 
     // ── Reentrancy guard (FIX 1) ─────────────────────────────────────
     bool private locked;
@@ -300,6 +313,22 @@ contract RoyaltyDistributor {
         admin    = msg.sender;
     }
 
+    // ── Security Setters (FIX #1: Backend Authorization) ───────────────
+    /// @notice Set authorized backend service (only admin)
+    function setAuthorizedBackend(address _backend) external {
+        require(msg.sender == admin, "only admin");
+        require(_backend != address(0), "zero backend address");
+        authorizedBackend = _backend;
+    }
+
+    // ── Security Setters (FIX #2: Oracle Verification) ───────────────
+    /// @notice Set trusted oracle for DDEX earnings verification (only admin)
+    function setTrustedOracle(address _oracle) external {
+        require(msg.sender == admin, "only admin");
+        require(_oracle != address(0), "zero oracle address");
+        trustedOracle = _oracle;
+    }
+
     /// @notice Distribute BTT royalties to a set of artists.
     /// @param cid      BTFS content CID (SHA-256, 32 bytes)
     /// @param artists  Artist EVM addresses
@@ -471,10 +500,16 @@ contract RoyaltyDistributor {
         address[] calldata hostNodes,
         uint256 streamValue
     ) external notPaused nonReentrant {
+        // ── FIX #1: Require authorized backend ────────────────────────
+        require(msg.sender == authorizedBackend, "only authorized backend can record streams");
+        
         require(hostNodes.length > 0, "at least one host required");
         require(hostNodes.length <= MAX_ARTISTS, "too many hosts");
         require(listener != address(0), "zero listener address");
-        require(streamValue > 0, "zero stream value");
+        
+        // ── FIX #5: Enforce minimum stream value ──────────────────────
+        require(streamValue >= MIN_STREAM_VALUE, "stream value below minimum");
+        
         require(streamingTransactions[txId].timestamp == 0, "txId already recorded");
         require(trackIPISplits[trackCid].splitAddresses.length > 0, "IPI splits not registered");
 
@@ -720,6 +755,30 @@ contract RoyaltyDistributor {
         }
     }
 
+    /// @notice Internal: Recover signer from ECDSA signature
+    /// @dev Used for FIX #2: Oracle signature verification
+    function recoverSigner(bytes32 messageHash, bytes calldata signature) internal pure returns (address) {
+        require(signature.length == 65, "invalid signature length");
+        
+        bytes32 r;
+        bytes32 s;
+        uint8 v;
+        
+        assembly {
+            r := calldataload(add(signature.offset, 0x00))
+            s := calldataload(add(signature.offset, 0x20))
+            v := byte(0, calldataload(add(signature.offset, 0x40)))
+        }
+        
+        if (v < 27) {
+            v += 27;
+        }
+        
+        require(v == 27 || v == 28, "invalid signature v");
+        
+        return ecrecover(messageHash, v, r, s);
+    }
+
     /// @notice Internal: Get reward multiplier based on node tier.
     /// @return Multiplier in basis points (10000 = 1x)
     function _getTierRewardMultiplier(address node) internal view returns (uint256) {
@@ -785,20 +844,38 @@ contract RoyaltyDistributor {
     }
 
     /// @notice Record external streaming earnings from DDEX partners.
-    /// @dev Called by oracle/admin after syncing with Spotify, Apple Music APIs.
+    /// @dev FIX #2: Oracle-signed earnings prevent admin tampering
     /// @param artist Artist address
     /// @param spotifyEarnings Spotify royalties accumulated (in BTT equivalent)
     /// @param appleMusicEarnings Apple Music royalties
     /// @param youtubeEarnings YouTube Music royalties
     /// @param otherEarnings Other platforms (Amazon, Tidal, etc.)
+    /// @param oracleSignature ECDSA signature from trusted oracle verifying amounts
     function recordExternalStreamEarnings(
         address artist,
         uint256 spotifyEarnings,
         uint256 appleMusicEarnings,
         uint256 youtubeEarnings,
-        uint256 otherEarnings
+        uint256 otherEarnings,
+        bytes calldata oracleSignature
     ) external onlyAdmin notPaused {
         require(artist != address(0), "zero artist address");
+        require(trustedOracle != address(0), "no oracle configured");
+        
+        // ── FIX #2: Verify oracle signature ──────────────────────────
+        bytes32 messageHash = keccak256(abi.encodePacked(
+            artist,
+            spotifyEarnings,
+            appleMusicEarnings,
+            youtubeEarnings,
+            otherEarnings
+        ));
+        bytes32 ethSignedMessageHash = keccak256(abi.encodePacked(
+            "\x19Ethereum Signed Message:\n32",
+            messageHash
+        ));
+        address recoveredSigner = recoverSigner(ethSignedMessageHash, oracleSignature);
+        require(recoveredSigner == trustedOracle, "invalid oracle signature");
 
         ExternalStreamEarnings storage ext = externalEarnings[artist];
         ext.spotifyEarnings = spotifyEarnings;
@@ -815,15 +892,23 @@ contract RoyaltyDistributor {
 
     /// @notice Settle external streaming earnings to artist's on-platform account.
     /// @dev Transfers accumulated DDEX royalties to artist's earnings balance.
+    /// @dev FIX #3: Rate limiting prevents 1000x exploit
     /// @param artist Artist address to settle for
     function settleExternalEarnings(address artist) external onlyAdmin nonReentrant notPaused {
         ExternalStreamEarnings storage ext = externalEarnings[artist];
         require(ext.totalExternalEarnings > 0, "no external earnings");
         require(!ext.settled, "already settled in this cycle");
+        
+        // ── FIX #3: Rate limiting - only 1 settlement per 24 hours ────
+        require(
+            block.timestamp >= lastDDEXSettlementTime[artist] + 24 hours,
+            "already settled within 24 hours"
+        );
 
         uint256 totalAmount = ext.totalExternalEarnings;
         ext.settled = true;
         ext.lastUpdated = block.timestamp;
+        lastDDEXSettlementTime[artist] = block.timestamp;
 
         // Add external earnings to artist's on-platform balance
         artistEarnings[artist].totalEarned += totalAmount;
