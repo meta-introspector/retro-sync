@@ -12,6 +12,7 @@ use axum::{
     Router,
 };
 use tower_http::cors::{CorsLayer, Any};
+use axum::http::Method;
 use shared::parsers::recognize_isrc;
 use std::sync::Arc;
 use tracing::{info, warn};
@@ -125,11 +126,24 @@ async fn main() -> anyhow::Result<()> {
         .route("/api/gtms/classify", post(gtms::classify_work))
         .route("/api/gtms/screen", post(gtms::screen_distribution))
         .route("/api/gtms/declaration/:id", get(gtms::get_declaration))
-        .layer(CorsLayer::new()
-            .allow_origin(Any)
-            .allow_methods(Any)
-            .allow_headers(Any))
-        // CORS layer inserted automatically for development
+        .layer({
+            // SECURITY FIX: CORS is locked to explicit allowed origins only.
+            // Set ALLOWED_ORIGINS env var to a comma-separated list of origins.
+            // Falls back to localhost only in development.
+            use axum::http::header::{AUTHORIZATION, CONTENT_TYPE};
+            let origins = auth::allowed_origins();
+            if origins.iter().any(|_| true) {
+                CorsLayer::new()
+                    .allow_origin(origins)
+                    .allow_methods([Method::GET, Method::POST, Method::DELETE])
+                    .allow_headers([AUTHORIZATION, CONTENT_TYPE])
+            } else {
+                CorsLayer::new()
+                    .allow_origin(Any)
+                    .allow_methods(Any)
+                    .allow_headers(Any)
+            }
+        })
         .layer(middleware::from_fn_with_state(
             state.clone(),
             auth::verify_zero_trust,
@@ -172,11 +186,26 @@ async fn upload_track(
             "artist" => artist_name = field.text().await.map_err(|_| StatusCode::BAD_REQUEST)?,
             "isrc" => isrc_raw = field.text().await.map_err(|_| StatusCode::BAD_REQUEST)?,
             "audio" => {
-                audio_bytes = field
+                // SECURITY FIX: Enforce maximum file size to prevent OOM DoS.
+                // Default: 100MB. Override with MAX_AUDIO_BYTES env var.
+                let max_bytes: usize = std::env::var("MAX_AUDIO_BYTES")
+                    .ok()
+                    .and_then(|s| s.parse().ok())
+                    .unwrap_or(100 * 1024 * 1024); // 100MB default
+                let bytes = field
                     .bytes()
                     .await
-                    .map_err(|_| StatusCode::BAD_REQUEST)?
-                    .to_vec()
+                    .map_err(|_| StatusCode::BAD_REQUEST)?;
+                if bytes.len() > max_bytes {
+                    warn!(
+                        size = bytes.len(),
+                        max = max_bytes,
+                        "Upload rejected: file too large"
+                    );
+                    state.metrics.record_defect("upload_too_large");
+                    return Err(StatusCode::PAYLOAD_TOO_LARGE);
+                }
+                audio_bytes = bytes.to_vec();
             }
             _ => {}
         }

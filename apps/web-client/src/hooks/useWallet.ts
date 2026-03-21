@@ -70,27 +70,14 @@ export function useWallet() {
   const shortenAddress = (addr: string) =>
     addr ? `${addr.slice(0, 6)}…${addr.slice(-4)}` : "";
 
-  const connectCoinbase = useCallback(async (chain: ChainId) => {
-    setIsConnecting(true);
-    setError("");
-    try {
-      // Simulate Coinbase Wallet SDK connection
-      await new Promise(r => setTimeout(r, 1000));
-      
-      // Stub for dev
-      const address = "0xCB00000000000000000000000000000000000001";
-      setWallet({
-        connected: true,
-        address,
-        chain,
-        walletType: "coinbase",
-      });
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Failed to connect Coinbase Wallet.";
-      setError(message);
-    } finally {
-      setIsConnecting(false);
-    }
+  const connectCoinbase = useCallback(async (_chain: ChainId) => {
+    // SECURITY FIX: Removed hardcoded stub address "0xCB0000...0001" that was
+    // shared by ALL users, causing identity confusion and financial fraud.
+    // Coinbase Wallet SDK integration is required before enabling this flow.
+    // See: https://docs.cloud.coinbase.com/wallet-sdk/docs/installing
+    setError(
+      "Coinbase Wallet integration is being configured. Please use TronLink for now."
+    );
   }, []);
 
   return {

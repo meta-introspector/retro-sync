@@ -9,6 +9,19 @@ pub struct DdexRegistration {
     pub iswc: Option<String>,
 }
 
+/// Escape a string for safe embedding in XML content or attribute values.
+/// Prevents XML injection from user-controlled inputs.
+fn xml_escape(s: &str) -> String {
+    s.chars().flat_map(|c| match c {
+        '&'  => "&amp;".chars().collect::<Vec<_>>(),
+        '<'  => "&lt;".chars().collect(),
+        '>'  => "&gt;".chars().collect(),
+        '"'  => "&quot;".chars().collect(),
+        '\'' => "&apos;".chars().collect(),
+        c    => vec![c],
+    }).collect()
+}
+
 pub fn build_ern_xml(
     title: &str,
     isrc: &str,
@@ -16,6 +29,17 @@ pub fn build_ern_xml(
     fp: &PatternFingerprint,
     wiki: &crate::wikidata::WikidataArtist,
 ) -> String {
+    // SECURITY FIX: XML-escape all user-controlled inputs before embedding in XML
+    let title   = xml_escape(title);
+    let isrc    = xml_escape(isrc);
+    let cid     = xml_escape(cid);
+    let wikidata_qid = xml_escape(wiki.qid.as_deref().unwrap_or(""));
+    let wikidata_url = xml_escape(wiki.wikidata_url.as_deref().unwrap_or(""));
+    let mbid         = xml_escape(wiki.musicbrainz_id.as_deref().unwrap_or(""));
+    let label_name   = xml_escape(wiki.label_name.as_deref().unwrap_or(""));
+    let country      = xml_escape(wiki.country.as_deref().unwrap_or(""));
+    let genres       = xml_escape(&wiki.genres.join(", "));
+
     let tier = RarityTier::from_band(fp.band);
     format!(
         r#"<?xml version="1.0" encoding="UTF-8"?>
@@ -78,12 +102,12 @@ pub fn build_ern_xml(
         dr = fp.digit_root,
         closure = fp.closure_verified,
         ts = chrono::Utc::now().to_rfc3339(),
-        wikidata_qid = wiki.qid.as_deref().unwrap_or(""),
-        wikidata_url = wiki.wikidata_url.as_deref().unwrap_or(""),
-        mbid = wiki.musicbrainz_id.as_deref().unwrap_or(""),
-        label_name = wiki.label_name.as_deref().unwrap_or(""),
-        country = wiki.country.as_deref().unwrap_or(""),
-        genres = wiki.genres.join(", "),
+        wikidata_qid = wikidata_qid,
+        wikidata_url = wikidata_url,
+        mbid = mbid,
+        label_name = label_name,
+        country = country,
+        genres = genres,
     )
 }
 

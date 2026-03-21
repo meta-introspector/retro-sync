@@ -1,6 +1,6 @@
 //! Streaming fraud detection — velocity checks + play ratio analysis.
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::sync::Mutex;
 use tracing::warn;
 
@@ -47,7 +47,9 @@ struct Window {
 pub struct FraudDetector {
     ip_vel: Mutex<HashMap<String, Window>>,
     usr_vel: Mutex<HashMap<String, Window>>,
-    blocked: Mutex<Vec<String>>,
+    /// SECURITY FIX: Changed from Vec<String> (O(n) scan) to HashSet<String> (O(1) lookup).
+    /// Prevents DoS via blocked-list inflation attack.
+    blocked: Mutex<HashSet<String>>,
 }
 
 impl FraudDetector {
@@ -55,7 +57,7 @@ impl FraudDetector {
         Self {
             ip_vel: Mutex::new(HashMap::new()),
             usr_vel: Mutex::new(HashMap::new()),
-            blocked: Mutex::new(Vec::new()),
+            blocked: Mutex::new(HashSet::new()),
         }
     }
     pub fn analyse(&self, e: &PlayEvent) -> FraudAnalysis {
@@ -118,16 +120,14 @@ impl FraudDetector {
         }
     }
     pub fn block_isrc(&self, isrc: &str) {
-        if let Ok(mut v) = self.blocked.lock() {
-            if !v.contains(&isrc.to_string()) {
-                v.push(isrc.into());
-            }
+        if let Ok(mut s) = self.blocked.lock() {
+            s.insert(isrc.to_string());
         }
     }
     pub fn is_blocked(&self, isrc: &str) -> bool {
         self.blocked
             .lock()
-            .map(|v| v.contains(&isrc.to_string()))
+            .map(|s| s.contains(isrc))
             .unwrap_or(false)
     }
 }

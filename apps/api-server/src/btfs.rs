@@ -39,8 +39,21 @@ pub async fn upload(audio_bytes: &[u8], title: &str, isrc: &Isrc) -> anyhow::Res
 
 #[allow(dead_code)]
 pub async fn pin(cid: &BtfsCid) -> anyhow::Result<()> {
+    // SECURITY FIX: Pin errors are now propagated instead of silently ignored.
+    // A failed pin means content is not guaranteed to persist on the BTFS network.
     let api = std::env::var("BTFS_API_URL").unwrap_or_else(|_| "http://127.0.0.1:5001".into());
     let url = format!("{}/api/v0/pin/add?arg={}", api, cid.0);
-    let _ = reqwest::Client::new().post(&url).send().await;
+    let resp = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(30))
+        .build()?
+        .post(&url)
+        .send()
+        .await
+        .map_err(|e| anyhow::anyhow!("BTFS pin request failed for CID {}: {}", cid.0, e))?;
+
+    if !resp.status().is_success() {
+        anyhow::bail!("BTFS pin failed for CID {} — HTTP {}", cid.0, resp.status());
+    }
+    tracing::info!(cid=%cid.0, "BTFS content pinned successfully");
     Ok(())
 }
