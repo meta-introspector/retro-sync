@@ -66,13 +66,31 @@ BURN RATE: ~$7,990/month
 - Community events/AMAs
 
 #### Economics at Phase 2 End (Month 12):
+
+**ON-PLATFORM STREAMS** (Retrosync P2P):
 ```
 STREAMS: 500,000/month
-├─ Stream Value Assumption: 0.05 BTT/stream = $2,500
 ├─ Stream Fees (2.7%): 13,500 BTT ≈ $675
-├─ Seeding Rewards (50+ nodes, 30 days avg): ~5,000 BTT ≈ $250
-├─ Artist Cashout Fees (10K artists, 5% cashout): 27,000 BTT ≈ $1,350
-└─ TOTAL MONTHLY REVENUE: ≈ $2,275
+├─ Seeding Rewards (50+ nodes): 5,000 BTT ≈ $250
+└─ Artist Cashout Fees (2.7%): 27,000 BTT ≈ $1,350
+```
+
+**EXTERNAL STREAMS** (DDEX: Spotify, Apple Music, YouTube):
+```
+2,000 artists × 1K external streams/month = 2M Spotify streams
+├─ Spotify rate: $0.003-0.005/stream
+├─ Platform allocation: ~$6,000/month (artist royalties)
+├─ Retrosync settlement: 5% fee = $300
+```
+
+**TOTAL MONTHLY REVENUE**:
+```
+├─ On-platform fees: $675
+├─ Seeding rewards: $250
+├─ Artist cashout fees: $1,350
+├─ DDEX settlement: $300
+└─ TOTAL: ≈ $2,575 (vs $2,275 without DDEX)
+```
 
 PLATFORM COSTS: ~$15,000/month
 ├─ Cloud/Infra: 3K (scaling)
@@ -104,13 +122,19 @@ CUMULATIVE BURN: ~$140K
 
 #### Economics at Phase 3 Milestones:
 
-### Month 13 (1M streams/month):
+### Month 13 (1M streams/month on-platform + DDEX):
 ```
-STREAMS: 1,000,000
+ON-PLATFORM:
 ├─ Stream Fees (2.7%): 27,000 BTT ≈ $1,350
-├─ Seeding Rewards (100+ nodes, improved quality): 15,000 BTT ≈ $750
-├─ Artist Cashout Fees: 54,000 BTT ≈ $2,700
-└─ TOTAL REVENUE: ≈ $4,800
+├─ Seeding Rewards: 15,000 BTT ≈ $750
+└─ Artist Cashout Fees: 54,000 BTT ≈ $2,700
+
+EXTERNAL (DDEX):
+├─ 4,000 artists × 3K Spotify streams = 12M external streams/month
+├─ Spotify/Apple/YouTube royalties: ~$36,000/month (artist earnings)
+├─ Retrosync 5% settlement fee: $1,800
+
+TOTAL REVENUE: $1,350 + $750 + $2,700 + $1,800 = ≈ $6,600
 
 PLATFORM COSTS: ~$18,000/month
 └─ Similar to Phase 2 + slight scaling
@@ -119,13 +143,19 @@ BURN RATE: ~$13,200/month
 STATUS: Still unprofitable, but revenue doubling
 ```
 
-### Month 16 (1.5M streams/month):
+### Month 16 (1.5M streams/month on-platform + DDEX):
 ```
-STREAMS: 1,500,000
+ON-PLATFORM:
 ├─ Stream Fees: 40,500 BTT ≈ $2,025
 ├─ Seeding Rewards: 22,500 BTT ≈ $1,125
-├─ Artist Cashout Fees: 81,000 BTT ≈ $4,050
-└─ TOTAL REVENUE: ≈ $7,200
+└─ Artist Cashout Fees: 81,000 BTT ≈ $4,050
+
+EXTERNAL (DDEX):
+├─ 6,000 artists × 5K Spotify streams = 30M external streams/month
+├─ Spotify/Apple/YouTube royalties: ~$90,000/month (artist earnings)
+├─ Retrosync 5% settlement fee: $4,500
+
+TOTAL REVENUE: $2,025 + $1,125 + $4,050 + $4,500 = ≈ $11,700
 
 PLATFORM COSTS: ~$16,500/month (economies of scale)
 └─ Infrastructure improving, fewer ops costs
@@ -134,30 +164,65 @@ BURN RATE: ~$9,300/month
 STATUS: Approaching break-even!
 ```
 
-### Month 20 (3M streams/month):
+### Month 20 (3M streams/month on-platform + DDEX):
 ```
-STREAMS: 3,000,000
+ON-PLATFORM:
 ├─ Stream Fees: 81,000 BTT ≈ $4,050
 ├─ Seeding Rewards: 45,000 BTT ≈ $2,250
-├─ Artist Cashout Fees: 162,000 BTT ≈ $8,100
-└─ TOTAL REVENUE: ≈ $14,400
+└─ Artist Cashout Fees: 162,000 BTT ≈ $8,100
+
+EXTERNAL (DDEX):
+├─ 10,000 artists × 8K Spotify streams = 80M external streams/month
+├─ Spotify/Apple/YouTube royalties: ~$240,000/month (artist earnings)
+├─ Retrosync 5% settlement fee: $12,000
+
+TOTAL REVENUE: $4,050 + $2,250 + $8,100 + $12,000 = ≈ $26,400
 
 PLATFORM COSTS: ~$18,000/month
-STATUS: BREAKEVEN ACHIEVED ✓
+STATUS: BREAKEVEN ACHIEVED (Month 16) ✓
+        PROFIT GENERATION ACCELERATING ✓✓
 ```
 
-### Month 24 (5M streams/month):
+### Month 24 (5M streams/month on-platform + DDEX):
 ```
-STREAMS: 5,000,000
+ON-PLATFORM:
 ├─ Stream Fees: 135,000 BTT ≈ $6,750
 ├─ Seeding Rewards: 75,000 BTT ≈ $3,750
-├─ Artist Cashout Fees: 270,000 BTT ≈ $13,500
-└─ TOTAL REVENUE: ≈ $24,000
+└─ Artist Cashout Fees: 270,000 BTT ≈ $13,500
+
+EXTERNAL (DDEX):
+├─ 20,000 artists × 12K Spotify streams = 240M external streams/month
+├─ Spotify/Apple/YouTube royalties: ~$720,000/month (artist earnings)
+├─ Retrosync 5% settlement fee: $36,000
+
+TOTAL REVENUE: $6,750 + $3,750 + $13,500 + $36,000 = ≈ $60,000
 
 PLATFORM COSTS: ~$20,000/month
-NET PROFIT: ~$4,000/month ✓✓
-STATUS: Profitable, scaling, sustainable
+NET PROFIT: ~$40,000/month ✓✓✓
+STATUS: Highly profitable, scaling, sustainable
 ```
+
+---
+
+## DDEX Impact Analysis
+
+**Without DDEX** (on-platform streams only):
+```
+Month 16: $7,200 revenue → Still in loss
+Month 24: $24,000 revenue → Only $4K profit
+```
+
+**With DDEX** (dual income streams):
+```
+Month 16: $11,700 revenue → Approaching profitability
+Month 24: $60,000 revenue → $40K monthly profit (5x growth!)
+```
+
+**Key Insight**: DDEX transforms Retrosync from a niche P2P player into a **full-stack distribution hub**:
+- Artists upload once → get paid from P2P streams + Spotify + Apple Music + YouTube
+- Platform earns small settlement fee on massive external royalty flows
+- Creates strong network effect: more artists = more external distribution = more Retrosync earnings
+- Artists choose Retrosync not just for P2P, but as their unified royalty aggregator
 
 ---
 
