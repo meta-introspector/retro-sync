@@ -36,11 +36,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: foundry-rs/foundry-toolchain@v1
       - run: |
-          cd contracts
+          cd libs/contracts
           forge install OpenZeppelin/openzeppelin-contracts --no-commit || true
           forge test --fuzz-runs 2000 -v
       - run: |
-          cd contracts
+          cd libs/contracts
           forge coverage
 
   wasm-build:
@@ -52,7 +52,7 @@ jobs:
         with: { targets: wasm32-unknown-unknown }
       - run: cargo install trunk --locked
       - run: |
-          cd frontend
+          cd apps/wasm-frontend
           trunk build --release
 
   compliance-check:
