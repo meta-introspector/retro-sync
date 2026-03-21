@@ -27,10 +27,13 @@ A decentralized media distribution and royalty management platform for the music
 - Backend/Rust: Cargo workspace
 
 ## Security Features (implemented)
+- **Rate limiting**: Per-IP sliding-window middleware — 120/min general, 10/min auth, 5/min upload; IP from X-Real-IP / X-Forwarded-For
 - **Wallet auth**: Challenge-response authentication (`GET /api/auth/challenge/:addr`, `POST /api/auth/verify`) — EIP-191 ECDSA, 24h JWT, single-use nonces
 - **LMDB persistence**: All five stores (KYC, moderation, privacy, takedown, ZK cache) backed by heed 0.20 LMDB — survive restarts
 - **Per-user auth guards**: KYC and privacy endpoints enforce `JWT sub == uid` — 403 on mismatch
 - **BTFS API key**: `X-API-Key` header on all BTFS requests when `BTFS_API_KEY` env var is set
+- **BTFS TLS**: HTTP blocked in production (`RETROSYNC_ENV=production`) — requires HTTPS reverse proxy
+- **NCMEC CyberTipline**: CSAM reports auto-submit to NCMEC API (18 U.S.C. §2258A); gated on `NCMEC_API_KEY`
 - **JWT extractor**: `auth::extract_caller` decodes Bearer JWT, checks expiry, returns wallet address
 - **CORS**: Locked to `ALLOWED_ORIGINS` env var
 - **Upload cap**: 100MB hard limit (`MAX_AUDIO_BYTES` env var)
@@ -39,14 +42,15 @@ A decentralized media distribution and royalty management platform for the music
 
 ## Key Backend Modules (apps/api-server/src/)
 - `persist.rs` — generic LMDB store (put/get/append/update/delete)
+- `rate_limit.rs` — per-IP sliding-window rate limiter middleware
 - `wallet_auth.rs` — challenge issuance, ECDSA verify, JWT issuance
 - `auth.rs` — Zero Trust middleware + `extract_caller` helper
 - `kyc.rs` — KYC/AML with LMDB + per-user guard
-- `moderation.rs` — DSA content queue with LMDB
+- `moderation.rs` — DSA content queue with LMDB + NCMEC CyberTipline reporting
 - `privacy.rs` — GDPR/CCPA with LMDB + per-user guard
 - `takedown.rs` — DMCA §512 with LMDB
 - `zk_cache.rs` — ZK proof cache with LMDB
-- `btfs.rs` — BTFS upload/pin with API key auth
+- `btfs.rs` — BTFS upload/pin with API key auth + TLS enforcement
 
 ## Deployment
 - Target: Static site

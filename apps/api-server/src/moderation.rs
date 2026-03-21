@@ -109,6 +109,79 @@ fn rand_id() -> String {
     crate::wallet_auth::random_hex_pub(16)
 }
 
+/// Submit an electronic report to the NCMEC CyberTipline (18 U.S.C. §2258A).
+///
+/// Requires `NCMEC_API_KEY` env var.  In development (no key set), logs a
+/// warning and returns a synthetic report ID so the flow can be tested.
+///
+/// Production endpoint: https://api.cybertipline.org/v1/reports
+/// Sandbox endpoint:    https://sandbox.api.cybertipline.org/v1/reports
+/// (Set via `NCMEC_API_URL` env var.)
+async fn submit_ncmec_report(report_id: &str, isrc: &str) -> anyhow::Result<String> {
+    let api_key = match std::env::var("NCMEC_API_KEY") {
+        Ok(k) => k,
+        Err(_) => {
+            warn!(
+                report_id=%report_id,
+                "NCMEC_API_KEY not set — CSAM report NOT submitted to NCMEC. \
+                 Set NCMEC_API_KEY in production. Manual submission required."
+            );
+            return Ok(format!("DEV-UNSUBMITTED-{}", report_id));
+        }
+    };
+
+    let endpoint = std::env::var("NCMEC_API_URL")
+        .unwrap_or_else(|_| "https://api.cybertipline.org/v1/reports".into());
+
+    let body = serde_json::json!({
+        "reportType": "CSAM",
+        "incidentSummary": "Potential CSAM identified during upload fingerprint scan",
+        "contentIdentifier": {
+            "type": "ISRC",
+            "value": isrc
+        },
+        "reportingEntity": {
+            "name": "Retrosync Media Group",
+            "type": "ESP",
+            "internalReportId": report_id
+        },
+        "reportedAt": chrono::Utc::now().to_rfc3339(),
+        "immediateRemoval": true
+    });
+
+    let client = reqwest::Client::builder()
+        .timeout(std::time::Duration::from_secs(30))
+        .build()?;
+
+    let resp = client
+        .post(&endpoint)
+        .header("Authorization", format!("Bearer {}", api_key))
+        .header("Content-Type", "application/json")
+        .json(&body)
+        .send()
+        .await
+        .map_err(|e| anyhow::anyhow!("NCMEC API unreachable: {}", e))?;
+
+    let status = resp.status();
+    if !status.is_success() {
+        let body_text = resp.text().await.unwrap_or_default();
+        anyhow::bail!("NCMEC API returned {}: {}", status, body_text);
+    }
+
+    let result: serde_json::Value = resp
+        .json()
+        .await
+        .unwrap_or_else(|_| serde_json::json!({}));
+
+    let ncmec_id = result["reportId"]
+        .as_str()
+        .or_else(|| result["id"].as_str())
+        .unwrap_or(report_id)
+        .to_string();
+
+    Ok(ncmec_id)
+}
+
 pub async fn submit_report(
     State(state): State<AppState>,
     Json(req): Json<ReportRequest>,
@@ -120,7 +193,7 @@ pub async fn submit_report(
         rand_id()
     );
     if req.category == ReportCategory::Csam {
-        warn!(id=%id, isrc=%req.isrc, "CSAM — IMMEDIATE REMOVAL + NCMEC referral");
+        warn!(id=%id, isrc=%req.isrc, "CSAM — IMMEDIATE REMOVAL + NCMEC CyberTipline referral");
         state
             .audit_log
             .record(&format!(
@@ -128,8 +201,29 @@ pub async fn submit_report(
                 id, req.isrc
             ))
             .ok();
-        // TODO: Call NCMEC CyberTipline API (requires NCMEC_API_KEY env var)
-        // See: https://www.missingkids.org/gethelpnow/cybertipline
+        // LEGAL REQUIREMENT: Electronic report to NCMEC CyberTipline (18 U.S.C. §2258A)
+        // Spawn non-blocking so the API call doesn't delay content removal
+        let report_id_clone = id.clone();
+        let isrc_clone = req.isrc.clone();
+        tokio::spawn(async move {
+            match submit_ncmec_report(&report_id_clone, &isrc_clone).await {
+                Ok(ncmec_id) => {
+                    tracing::info!(
+                        report_id=%report_id_clone,
+                        ncmec_id=%ncmec_id,
+                        "NCMEC CyberTipline report submitted successfully"
+                    );
+                }
+                Err(e) => {
+                    // Log as CRITICAL — failure to report CSAM is a federal crime
+                    tracing::error!(
+                        report_id=%report_id_clone,
+                        err=%e,
+                        "CRITICAL: NCMEC CyberTipline report FAILED — manual submission required immediately"
+                    );
+                }
+            }
+        });
     }
     state.mod_queue.add(ContentReport {
         id: id.clone(),

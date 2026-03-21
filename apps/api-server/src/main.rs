@@ -34,6 +34,7 @@ mod mirrors;
 mod moderation;
 mod persist;
 mod privacy;
+mod rate_limit;
 mod royalty_reporting;
 mod sap;
 mod takedown;
@@ -56,6 +57,7 @@ pub struct AppState {
     pub sap_client: Arc<sap::SapClient>,
     pub gtms_db: Arc<gtms::GtmsStore>,
     pub challenge_store: Arc<wallet_auth::ChallengeStore>,
+    pub rate_limiter: Arc<rate_limit::RateLimiter>,
 }
 
 #[tokio::main]
@@ -80,6 +82,7 @@ async fn main() -> anyhow::Result<()> {
         sap_client: Arc::new(sap::SapClient::from_env()),
         gtms_db: Arc::new(gtms::GtmsStore::new()),
         challenge_store: Arc::new(wallet_auth::ChallengeStore::new()),
+        rate_limiter: Arc::new(rate_limit::RateLimiter::new()),
     };
 
     let app = Router::new()
@@ -134,9 +137,16 @@ async fn main() -> anyhow::Result<()> {
                     .allow_headers(Any)
             }
         })
+        // Middleware execution order (Axum applies last-added = outermost):
+        //   1. rate_limit::enforce — outermost: reject flood before doing any work
+        //   2. auth::verify_zero_trust — inner: only verified requests reach handlers
         .layer(middleware::from_fn_with_state(
             state.clone(),
             auth::verify_zero_trust,
+        ))
+        .layer(middleware::from_fn_with_state(
+            state.clone(),
+            rate_limit::enforce,
         ))
         .with_state(state);
 

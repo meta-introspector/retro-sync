@@ -10,7 +10,35 @@ use shared::types::{BtfsCid, Isrc};
 use tracing::{debug, info, instrument};
 
 /// Build a reqwest client with a 120-second timeout and the BTFS API key header.
+///
+/// TLS enforcement: in production (`RETROSYNC_ENV=production`), BTFS_API_URL
+/// must use HTTPS.  Configure a TLS-terminating reverse proxy (nginx/HAProxy)
+/// in front of the BTFS daemon (which only speaks HTTP natively).
+/// Example nginx config:
+///   server {
+///     listen 443 ssl;
+///     location / { proxy_pass http://127.0.0.1:5001; }
+///   }
 fn btfs_client() -> anyhow::Result<(reqwest::Client, Option<String>)> {
+    let api = std::env::var("BTFS_API_URL").unwrap_or_else(|_| "http://127.0.0.1:5001".into());
+    let env = std::env::var("RETROSYNC_ENV").unwrap_or_default();
+
+    if env == "production" && !api.starts_with("https://") {
+        anyhow::bail!(
+            "SECURITY: BTFS_API_URL must use HTTPS in production (got: {}). \
+             Configure a TLS reverse proxy in front of the BTFS node. \
+             See: https://docs.btfs.io/docs/tls-setup",
+            api
+        );
+    }
+    if !api.starts_with("https://") {
+        tracing::warn!(
+            url=%api,
+            "BTFS_API_URL uses plaintext HTTP — traffic is unencrypted. \
+             Configure HTTPS for production (set BTFS_API_URL=https://...)."
+        );
+    }
+
     let client = reqwest::Client::builder()
         .timeout(std::time::Duration::from_secs(120))
         .build()?;
