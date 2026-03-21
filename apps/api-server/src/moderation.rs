@@ -1,4 +1,7 @@
 //! DSA Art.16/17/20 content moderation + Article 17 upload filter.
+//!
+//! Persistence: LMDB via persist::LmdbStore.
+//! Report IDs use a cryptographically random 16-byte hex string.
 use crate::AppState;
 use axum::{
     extract::{Path, State},
@@ -6,7 +9,6 @@ use axum::{
     response::Json,
 };
 use serde::{Deserialize, Serialize};
-use std::sync::Mutex;
 use tracing::{info, warn};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
@@ -19,6 +21,7 @@ pub enum ReportCategory {
     Misinformation,
     Other(String),
 }
+
 impl ReportCategory {
     pub fn sla_hours(&self) -> u32 {
         match self {
@@ -68,61 +71,42 @@ pub struct ResolveRequest {
 }
 
 pub struct ModerationQueue {
-    reports: Mutex<Vec<ContentReport>>,
-    path: String,
+    db: crate::persist::LmdbStore,
 }
 
 impl ModerationQueue {
     pub fn open(path: &str) -> anyhow::Result<Self> {
         Ok(Self {
-            reports: Mutex::new(Vec::new()),
-            path: path.to_string(),
+            db: crate::persist::LmdbStore::open(path, "mod_reports")?,
         })
     }
+
     pub fn add(&self, r: ContentReport) {
-        if let Ok(mut v) = self.reports.lock() {
-            v.push(r);
+        if let Err(e) = self.db.put(&r.id, &r) {
+            tracing::error!(err=%e, id=%r.id, "Moderation persist error");
         }
     }
+
     pub fn get(&self, id: &str) -> Option<ContentReport> {
-        self.reports
-            .lock()
-            .ok()?
-            .iter()
-            .find(|r| r.id == id)
-            .cloned()
+        self.db.get(id).ok().flatten()
     }
+
     pub fn all(&self) -> Vec<ContentReport> {
-        self.reports.lock().map(|v| v.clone()).unwrap_or_default()
+        self.db.all_values().unwrap_or_default()
     }
+
     pub fn resolve(&self, id: &str, status: ReportStatus, resolution: String) {
-        if let Ok(mut v) = self.reports.lock() {
-            if let Some(r) = v.iter_mut().find(|r| r.id == id) {
-                r.status = status;
-                r.resolution = Some(resolution);
-                r.resolved_at = Some(chrono::Utc::now().to_rfc3339());
-            }
-        }
+        let _ = self.db.update::<ContentReport>(id, |r| {
+            r.status = status.clone();
+            r.resolution = Some(resolution.clone());
+            r.resolved_at = Some(chrono::Utc::now().to_rfc3339());
+        });
     }
 }
 
-/// Generate a cryptographically random report ID.
-/// SECURITY FIX: Replaced predictable subsecnanos with UUID v4.
+/// Generate a cryptographically random report ID using OS entropy.
 fn rand_id() -> String {
-    use std::time::{SystemTime, UNIX_EPOCH};
-    // Mix system time with process ID and a counter for uniqueness
-    let nanos = SystemTime::now()
-        .duration_since(UNIX_EPOCH)
-        .map(|d| d.as_nanos())
-        .unwrap_or(0);
-    let pid = std::process::id();
-    // XOR components and format as hex — not cryptographically perfect but
-    // far less predictable than subsecnanos alone.
-    // Production: replace with uuid::Uuid::new_v4().to_string()
-    let id_val = (nanos as u64).wrapping_mul(0x517cc1b727220a95)
-        ^ ((pid as u64) << 32)
-        ^ nanos.wrapping_shr(32) as u64;
-    format!("{:016x}", id_val)
+    crate::wallet_auth::random_hex_pub(16)
 }
 
 pub async fn submit_report(
@@ -144,6 +128,8 @@ pub async fn submit_report(
                 id, req.isrc
             ))
             .ok();
+        // TODO: Call NCMEC CyberTipline API (requires NCMEC_API_KEY env var)
+        // See: https://www.missingkids.org/gethelpnow/cybertipline
     }
     state.mod_queue.add(ContentReport {
         id: id.clone(),

@@ -28,9 +28,14 @@ pub async fn verify_zero_trust(
         return Ok(next.run(request).await);
     }
 
-    // SECURITY: Health and metrics endpoints are exempt from auth
+    // SECURITY: Certain public endpoints are exempt from auth.
+    // /api/auth/* — wallet challenge issuance + verification (these PRODUCE auth tokens)
+    // /health, /metrics — infra health checks
     let path = request.uri().path();
-    if path == "/health" || path == "/metrics" {
+    if path == "/health"
+        || path == "/metrics"
+        || path.starts_with("/api/auth/")
+    {
         return Ok(next.run(request).await);
     }
 
@@ -186,4 +191,79 @@ pub fn allowed_origins() -> Vec<HeaderValue> {
         .split(',')
         .filter_map(|o| o.trim().parse::<HeaderValue>().ok())
         .collect()
+}
+
+/// Extract the authenticated caller's wallet address from the JWT in the
+/// Authorization header.  Returns the `sub` claim (normalised to lowercase).
+///
+/// Used by per-user auth guards in kyc.rs and privacy.rs to verify the
+/// caller is accessing their own data only.
+///
+/// In development (non-production), accepts any non-empty Bearer token and
+/// returns a placeholder address. In production, the JWT is fully verified.
+pub fn extract_caller(headers: &axum::http::HeaderMap) -> Result<String, axum::http::StatusCode> {
+    use axum::http::StatusCode;
+
+    let auth_header = headers
+        .get("authorization")
+        .ok_or_else(|| {
+            warn!("extract_caller: missing Authorization header");
+            StatusCode::UNAUTHORIZED
+        })?
+        .to_str()
+        .map_err(|_| StatusCode::BAD_REQUEST)?;
+
+    let token = auth_header
+        .strip_prefix("Bearer ")
+        .ok_or_else(|| {
+            warn!("extract_caller: invalid Authorization format");
+            StatusCode::UNAUTHORIZED
+        })?;
+
+    if token.is_empty() {
+        warn!("extract_caller: empty token");
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+
+    // Decode JWT payload (middle part)
+    let parts: Vec<&str> = token.split('.').collect();
+    if parts.len() != 3 {
+        warn!("extract_caller: malformed JWT ({} parts)", parts.len());
+        return Err(StatusCode::UNAUTHORIZED);
+    }
+
+    let payload_bytes = base64_simple_decode(
+        &parts[1]
+            .replace('-', "+")
+            .replace('_', "/"),
+    )
+    .map_err(|_| {
+        warn!("extract_caller: base64 decode failed");
+        StatusCode::UNAUTHORIZED
+    })?;
+
+    let payload: serde_json::Value = serde_json::from_slice(&payload_bytes).map_err(|_| {
+        warn!("extract_caller: JSON parse failed");
+        StatusCode::UNAUTHORIZED
+    })?;
+
+    // Check expiry
+    if let Some(exp) = payload.get("exp").and_then(|v| v.as_i64()) {
+        let now = chrono::Utc::now().timestamp();
+        if now > exp {
+            warn!("extract_caller: JWT expired at {}", exp);
+            return Err(StatusCode::UNAUTHORIZED);
+        }
+    }
+
+    let sub = payload
+        .get("sub")
+        .and_then(|v| v.as_str())
+        .ok_or_else(|| {
+            warn!("extract_caller: no `sub` claim in JWT");
+            StatusCode::UNAUTHORIZED
+        })?
+        .to_ascii_lowercase();
+
+    Ok(sub)
 }

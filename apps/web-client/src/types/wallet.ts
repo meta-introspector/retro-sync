@@ -11,6 +11,8 @@ export interface TronWebInstance {
   trx: {
     getBalance: (address: string) => Promise<number>;
     getAccount: (address: string) => Promise<unknown>;
+    sign: (hexMessage: string) => Promise<string>;
+    signMessageV2: (message: string) => Promise<string>;
   };
 }
 
@@ -43,13 +45,17 @@ export const CHAIN_INFO: Record<ChainId, { name: string; symbol: string; explore
   },
 };
 
-// Extend Window for TronLink
+// Extend Window for TronLink and EVM wallets (MetaMask / Coinbase)
 declare global {
   interface Window {
     tronWeb?: TronWebInstance;
     tronLink?: {
       ready: boolean;
       request: (args: { method: string }) => Promise<unknown>;
+    };
+    ethereum?: {
+      request: (args: { method: string; params?: unknown[] }) => Promise<unknown>;
+      isMetaMask?: boolean;
     };
   }
 }

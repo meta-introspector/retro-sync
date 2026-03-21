@@ -1,13 +1,14 @@
 //! KYC/AML — FinCEN, OFAC SDN screening, W-9/W-8BEN, EU AMLD6.
+//!
+//! Persistence: LMDB via persist::LmdbStore.
+//! Per-user auth: callers may only read/write their own KYC record.
 use crate::AppState;
 use axum::{
     extract::{Path, State},
-    http::StatusCode,
+    http::{HeaderMap, StatusCode},
     response::Json,
 };
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
-use std::sync::Mutex;
 use tracing::warn;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
@@ -58,26 +59,26 @@ pub struct KycSubmission {
 }
 
 pub struct KycStore {
-    records: Mutex<HashMap<String, KycRecord>>,
-    #[allow(dead_code)]
-    path: String,
+    db: crate::persist::LmdbStore,
 }
 
 impl KycStore {
     pub fn open(path: &str) -> anyhow::Result<Self> {
         Ok(Self {
-            records: Mutex::new(HashMap::new()),
-            path: path.to_string(),
+            db: crate::persist::LmdbStore::open(path, "kyc_records")?,
         })
     }
+
     pub fn get(&self, uid: &str) -> Option<KycRecord> {
-        self.records.lock().ok()?.get(uid).cloned()
+        self.db.get(uid).ok().flatten()
     }
+
     pub fn upsert(&self, r: KycRecord) {
-        if let Ok(mut m) = self.records.lock() {
-            m.insert(r.user_id.clone(), r);
+        if let Err(e) = self.db.put(&r.user_id, &r) {
+            tracing::error!(err=%e, user=%r.user_id, "KYC persist error");
         }
     }
+
     pub fn payout_permitted(&self, uid: &str, amount_usd: f64) -> bool {
         match self.get(uid) {
             None => false,
@@ -111,9 +112,17 @@ async fn screen_ofac(name: &str, country: &str) -> OfacStatus {
 
 pub async fn submit_kyc(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path(uid): Path<String>,
     Json(req): Json<KycSubmission>,
 ) -> Result<Json<serde_json::Value>, StatusCode> {
+    // PER-USER AUTH: caller must own this uid
+    let caller = crate::auth::extract_caller(&headers)?;
+    if caller.to_ascii_lowercase() != uid.to_ascii_lowercase() {
+        warn!(caller=%caller, uid=%uid, "KYC submit: caller != uid — forbidden");
+        return Err(StatusCode::FORBIDDEN);
+    }
+
     let ofac = screen_ofac(&req.legal_name, &req.country_code).await;
     let blocked = ofac == OfacStatus::Flagged || ofac == OfacStatus::Blocked;
     let tier = if blocked {
@@ -153,8 +162,16 @@ pub async fn submit_kyc(
 
 pub async fn kyc_status(
     State(state): State<AppState>,
+    headers: HeaderMap,
     Path(uid): Path<String>,
 ) -> Result<Json<KycRecord>, StatusCode> {
+    // PER-USER AUTH: caller may only read their own record
+    let caller = crate::auth::extract_caller(&headers)?;
+    if caller.to_ascii_lowercase() != uid.to_ascii_lowercase() {
+        warn!(caller=%caller, uid=%uid, "KYC status: caller != uid — forbidden");
+        return Err(StatusCode::FORBIDDEN);
+    }
+
     state
         .kyc_db
         .get(&uid)

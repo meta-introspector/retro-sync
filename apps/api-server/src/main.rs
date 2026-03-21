@@ -1,18 +1,17 @@
 //! Retrosync backend — Axum API server.
-//! Zero Trust: every request verified via JWT + SPIFFE SVID (auth.rs).
+//! Zero Trust: every request verified via JWT (auth.rs).
 //! LangSec: all inputs pass through shared::parsers recognizers.
 //! ISO 9001 §7.5: all operations logged to append-only audit store.
 
 use axum::{
     extract::{Multipart, Path, State},
-    http::StatusCode,
+    http::{Method, StatusCode},
     middleware,
     response::Json,
     routing::{delete, get, post},
     Router,
 };
 use tower_http::cors::{CorsLayer, Any};
-use axum::http::Method;
 use shared::parsers::recognize_isrc;
 use std::sync::Arc;
 use tracing::{info, warn};
@@ -33,13 +32,15 @@ mod ledger;
 mod metrics;
 mod mirrors;
 mod moderation;
+mod persist;
 mod privacy;
 mod royalty_reporting;
-mod sap; // SAP S/4HANA (OData v4) + ECC (IDoc/RFC) integration
+mod sap;
 mod takedown;
+mod wallet_auth;
 mod wikidata;
 mod xslt;
-mod zk_cache; // Global Trade Management — ECCN, HS codes, export control, sanctions
+mod zk_cache;
 
 #[derive(Clone)]
 pub struct AppState {
@@ -54,6 +55,7 @@ pub struct AppState {
     pub mod_queue: Arc<moderation::ModerationQueue>,
     pub sap_client: Arc<sap::SapClient>,
     pub gtms_db: Arc<gtms::GtmsStore>,
+    pub challenge_store: Arc<wallet_auth::ChallengeStore>,
 }
 
 #[tokio::main]
@@ -71,68 +73,56 @@ async fn main() -> anyhow::Result<()> {
         metrics: Arc::new(metrics::CtqMetrics::new()),
         zk_cache: Arc::new(zk_cache::ZkProofCache::open("zk_proof_cache.lmdb")?),
         takedown_db: Arc::new(takedown::TakedownStore::open("takedown.db")?),
-        privacy_db: Arc::new(privacy::PrivacyStore::open("privacy.db")?),
+        privacy_db: Arc::new(privacy::PrivacyStore::open("privacy_db")?),
         fraud_db: Arc::new(fraud::FraudDetector::new()),
-        kyc_db: Arc::new(kyc::KycStore::open("kyc.db")?),
-        mod_queue: Arc::new(moderation::ModerationQueue::open("moderation.db")?),
+        kyc_db: Arc::new(kyc::KycStore::open("kyc_db")?),
+        mod_queue: Arc::new(moderation::ModerationQueue::open("moderation_db")?),
         sap_client: Arc::new(sap::SapClient::from_env()),
         gtms_db: Arc::new(gtms::GtmsStore::new()),
+        challenge_store: Arc::new(wallet_auth::ChallengeStore::new()),
     };
 
     let app = Router::new()
         .route("/health", get(health))
         .route("/metrics", get(metrics::handler))
+        // ── Wallet authentication (no auth required — these issue the auth token)
+        .route("/api/auth/challenge/:address", get(wallet_auth::issue_challenge))
+        .route("/api/auth/verify", post(wallet_auth::verify_challenge))
+        // ── Track upload + status
         .route("/api/upload", post(upload_track))
         .route("/api/track/:id", get(track_status))
-        // DMCA §512
+        // ── DMCA §512
         .route("/api/takedown", post(takedown::submit_notice))
-        .route(
-            "/api/takedown/:id/counter",
-            post(takedown::submit_counter_notice),
-        )
+        .route("/api/takedown/:id/counter", post(takedown::submit_counter_notice))
         .route("/api/takedown/:id", get(takedown::get_notice))
-        // GDPR/CCPA
+        // ── GDPR/CCPA
         .route("/api/privacy/consent", post(privacy::record_consent))
-        .route(
-            "/api/privacy/delete/:uid",
-            delete(privacy::delete_user_data),
-        )
+        .route("/api/privacy/delete/:uid", delete(privacy::delete_user_data))
         .route("/api/privacy/export/:uid", get(privacy::export_user_data))
-        // Moderation (DSA/Article 17)
+        // ── Moderation (DSA/Article 17)
         .route("/api/moderation/report", post(moderation::submit_report))
         .route("/api/moderation/queue", get(moderation::get_queue))
-        .route(
-            "/api/moderation/:id/resolve",
-            post(moderation::resolve_report),
-        )
-        // KYC/AML
+        .route("/api/moderation/:id/resolve", post(moderation::resolve_report))
+        // ── KYC/AML
         .route("/api/kyc/:uid", post(kyc::submit_kyc))
         .route("/api/kyc/:uid/status", get(kyc::kyc_status))
-        // CWR/XSLT society submissions
-        .route(
-            "/api/royalty/xslt/:society",
-            post(xslt::transform_submission),
-        )
-        .route(
-            "/api/royalty/xslt/all",
-            post(xslt::transform_all_submissions),
-        )
-        // SAP S/4HANA + ECC
+        // ── CWR/XSLT society submissions
+        .route("/api/royalty/xslt/:society", post(xslt::transform_submission))
+        .route("/api/royalty/xslt/all", post(xslt::transform_all_submissions))
+        // ── SAP S/4HANA + ECC
         .route("/api/sap/royalty-posting", post(sap::post_royalty_document))
         .route("/api/sap/vendor-sync", post(sap::sync_vendor))
         .route("/api/sap/idoc/royalty", post(sap::emit_royalty_idoc))
         .route("/api/sap/health", get(sap::sap_health))
-        // Global Trade Management
+        // ── Global Trade Management
         .route("/api/gtms/classify", post(gtms::classify_work))
         .route("/api/gtms/screen", post(gtms::screen_distribution))
         .route("/api/gtms/declaration/:id", get(gtms::get_declaration))
         .layer({
-            // SECURITY FIX: CORS is locked to explicit allowed origins only.
-            // Set ALLOWED_ORIGINS env var to a comma-separated list of origins.
-            // Falls back to localhost only in development.
+            // SECURITY: CORS locked to explicit allowed origins (ALLOWED_ORIGINS env var).
             use axum::http::header::{AUTHORIZATION, CONTENT_TYPE};
             let origins = auth::allowed_origins();
-            if origins.iter().any(|_| true) {
+            if !origins.is_empty() {
                 CorsLayer::new()
                     .allow_origin(origins)
                     .allow_methods([Method::GET, Method::POST, Method::DELETE])
@@ -186,12 +176,12 @@ async fn upload_track(
             "artist" => artist_name = field.text().await.map_err(|_| StatusCode::BAD_REQUEST)?,
             "isrc" => isrc_raw = field.text().await.map_err(|_| StatusCode::BAD_REQUEST)?,
             "audio" => {
-                // SECURITY FIX: Enforce maximum file size to prevent OOM DoS.
+                // SECURITY: Enforce maximum file size to prevent OOM DoS.
                 // Default: 100MB. Override with MAX_AUDIO_BYTES env var.
                 let max_bytes: usize = std::env::var("MAX_AUDIO_BYTES")
                     .ok()
                     .and_then(|s| s.parse().ok())
-                    .unwrap_or(100 * 1024 * 1024); // 100MB default
+                    .unwrap_or(100 * 1024 * 1024);
                 let bytes = field
                     .bytes()
                     .await
