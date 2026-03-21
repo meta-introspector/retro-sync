@@ -13,28 +13,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          toolchain: stable
-          target: wasm32-unknown-unknown
-          override: true
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Install Trunk
-        run: cargo install trunk
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build
-        run: |
-          cd apps/wasm-frontend
-          trunk build --release
-
-      - name: List dist contents
-        run: ls -la apps/wasm-frontend/dist
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./apps/wasm-frontend/dist
+          path: ./apps/web-client/dist
 
   deploy:
     needs: build
