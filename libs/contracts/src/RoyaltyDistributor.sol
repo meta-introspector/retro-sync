@@ -38,7 +38,7 @@ contract RoyaltyDistributor {
     // ── Constants ────────────────────────────────────────────────────
     uint256 public constant BASIS_POINTS      = 10_000;
     uint256 public constant MAX_ARTISTS       = 16;
-    uint256 public constant TRANSACTION_FEE_BPS = 250; // 2.5% fee (250 / 10,000)
+    uint256 public constant NETWORK_FEE_BPS   = 270; // 2.7% fee (270 / 10,000)
 
     /// Max BTT distributable in a single non-timelocked transaction.
     /// Large distributions go through the timelock queue.
@@ -353,13 +353,14 @@ contract RoyaltyDistributor {
         emit IPISplitRegistered(trackCid, splitAddresses, splitPercentages, ipiReference);
     }
 
-    /// @notice Record a P2P streaming transaction.
-    /// @dev Artists earn 100% of stream value immediately. 2.5% fee only on cashout.
+    /// @notice Record a P2P streaming transaction from user listening.
+    /// @dev User pays streamValue in full. 2.7% micro-fee collected immediately for nodes + platform.
+    ///      Remaining amount (97.3%) credited to artist(s) per IPI split.
     /// @param txId Unique transaction ID
     /// @param trackCid BTFS CID of the track being streamed
     /// @param listener User address who listened
     /// @param hostNodes P2P nodes that provided the stream
-    /// @param streamValue 100% credited to artist(s), no fee deducted at stream time
+    /// @param streamValue User pays this amount (2.7% fee applies)
     function recordStreamingTransaction(
         bytes32 txId,
         bytes32 trackCid,
@@ -376,7 +377,11 @@ contract RoyaltyDistributor {
 
         IPISplit storage split = trackIPISplits[trackCid];
         
-        // Record the transaction (artists earn 100% at stream time)
+        // Calculate 2.7% network fee from user's stream payment
+        uint256 networkFee = (streamValue * NETWORK_FEE_BPS) / BASIS_POINTS;
+        uint256 artistRoyalty = streamValue - networkFee;
+        
+        // Record the transaction
         streamingTransactions[txId] = StreamingTransaction({
             trackCid: trackCid,
             listener: listener,
@@ -388,19 +393,44 @@ contract RoyaltyDistributor {
         });
         transactionHistory.push(txId);
 
-        // Accumulate earnings for each split recipient
+        // Collect 2.7% network fee: distribute to hosts + platform
+        uint256 hostNodesShare = (networkFee * 9000) / BASIS_POINTS; // 90% to hosts
+        uint256 platformShare = networkFee - hostNodesShare;         // 10% to platform
+
+        // Distribute to host nodes equally
+        uint256 feePerHost = hostNodesShare / hostNodes.length;
+        for (uint i = 0; i < hostNodes.length; i++) {
+            address host = hostNodes[i];
+            require(host != address(0), "zero host address");
+
+            if (feePerHost > 0) {
+                require(btt.transfer(host, feePerHost), "host payment failed");
+
+                hostReputation[host].totalFeesEarned += feePerHost;
+                hostReputation[host].streamsHosted += 1;
+                hostReputation[host].lastReward = block.timestamp;
+
+                emit HostRewardPaid(host, feePerHost, hostReputation[host].totalFeesEarned);
+            }
+        }
+
+        // Accumulate platform fees
+        uint256 dust = hostNodesShare - (feePerHost * hostNodes.length);
+        platformFeesAccumulated += platformShare + dust;
+
+        // Credit artist royalty (97.3%) to each split recipient
         uint256 accumulated;
         for (uint i = 0; i < split.splitAddresses.length; i++) {
             address recipient = split.splitAddresses[i];
-            uint256 amount = (streamValue * split.splitPercentages[i]) / BASIS_POINTS;
+            uint256 amount = (artistRoyalty * split.splitPercentages[i]) / BASIS_POINTS;
             artistEarnings[recipient].totalEarned += amount;
             accumulated += amount;
         }
 
         // Dust to admin
-        uint256 dust = streamValue - accumulated;
-        if (dust > 0) {
-            artistEarnings[admin].totalEarned += dust;
+        uint256 artistDust = artistRoyalty - accumulated;
+        if (artistDust > 0) {
+            artistEarnings[admin].totalEarned += artistDust;
         }
 
         emit StreamingTransactionRecorded(
@@ -408,16 +438,16 @@ contract RoyaltyDistributor {
         );
     }
 
-    /// @notice Request a cashout. 2.5% fee deducted, goes to P2P hosts and platform.
+    /// @notice Request a cashout. 2.7% fee deducted, goes to P2P hosts and platform.
     /// @param cashoutId Unique cashout request ID
-    /// @param amount Amount to cash out (before 2.5% fee)
+    /// @param amount Amount to cash out (before 2.7% fee)
     function requestCashout(bytes32 cashoutId, uint256 amount) external notPaused {
         require(amount > 0, "zero amount");
         require(artistEarnings[msg.sender].totalEarned >= amount, "insufficient earnings");
         require(cashoutRequests[cashoutId].timestamp == 0, "cashout already recorded");
 
-        // Calculate 2.5% fee
-        uint256 networkFee = (amount * TRANSACTION_FEE_BPS) / BASIS_POINTS;
+        // Calculate 2.7% fee
+        uint256 networkFee = (amount * NETWORK_FEE_BPS) / BASIS_POINTS;
         uint256 netAmount = amount - networkFee;
 
         // Record the cashout request
@@ -433,7 +463,7 @@ contract RoyaltyDistributor {
         emit CashoutRequested(cashoutId, msg.sender, amount, networkFee, netAmount);
     }
 
-    /// @notice Execute a cashout and distribute 2.5% fee to hosts and platform.
+    /// @notice Execute a cashout and distribute 2.7% fee to hosts and platform.
     /// @dev 90% of fee to hosts (equally), 10% to platform operations.
     /// @param cashoutId The cashout request ID
     /// @param hostNodes P2P nodes that hosted/seeded the content
@@ -450,10 +480,10 @@ contract RoyaltyDistributor {
         artistEarnings[co.recipient].totalWithdrawn += co.netAmount;
         artistEarnings[co.recipient].lastWithdrawal = block.timestamp;
 
-        // Pay artist the net amount (after 2.5% fee)
+        // Pay artist the net amount (after 2.7% fee)
         require(btt.transfer(co.recipient, co.netAmount), "artist payment failed");
 
-        // Distribute 2.5% fee: 90% to hosts, 10% to platform
+        // Distribute 2.7% fee: 90% to hosts, 10% to platform
         uint256 hostNodesShare = (co.networkFee * 9000) / BASIS_POINTS; // 90%
         uint256 platformShare = co.networkFee - hostNodesShare;         // 10%
 
