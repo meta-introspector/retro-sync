@@ -41,3 +41,5 @@ pki/
 # Foundry
 cache/
 broadcast/
+__pycache__/
+*.pyc
