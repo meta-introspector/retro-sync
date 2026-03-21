@@ -29,3 +29,4 @@ cargo run --bin backend
 
 ## Ceremony
 Before production: `cargo run --bin ceremony` then call ZKVerifier.setVerifyingKey()
+Updating README for redeploy.
