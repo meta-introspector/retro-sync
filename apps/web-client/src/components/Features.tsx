@@ -1,80 +1,81 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, UserCheck, Coins, Cpu, Globe, Zap, Terminal, Lock, EyeOff } from "lucide-react";
+import { ShieldCheck, Coins, Cpu, Zap, Lock, EyeOff } from "lucide-react";
 
 const features = [
   {
     icon: ShieldCheck,
     title: "Algorithmic Payouts",
-    description: "Mathematics is the only arbiter. Groth16 proofs ensure royalty distribution is immutable and verified on-chain.",
+    description: "Groth16 proofs ensure royalty distribution is immutable and verified on-chain.",
   },
   {
     icon: EyeOff,
     title: "Anonymity by Default",
-    description: "Your legal name is a liability. Retrosync operates via cryptographic digital IDs—no names, no PII, no trackers.",
+    description: "Cryptographic digital IDs — no names, no PII, no trackers.",
   },
   {
     icon: Coins,
     title: "Non-Custodial Economy",
-    description: "We never touch your money. Funds move peer-to-peer from audience to artist via BitTorrent Chain protocols.",
+    description: "Funds move peer-to-peer from audience to artist via BitTorrent Chain.",
   },
   {
     icon: Cpu,
     title: "Spectrum Analysis",
-    description: "High-fidelity Monster WAV monitoring. Real-time frequency breakdown ensures professional-grade quality benchmarks.",
+    description: "Real-time frequency breakdown ensures professional-grade quality benchmarks.",
   },
   {
     icon: Lock,
     title: "Censorship Resistant",
-    description: "Distributed across the global BTFS network. Your art is unkillable, unblockable, and permanently accessible.",
+    description: "Distributed across the global BTFS network. Your art is permanently accessible.",
   },
   {
     icon: Zap,
     title: "Zero Latency",
-    description: "Instantaneous settlement. As soon as the transaction is mined, the capital is in your sovereign control.",
+    description: "Instantaneous settlement. Capital in your sovereign control the moment it's mined.",
   },
 ];
 
 const Features = () => {
   return (
-    <section className="relative py-32 bg-black scanline">
+    <section className="relative py-24 md:py-32 bg-card">
       <div className="container mx-auto px-6">
+        {/* Asymmetric header — left-aligned with offset */}
         <motion.div
-          className="text-left mb-20 border-l-4 border-primary pl-8"
+          className="mb-16 md:mb-20 max-w-2xl"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center gap-2 mb-4 text-primary">
-            <Terminal className="w-4 h-4" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.5em]">Capabilities_List</span>
-          </div>
-          <h2 className="text-5xl sm:text-7xl font-black italic tracking-tighter mb-4">
+          <span className="text-xs font-mono text-primary/70 tracking-widest uppercase mb-4 block">
+            Capabilities
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Total <span className="text-gradient-primary">Sovereignty.</span>
           </h2>
-          <p className="text-zinc-500 max-w-2xl text-lg font-mono leading-tight">
-            We've replaced corporate trust with cryptographic certainty.
+          <p className="text-muted-foreground max-w-md text-base leading-relaxed">
+            Corporate trust replaced with cryptographic certainty.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1">
+        {/* Asymmetric grid — 2 cols on mobile, 3 on desktop with varying sizes */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
-              className="bg-zinc-950 border border-zinc-900 p-8 hover:border-primary/50 transition-all group relative overflow-hidden"
+              className="bg-card p-6 sm:p-8 hover:bg-secondary/50 transition-all group relative"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
             >
-              <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-30 transition-opacity">
-                <span className="text-[40px] font-black italic text-zinc-800">{i + 1}</span>
+              <div className="absolute top-4 right-4 text-3xl font-bold text-border opacity-50 group-hover:opacity-100 transition-opacity font-mono">
+                {String(i + 1).padStart(2, "0")}
               </div>
-              
-              <div className="w-12 h-12 rounded-none bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-primary transition-colors">
-                <feature.icon className="w-6 h-6 text-primary" />
+
+              <div className="w-10 h-10 bg-secondary border border-border flex items-center justify-center mb-5 group-hover:border-primary/50 transition-colors">
+                <feature.icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-xl font-black italic uppercase mb-3 tracking-tighter">{feature.title}</h3>
-              <p className="text-sm text-zinc-500 leading-tight font-mono">{feature.description}</p>
+              <h3 className="text-lg font-bold mb-2 tracking-tight">{feature.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
         </div>

@@ -13,23 +13,29 @@ const Index = () => {
       <Navbar />
       <Hero />
 
-      <section className="py-20 bg-black"> {/* Or a suitable background color */}
+      {/* Mission — editorial offset layout */}
+      <section className="py-24 md:py-32 bg-background">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl lg:text-6xl font-black tracking-tighter leading-[0.8] mb-8 uppercase italic text-center text-gradient-primary">
-            Our Mission: Driven by an Artist's Journey
-          </h2>
-          <div className="max-w-3xl mx-auto text-lg text-zinc-300 font-mono leading-relaxed text-center">
-            <p>
-              At RetroSync, our mission is deeply personal, born from a five-year journey navigating the music industry from an artist's perspective. As a professional artist and a dedicated mother, I've experienced firsthand the frustration of unreceived or lost payments – a reality that stifles creativity and makes sustainable careers incredibly challenging. This systemic issue affects countless talents worldwide who dream of earning a living from their art.
-            </p>
-            <p className="mt-6">
-              Fueled by this passion for fairness and a deep understanding of artists' needs, RetroSync was conceived. We are building a transparent, artist-centric platform designed to empower creators. Our goal is to ensure artists are compensated fairly and equitably, putting control back into their hands. RetroSync is our answer to a broken system, a commitment to building a future where every artist is valued and rightfully rewarded for their work.
-            </p>
-          </div>
-          <div className="text-center mt-12">
-            <a href="/docs/whitepaper.md" className="text-primary font-bold text-lg hover:underline">
-              Explore the Whitepaper
-            </a>
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-5">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4">
+                Driven by an{" "}
+                <span className="text-gradient-primary">Artist's Journey</span>
+              </h2>
+              <a href="/docs/whitepaper.md" className="inline-flex items-center gap-2 text-primary font-medium text-sm hover:underline mt-2">
+                Read the Whitepaper →
+              </a>
+            </div>
+            <div className="lg:col-span-7 lg:col-start-6">
+              <div className="space-y-5 text-base text-muted-foreground leading-relaxed">
+                <p>
+                  At RetroSync, our mission is deeply personal, born from a five-year journey navigating the music industry from an artist's perspective. As a professional artist and a dedicated mother, I've experienced firsthand the frustration of unreceived or lost payments — a reality that stifles creativity and makes sustainable careers incredibly challenging.
+                </p>
+                <p>
+                  Fueled by this passion for fairness and a deep understanding of artists' needs, RetroSync was conceived. We are building a transparent, artist-centric platform designed to empower creators. Our goal is to ensure artists are compensated fairly and equitably, putting control back into their hands.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -45,4 +51,3 @@ const Index = () => {
 };
 
 export default Index;
-

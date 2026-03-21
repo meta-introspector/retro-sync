@@ -2,62 +2,53 @@ import { motion } from "framer-motion";
 import { Upload, Cpu, Globe, CheckCircle } from "lucide-react";
 
 const steps = [
-  {
-    icon: Upload,
-    title: "1. Upload Song Metadata",
-    description: "Submit your song details anonymously—no legal names needed.",
-  },
-  {
-    icon: Cpu,
-    title: "2. Verify Ownership",
-    description: "Our secure system automatically creates a digital record of your music.",
-  },
-  {
-    icon: Globe,
-    title: "3. Distribute Globally",
-    description: "Your music is instantly sent to 150+ stores like Spotify and Apple Music.",
-  },
-  {
-    icon: CheckCircle,
-    title: "4. Get Paid Instantly",
-    description: "Your earnings are available immediately, without the traditional wait times.",
-  },
+  { icon: Upload, title: "Upload Metadata", description: "Submit song details anonymously — no legal names needed." },
+  { icon: Cpu, title: "Verify Ownership", description: "Automatic digital provenance record for your music." },
+  { icon: Globe, title: "Distribute Globally", description: "Instantly delivered to 150+ stores worldwide." },
+  { icon: CheckCircle, title: "Get Paid Instantly", description: "Earnings available immediately, no waiting." },
 ];
 
 const HowItWorks = () => {
   return (
-    <section className="py-32 relative overflow-hidden bg-zinc-950">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-card">
       <div className="container mx-auto px-6">
         <motion.div
-          className="text-center mb-20"
+          className="mb-16 md:mb-20 max-w-lg lg:ml-auto lg:mr-[10%] lg:text-right"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-5xl font-bold mb-6 tracking-tight">How It <span className="text-gradient-primary">Works</span></h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-            We've automated every part of the distribution process so you can stay creative.
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            How It <span className="text-gradient-primary">Works</span>
+          </h2>
+          <p className="text-muted-foreground text-base">
+            Every part of distribution automated so you stay creative.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-4 gap-8 relative">
-          <div className="hidden md:block absolute top-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent z-0" />
-          
+        {/* Staggered two-column layout */}
+        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
-              className="relative z-10 flex flex-col items-center text-center group"
+              className={`p-6 md:p-8 bg-background border border-border hover:border-primary/30 transition-all group ${
+                i % 2 !== 0 ? "sm:mt-12" : ""
+              }`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ delay: i * 0.1 }}
             >
-              <div className="w-20 h-20 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-500 shadow-2xl">
-                <step.icon className="w-8 h-8 text-primary" />
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 shrink-0 bg-secondary border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                  <step.icon className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono text-muted-foreground mb-1">Step {i + 1}</div>
+                  <h3 className="text-lg font-bold mb-2 tracking-tight">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                </div>
               </div>
-              <h3 className="text-lg font-bold mb-3">{step.title}</h3>
-              <p className="text-sm text-zinc-400 leading-relaxed px-4">{step.description}</p>
             </motion.div>
           ))}
         </div>

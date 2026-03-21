@@ -8,39 +8,37 @@ const platforms = [
 
 const Compliance = () => {
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-24 md:py-32 overflow-hidden bg-card">
       <div className="container mx-auto px-6">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16 md:mb-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
             Your Music,{" "}
             <span className="text-gradient-primary">Everywhere</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            We deliver to all the places your listeners already are.
+          <p className="text-muted-foreground max-w-md mx-auto text-base">
+            Delivered to all the places your listeners already are.
           </p>
         </motion.div>
 
         <motion.div
-          className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto"
+          className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-16"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
           {platforms.map((platform, i) => (
             <motion.span
               key={platform}
-              className="glass rounded-full px-5 py-2.5 text-sm text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors cursor-default"
-              initial={{ opacity: 0, scale: 0.9 }}
+              className="px-4 py-2 text-sm text-muted-foreground border border-border bg-background hover:text-primary hover:border-primary/30 transition-colors cursor-default"
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.03 }}
+              transition={{ delay: i * 0.02 }}
             >
               {platform}
             </motion.span>
@@ -48,20 +46,20 @@ const Compliance = () => {
         </motion.div>
 
         <motion.div
-          className="mt-16 grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
         >
           {[
-            { label: "Your Rights Protected", desc: "We register and defend your copyright worldwide" },
-            { label: "Your Data Is Private", desc: "Full control over your data — download or delete anytime" },
-            { label: "Secure Payouts", desc: "Identity-verified payments straight to your wallet or bank" },
+            { label: "Rights Protected", desc: "We register and defend your copyright worldwide" },
+            { label: "Data Is Private", desc: "Full control — download or delete anytime" },
+            { label: "Secure Payouts", desc: "Identity-verified payments to your wallet" },
           ].map((item) => (
-            <div key={item.label} className="glass rounded-xl p-5 text-center">
-              <div className="text-accent font-bold mb-2">{item.label}</div>
-              <div className="text-xs text-muted-foreground">{item.desc}</div>
+            <div key={item.label} className="p-5 border border-border bg-background text-center">
+              <div className="text-accent font-bold text-sm mb-2">{item.label}</div>
+              <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
             </div>
           ))}
         </motion.div>
