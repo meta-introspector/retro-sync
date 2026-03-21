@@ -40,6 +40,7 @@ use tracing::{info, warn};
 // ── HS / ECCN code validation (LangSec) ─────────────────────────────────────
 
 /// Validate a WCO Harmonized System code (6-digit minimum: NNNN.NN).
+#[allow(dead_code)]
 pub fn validate_hs_code(hs: &str) -> bool {
     let digits: String = hs.chars().filter(|c| c.is_ascii_digit()).collect();
     digits.len() >= 6
@@ -47,6 +48,7 @@ pub fn validate_hs_code(hs: &str) -> bool {
 
 /// Validate an ECCN (Export Control Classification Number).
 /// Format: \d[A-Z]\d\d\d[a-z]?  e.g. "5E002", "EAR99", "AT010"
+#[allow(dead_code)]
 pub fn validate_eccn(eccn: &str) -> bool {
     if eccn == "EAR99" || eccn == "NLR" {
         return true;
@@ -274,6 +276,12 @@ pub struct GtmsStore {
     declarations: Mutex<HashMap<String, ExportDeclaration>>,
 }
 
+impl Default for GtmsStore {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl GtmsStore {
     pub fn new() -> Self {
         Self {
@@ -308,7 +316,7 @@ impl GtmsStore {
 fn new_id() -> String {
     // Deterministic ID from timestamp + counter (no uuid dep)
     let ts = chrono::Utc::now().format("%Y%m%d%H%M%S%6f").to_string();
-    format!("GTMS-{}", ts)
+    format!("GTMS-{ts}")
 }
 
 fn now_iso() -> String {

@@ -36,6 +36,7 @@ impl Dsp {
 }
 
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct DspSpec {
     pub dsp: Dsp,
     pub lufs_target: f64,
@@ -129,6 +130,7 @@ pub struct DspValidationResult {
 }
 
 #[derive(Debug, Clone, Deserialize)]
+#[allow(dead_code)]
 pub struct TrackMeta {
     pub isrc: Option<String>,
     pub upc: Option<String>,

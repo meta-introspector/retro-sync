@@ -306,8 +306,7 @@ async fn upload_track(
         state
             .audit_log
             .record(&format!(
-                "WIKIDATA_ENRICH isrc='{}' artist='{}' qid='{}'",
-                isrc, artist_name, qid
+                "WIKIDATA_ENRICH isrc='{isrc}' artist='{artist_name}' qid='{qid}'"
             ))
             .ok();
     }

@@ -52,6 +52,12 @@ pub struct FraudDetector {
     blocked: Mutex<HashSet<String>>,
 }
 
+impl Default for FraudDetector {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl FraudDetector {
     pub fn new() -> Self {
         Self {
@@ -65,22 +71,22 @@ impl FraudDetector {
         let mut risk = RiskLevel::Clean;
         let ratio = e.play_duration_secs / e.track_duration_secs.max(1.0);
         if ratio < 0.05 {
-            signals.push(format!("play ratio {:.2} — bot skip", ratio));
+            signals.push(format!("play ratio {ratio:.2} — bot skip"));
             risk = RiskLevel::Suspicious;
         }
         let ip_c = self.inc(&self.ip_vel, &e.ip_hash);
         if ip_c > 200 {
-            signals.push(format!("IP velocity {} — click farm", ip_c));
+            signals.push(format!("IP velocity {ip_c} — click farm"));
             risk = RiskLevel::HighRisk;
         } else if ip_c > 50 {
-            signals.push(format!("IP velocity {} — suspicious", ip_c));
+            signals.push(format!("IP velocity {ip_c} — suspicious"));
             if risk < RiskLevel::Suspicious {
                 risk = RiskLevel::Suspicious;
             }
         }
         let usr_c = self.inc(&self.usr_vel, &e.user_id);
         if usr_c > 100 {
-            signals.push(format!("user velocity {} — bot", usr_c));
+            signals.push(format!("user velocity {usr_c} — bot"));
             risk = RiskLevel::HighRisk;
         }
         if self.is_blocked(&e.track_isrc) {

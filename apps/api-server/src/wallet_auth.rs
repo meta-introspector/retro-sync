@@ -45,6 +45,12 @@ pub struct ChallengeStore {
     pending: Mutex<HashMap<String, PendingChallenge>>,
 }
 
+impl Default for ChallengeStore {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ChallengeStore {
     pub fn new() -> Self {
         Self {
@@ -185,17 +191,22 @@ pub async fn verify_challenge(
         return Err(StatusCode::FORBIDDEN);
     }
 
-    // Verify the signature
+    // Verify the signature — fail closed by default.
+    // The only bypass is WALLET_AUTH_DEV_BYPASS=1, which must be set explicitly
+    // and is intended solely for local development against a test wallet.
     let verified =
         verify_evm_signature(&challenge.nonce, &req.signature, &address).unwrap_or(false);
 
-    let env = std::env::var("RETROSYNC_ENV").unwrap_or_else(|_| "development".into());
-    if !verified && env == "production" {
-        warn!(address=%address, "Wallet signature verification failed (production)");
-        return Err(StatusCode::FORBIDDEN);
-    }
     if !verified {
-        warn!(address=%address, "Wallet signature not verified (dev mode — accepting anyway)");
+        let bypass = std::env::var("WALLET_AUTH_DEV_BYPASS").unwrap_or_default() == "1";
+        if !bypass {
+            warn!(address=%address, "Wallet signature verification failed — rejecting");
+            return Err(StatusCode::FORBIDDEN);
+        }
+        warn!(
+            address=%address,
+            "Wallet signature not verified — WALLET_AUTH_DEV_BYPASS=1 (dev only, never in prod)"
+        );
     }
 
     // Issue JWT
@@ -230,7 +241,7 @@ fn verify_evm_signature(
 
     // Decode signature: 65 bytes = r (32) + s (32) + v (1)
     let sig_bytes = hex::decode(signature_hex.trim_start_matches("0x"))
-        .map_err(|e| anyhow::anyhow!("Signature hex decode failed: {}", e))?;
+        .map_err(|e| anyhow::anyhow!("Signature hex decode failed: {e}"))?;
 
     if sig_bytes.len() != 65 {
         anyhow::bail!("Signature must be 65 bytes, got {}", sig_bytes.len());
@@ -244,16 +255,13 @@ fn verify_evm_signature(
     let recovery_id = match v {
         0 | 27 => 0u8,
         1 | 28 => 1u8,
-        _ => anyhow::bail!("Invalid recovery id v={}", v),
+        _ => anyhow::bail!("Invalid recovery id v={v}"),
     };
 
     // Recover the public key and derive the address
     let recovered = recover_evm_address(&msg_hash, r, s, recovery_id)?;
 
-    Ok(recovered.to_ascii_lowercase()
-        == claimed_address
-            .trim_start_matches("0x")
-            .to_ascii_lowercase())
+    Ok(recovered.eq_ignore_ascii_case(claimed_address.trim_start_matches("0x")))
 }
 
 /// Keccak-256 hash (Ethereum's hash function), delegated to ethers::utils.
@@ -285,19 +293,18 @@ fn recover_evm_address(
 
     let hash = H256::from_slice(msg_hash);
     let recovered = sig.recover(hash)?;
-    Ok(format!("{:#x}", recovered))
+    Ok(format!("{recovered:#x}"))
 }
 
 // ── JWT Issuance ──────────────────────────────────────────────────────────────
 
 /// Issue a 24-hour JWT with `sub` = wallet address.
 /// The token is HMAC-SHA256 signed using JWT_SECRET env var.
-/// In development (no JWT_SECRET), uses a fixed insecure key with a warning.
+/// JWT_SECRET must be set — there is no insecure fallback.
 pub fn issue_jwt(wallet_address: &str) -> anyhow::Result<String> {
-    let secret = std::env::var("JWT_SECRET").unwrap_or_else(|_| {
-        warn!("JWT_SECRET not set — using insecure dev key. Set JWT_SECRET in production.");
-        "retrosync-dev-secret-change-in-prod".into()
-    });
+    let secret = std::env::var("JWT_SECRET").map_err(|_| {
+        anyhow::anyhow!("JWT_SECRET is not configured — set it before starting the server")
+    })?;
 
     let now = chrono::Utc::now().timestamp();
     let exp = now + 86400; // 24h
@@ -312,11 +319,11 @@ pub fn issue_jwt(wallet_address: &str) -> anyhow::Result<String> {
     });
     let payload = base64_encode_url(payload_json.to_string().as_bytes());
 
-    let signing_input = format!("{}.{}", header, payload);
+    let signing_input = format!("{header}.{payload}");
     let sig = hmac_sha256(secret.as_bytes(), signing_input.as_bytes());
     let sig_b64 = base64_encode_url(&sig);
 
-    Ok(format!("{}.{}.{}", header, payload, sig_b64))
+    Ok(format!("{header}.{payload}.{sig_b64}"))
 }
 
 fn base64_encode_url(bytes: &[u8]) -> String {

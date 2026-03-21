@@ -69,6 +69,6 @@ impl ZkProofCache {
     /// Prometheus-compatible metrics line.
     pub fn metrics_text(&self) -> String {
         let count = self.db.all_values::<String>().map(|v| v.len()).unwrap_or(0);
-        format!("retrosync_zk_cache_entries {}\n", count)
+        format!("retrosync_zk_cache_entries {count}\n")
     }
 }

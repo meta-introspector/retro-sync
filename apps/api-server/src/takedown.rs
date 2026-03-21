@@ -9,7 +9,7 @@ use axum::{
     response::Json,
 };
 use serde::{Deserialize, Serialize};
-use tracing::{info, warn};
+use tracing::info;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum NoticeStatus {
@@ -169,7 +169,7 @@ pub async fn submit_counter_notice(
     );
     state
         .audit_log
-        .record(&format!("DMCA_COUNTER id='{}'", id))
+        .record(&format!("DMCA_COUNTER id='{id}'"))
         .ok();
     Ok(Json(
         serde_json::json!({ "notice_id": id, "status": "CounterReceived",

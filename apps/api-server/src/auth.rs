@@ -106,7 +106,6 @@ fn validate_jwt(token: &str, secret: &str) -> Result<(), StatusCode> {
     }
 
     // HMAC-SHA256 signature verification
-    use std::fmt::Write;
     let signing_input = format!("{}.{}", parts[0], parts[1]);
     let expected_sig = hmac_sha256(secret.as_bytes(), signing_input.as_bytes());
     let expected_b64 = base64_encode_url(&expected_sig);
@@ -122,8 +121,8 @@ fn validate_jwt(token: &str, secret: &str) -> Result<(), StatusCode> {
 fn base64_decode_url(s: &str) -> Result<Vec<u8>, ()> {
     // URL-safe base64 without padding → standard base64 with padding
     let padded = match s.len() % 4 {
-        2 => format!("{}==", s),
-        3 => format!("{}=", s),
+        2 => format!("{s}=="),
+        3 => format!("{s}="),
         _ => s.to_string(),
     };
     let standard = padded.replace('-', "+").replace('_', "/");
@@ -131,24 +130,25 @@ fn base64_decode_url(s: &str) -> Result<Vec<u8>, ()> {
 }
 
 fn base64_simple_decode(s: &str) -> Result<Vec<u8>, String> {
-    let chars: Vec<u8> = s
-        .chars()
-        .filter_map(|c| {
-            if c.is_ascii_uppercase() {
-                Some(c as u8 - b'A')
-            } else if c.is_ascii_lowercase() {
-                Some(c as u8 - b'a' + 26)
-            } else if c.is_ascii_digit() {
-                Some(c as u8 - b'0' + 52)
-            } else if c == '+' || c == '-' {
-                Some(62)
-            } else if c == '/' || c == '_' {
-                Some(63)
-            } else {
-                None
-            }
-        })
-        .collect();
+    let mut chars: Vec<u8> = Vec::with_capacity(s.len());
+    for c in s.chars() {
+        let v = if c.is_ascii_uppercase() {
+            c as u8 - b'A'
+        } else if c.is_ascii_lowercase() {
+            c as u8 - b'a' + 26
+        } else if c.is_ascii_digit() {
+            c as u8 - b'0' + 52
+        } else if c == '+' || c == '-' {
+            62
+        } else if c == '/' || c == '_' {
+            63
+        } else if c == '=' {
+            continue; // standard padding — skip
+        } else {
+            return Err(format!("invalid base64 character: {c:?}"));
+        };
+        chars.push(v);
+    }
 
     let mut out = Vec::new();
     for chunk in chars.chunks(4) {
@@ -224,8 +224,9 @@ pub fn allowed_origins() -> Vec<HeaderValue> {
 /// Used by per-user auth guards in kyc.rs and privacy.rs to verify the
 /// caller is accessing their own data only.
 ///
-/// In development (non-production), accepts any non-empty Bearer token and
-/// returns a placeholder address. In production, the JWT is fully verified.
+/// Always performs full HMAC-SHA256 signature verification when JWT_SECRET
+/// is set.  If JWT_SECRET is absent (dev mode), falls back to expiry-only
+/// check with a warning — matching the behaviour of the outer middleware.
 pub fn extract_caller(headers: &axum::http::HeaderMap) -> Result<String, axum::http::StatusCode> {
     use axum::http::StatusCode;
 
@@ -248,32 +249,48 @@ pub fn extract_caller(headers: &axum::http::HeaderMap) -> Result<String, axum::h
         return Err(StatusCode::UNAUTHORIZED);
     }
 
-    // Decode JWT payload (middle part)
+    // Full signature + claims verification when JWT_SECRET is configured.
+    // Falls back to expiry-only in dev (no secret set) with an explicit warn.
+    match std::env::var("JWT_SECRET") {
+        Ok(secret) => {
+            validate_jwt(token, &secret)?;
+        }
+        Err(_) => {
+            warn!("extract_caller: JWT_SECRET not set — signature not verified (dev mode only)");
+            // Expiry-only check so dev tokens still expire correctly.
+            let parts: Vec<&str> = token.split('.').collect();
+            if parts.len() == 3 {
+                if let Ok(payload_bytes) = base64_decode_url(parts[1]) {
+                    if let Ok(payload) = serde_json::from_slice::<serde_json::Value>(&payload_bytes)
+                    {
+                        if let Some(exp) = payload.get("exp").and_then(|v| v.as_i64()) {
+                            if chrono::Utc::now().timestamp() > exp {
+                                warn!("extract_caller: JWT expired at {exp}");
+                                return Err(StatusCode::UNAUTHORIZED);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Decode payload to extract `sub` (sig already verified above).
     let parts: Vec<&str> = token.split('.').collect();
     if parts.len() != 3 {
         warn!("extract_caller: malformed JWT ({} parts)", parts.len());
         return Err(StatusCode::UNAUTHORIZED);
     }
 
-    let payload_bytes = base64_simple_decode(&parts[1].replace('-', "+").replace('_', "/"))
-        .map_err(|_| {
-            warn!("extract_caller: base64 decode failed");
-            StatusCode::UNAUTHORIZED
-        })?;
+    let payload_bytes = base64_decode_url(parts[1]).map_err(|_| {
+        warn!("extract_caller: base64 decode failed");
+        StatusCode::UNAUTHORIZED
+    })?;
 
     let payload: serde_json::Value = serde_json::from_slice(&payload_bytes).map_err(|_| {
         warn!("extract_caller: JSON parse failed");
         StatusCode::UNAUTHORIZED
     })?;
-
-    // Check expiry
-    if let Some(exp) = payload.get("exp").and_then(|v| v.as_i64()) {
-        let now = chrono::Utc::now().timestamp();
-        if now > exp {
-            warn!("extract_caller: JWT expired at {}", exp);
-            return Err(StatusCode::UNAUTHORIZED);
-        }
-    }
 
     let sub = payload
         .get("sub")

@@ -153,6 +153,7 @@ pub struct PostingResult {
 }
 
 #[derive(Serialize, PartialEq)]
+#[allow(dead_code)]
 pub enum PostingStatus {
     Posted,
     Simulated,
@@ -219,7 +220,7 @@ fn build_journal_entry_payload(p: &RoyaltyPosting, cfg: &SapConfig) -> serde_jso
 }
 
 /// Build the OData v4 BusinessPartner payload for a vendor upsert.
-fn build_bp_payload(v: &VendorRecord, cfg: &SapConfig) -> serde_json::Value {
+fn build_bp_payload(v: &VendorRecord, _cfg: &SapConfig) -> serde_json::Value {
     serde_json::json!({
         "BusinessPartner":        v.bp_number.as_deref().unwrap_or(""),
         "BusinessPartnerFullName": v.legal_name,

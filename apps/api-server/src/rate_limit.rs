@@ -39,6 +39,12 @@ pub struct RateLimiter {
     windows: Mutex<HashMap<String, Vec<Instant>>>,
 }
 
+impl Default for RateLimiter {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl RateLimiter {
     pub fn new() -> Self {
         Self {
@@ -67,19 +73,37 @@ impl RateLimiter {
     }
 }
 
+/// Validate that a string is a well-formed IPv4 or IPv6 address.
+/// Rejects empty strings, hostnames, and any header-injection payloads.
+fn is_valid_ip(s: &str) -> bool {
+    s.parse::<std::net::IpAddr>().is_ok()
+}
+
 /// Extract client IP from proxy headers, falling back to "unknown".
+///
+/// Header values are only trusted if they parse as a valid IP address.
+/// This prevents an attacker from injecting arbitrary strings into the
+/// rate-limit key by setting a crafted X-Forwarded-For or X-Real-IP header.
 fn client_ip(request: &Request) -> String {
     // X-Real-IP (Nginx / Replit proxy)
     if let Some(v) = request.headers().get("x-real-ip") {
         if let Ok(s) = v.to_str() {
-            return s.trim().to_string();
+            let ip = s.trim();
+            if is_valid_ip(ip) {
+                return ip.to_string();
+            }
+            warn!(raw=%ip, "x-real-ip header is not a valid IP — ignoring");
         }
     }
     // X-Forwarded-For: client, proxy1, proxy2 — take the first (leftmost)
     if let Some(v) = request.headers().get("x-forwarded-for") {
         if let Ok(s) = v.to_str() {
             if let Some(ip) = s.split(',').next() {
-                return ip.trim().to_string();
+                let ip = ip.trim();
+                if is_valid_ip(ip) {
+                    return ip.to_string();
+                }
+                warn!(raw=%ip, "x-forwarded-for first entry is not a valid IP — ignoring");
             }
         }
     }
@@ -111,7 +135,7 @@ pub async fn enforce(
 
     let ip = client_ip(&request);
     let (bucket_name, limit) = bucket(&path);
-    let key = format!("{}:{}", bucket_name, ip);
+    let key = format!("{bucket_name}:{ip}");
 
     if !state.rate_limiter.check(&key, limit) {
         warn!(

@@ -35,16 +35,13 @@ async fn push_internet_archive(
     }
     let tier = RarityTier::from_band(band);
     let identifier = format!("retrosync-{}", isrc.replace('/', "-").to_lowercase());
-    let url = format!(
-        "https://s3.us.archive.org/{}/{}.meta.json",
-        identifier, identifier
-    );
+    let url = format!("https://s3.us.archive.org/{identifier}/{identifier}.meta.json");
     let meta = serde_json::json!({ "title": title, "isrc": isrc, "btfs_cid": cid.0,
                                           "band": band, "rarity": tier.as_str() });
     let secret = std::env::var("ARCHIVE_SECRET_KEY").unwrap_or_default();
     let resp = reqwest::Client::new()
         .put(&url)
-        .header("Authorization", format!("LOW {}:{}", access, secret))
+        .header("Authorization", format!("LOW {access}:{secret}"))
         .header("x-archive-auto-make-bucket", "1")
         .header("x-archive-meta-title", title)
         .header("x-archive-meta-mediatype", "audio")

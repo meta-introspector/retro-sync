@@ -100,7 +100,7 @@ pub async fn submit_distribution(
             .address
             .0
             .parse()
-            .map_err(|e| anyhow::anyhow!("Invalid EVM address in split: {}", e))?;
+            .map_err(|e| anyhow::anyhow!("Invalid EVM address in split: {e}"))?;
         recipients.push(addr);
         amounts.push(U256::from(split.amount_btt));
     }
@@ -116,14 +116,14 @@ pub async fn submit_distribution(
     let calldata = encode_distribute_calldata(&recipients, &amounts, band, bp_sum, proof_bytes);
     let contract_addr: Address = contract
         .parse()
-        .map_err(|e| anyhow::anyhow!("Invalid ROYALTY_CONTRACT_ADDR: {}", e))?;
+        .map_err(|e| anyhow::anyhow!("Invalid ROYALTY_CONTRACT_ADDR: {e}"))?;
 
     // ── Sign via Ledger and send ─────────────────────────────────────────
     let tx_hash = send_via_ledger(&rpc, contract_addr, calldata).await?;
 
     // Validate returned hash through LangSec recognizer
     shared::parsers::recognize_tx_hash(&tx_hash)
-        .map_err(|e| anyhow::anyhow!("RPC returned invalid tx hash: {}", e))?;
+        .map_err(|e| anyhow::anyhow!("RPC returned invalid tx hash: {e}"))?;
 
     info!(tx_hash=%tx_hash, cid=%cid.0, band=%band, "BTTC distribution submitted");
     Ok(SubmitResult { tx_hash, band })
@@ -137,22 +137,21 @@ async fn send_via_ledger(rpc_url: &str, to: Address, calldata: Bytes) -> anyhow:
     use ethers::{
         middleware::SignerMiddleware,
         providers::{Http, Middleware, Provider},
-        signers::{HDPath, Ledger, Signer},
+        signers::{HDPath, Ledger},
         types::TransactionRequest,
     };
     use std::sync::Arc;
 
     let provider = Provider::<Http>::try_from(rpc_url)
-        .map_err(|e| anyhow::anyhow!("Cannot connect to RPC {}: {}", rpc_url, e))?;
+        .map_err(|e| anyhow::anyhow!("Cannot connect to RPC {rpc_url}: {e}"))?;
     let chain_id = provider.get_chainid().await?.as_u64();
 
     let ledger = Ledger::new(HDPath::LedgerLive(0), chain_id)
         .await
         .map_err(|e| {
             anyhow::anyhow!(
-                "Ledger connection failed: {}. \
-             Ensure device is connected, unlocked, and Ethereum app is open.",
-                e
+                "Ledger connection failed: {e}. \
+             Ensure device is connected, unlocked, and Ethereum app is open."
             )
         })?;
 
@@ -180,7 +179,7 @@ async fn send_via_ledger(rpc_url: &str, to: Address, calldata: Bytes) -> anyhow:
     let pending = signer
         .send_transaction(tx, None)
         .await
-        .map_err(|e| anyhow::anyhow!("Transaction rejected by Ledger or RPC: {}", e))?;
+        .map_err(|e| anyhow::anyhow!("Transaction rejected by Ledger or RPC: {e}"))?;
 
     // Wait for 1 confirmation
     let receipt = pending

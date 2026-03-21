@@ -139,7 +139,7 @@ pub async fn register(
         .header("Content-Type", "application/xml");
 
     if let Some(key) = api_key {
-        client = client.header("Authorization", format!("Bearer {}", key));
+        client = client.header("Authorization", format!("Bearer {key}"));
     }
 
     let resp = client.body(xml).send().await?;

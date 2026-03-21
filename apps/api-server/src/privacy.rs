@@ -9,7 +9,7 @@ use axum::{
     response::Json,
 };
 use serde::{Deserialize, Serialize};
-use tracing::{info, warn};
+use tracing::warn;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub enum ConsentPurpose {
@@ -54,8 +54,8 @@ pub struct PrivacyStore {
 impl PrivacyStore {
     pub fn open(path: &str) -> anyhow::Result<Self> {
         // Two named databases inside the same LMDB directory
-        let consent_dir = format!("{}/consents", path);
-        let deletion_dir = format!("{}/deletions", path);
+        let consent_dir = format!("{path}/consents");
+        let deletion_dir = format!("{path}/deletions");
         Ok(Self {
             consent_db: crate::persist::LmdbStore::open(&consent_dir, "consents")?,
             deletion_db: crate::persist::LmdbStore::open(&deletion_dir, "deletions")?,
@@ -107,7 +107,7 @@ pub async fn record_consent(
 ) -> Result<Json<serde_json::Value>, StatusCode> {
     // PER-USER AUTH: the caller's wallet address must match the user_id in the request
     let caller = crate::auth::extract_caller(&headers)?;
-    if caller.to_ascii_lowercase() != req.user_id.to_ascii_lowercase() {
+    if !caller.eq_ignore_ascii_case(&req.user_id) {
         warn!(caller=%caller, uid=%req.user_id, "Consent: caller != uid — forbidden");
         return Err(StatusCode::FORBIDDEN);
     }
@@ -137,7 +137,7 @@ pub async fn delete_user_data(
 ) -> Result<Json<serde_json::Value>, StatusCode> {
     // PER-USER AUTH: caller may only delete their own data
     let caller = crate::auth::extract_caller(&headers)?;
-    if caller.to_ascii_lowercase() != user_id.to_ascii_lowercase() {
+    if !caller.eq_ignore_ascii_case(&user_id) {
         warn!(caller=%caller, uid=%user_id, "Privacy delete: caller != uid — forbidden");
         return Err(StatusCode::FORBIDDEN);
     }
@@ -153,7 +153,7 @@ pub async fn delete_user_data(
     });
     state
         .audit_log
-        .record(&format!("GDPR_DELETE_REQUEST user='{}'", user_id))
+        .record(&format!("GDPR_DELETE_REQUEST user='{user_id}'"))
         .ok();
     warn!(user=%user_id, "GDPR deletion queued — 30 day deadline (Art.17)");
     Ok(Json(
@@ -168,7 +168,7 @@ pub async fn export_user_data(
 ) -> Result<Json<serde_json::Value>, StatusCode> {
     // PER-USER AUTH: caller may only export their own data
     let caller = crate::auth::extract_caller(&headers)?;
-    if caller.to_ascii_lowercase() != user_id.to_ascii_lowercase() {
+    if !caller.eq_ignore_ascii_case(&user_id) {
         warn!(caller=%caller, uid=%user_id, "Privacy export: caller != uid — forbidden");
         return Err(StatusCode::FORBIDDEN);
     }

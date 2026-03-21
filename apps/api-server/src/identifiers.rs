@@ -11,6 +11,7 @@
 pub use shared::identifiers::recognize_bowi;
 pub use shared::types::Bowi;
 
+#[allow(dead_code)]
 /// Mint a fresh BOWI for a work with no existing registration.
 /// Returns a valid bowi:{uuid4} — artist should then register at https://bowi.org/register
 pub fn mint_bowi() -> Bowi {
@@ -34,6 +35,7 @@ pub fn mint_bowi() -> Bowi {
     ))
 }
 
+#[allow(dead_code)]
 /// Resolve BOWI from Wikidata enrichment or mint a new one.
 /// Returns (bowi, is_existing): is_existing=true means Wikidata had P10836.
 pub async fn resolve_or_mint_bowi(wiki_bowi: Option<&str>) -> (Bowi, bool) {

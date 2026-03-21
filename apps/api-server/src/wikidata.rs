@@ -1,6 +1,6 @@
 //! Wikidata SPARQL enrichment — artist QID, MusicBrainz ID, label, genres.
 use serde::{Deserialize, Serialize};
-use tracing::{debug, info, warn};
+use tracing::{info, warn};
 
 const SPARQL: &str = "https://query.wikidata.org/sparql";
 const UA: &str = "RetrosyncMediaGroup/1.0 (https://retrosync.media)";
@@ -43,7 +43,7 @@ async fn lookup_inner(name: &str) -> anyhow::Result<WikidataArtist> {
         r#"
 SELECT DISTINCT ?artist ?mbid ?label ?labelLabel ?country ?countryLabel ?genre ?genreLabel ?website ?isrc
 WHERE {{
-  ?artist rdfs:label "{name}"@en .
+  ?artist rdfs:label "{safe}"@en .
   {{ ?artist wdt:P31/wdt:P279* wd:Q5 }} UNION {{ ?artist wdt:P31 wd:Q215380 }}
   OPTIONAL {{ ?artist wdt:P434 ?mbid }}
   OPTIONAL {{ ?artist wdt:P264 ?label }}
@@ -52,8 +52,7 @@ WHERE {{
   OPTIONAL {{ ?artist wdt:P856 ?website }}
   OPTIONAL {{ ?artist wdt:P1243 ?isrc }}
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en" }}
-}} LIMIT 20"#,
-        name = safe
+}} LIMIT 20"#
     );
 
     let client = reqwest::Client::builder()
@@ -79,7 +78,7 @@ WHERE {{
         .and_then(|u| u.rsplit('/').next().map(|s| s.into()));
     let wikidata_url = qid
         .as_ref()
-        .map(|q| format!("https://www.wikidata.org/wiki/{}", q));
+        .map(|q| format!("https://www.wikidata.org/wiki/{q}"));
     let mut genres = Vec::new();
     let mut known_isrcs = Vec::new();
     for row in b {

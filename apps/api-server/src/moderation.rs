@@ -9,7 +9,7 @@ use axum::{
     response::Json,
 };
 use serde::{Deserialize, Serialize};
-use tracing::{info, warn};
+use tracing::warn;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum ReportCategory {
@@ -126,7 +126,7 @@ async fn submit_ncmec_report(report_id: &str, isrc: &str) -> anyhow::Result<Stri
                 "NCMEC_API_KEY not set — CSAM report NOT submitted to NCMEC. \
                  Set NCMEC_API_KEY in production. Manual submission required."
             );
-            return Ok(format!("DEV-UNSUBMITTED-{}", report_id));
+            return Ok(format!("DEV-UNSUBMITTED-{report_id}"));
         }
     };
 
@@ -155,17 +155,17 @@ async fn submit_ncmec_report(report_id: &str, isrc: &str) -> anyhow::Result<Stri
 
     let resp = client
         .post(&endpoint)
-        .header("Authorization", format!("Bearer {}", api_key))
+        .header("Authorization", format!("Bearer {api_key}"))
         .header("Content-Type", "application/json")
         .json(&body)
         .send()
         .await
-        .map_err(|e| anyhow::anyhow!("NCMEC API unreachable: {}", e))?;
+        .map_err(|e| anyhow::anyhow!("NCMEC API unreachable: {e}"))?;
 
     let status = resp.status();
     if !status.is_success() {
         let body_text = resp.text().await.unwrap_or_default();
-        anyhow::bail!("NCMEC API returned {}: {}", status, body_text);
+        anyhow::bail!("NCMEC API returned {status}: {body_text}");
     }
 
     let result: serde_json::Value = resp.json().await.unwrap_or_else(|_| serde_json::json!({}));

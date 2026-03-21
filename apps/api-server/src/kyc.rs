@@ -118,7 +118,7 @@ pub async fn submit_kyc(
 ) -> Result<Json<serde_json::Value>, StatusCode> {
     // PER-USER AUTH: caller must own this uid
     let caller = crate::auth::extract_caller(&headers)?;
-    if caller.to_ascii_lowercase() != uid.to_ascii_lowercase() {
+    if !caller.eq_ignore_ascii_case(&uid) {
         warn!(caller=%caller, uid=%uid, "KYC submit: caller != uid — forbidden");
         return Err(StatusCode::FORBIDDEN);
     }
@@ -147,8 +147,7 @@ pub async fn submit_kyc(
     state
         .audit_log
         .record(&format!(
-            "KYC_SUBMIT user='{}' tier={:?} ofac={:?}",
-            uid, tier, ofac
+            "KYC_SUBMIT user='{uid}' tier={tier:?} ofac={ofac:?}"
         ))
         .ok();
     if blocked {
@@ -167,7 +166,7 @@ pub async fn kyc_status(
 ) -> Result<Json<KycRecord>, StatusCode> {
     // PER-USER AUTH: caller may only read their own record
     let caller = crate::auth::extract_caller(&headers)?;
-    if caller.to_ascii_lowercase() != uid.to_ascii_lowercase() {
+    if !caller.eq_ignore_ascii_case(&uid) {
         warn!(caller=%caller, uid=%uid, "KYC status: caller != uid — forbidden");
         return Err(StatusCode::FORBIDDEN);
     }

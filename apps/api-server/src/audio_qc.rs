@@ -65,21 +65,20 @@ pub fn run_qc(bytes: &[u8], lufs: Option<f64>, true_peak: Option<f64>) -> AudioQ
     if !fmt_ok {
         defects.push("unsupported format".into());
     }
-    let sr_ok = sr >= 44100 && sr <= 96000;
+    let sr_ok = (44100..=96000).contains(&sr);
     if !sr_ok {
-        defects.push(format!("sample rate {}Hz out of range", sr));
+        defects.push(format!("sample rate {sr}Hz out of range"));
     }
     let ch_ok = ch == 2;
     if !ch_ok {
-        defects.push(format!("{} channels — stereo required", ch));
+        defects.push(format!("{ch} channels — stereo required"));
     }
     let lufs_ok = match lufs {
         Some(l) => {
             let ok = (l - TARGET_LUFS).abs() <= LUFS_TOLERANCE;
             if !ok {
                 defects.push(format!(
-                    "{:.1} LUFS — target {:.1}±{:.1}",
-                    l, TARGET_LUFS, LUFS_TOLERANCE
+                    "{l:.1} LUFS — target {TARGET_LUFS:.1}±{LUFS_TOLERANCE:.1}"
                 ));
             }
             ok
@@ -90,7 +89,7 @@ pub fn run_qc(bytes: &[u8], lufs: Option<f64>, true_peak: Option<f64>) -> AudioQ
         Some(p) => {
             let ok = p <= TRUE_PEAK_MAX;
             if !ok {
-                defects.push(format!("true peak {:.1} dBFS > {:.1}", p, TRUE_PEAK_MAX));
+                defects.push(format!("true peak {p:.1} dBFS > {TRUE_PEAK_MAX:.1}"));
             }
             ok
         }

@@ -23,14 +23,10 @@ use quick_xml::{
     events::{BytesEnd, BytesStart, BytesText, Event},
     Writer as XmlWriter,
 };
-use serde::{Deserialize, Serialize};
 use std::io::Cursor;
 use tracing::{info, warn};
 
-use crate::royalty_reporting::{
-    AlternateTitle, CollectionSociety, PerformingArtist, Publisher, RecordingDetail,
-    WorkRegistration, Writer,
-};
+use crate::royalty_reporting::{CollectionSociety, Publisher, WorkRegistration, Writer};
 use crate::AppState;
 
 // ── Canonical CWR-XML namespace ──────────────────────────────────────────────
@@ -335,7 +331,7 @@ pub async fn transform_all_submissions(
 
     let mut results = serde_json::Map::new();
     for slug in slugs {
-        let (society, xsl_file) = match resolve_society(slug) {
+        let (_society, xsl_file) = match resolve_society(slug) {
             Some(v) => v,
             None => continue,
         };

@@ -13,6 +13,12 @@ pub struct CtqMetrics {
     latency_count: AtomicU64,
 }
 
+impl Default for CtqMetrics {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl CtqMetrics {
     pub fn new() -> Self {
         Self {

@@ -2,6 +2,7 @@
 use std::sync::Mutex;
 use tracing::info;
 
+#[allow(dead_code)]
 pub struct AuditStore {
     entries: Mutex<Vec<String>>,
     path: String,

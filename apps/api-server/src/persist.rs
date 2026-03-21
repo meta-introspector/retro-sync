@@ -131,6 +131,7 @@ impl LmdbStore {
     }
 
     /// Delete the value at `key`. Returns `true` if it existed.
+    #[allow(dead_code)]
     pub fn delete(&self, key: &str) -> anyhow::Result<bool> {
         let mut wtxn = self.env.write_txn()?;
         let deleted = self.db.delete(&mut wtxn, key.as_bytes())?;

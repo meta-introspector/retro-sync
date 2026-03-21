@@ -25,10 +25,9 @@ fn btfs_client() -> anyhow::Result<(reqwest::Client, Option<String>)> {
 
     if env == "production" && !api.starts_with("https://") {
         anyhow::bail!(
-            "SECURITY: BTFS_API_URL must use HTTPS in production (got: {}). \
+            "SECURITY: BTFS_API_URL must use HTTPS in production (got: {api}). \
              Configure a TLS reverse proxy in front of the BTFS node. \
-             See: https://docs.btfs.io/docs/tls-setup",
-            api
+             See: https://docs.btfs.io/docs/tls-setup"
         );
     }
     if !api.starts_with("https://") {
@@ -60,7 +59,7 @@ fn with_api_key(
 #[instrument(skip(audio_bytes), fields(bytes = audio_bytes.len()))]
 pub async fn upload(audio_bytes: &[u8], title: &str, isrc: &Isrc) -> anyhow::Result<BtfsCid> {
     let api = std::env::var("BTFS_API_URL").unwrap_or_else(|_| "http://127.0.0.1:5001".into());
-    let url = format!("{}/api/v0/add", api);
+    let url = format!("{api}/api/v0/add");
     let filename = format!("{}.bin", isrc.0.replace('/', "-"));
 
     let (client, api_key) = btfs_client()?;
@@ -76,7 +75,7 @@ pub async fn upload(audio_bytes: &[u8], title: &str, isrc: &Isrc) -> anyhow::Res
     let resp = req
         .send()
         .await
-        .map_err(|e| anyhow::anyhow!("BTFS unreachable at {}: {}", url, e))?;
+        .map_err(|e| anyhow::anyhow!("BTFS unreachable at {url}: {e}"))?;
 
     if !resp.status().is_success() {
         anyhow::bail!("BTFS /api/v0/add failed: {}", resp.status());
@@ -87,11 +86,11 @@ pub async fn upload(audio_bytes: &[u8], title: &str, isrc: &Isrc) -> anyhow::Res
         .lines()
         .filter_map(|l| serde_json::from_str::<serde_json::Value>(l).ok())
         .filter_map(|v| v["Hash"].as_str().map(|s| s.to_string()))
-        .last()
+        .next_back()
         .ok_or_else(|| anyhow::anyhow!("BTFS returned no CID"))?;
 
     let cid = shared::parsers::recognize_btfs_cid(&cid_str)
-        .map_err(|e| anyhow::anyhow!("BTFS invalid CID: {}", e))?;
+        .map_err(|e| anyhow::anyhow!("BTFS invalid CID: {e}"))?;
 
     info!(isrc=%isrc, cid=%cid.0, "Uploaded to BTFS");
     Ok(cid)

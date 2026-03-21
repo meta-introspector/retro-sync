@@ -1,4 +1,7 @@
 //! PRO reporting — CWR 2.2 full record set + all global collection societies.
+// This module contains infrastructure-ready PRO generators not yet wired to
+// routes.  The dead_code allow covers the entire module until they are linked.
+#![allow(dead_code)]
 //!
 //! Coverage:
 //!   Americas  : ASCAP, BMI, SESAC, SOCAN, CMRRA, SPACEM, SCD (Chile), UBC (Brazil),
@@ -54,6 +57,7 @@ pub enum CwrVersion {
     V22,
 }
 impl CwrVersion {
+    #[allow(dead_code)]
     pub fn as_str(self) -> &'static str {
         match self {
             Self::V21 => "02.10",
@@ -331,6 +335,7 @@ impl CollectionSociety {
     }
 
     /// Two-letter ISO territory most closely associated with this society.
+    #[allow(dead_code)]
     pub fn primary_territory(&self) -> &'static str {
         match self {
             Self::Ascap | Self::Bmi | Self::Sesac => "US",
@@ -679,20 +684,24 @@ impl Default for WorkRegistration {
 // Fixed-width record format per CISAC CWR Technical Reference Manual.
 // Each record is exactly 190 characters (standard) + CRLF.
 
+#[allow(dead_code)]
 fn pad(s: &str, width: usize) -> String {
-    format!("{:width$}", s, width = width)
+    format!("{s:width$}")
 }
 
+#[allow(dead_code)]
 fn pad_right(s: &str, width: usize) -> String {
     let mut r = s.to_string();
     r.truncate(width);
-    format!("{:<width$}", r, width = width)
+    format!("{r:<width$}")
 }
 
+#[allow(dead_code)]
 fn pad_num(n: u64, width: usize) -> String {
-    format!("{:0>width$}", n, width = width)
+    format!("{n:0>width$}")
 }
 
+#[allow(dead_code)]
 pub fn generate_cwr(works: &[WorkRegistration], sender_id: &str, version: CwrVersion) -> String {
     let ts = chrono::Utc::now();
     let date = ts.format("%Y%m%d").to_string();
