@@ -1,13 +1,14 @@
 [workspace]
 resolver = "2"
 members  = [
-    "backend",
-    "frontend",
-    "shared",
-    "zk_circuits",
+    "apps/api-server",
+    "apps/wasm-frontend",
+    "apps/rust-sandbox",
+    "libs/shared",
+    "libs/zk-circuits",
     "tools/font_check",
     "tools/btfs-keygen",
-    "six_sigma/spc",
+    "ops/six-sigma/spc",
     "tools/ceremony",
 ]
 
@@ -29,7 +30,7 @@ serde        = { version = "1",  features = ["derive"] }
 serde_json   = "1"
 
 # Crypto / ZK
-ark-std              = "0.4"
+ark-std              = { version = "0.4", features = ["getrandom"] }
 ark-ff               = "0.4"
 ark-ec               = "0.4"
 ark-bn254            = "0.4"

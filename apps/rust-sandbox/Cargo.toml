@@ -1,0 +1,26 @@
+[package]
+name    = "sandbox"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio        = { workspace = true }
+serde        = { workspace = true }
+serde_json   = { workspace = true }
+anyhow       = { workspace = true }
+tracing      = { workspace = true }
+tracing-subscriber = { workspace = true }
+shared       = { path = "../../libs/shared" }
+zk_circuits  = { path = "../../libs/zk-circuits" }
+ark-std      = { workspace = true }
+ark-ff       = { workspace = true }
+ark-ec       = { workspace = true }
+ark-bn254    = { workspace = true }
+ark-groth16  = { workspace = true }
+ark-relations = { workspace = true }
+ark-r1cs-std  = { workspace = true }
+ark-snark     = { workspace = true }
+sha2          = { workspace = true }
+hex           = { workspace = true }
+chrono        = { workspace = true }

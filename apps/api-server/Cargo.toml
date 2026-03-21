@@ -1,0 +1,36 @@
+[package]
+name    = "backend"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "backend"
+path = "src/main.rs"
+
+[dependencies]
+tokio        = { workspace = true }
+axum         = { workspace = true }
+tower        = { workspace = true }
+serde        = { workspace = true }
+serde_json   = { workspace = true }
+anyhow       = { workspace = true }
+tracing      = { workspace = true }
+tracing-subscriber = { workspace = true }
+reqwest      = { workspace = true }
+chrono       = { workspace = true }
+sha2         = { workspace = true }
+hex          = { workspace = true }
+heed         = { workspace = true }
+shared       = { path = "../../libs/shared" }
+zk_circuits  = { path = "../../libs/zk-circuits" }
+ethers           = { version = "2", features = ["ledger", "abigen", "ws"] }
+ethers-signers   = { version = "2", features = ["ledger"] }
+ethers-contract  = { version = "2" }
+quick-xml    = { workspace = true }
+xot          = { workspace = true }
+tower-http = { version = "0.6.8", features = ["cors"] }
+
+[features]
+default = []
+ledger = []

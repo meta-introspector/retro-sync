@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retrosync — Decentralized Music Infrastructure</title>
+    <meta name="description" content="Enterprise music distribution with zero-knowledge royalty verification, DDEX compliance, and blockchain-backed provenance." />
+    <meta name="author" content="Retrosync Media Group" />
+
+    <meta property="og:title" content="Retrosync — Decentralized Music Infrastructure" />
+    <meta property="og:description" content="Enterprise music distribution with ZK proofs, DDEX compliance, and BTFS storage." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <script type="importmap">
+      {
+          "imports": {
+              "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+          }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      window.addEventListener('load', () => {
+          if (window.tronWeb && window.tronWeb.defaultAddress) {
+              console.log('TronLink ready:', window.tronWeb.defaultAddress.base58);
+              window.dispatchEvent(new CustomEvent('tronlink-ready', {
+                  detail: { address: window.tronWeb.defaultAddress.base58 }
+              }));
+          } else {
+              console.log('TronLink not detected');
+          }
+      });
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        window.initThree = (canvasId) => {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas });
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            const geometry = new THREE.BoxGeometry();
+            const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+            camera.position.z = 5;
+            function animate() {
+                requestAnimationFrame(animate);
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                renderer.render(scene, camera);
+            }
+            animate();
+        };
+    </script>
+  </body>
+</html>

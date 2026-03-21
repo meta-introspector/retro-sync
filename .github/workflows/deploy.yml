@@ -24,12 +24,14 @@ jobs:
         run: cargo install trunk
 
       - name: Build
-        run: trunk build --release
+        run: |
+          cd apps/wasm-frontend
+          trunk build --release
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./apps/wasm-frontend/dist
 
   deploy:
     needs: build
