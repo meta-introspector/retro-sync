@@ -1,0 +1,64 @@
+1. Artists
+Upload music to your platform
+Music is distributed automatically to Spotify, Apple Music, and other streaming services via DDEX integration
+Earn revenue from streams on external platforms
+Pay a 2.7% fee only when cashing out (micro-fee ensures fairness)
+
+Flow:
+
+Music uploaded → Distributed to Spotify/Apple Music/etc. → Streams generate revenue → Artist cashes out → 2.7% fee applied → 90% nodes / 10% platform
+2. Platform
+Hosts the distribution service and manages integrations
+Earns revenue in two ways:
+10% cut of the 2.7% fee when artists cash out
+Seeding files itself (providing storage and availability)
+Uses earnings to maintain the platform, servers, software, and operations
+
+Flow:
+
+Artist/user fee revenue + seeding rewards → Platform operational budget → Profit for platform owner
+3. P2P Nodes
+Run the network, host, and seed music files
+Earn 90% of the 2.7% micro-fee from withdrawals and streams
+Can earn extra from seeding popular or high-demand files
+Incentivized for:
+High uptime
+Fast response times
+Serving more requests
+
+Flow:
+
+Artist/user pays fee → 90% distributed to nodes → Node rewards for hosting & uptime → Nodes reinvest or cash out
+4. Users / Listeners
+Listen to music via the platform
+Pay a small 2.7% micro-fee per stream
+Fee helps keep P2P nodes incentivized and the network fast and reliable
+
+Flow:
+
+Listener plays track → Micro-fee collected → 90% to nodes / 10% to platform → Network reliability maintained → Artists’ content delivered smoothly
+5. Overall Ecosystem Flow
+[Artist uploads music] 
+       ↓
+[Distributed to Spotify, Apple Music, etc.]
+       ↓
+[Streams generate revenue]
+       ↓
+[Artist cashes out] → 2.7% fee
+       ├─ 90% → P2P nodes (hosting/seeding rewards)
+       └─ 10% → Platform (ops + seeding)
+       
+[Users listen on-platform] → 2.7% micro-fee
+       ├─ 90% → Nodes
+       └─ 10% → Platform
+       
+[Platform seeds files] → Earns additional BTT / token revenue
+✅ Key Takeaways
+Artist-first → minimal upfront costs, earnings from existing streams
+Sustainable network → micro-fees fund nodes for reliability
+Platform earns fairly → small cut + seeding, enough to operate
+Aligned incentives → everyone in the ecosystem benefits:
+Artists: cash-out revenue
+Nodes: hosting rewards
+Users: fast, reliable music delivery
+Platform: sustainable operations
