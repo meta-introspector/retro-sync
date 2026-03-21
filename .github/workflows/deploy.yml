@@ -28,6 +28,9 @@ jobs:
           cd apps/wasm-frontend
           trunk build --release
 
+      - name: List dist contents
+        run: ls -la apps/wasm-frontend/dist
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
