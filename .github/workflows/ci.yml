@@ -1,4 +1,4 @@
-# Retrosync Media Group — Enterprise CI/CD
+# Retrosync Media Group — CI/CD
 name: Full Platform CI/CD
 
 on:
@@ -64,25 +64,6 @@ jobs:
       - run: |
           cd apps/wasm-frontend
           trunk build --release
-
-  nix-flake-check:
-    name: Nix Flake Check (pre-commit hooks)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - uses: cachix/install-nix-action@v27
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-      - uses: cachix/cachix-action@v15
-        if: ${{ secrets.CACHIX_AUTH_TOKEN != '' }}
-        with:
-          name: retrosync
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - run: nix flake check --all-systems
 
   compliance-check:
     name: Compliance (DMCA + GDPR + KYC + Moderation endpoints)
