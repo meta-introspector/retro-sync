@@ -17,7 +17,6 @@ use anyhow::{anyhow, Result};
 use base64::{engine::general_purpose::STANDARD as B64, Engine};
 use ed25519_dalek::{SigningKey, VerifyingKey};
 use ethers::signers::{HDPath, Ledger, Signer};
-use ethers::types::H256;
 use sha2::{Digest, Sha256};
 use std::path::PathBuf;
 
@@ -135,7 +134,6 @@ async fn main() -> Result<()> {
     println!("      Please approve the signing request on your Ledger device.");
     println!();
 
-    let msg_hash = H256::from_slice(&Sha256::digest(DOMAIN_MSG));
     let signature = ledger
         .sign_message(DOMAIN_MSG)
         .await
