@@ -38,6 +38,7 @@ contract RoyaltyDistributor {
     // ── Constants ────────────────────────────────────────────────────
     uint256 public constant BASIS_POINTS      = 10_000;
     uint256 public constant MAX_ARTISTS       = 16;
+    uint256 public constant TRANSACTION_FEE_BPS = 250; // 2.5% fee (250 / 10,000)
 
     /// Max BTT distributable in a single non-timelocked transaction.
     /// Large distributions go through the timelock queue.
@@ -83,6 +84,31 @@ contract RoyaltyDistributor {
     }
     mapping(bytes32 => TrackRecord) public trackRecords;
 
+    // ── Streaming transaction records (P2P fee model) ──────────────────
+    struct StreamingTransaction {
+        bytes32   trackCid;        // Content CID being streamed
+        address   listener;        // User who triggered the stream
+        address[] hostNodes;       // P2P nodes that seeded/hosted
+        address   artist;          // Creator of the track
+        uint256   transactionValue; // Value of transaction (BTT)
+        uint256   fee;             // 2.5% fee calculated
+        uint256   timestamp;
+        bool      feeDistributed;
+    }
+    mapping(bytes32 => StreamingTransaction) public streamingTransactions;
+    bytes32[] public transactionHistory;
+
+    // ── Host node reputation ───────────────────────────────────────────
+    struct HostReputation {
+        uint256 totalFeesEarned;
+        uint256 streamsHosted;
+        uint256 lastReward;
+    }
+    mapping(address => HostReputation) public hostReputation;
+
+    // ── Artist opt-in for crypto payouts ───────────────────────────────
+    mapping(address => bool) public artistOptInCrypto; // true = artist accepts crypto payouts
+
     // ── Events ────────────────────────────────────────────────────────
     event Distributed(
         bytes32 indexed cid,
@@ -93,6 +119,27 @@ contract RoyaltyDistributor {
     event DistributionQueued(bytes32 indexed cid, uint256 executeAfter);
     event TimelockExecuted(bytes32 indexed cid);
     event EmergencyPause(address indexed by);
+
+    // ── P2P Streaming & Fee Events ─────────────────────────────────────
+    event StreamingTransactionRecorded(
+        bytes32 indexed txId,
+        bytes32 indexed trackCid,
+        address indexed listener,
+        uint256 transactionValue,
+        uint256 fee
+    );
+    event FeeDistributed(
+        bytes32 indexed txId,
+        address indexed artist,
+        uint256 artistFee,
+        uint256 hostNodeFeesTotal
+    );
+    event HostRewardPaid(
+        address indexed hostNode,
+        uint256 amount,
+        uint256 totalEarned
+    );
+    event ArtistOptedIntoCrypto(address indexed artist, bool status);
 
     // ── Emergency pause (for exploit response) ─────────────────────────
     bool public paused;
@@ -230,6 +277,120 @@ contract RoyaltyDistributor {
         }
         uint256 dust = pd.totalBtt - dist;
         if (dust > 0) { require(btt.transfer(admin, dust), "dust failed"); }
+    }
+
+    /// @notice Record a P2P streaming transaction and calculate 2.5% fee.
+    /// @dev Called by the P2P coordinator when a stream completes.
+    /// @param txId Unique transaction ID (e.g., keccak256(abi.encode(listener, track, timestamp)))
+    /// @param trackCid BTFS CID of the track being streamed
+    /// @param listener User address who listened
+    /// @param hostNodes Array of P2P host nodes that provided bandwidth
+    /// @param artist Creator/artist address
+    /// @param transactionValue Stream transaction value in BTT
+    function recordStreamingTransaction(
+        bytes32 txId,
+        bytes32 trackCid,
+        address listener,
+        address[] calldata hostNodes,
+        address artist,
+        uint256 transactionValue
+    ) external notPaused nonReentrant {
+        require(hostNodes.length > 0, "at least one host required");
+        require(hostNodes.length <= MAX_ARTISTS, "too many hosts");
+        require(artist != address(0), "zero artist address");
+        require(listener != address(0), "zero listener address");
+        require(transactionValue > 0, "zero transaction value");
+        require(streamingTransactions[txId].timestamp == 0, "txId already recorded");
+
+        // Calculate 2.5% fee (250 basis points)
+        uint256 fee = (transactionValue * TRANSACTION_FEE_BPS) / BASIS_POINTS;
+
+        // Record the transaction
+        streamingTransactions[txId] = StreamingTransaction({
+            trackCid: trackCid,
+            listener: listener,
+            hostNodes: hostNodes,
+            artist: artist,
+            transactionValue: transactionValue,
+            fee: fee,
+            timestamp: block.timestamp,
+            feeDistributed: false
+        });
+        transactionHistory.push(txId);
+
+        emit StreamingTransactionRecorded(txId, trackCid, listener, transactionValue, fee);
+    }
+
+    /// @notice Distribute the 2.5% fee between artist and hosting nodes.
+    /// @dev Fee split: 1.25% to artist, 1.25% split equally among host nodes.
+    /// @param txId The streaming transaction ID to distribute fees for
+    function distributeStreamingFees(bytes32 txId) external notPaused nonReentrant {
+        StreamingTransaction storage tx = streamingTransactions[txId];
+        require(tx.timestamp > 0, "transaction not found");
+        require(!tx.feeDistributed, "fees already distributed");
+        require(tx.fee > 0, "zero fee");
+
+        tx.feeDistributed = true;
+
+        // Split the 2.5% fee:
+        // 50% to artist (1.25% of transaction)
+        // 50% split equally among host nodes (1.25% of transaction)
+        uint256 artistFee = tx.fee / 2;
+        uint256 hostNodeFeesTotal = tx.fee - artistFee;
+        uint256 feePerHost = hostNodeFeesTotal / tx.hostNodes.length;
+
+        // Pay artist (if opted in, use crypto payout; else fiat/bank)
+        if (artistOptInCrypto[tx.artist]) {
+            require(btt.transfer(tx.artist, artistFee), "artist payment failed");
+        }
+        // If not opted in, fee accumulates in contract for fiat settlement
+
+        // Reward each hosting node
+        for (uint i = 0; i < tx.hostNodes.length; i++) {
+            address host = tx.hostNodes[i];
+            require(host != address(0), "zero host address");
+
+            if (feePerHost > 0) {
+                require(btt.transfer(host, feePerHost), "host payment failed");
+
+                // Update host reputation
+                hostReputation[host].totalFeesEarned += feePerHost;
+                hostReputation[host].streamsHosted += 1;
+                hostReputation[host].lastReward = block.timestamp;
+
+                emit HostRewardPaid(host, feePerHost, hostReputation[host].totalFeesEarned);
+            }
+        }
+
+        // Dust from integer division to admin
+        uint256 dustFees = hostNodeFeesTotal - (feePerHost * tx.hostNodes.length);
+        if (dustFees > 0) {
+            require(btt.transfer(admin, dustFees), "dust transfer failed");
+        }
+
+        emit FeeDistributed(txId, tx.artist, artistFee, hostNodeFeesTotal);
+    }
+
+    /// @notice Allow an artist to opt in to direct crypto payouts.
+    /// @param optIn true to enable crypto payouts, false to use fiat settlement
+    function setArtistCryptoOptIn(bool optIn) external {
+        artistOptInCrypto[msg.sender] = optIn;
+        emit ArtistOptedIntoCrypto(msg.sender, optIn);
+    }
+
+    /// @notice Query host node reputation stats.
+    function getHostReputation(address hostNode) external view returns (HostReputation memory) {
+        return hostReputation[hostNode];
+    }
+
+    /// @notice Get streaming transaction record.
+    function getStreamingTransaction(bytes32 txId) external view returns (StreamingTransaction memory) {
+        return streamingTransactions[txId];
+    }
+
+    /// @notice Get total streaming transactions recorded.
+    function getTransactionCount() external view returns (uint256) {
+        return transactionHistory.length;
     }
 
     /// @notice Emergency pause — halts all distributions (exploit response).
