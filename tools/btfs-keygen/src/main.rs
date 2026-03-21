@@ -17,7 +17,6 @@ use anyhow::{anyhow, Result};
 use base64::{engine::general_purpose::STANDARD as B64, Engine};
 use ed25519_dalek::{SigningKey, VerifyingKey};
 use ethers::signers::{HDPath, Ledger, Signer};
-use ethers::types::H256;
 use sha2::{Digest, Sha256};
 use std::path::PathBuf;
 
@@ -36,17 +35,17 @@ const LIBP2P_KEY_TYPE_ED25519: u8 = 1;
 fn encode_libp2p_privkey(signing_key: &SigningKey) -> Vec<u8> {
     // libp2p Ed25519 private key = 32-byte seed + 32-byte public key = 64 bytes
     let mut key_data = Vec::with_capacity(64);
-    key_data.extend_from_slice(signing_key.as_bytes());           // 32-byte seed
+    key_data.extend_from_slice(signing_key.as_bytes()); // 32-byte seed
     key_data.extend_from_slice(signing_key.verifying_key().as_bytes()); // 32-byte pubkey
 
     // Protobuf encoding:
     // field 1 (KeyType), wire type 0 (varint): tag = (1 << 3) | 0 = 0x08
     // field 2 (Data), wire type 2 (length-delimited): tag = (2 << 3) | 2 = 0x12
     let mut proto = Vec::new();
-    proto.push(0x08);                           // field 1, varint
-    proto.push(LIBP2P_KEY_TYPE_ED25519);        // Ed25519 = 1
-    proto.push(0x12);                           // field 2, length-delimited
-    proto.push(key_data.len() as u8);           // length
+    proto.push(0x08); // field 1, varint
+    proto.push(LIBP2P_KEY_TYPE_ED25519); // Ed25519 = 1
+    proto.push(0x12); // field 2, length-delimited
+    proto.push(key_data.len() as u8); // length
     proto.extend_from_slice(&key_data);
     proto
 }
@@ -70,8 +69,8 @@ fn derive_peer_id(verifying_key: &VerifyingKey) -> String {
     let pubkey_proto = encode_libp2p_pubkey(verifying_key);
     // Identity multihash: 0x00 (identity code) + varint(len) + data
     let mut multihash = Vec::new();
-    multihash.push(0x00);                           // identity multihash code
-    multihash.push(pubkey_proto.len() as u8);       // length as varint
+    multihash.push(0x00); // identity multihash code
+    multihash.push(pubkey_proto.len() as u8); // length as varint
     multihash.extend_from_slice(&pubkey_proto);
     bs58::encode(multihash).into_string()
 }
@@ -80,12 +79,14 @@ fn derive_peer_id(verifying_key: &VerifyingKey) -> String {
 async fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().collect();
 
-    let output = args.windows(2)
+    let output = args
+        .windows(2)
         .find(|w| w[0] == "--output")
         .map(|w| PathBuf::from(&w[1]))
         .unwrap_or_else(|| PathBuf::from("btfs_ledger_identity"));
 
-    let hd_index: u32 = args.windows(2)
+    let hd_index: u32 = args
+        .windows(2)
         .find(|w| w[0] == "--hd-path")
         .and_then(|w| w[1].parse().ok())
         .unwrap_or(0);
@@ -110,10 +111,14 @@ async fn main() -> Result<()> {
 
     // ── Connect to Ledger ────────────────────────────────────────────────────
     println!("[1/4] Connecting to Ledger...");
-    let ledger = Ledger::new(HDPath::LedgerLive(hd_index as usize), chain_id).await
-        .map_err(|e| anyhow!(
-            "Cannot open Ledger: {}. Device must be connected, unlocked, Ethereum app open.", e
-        ))?;
+    let ledger = Ledger::new(HDPath::LedgerLive(hd_index as usize), chain_id)
+        .await
+        .map_err(|e| {
+            anyhow!(
+                "Cannot open Ledger: {}. Device must be connected, unlocked, Ethereum app open.",
+                e
+            )
+        })?;
 
     let eth_address = ledger.address();
     println!("      Ledger address: {:#x}", eth_address);
@@ -122,12 +127,16 @@ async fn main() -> Result<()> {
     // We sign a fixed message so the same Ledger + HD path always produces
     // the same signature → same keypair. The Ledger will show this on screen.
     println!("[2/4] Signing domain message on Ledger...");
-    println!("      Message: \"{}\"", std::str::from_utf8(DOMAIN_MSG).unwrap());
+    println!(
+        "      Message: \"{}\"",
+        std::str::from_utf8(DOMAIN_MSG).unwrap()
+    );
     println!("      Please approve the signing request on your Ledger device.");
     println!();
 
-    let msg_hash = H256::from_slice(&Sha256::digest(DOMAIN_MSG));
-    let signature = ledger.sign_hash(msg_hash).await
+    let signature = ledger
+        .sign_message(DOMAIN_MSG)
+        .await
         .map_err(|e| anyhow!("Ledger signing failed: {}", e))?;
 
     // ── Derive Ed25519 seed ──────────────────────────────────────────────────
@@ -136,8 +145,12 @@ async fn main() -> Result<()> {
     // so this derivation is fully reproducible from the same Ledger.
     println!("[3/4] Deriving Ed25519 keypair from signature...");
     let mut sig_bytes = Vec::with_capacity(65);
-    sig_bytes.extend_from_slice(signature.r.as_bytes());
-    sig_bytes.extend_from_slice(signature.s.as_bytes());
+    let mut r_bytes = [0u8; 32];
+    let mut s_bytes = [0u8; 32];
+    signature.r.to_big_endian(&mut r_bytes);
+    signature.s.to_big_endian(&mut s_bytes);
+    sig_bytes.extend_from_slice(&r_bytes);
+    sig_bytes.extend_from_slice(&s_bytes);
     sig_bytes.push(signature.v as u8);
 
     // Domain-separate the seed derivation
@@ -146,14 +159,14 @@ async fn main() -> Result<()> {
     seed_hasher.update(&sig_bytes);
     let seed_bytes: [u8; 32] = seed_hasher.finalize().into();
 
-    let signing_key  = SigningKey::from_bytes(&seed_bytes);
+    let signing_key = SigningKey::from_bytes(&seed_bytes);
     let verifying_key = signing_key.verifying_key();
 
     // ── Encode for BTFS ──────────────────────────────────────────────────────
     println!("[4/4] Encoding for BTFS config...");
-    let privkey_proto  = encode_libp2p_privkey(&signing_key);
-    let privkey_b64    = B64.encode(&privkey_proto);
-    let peer_id        = derive_peer_id(&verifying_key);
+    let privkey_proto = encode_libp2p_privkey(&signing_key);
+    let privkey_b64 = B64.encode(&privkey_proto);
+    let peer_id = derive_peer_id(&verifying_key);
 
     // ── Write output ─────────────────────────────────────────────────────────
     std::fs::create_dir_all(&output)?;
@@ -180,7 +193,10 @@ async fn main() -> Result<()> {
         "derivation":     "SHA256(Ledger.sign_hash(SHA256(domain_msg))) -> Ed25519 seed",
         "note":           "Regenerate by running btfs-keygen with the same Ledger and HD path",
     });
-    std::fs::write(output.join("summary.json"), serde_json::to_string_pretty(&summary)?)?;
+    std::fs::write(
+        output.join("summary.json"),
+        serde_json::to_string_pretty(&summary)?,
+    )?;
 
     // Restrict permissions on privkey file
     #[cfg(unix)]
@@ -200,8 +216,14 @@ async fn main() -> Result<()> {
     println!("NEXT STEPS — apply to BTFS config:");
     println!();
     println!("  systemctl --user stop btfs");
-    println!("  btfs config Identity.PrivKey $(cat {}/privkey.b64)", output.display());
-    println!("  btfs config Identity.PeerID  $(cat {}/peer_id.txt)", output.display());
+    println!(
+        "  btfs config Identity.PrivKey $(cat {}/privkey.b64)",
+        output.display()
+    );
+    println!(
+        "  btfs config Identity.PeerID  $(cat {}/peer_id.txt)",
+        output.display()
+    );
     println!("  btfs config Identity.TronKey {:#x}", eth_address);
     println!("  systemctl --user start btfs");
     println!();

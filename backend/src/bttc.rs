@@ -20,9 +20,6 @@ use ethers::{
 use shared::types::{BtfsCid, EvmAddress, RoyaltySplit};
 use tracing::{info, instrument, warn};
 
-#[allow(dead_code)] // band is part of the public submission result; used by callers
-pub struct SubmitResult { pub tx_hash: String, pub band: u8 }
-
 /// 1 million BTT (18 decimals) — matches MAX_DISTRIBUTION_BTT in Solidity.
 pub const MAX_DISTRIBUTION_BTT: u128 = 1_000_000 * 10u128.pow(18);
 
@@ -59,7 +56,7 @@ fn encode_distribute_calldata(
 pub struct SubmitResult {
     pub tx_hash: String,
     #[allow(dead_code)] // band included for callers and future API responses
-    pub band:    u8,
+    pub band: u8,
 }
 
 #[instrument(skip(proof))]
@@ -69,8 +66,7 @@ pub async fn submit_distribution(
     band: u8,
     proof: Option<&[u8]>,
 ) -> anyhow::Result<SubmitResult> {
-    let rpc      = std::env::var("BTTC_RPC_URL")
-        .unwrap_or_else(|_| "http://127.0.0.1:8545".into());
+    let rpc = std::env::var("BTTC_RPC_URL").unwrap_or_else(|_| "http://127.0.0.1:8545".into());
     let contract = std::env::var("ROYALTY_CONTRACT_ADDR")
         .unwrap_or_else(|_| "0x0000000000000000000000000000000000000001".into());
 
@@ -79,7 +75,10 @@ pub async fn submit_distribution(
     // ── Dev mode ────────────────────────────────────────────────────────
     if std::env::var("BTTC_DEV_MODE").unwrap_or_default() == "1" {
         warn!("BTTC_DEV_MODE=1 — returning stub tx hash");
-        return Ok(SubmitResult { tx_hash: format!("0x{}", "ab".repeat(32)), band });
+        return Ok(SubmitResult {
+            tx_hash: format!("0x{}", "ab".repeat(32)),
+            band,
+        });
     }
 
     // ── Value cap (Rust layer — Solidity enforces the same) ─────────────
@@ -95,20 +94,28 @@ pub async fn submit_distribution(
 
     // ── Parse recipients + amounts ───────────────────────────────────────
     let mut recipients: Vec<Address> = Vec::with_capacity(splits.len());
-    let mut amounts:    Vec<U256>    = Vec::with_capacity(splits.len());
+    let mut amounts: Vec<U256> = Vec::with_capacity(splits.len());
     for split in splits {
-        let addr: Address = split.artist_addr.0.parse()
+        let addr: Address = split
+            .address
+            .0
+            .parse()
             .map_err(|e| anyhow::anyhow!("Invalid EVM address in split: {}", e))?;
         recipients.push(addr);
         amounts.push(U256::from(split.amount_btt));
     }
 
     let bp_sum: u64 = splits.iter().map(|s| s.bps as u64).sum();
-    anyhow::ensure!(bp_sum == 10_000, "Basis points must sum to 10,000, got {}", bp_sum);
+    anyhow::ensure!(
+        bp_sum == 10_000,
+        "Basis points must sum to 10,000, got {}",
+        bp_sum
+    );
 
     let proof_bytes = proof.unwrap_or(&[]);
-    let calldata    = encode_distribute_calldata(&recipients, &amounts, band, bp_sum, proof_bytes);
-    let contract_addr: Address = contract.parse()
+    let calldata = encode_distribute_calldata(&recipients, &amounts, band, bp_sum, proof_bytes);
+    let contract_addr: Address = contract
+        .parse()
         .map_err(|e| anyhow::anyhow!("Invalid ROYALTY_CONTRACT_ADDR: {}", e))?;
 
     // ── Sign via Ledger and send ─────────────────────────────────────────
@@ -126,11 +133,7 @@ pub async fn submit_distribution(
 ///
 /// Uses ethers-rs `LedgerWallet` with HDPath `m/44'/60'/0'/0/0`.
 /// The Ledger must be connected, unlocked, and the Ethereum app open.
-async fn send_via_ledger(
-    rpc_url: &str,
-    to: Address,
-    calldata: Bytes,
-) -> anyhow::Result<String> {
+async fn send_via_ledger(rpc_url: &str, to: Address, calldata: Bytes) -> anyhow::Result<String> {
     use ethers::{
         middleware::SignerMiddleware,
         providers::{Http, Middleware, Provider},
@@ -143,21 +146,27 @@ async fn send_via_ledger(
         .map_err(|e| anyhow::anyhow!("Cannot connect to RPC {}: {}", rpc_url, e))?;
     let chain_id = provider.get_chainid().await?.as_u64();
 
-    let ledger = Ledger::new(HDPath::LedgerLive(0), chain_id).await
-        .map_err(|e| anyhow::anyhow!(
-            "Ledger connection failed: {}. \
-             Ensure device is connected, unlocked, and Ethereum app is open.", e
-        ))?;
+    let ledger = Ledger::new(HDPath::LedgerLive(0), chain_id)
+        .await
+        .map_err(|e| {
+            anyhow::anyhow!(
+                "Ledger connection failed: {}. \
+             Ensure device is connected, unlocked, and Ethereum app is open.",
+                e
+            )
+        })?;
 
-    let signer  = Arc::new(SignerMiddleware::new(provider, ledger));
-    let from    = signer.address();
-    let nonce   = signer.get_transaction_count(from, None).await?;
-    let gas_est = signer.estimate_gas(
-        &ethers::types::TypedTransaction::Legacy(
-            TransactionRequest::new().to(to).data(calldata.clone()).from(from)
-        ),
-        None,
-    ).await.unwrap_or(U256::from(300_000u64));
+    let signer = Arc::new(SignerMiddleware::new(provider, ledger));
+    let from = signer.address();
+    let nonce = signer.get_transaction_count(from, None).await?;
+    let estimate_tx = TransactionRequest::new()
+        .to(to)
+        .data(calldata.clone())
+        .from(from);
+    let gas_est = signer
+        .estimate_gas(&estimate_tx.into(), None)
+        .await
+        .unwrap_or(U256::from(300_000u64));
     // 20% gas buffer
     let gas_limit = gas_est * 120u64 / 100u64;
 
@@ -168,11 +177,15 @@ async fn send_via_ledger(
         .nonce(nonce)
         .gas(gas_limit);
 
-    let pending = signer.send_transaction(tx, None).await
+    let pending = signer
+        .send_transaction(tx, None)
+        .await
         .map_err(|e| anyhow::anyhow!("Transaction rejected by Ledger or RPC: {}", e))?;
 
     // Wait for 1 confirmation
-    let receipt = pending.confirmations(1).await?
+    let receipt = pending
+        .confirmations(1)
+        .await?
         .ok_or_else(|| anyhow::anyhow!("Transaction dropped from mempool"))?;
 
     Ok(format!("{:#x}", receipt.transaction_hash))
@@ -195,9 +208,9 @@ mod tests {
     fn value_cap_enforced() {
         // total > MAX should be caught before any network call
         let splits = vec![shared::types::RoyaltySplit {
-            artist_addr: shared::types::EvmAddress("0x0000000000000000000000000000000000000001".into()),
-            bps:         10_000,
-            amount_btt:  MAX_DISTRIBUTION_BTT + 1,
+            address: shared::types::EvmAddress("0x0000000000000000000000000000000000000001".into()),
+            bps: 10_000,
+            amount_btt: MAX_DISTRIBUTION_BTT + 1,
         }];
         // We can't call the async fn in a sync test, but we verify the cap constant
         assert!(splits.iter().map(|s| s.amount_btt).sum::<u128>() > MAX_DISTRIBUTION_BTT);
@@ -206,9 +219,10 @@ mod tests {
     #[test]
     fn calldata_encodes_without_panic() {
         let recipients = vec!["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
-            .parse::<Address>().unwrap()];
-        let amounts    = vec![U256::from(1000u64)];
-        let proof      = vec![0x01u8, 0x02, 0x03];
+            .parse::<Address>()
+            .unwrap()];
+        let amounts = vec![U256::from(1000u64)];
+        let proof = vec![0x01u8, 0x02, 0x03];
         let data = encode_distribute_calldata(&recipients, &amounts, 0, 10_000, &proof);
         // 4 selector bytes + at least 5 ABI words
         assert!(data.len() >= 4 + 5 * 32);

@@ -1,6 +1,11 @@
 //! Zero Trust middleware: SPIFFE SVID + JWT on every request.
-use axum::{extract::{Request, State}, http::StatusCode, middleware::Next, response::Response};
 use crate::AppState;
+use axum::{
+    extract::{Request, State},
+    http::StatusCode,
+    middleware::Next,
+    response::Response,
+};
 use tracing::warn;
 
 pub async fn verify_zero_trust(

@@ -1,33 +1,40 @@
 //! Six Sigma Prometheus CTQ metrics.
+use crate::AppState;
 use axum::{extract::State, response::IntoResponse};
 use std::sync::atomic::{AtomicU64, Ordering};
-use crate::AppState;
 
 pub struct CtqMetrics {
-    pub uploads_total:   AtomicU64,
-    pub defects_total:   AtomicU64,
-    pub band_common:     AtomicU64,
-    pub band_rare:       AtomicU64,
-    pub band_legendary:  AtomicU64,
-    latency_sum_ms:      AtomicU64,
-    latency_count:       AtomicU64,
+    pub uploads_total: AtomicU64,
+    pub defects_total: AtomicU64,
+    pub band_common: AtomicU64,
+    pub band_rare: AtomicU64,
+    pub band_legendary: AtomicU64,
+    latency_sum_ms: AtomicU64,
+    latency_count: AtomicU64,
 }
 
 impl CtqMetrics {
     pub fn new() -> Self {
         Self {
-            uploads_total: AtomicU64::new(0), defects_total: AtomicU64::new(0),
-            band_common: AtomicU64::new(0), band_rare: AtomicU64::new(0),
+            uploads_total: AtomicU64::new(0),
+            defects_total: AtomicU64::new(0),
+            band_common: AtomicU64::new(0),
+            band_rare: AtomicU64::new(0),
             band_legendary: AtomicU64::new(0),
-            latency_sum_ms: AtomicU64::new(0), latency_count: AtomicU64::new(0),
+            latency_sum_ms: AtomicU64::new(0),
+            latency_count: AtomicU64::new(0),
         }
     }
-    pub fn record_defect(&self, _kind: &str) { self.defects_total.fetch_add(1, Ordering::Relaxed); }
+    pub fn record_defect(&self, _kind: &str) {
+        self.defects_total.fetch_add(1, Ordering::Relaxed);
+    }
     pub fn record_band(&self, band: u8) {
         self.uploads_total.fetch_add(1, Ordering::Relaxed);
-        match band { 0 => self.band_common.fetch_add(1, Ordering::Relaxed),
-                     1 => self.band_rare.fetch_add(1, Ordering::Relaxed),
-                     _ => self.band_legendary.fetch_add(1, Ordering::Relaxed) };
+        match band {
+            0 => self.band_common.fetch_add(1, Ordering::Relaxed),
+            1 => self.band_rare.fetch_add(1, Ordering::Relaxed),
+            _ => self.band_legendary.fetch_add(1, Ordering::Relaxed),
+        };
     }
     pub fn record_latency(&self, _name: &str, ms: f64) {
         self.latency_sum_ms.fetch_add(ms as u64, Ordering::Relaxed);
@@ -35,9 +42,11 @@ impl CtqMetrics {
     }
     pub fn band_distribution_in_control(&self) -> bool {
         let total = self.uploads_total.load(Ordering::Relaxed);
-        if total < 30 { return true; }
+        if total < 30 {
+            return true;
+        }
         let common = self.band_common.load(Ordering::Relaxed) as f64 / total as f64;
-        (common - 7.0/15.0).abs() <= 0.15
+        (common - 7.0 / 15.0).abs() <= 0.15
     }
     pub fn metrics_text(&self) -> String {
         let up = self.uploads_total.load(Ordering::Relaxed);

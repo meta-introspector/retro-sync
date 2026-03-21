@@ -32,16 +32,18 @@ use std::path::PathBuf;
 // but ceremony is a standalone binary to avoid circular workspace deps.
 
 const MAX_ARTISTS: usize = 16;
-const BASIS_POINTS: u64  = 10_000;
+const BASIS_POINTS: u64 = 10_000;
 
 #[derive(Clone, Default)]
-struct ArtistWitness { bps: u16 }
+struct ArtistWitness {
+    bps: u16,
+}
 
 #[derive(Clone)]
 struct CeremonyCircuit {
     #[allow(dead_code)] // shape is carried by witnesses.len(); kept for documentation
     n_artists: usize,
-    band:      u8,
+    band: u8,
     witnesses: Vec<ArtistWitness>,
 }
 
@@ -49,7 +51,7 @@ impl CeremonyCircuit {
     fn blank(n_artists: usize) -> Self {
         Self {
             n_artists,
-            band:      0,
+            band: 0,
             witnesses: vec![ArtistWitness::default(); n_artists],
         }
     }
@@ -60,33 +62,30 @@ impl ConstraintSynthesizer<Fr> for CeremonyCircuit {
         use ark_r1cs_std::fields::fp::FpVar;
 
         // Public input 1: band ∈ {0,1,2}
-        let band_var = FpVar::<Fr>::new_input(
-            ark_relations::ns!(cs, "band"),
-            || Ok(Fr::from(self.band as u64)),
-        )?;
-        let one  = FpVar::constant(Fr::from(1u64));
-        let two  = FpVar::constant(Fr::from(2u64));
+        let band_var = FpVar::<Fr>::new_input(ark_relations::ns!(cs, "band"), || {
+            Ok(Fr::from(self.band as u64))
+        })?;
+        let one = FpVar::constant(Fr::from(1u64));
+        let two = FpVar::constant(Fr::from(2u64));
         let zero = FpVar::constant(Fr::zero());
-        let b1   = &band_var - &one;
-        let b2   = &band_var - &two;
+        let b1 = &band_var - &one;
+        let b2 = &band_var - &two;
         let prod = &band_var * &b1;
         (&prod * &b2).enforce_equal(&zero)?;
 
         // Public input 2: basis points == 10,000
-        let bp_var = FpVar::<Fr>::new_input(
-            ark_relations::ns!(cs, "basis_points"),
-            || Ok(Fr::from(BASIS_POINTS)),
-        )?;
+        let bp_var = FpVar::<Fr>::new_input(ark_relations::ns!(cs, "basis_points"), || {
+            Ok(Fr::from(BASIS_POINTS))
+        })?;
 
         // Private: sum of bps == bp_var
         // ns! requires a string literal; per-slot identity is not needed for
         // correctness — the constraint index provides uniqueness.
         let mut sum = FpVar::constant(Fr::zero());
         for w in self.witnesses.iter() {
-            let bps_var = FpVar::<Fr>::new_witness(
-                ark_relations::ns!(cs, "bps"),
-                || Ok(Fr::from(w.bps as u64)),
-            )?;
+            let bps_var = FpVar::<Fr>::new_witness(ark_relations::ns!(cs, "bps"), || {
+                Ok(Fr::from(w.bps as u64))
+            })?;
             sum = sum + bps_var;
         }
         sum.enforce_equal(&bp_var)?;
@@ -100,12 +99,24 @@ fn g1_to_hex(p: &G1Affine) -> [String; 2] {
     let (x, y) = if p.is_zero() {
         (vec![0u8; 32], vec![0u8; 32])
     } else {
-        let mut xb = Vec::new(); let mut yb = Vec::new();
-        p.x().unwrap().into_bigint().serialize_uncompressed(&mut xb).ok();
-        p.y().unwrap().into_bigint().serialize_uncompressed(&mut yb).ok();
+        let mut xb = Vec::new();
+        let mut yb = Vec::new();
+        p.x()
+            .unwrap()
+            .into_bigint()
+            .serialize_uncompressed(&mut xb)
+            .ok();
+        p.y()
+            .unwrap()
+            .into_bigint()
+            .serialize_uncompressed(&mut yb)
+            .ok();
         (xb, yb)
     };
-    [format!("0x{}", hex::encode(&x)), format!("0x{}", hex::encode(&y))]
+    [
+        format!("0x{}", hex::encode(&x)),
+        format!("0x{}", hex::encode(&y)),
+    ]
 }
 
 fn g2_to_hex(p: &G2Affine) -> [[String; 2]; 2] {
@@ -113,25 +124,55 @@ fn g2_to_hex(p: &G2Affine) -> [[String; 2]; 2] {
     if p.is_zero() {
         return [zero_coord(), zero_coord()];
     }
-    let mut xb = Vec::new(); let mut yb = Vec::new();
-    p.x().unwrap().c0.into_bigint().serialize_uncompressed(&mut xb).ok();
-    p.y().unwrap().c0.into_bigint().serialize_uncompressed(&mut yb).ok();
-    let mut xb1 = Vec::new(); let mut yb1 = Vec::new();
-    p.x().unwrap().c1.into_bigint().serialize_uncompressed(&mut xb1).ok();
-    p.y().unwrap().c1.into_bigint().serialize_uncompressed(&mut yb1).ok();
+    let mut xb = Vec::new();
+    let mut yb = Vec::new();
+    p.x()
+        .unwrap()
+        .c0
+        .into_bigint()
+        .serialize_uncompressed(&mut xb)
+        .ok();
+    p.y()
+        .unwrap()
+        .c0
+        .into_bigint()
+        .serialize_uncompressed(&mut yb)
+        .ok();
+    let mut xb1 = Vec::new();
+    let mut yb1 = Vec::new();
+    p.x()
+        .unwrap()
+        .c1
+        .into_bigint()
+        .serialize_uncompressed(&mut xb1)
+        .ok();
+    p.y()
+        .unwrap()
+        .c1
+        .into_bigint()
+        .serialize_uncompressed(&mut yb1)
+        .ok();
     [
-        [format!("0x{}", hex::encode(&xb)),  format!("0x{}", hex::encode(&xb1))],
-        [format!("0x{}", hex::encode(&yb)),  format!("0x{}", hex::encode(&yb1))],
+        [
+            format!("0x{}", hex::encode(&xb)),
+            format!("0x{}", hex::encode(&xb1)),
+        ],
+        [
+            format!("0x{}", hex::encode(&yb)),
+            format!("0x{}", hex::encode(&yb1)),
+        ],
     ]
 }
 
 fn main() -> anyhow::Result<()> {
     let args: Vec<String> = std::env::args().collect();
-    let output = args.windows(2)
+    let output = args
+        .windows(2)
         .find(|w| w[0] == "--output")
         .map(|w| PathBuf::from(&w[1]))
         .unwrap_or_else(|| PathBuf::from("vk.json"));
-    let n_artists: usize = args.windows(2)
+    let n_artists: usize = args
+        .windows(2)
         .find(|w| w[0] == "--artists")
         .and_then(|w| w[1].parse().ok())
         .unwrap_or(MAX_ARTISTS);
@@ -161,7 +202,9 @@ fn main() -> anyhow::Result<()> {
     println!("[3/3] Serialising verifying key to JSON...");
 
     // Prepare IC points (1 + n_public_inputs = 1 + 2 = 3)
-    let ic_json: Vec<Value> = vk.gamma_abc_g1.iter()
+    let ic_json: Vec<Value> = vk
+        .gamma_abc_g1
+        .iter()
         .map(|p| {
             let coords = g1_to_hex(p);
             json!({ "x": coords[0], "y": coords[1] })
@@ -169,7 +212,7 @@ fn main() -> anyhow::Result<()> {
         .collect();
 
     let alpha = g1_to_hex(&vk.alpha_g1);
-    let beta  = g2_to_hex(&vk.beta_g2);
+    let beta = g2_to_hex(&vk.beta_g2);
     let gamma = g2_to_hex(&vk.gamma_g2);
     let delta = g2_to_hex(&vk.delta_g2);
 
