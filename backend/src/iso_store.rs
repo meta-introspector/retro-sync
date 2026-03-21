@@ -4,17 +4,22 @@ use tracing::info;
 
 pub struct AuditStore {
     entries: Mutex<Vec<String>>,
-    path:    String,
+    path: String,
 }
 
 impl AuditStore {
     pub fn open(path: &str) -> anyhow::Result<Self> {
-        Ok(Self { entries: Mutex::new(Vec::new()), path: path.to_string() })
+        Ok(Self {
+            entries: Mutex::new(Vec::new()),
+            path: path.to_string(),
+        })
     }
     pub fn record(&self, msg: &str) -> anyhow::Result<()> {
         let entry = format!("[{}] {}", chrono::Utc::now().to_rfc3339(), msg);
         info!(audit=%entry);
-        if let Ok(mut v) = self.entries.lock() { v.push(entry); }
+        if let Ok(mut v) = self.entries.lock() {
+            v.push(entry);
+        }
         Ok(())
     }
 }

@@ -32,18 +32,24 @@ pub async fn sign_bytes(payload: &[u8]) -> anyhow::Result<Vec<u8>> {
         use ethers::types::H256;
 
         let chain_id = std::env::var("BTTC_CHAIN_ID")
-            .unwrap_or_else(|_| "199".into())  // BTTC mainnet
+            .unwrap_or_else(|_| "199".into()) // BTTC mainnet
             .parse::<u64>()
             .map_err(|_| anyhow::anyhow!("BTTC_CHAIN_ID must be a u64"))?;
 
-        let ledger = Ledger::new(HDPath::LedgerLive(0), chain_id).await
-            .map_err(|e| anyhow::anyhow!(
-                "Cannot open Ledger: {}. Device must be connected, unlocked, \
-                 Ethereum app open.", e
-            ))?;
+        let ledger = Ledger::new(HDPath::LedgerLive(0), chain_id)
+            .await
+            .map_err(|e| {
+                anyhow::anyhow!(
+                    "Cannot open Ledger: {}. Device must be connected, unlocked, \
+                 Ethereum app open.",
+                    e
+                )
+            })?;
 
-        let hash  = H256::from_slice(&sha2::Sha256::digest(payload));
-        let sig   = ledger.sign_hash(hash).await
+        let hash = H256::from_slice(&sha2::Sha256::digest(payload));
+        let sig = ledger
+            .sign_hash(hash)
+            .await
             .map_err(|e| anyhow::anyhow!("Ledger sign_hash failed: {}", e))?;
 
         let mut out = Vec::with_capacity(65);
@@ -77,7 +83,8 @@ pub async fn get_address() -> anyhow::Result<String> {
         let chain_id = std::env::var("BTTC_CHAIN_ID")
             .unwrap_or_else(|_| "199".into())
             .parse::<u64>()?;
-        let ledger = Ledger::new(HDPath::LedgerLive(0), chain_id).await
+        let ledger = Ledger::new(HDPath::LedgerLive(0), chain_id)
+            .await
             .map_err(|e| anyhow::anyhow!("Ledger not found: {}", e))?;
         Ok(format!("{:#x}", ledger.address()))
     }
@@ -97,7 +104,10 @@ mod tests {
         std::env::set_var("LEDGER_DEV_MODE", "1");
         let sig1 = sign_bytes(b"hello retrosync").await.unwrap();
         let sig2 = sign_bytes(b"hello retrosync").await.unwrap();
-        assert_eq!(sig1, sig2, "dev stub must be deterministic for test reproducibility");
+        assert_eq!(
+            sig1, sig2,
+            "dev stub must be deterministic for test reproducibility"
+        );
         // Different payload → different stub
         let sig3 = sign_bytes(b"different payload").await.unwrap();
         assert_ne!(sig1, sig3);
