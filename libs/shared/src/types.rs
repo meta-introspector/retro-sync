@@ -58,12 +58,12 @@ pub enum ParseError {
 impl std::fmt::Display for ParseError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::InvalidFormat(s) => write!(f, "invalid format: {}", s),
+            Self::InvalidFormat(s) => write!(f, "invalid format: {s}"),
             Self::InvalidLength { expected, got } => {
-                write!(f, "expected {} chars, got {}", expected, got)
+                write!(f, "expected {expected} chars, got {got}")
             }
             Self::InvalidCheckDigit => write!(f, "check digit invalid"),
-            Self::InvalidBowi(s) => write!(f, "invalid BOWI identifier: {}", s),
+            Self::InvalidBowi(s) => write!(f, "invalid BOWI identifier: {s}"),
         }
     }
 }

@@ -162,7 +162,8 @@ impl Provider {
         url: impl Into<Url>,
         auth: Authorization,
     ) -> Result<Self, HttpClientError> {
-        let mut auth_value = HeaderValue::from_str(&auth.to_string())?;
+        let mut auth_value = HeaderValue::from_str(&auth.to_string())
+            .map_err(|e| HttpClientError::InvalidHeader(e.to_string()))?;
         auth_value.set_sensitive(true);
 
         let mut headers = reqwest::header::HeaderMap::new();
@@ -209,8 +210,8 @@ impl Clone for Provider {
 /// Error thrown when dealing with Http clients
 pub enum HttpClientError {
     /// Thrown if unable to build headers for client
-    #[error(transparent)]
-    InvalidHeader(#[from] http::header::InvalidHeaderValue),
+    #[error("invalid header value: {0}")]
+    InvalidHeader(String),
 
     /// Thrown if unable to build client
     #[error(transparent)]

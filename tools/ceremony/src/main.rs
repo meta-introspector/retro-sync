@@ -86,7 +86,7 @@ impl ConstraintSynthesizer<Fr> for CeremonyCircuit {
             let bps_var = FpVar::<Fr>::new_witness(ark_relations::ns!(cs, "bps"), || {
                 Ok(Fr::from(w.bps as u64))
             })?;
-            sum = sum + bps_var;
+            sum += bps_var;
         }
         sum.enforce_equal(&bp_var)?;
         Ok(())
@@ -183,7 +183,7 @@ fn main() -> anyhow::Result<()> {
     println!("║  Curve:    BN254  ·  Protocol: Groth16                ║");
     println!("╚═══════════════════════════════════════════════════════╝");
     println!();
-    println!("Artists in circuit: {}", n_artists);
+    println!("Artists in circuit: {n_artists}");
     println!("WARNING: single-party setup. For mainnet use MPC ceremony.");
     println!("See docs/ceremony.md for multi-party instructions.");
     println!();
@@ -197,7 +197,7 @@ fn main() -> anyhow::Result<()> {
     println!("[2/3] Running Groth16 trusted setup (groth16::generate_random_parameters)...");
 
     let (_pk, vk) = Groth16::<Bn254>::circuit_specific_setup(circuit, &mut rng)
-        .map_err(|e| anyhow::anyhow!("Trusted setup failed: {:?}", e))?;
+        .map_err(|e| anyhow::anyhow!("Trusted setup failed: {e:?}"))?;
 
     println!("[3/3] Serialising verifying key to JSON...");
 

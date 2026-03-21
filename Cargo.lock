@@ -3824,31 +3824,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "sandbox"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "ark-bn254",
- "ark-ec",
- "ark-ff",
- "ark-groth16",
- "ark-r1cs-std",
- "ark-relations",
- "ark-snark",
- "ark-std",
- "chrono",
- "hex",
- "serde",
- "serde_json",
- "sha2",
- "shared",
- "tokio",
- "tracing",
- "tracing-subscriber 0.3.23",
- "zk_circuits",
-]
-
-[[package]]
 name = "scale-info"
 version = "2.11.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"

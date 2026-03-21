@@ -21,10 +21,10 @@ pub enum IdentifierError {
 impl std::fmt::Display for IdentifierError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::InvalidFormat(s) => write!(f, "invalid format: {}", s),
+            Self::InvalidFormat(s) => write!(f, "invalid format: {s}"),
             Self::InvalidCheckDigit => write!(f, "check digit mismatch"),
             Self::WrongLength { expected, got } => {
-                write!(f, "expected {} digits, got {}", expected, got)
+                write!(f, "expected {expected} digits, got {got}")
             }
         }
     }
@@ -110,7 +110,7 @@ pub fn recognize_iswc(input: &str) -> Result<Iswc, IdentifierError> {
 // Accepts "bowi:{uuid4}" or bare "{uuid4}". Validates RFC 4122 v4 structure.
 pub fn recognize_bowi(input: &str) -> Result<Bowi, ParseError> {
     let s = input.trim();
-    let uuid = if s.starts_with("bowi:") { &s[5..] } else { s };
+    let uuid = s.strip_prefix("bowi:").unwrap_or(s);
     if validate_uuid4(uuid) {
         Ok(Bowi(format!("bowi:{}", uuid.to_lowercase())))
     } else {

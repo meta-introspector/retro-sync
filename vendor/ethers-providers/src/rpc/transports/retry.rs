@@ -393,7 +393,7 @@ impl RetryPolicy<ClientError> for HttpRateLimitRetryPolicy {
 
         match error {
             ClientError::ReqwestError(err) => {
-                err.status() == Some(http::StatusCode::TOO_MANY_REQUESTS)
+                err.status() == Some(reqwest::StatusCode::TOO_MANY_REQUESTS)
             }
             ClientError::JsonRpcError(err) => should_retry_json_rpc_error(err),
             ClientError::SerdeJson { text, .. } => {

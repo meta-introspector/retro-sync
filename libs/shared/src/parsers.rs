@@ -125,8 +125,7 @@ pub fn recognize_splits(raw: &[(String, u16)]) -> Result<Vec<RoyaltySplit>, Pars
     }
     if total != 10_000 {
         return Err(ParseError::InvalidFormat(format!(
-            "bps sum {} ≠ 10_000",
-            total
+            "bps sum {total} ≠ 10_000"
         )));
     }
     Ok(splits)

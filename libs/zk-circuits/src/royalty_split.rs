@@ -69,7 +69,7 @@ impl ConstraintSynthesizer<Fr> for RoyaltySplitCircuit {
             let bps_var = FpVar::<Fr>::new_witness(ark_relations::ns!(cs, "bps"), || {
                 Ok(Fr::from(artist.bps as u64))
             })?;
-            sum = sum + bps_var;
+            sum += bps_var;
         }
         sum.enforce_equal(&bp_var)?;
 
@@ -92,7 +92,7 @@ pub fn generate_proof(
     };
     let mut rng = ark_std::rand::rngs::StdRng::from_entropy();
     let proof = Groth16::<Bn254>::prove(pk, circuit, &mut rng)
-        .map_err(|e| anyhow::anyhow!("Groth16 prove failed: {:?}", e))?;
+        .map_err(|e| anyhow::anyhow!("Groth16 prove failed: {e:?}"))?;
     info!(band=%band, n_artists=%n_artists, "ZK proof generated");
     Ok(proof)
 }

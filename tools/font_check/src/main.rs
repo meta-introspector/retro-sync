@@ -10,5 +10,5 @@ fn main() {
         .chars()
         .filter(|c| (*c as u32) >= 0x4E00 && (*c as u32) <= 0x9FFF)
         .count();
-    println!("{{\"latin_ok\":{},\"cjk_chars\":{}}}", latin_ok, cjk_count);
+    println!("{{\"latin_ok\":{latin_ok},\"cjk_chars\":{cjk_count}}}");
 }
