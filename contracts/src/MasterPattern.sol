@@ -21,7 +21,10 @@ library MasterPattern {
         if (dr == BAND0_DR) return 0;
         if (dr == BAND1_DR) return 1;
         if (dr == BAND2_DR) return 2;
-        return 0; // default to Common
+        // A digit root outside {2,3,4} indicates an invariant violation.
+        // Revert explicitly rather than silently defaulting to Common, which
+        // would misclassify tracks and corrupt band-dependent fee logic.
+        revert("MasterPattern: unexpected digit root");
     }
 
     function verifyClosureInvariant() internal pure returns (bool) {

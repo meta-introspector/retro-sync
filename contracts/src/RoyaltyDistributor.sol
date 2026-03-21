@@ -8,13 +8,14 @@ import "./MasterPattern.sol";
 /// @notice Distributes BTT royalties to artists with ZK-verified splits.
 ///
 /// ╔══════════════════════════════════════════════════════════════════╗
-/// ║  DEFI SECURITY: FIVE PROTECTIONS IMPLEMENTED                    ║
+/// ║  DEFI SECURITY: SIX PROTECTIONS IMPLEMENTED                     ║
 /// ║                                                                  ║
 /// ║  1. REENTRANCY GUARD — locked bool, CEI pattern                  ║
 /// ║     Prevents malicious ERC-20 from re-entering distribute()      ║
 /// ║                                                                  ║
-/// ║  2. ZK PROOF REQUIRED — ZKVerifier.verifyProof() on-chain        ║
-/// ║     Band + splits commitment cryptographically proven before pay  ║
+/// ║  2. ZK PROOF WITH SPLIT COMMITMENT — verifyProof() on-chain      ║
+/// ║     band, bps_sum, AND Σ(bps[i]*addr[i]) cryptographically bound ║
+/// ║     Proof cannot be replayed against a different artist set       ║
 /// ║                                                                  ║
 /// ║  3. VALUE CAP — MAX_DISTRIBUTION_BTT per tx                       ║
 /// ║     Limits blast radius of any single exploit                    ║
@@ -24,6 +25,9 @@ import "./MasterPattern.sol";
 /// ║                                                                  ║
 /// ║  5. IMMUTABLE PROXY — no upgradeability                           ║
 /// ║     Upgrade paths are a primary DeFi exploit vector              ║
+/// ║                                                                  ║
+/// ║  6. TIMELOCK CANCELLATION — admin can cancel queued distributions ║
+/// ║     Provides exploit-response capability for queued bad params   ║
 /// ╚══════════════════════════════════════════════════════════════════╝
 
 interface IERC20 {
@@ -70,6 +74,7 @@ contract RoyaltyDistributor {
         uint256   totalBtt;
         uint256   executeAfter;
         bool      executed;
+        bool      cancelled;
     }
     mapping(bytes32 => PendingDistribution) public pendingDistributions;
 
@@ -92,6 +97,7 @@ contract RoyaltyDistributor {
     );
     event DistributionQueued(bytes32 indexed cid, uint256 executeAfter);
     event TimelockExecuted(bytes32 indexed cid);
+    event TimelockCancelled(bytes32 indexed cid, address indexed by);
     event EmergencyPause(address indexed by);
 
     // ── Emergency pause (for exploit response) ─────────────────────────
@@ -108,12 +114,25 @@ contract RoyaltyDistributor {
         admin    = msg.sender;
     }
 
+    /// @notice Compute the split commitment for a given artist/bps allocation.
+    /// @dev    commitment = Σ (bps[i] * uint128(uint160(artists[i])))
+    ///         This is the same formula used in the ZK circuit witness.
+    ///         Both must agree for proof verification to succeed.
+    function _splitCommitment(
+        address[] calldata artists,
+        uint16[]  calldata bps
+    ) private pure returns (uint256 commitment) {
+        for (uint i = 0; i < artists.length; i++) {
+            commitment += uint256(bps[i]) * uint256(uint128(uint160(artists[i])));
+        }
+    }
+
     /// @notice Distribute BTT royalties to a set of artists.
     /// @param cid      BTFS content CID (SHA-256, 32 bytes)
     /// @param artists  Artist EVM addresses
     /// @param bps      Basis points per artist (Σ must equal 10_000)
     /// @param band     Master Pattern band (0=Common, 1=Rare, 2=Legendary)
-    /// @param proof    192-byte Groth16 proof (band + splits commitment)
+    /// @param proof    192-byte Groth16 proof (band + splits + commitment)
     /// @param totalBtt Total BTT to distribute (in wei)
     function distribute(
         bytes32          cid,
@@ -140,10 +159,13 @@ contract RoyaltyDistributor {
         }
         require(bpsSum == BASIS_POINTS, "bps must sum to 10000");
 
-        // ── ZK proof verification (FIX 2) ─────────────────────────────
-        // Band and split commitment proven before any state change
+        // ── ZK proof verification with split commitment (FIX 2) ───────
+        // Compute commitment on-chain from the provided artists/bps.
+        // The ZK circuit constrains the same formula — proof will fail
+        // if the caller substitutes different artists or bps values.
+        uint256 commitment = _splitCommitment(artists, bps);
         require(
-            verifier.verifyProof(band, BASIS_POINTS, proof),
+            verifier.verifyProof(band, BASIS_POINTS, commitment, proof),
             "RoyaltyDistributor: invalid ZK proof"
         );
 
@@ -166,6 +188,10 @@ contract RoyaltyDistributor {
 
         MasterPattern.Fingerprint memory _fp = MasterPattern.fingerprint(cid, bytes32(totalBtt));
         string memory tier = MasterPattern.rarityTier(band);
+
+        // suppress unused variable warning — fingerprint is computed for event emission
+        // and future indexing; individual fields unused here.
+        (_fp);
 
         emit Distributed(cid, totalBtt, band, tier);
 
@@ -194,7 +220,8 @@ contract RoyaltyDistributor {
         uint256 executeAfter = block.timestamp + TIMELOCK_DELAY;
         pendingDistributions[cid] = PendingDistribution({
             cid: cid, artists: artists, bps: bps, band: band,
-            proof: proof, totalBtt: totalBtt, executeAfter: executeAfter, executed: false
+            proof: proof, totalBtt: totalBtt, executeAfter: executeAfter,
+            executed: false, cancelled: false
         });
         emit DistributionQueued(cid, executeAfter);
     }
@@ -203,13 +230,19 @@ contract RoyaltyDistributor {
     function executeQueued(bytes32 cid) external notPaused nonReentrant {
         PendingDistribution storage pd = pendingDistributions[cid];
         require(!pd.executed,                  "already executed");
+        require(!pd.cancelled,                 "distribution cancelled");
         require(pd.executeAfter > 0,           "not queued");
         require(block.timestamp >= pd.executeAfter, "timelock: too early");
         require(!trackRecords[cid].distributed, "already distributed");
 
         // Re-verify proof at execution time (not just queue time)
+        // Re-compute commitment from stored artists/bps
+        uint256 commitment;
+        for (uint i = 0; i < pd.artists.length; i++) {
+            commitment += uint256(pd.bps[i]) * uint256(uint128(uint160(pd.artists[i])));
+        }
         require(
-            verifier.verifyProof(pd.band, BASIS_POINTS, pd.proof),
+            verifier.verifyProof(pd.band, BASIS_POINTS, commitment, pd.proof),
             "ZK proof invalid at execution"
         );
 
@@ -230,6 +263,19 @@ contract RoyaltyDistributor {
         }
         uint256 dust = pd.totalBtt - dist;
         if (dust > 0) { require(btt.transfer(admin, dust), "dust failed"); }
+    }
+
+    /// @notice Cancel a pending timelocked distribution (FIX 6).
+    /// @dev    Admin-only. Allows exploit-response before a queued bad-params
+    ///         distribution executes. Once cancelled the CID is not marked as
+    ///         distributed, so a corrected distribution can be submitted later.
+    function cancelQueued(bytes32 cid) external onlyAdmin {
+        PendingDistribution storage pd = pendingDistributions[cid];
+        require(pd.executeAfter > 0,  "not queued");
+        require(!pd.executed,         "already executed");
+        require(!pd.cancelled,        "already cancelled");
+        pd.cancelled = true;
+        emit TimelockCancelled(cid, msg.sender);
     }
 
     /// @notice Emergency pause — halts all distributions (exploit response).

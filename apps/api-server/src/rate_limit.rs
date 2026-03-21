@@ -34,6 +34,15 @@ const GENERAL_LIMIT: usize = 120;
 const AUTH_LIMIT: usize = 10;
 const UPLOAD_LIMIT: usize = 5;
 
+/// Limit applied to requests whose source IP cannot be determined.
+///
+/// All such requests share the key "auth:unknown", "general:unknown", etc.
+/// A much tighter limit than GENERAL_LIMIT prevents an attacker (or broken
+/// proxy) from exhausting the shared bucket and causing collateral DoS for
+/// other unresolvable clients.  Legitimate deployments should configure a
+/// reverse proxy that sets X-Real-IP so this fallback is never hit.
+const UNKNOWN_LIMIT_DIVISOR: usize = 10;
+
 pub struct RateLimiter {
     /// Key: `"{path_bucket}:{client_ip}"` → sorted list of request instants
     windows: Mutex<HashMap<String, Vec<Instant>>>,
@@ -134,7 +143,15 @@ pub async fn enforce(
     }
 
     let ip = client_ip(&request);
-    let (bucket_name, limit) = bucket(&path);
+    let (bucket_name, base_limit) = bucket(&path);
+    // Apply a tighter cap for requests with no resolvable IP (shared bucket).
+    // This prevents a single unknown/misconfigured source from starving the
+    // shared "unknown" key and causing collateral DoS for other clients.
+    let limit = if ip == "unknown" {
+        (base_limit / UNKNOWN_LIMIT_DIVISOR).max(1)
+    } else {
+        base_limit
+    };
     let key = format!("{bucket_name}:{ip}");
 
     if !state.rate_limiter.check(&key, limit) {

@@ -6,14 +6,21 @@ pragma solidity ^0.8.24;
 ///         The verifying key (alpha, beta, gamma, delta, IC) is set at deploy time
 ///         from the output of `cargo run --bin setup_ceremony`.
 ///
-///         PUBLIC INPUTS: [band, basis_points_sum]
-///         band must be in {0,1,2} — enforced by circuit constraint.
-///         basis_points_sum must equal 10_000.
+///         PUBLIC INPUTS: [band, basis_points_sum, split_commitment]
+///           band              must be in {0,1,2} — enforced by circuit constraint.
+///           basis_points_sum  must equal 10_000.
+///           split_commitment  = Σ (bps[i] * uint128(uint160(artists[i])))
+///                               Binds the proof to the specific (artist, bps) allocation.
+///                               Computed on-chain by RoyaltyDistributor and verified here.
 ///
 ///         SECURITY NOTE: The verifying key MUST be set before any distribution
 ///         is processed. An unset VK means verifyProof() always returns false,
 ///         which causes RoyaltyDistributor to revert — protecting against
 ///         unverified distributions until the ceremony is complete.
+///
+///         SECURITY NOTE: split_commitment prevents proof replay attacks.
+///         A valid proof for one (artist, bps) allocation cannot be submitted
+///         with a different allocation — the commitment will not match.
 contract ZKVerifier {
     // BN254 field modulus
     uint256 constant FIELD_MODULUS =
@@ -24,7 +31,7 @@ contract ZKVerifier {
         uint256[2][2] beta;
         uint256[2][2] gamma;
         uint256[2][2] delta;
-        uint256[2][]  ic;   // one per public input + 1
+        uint256[2][]  ic;   // one per public input + 1 = 4 points (band, bps, commitment)
         bool set;
     }
 
@@ -48,6 +55,7 @@ contract ZKVerifier {
 
     /// Set the Groth16 verifying key from the trusted setup ceremony output.
     /// Can only be called once. After this, verifyProof() is active.
+    /// Requires exactly 4 IC points: ic[0] + ic[band] + ic[bps] + ic[commitment].
     function setVerifyingKey(
         uint256[2]    calldata alpha,
         uint256[2][2] calldata beta,
@@ -56,7 +64,7 @@ contract ZKVerifier {
         uint256[2][]  calldata ic
     ) external onlyAdmin {
         require(!vk.set, "ZKVerifier: key already set");
-        require(ic.length == 3, "ZKVerifier: need 3 IC points (1+2 inputs)");
+        require(ic.length == 4, "ZKVerifier: need 4 IC points (1 + 3 inputs: band, bps, commitment)");
         vk.alpha = alpha;
         vk.beta  = beta;
         vk.gamma = gamma;
@@ -68,12 +76,15 @@ contract ZKVerifier {
     }
 
     /// Verify a Groth16 proof.
-    /// @param band            Band public input (0=Common, 1=Rare, 2=Legendary)
-    /// @param basisPointsSum  Must equal 10_000
-    /// @param proof           192-byte encoded Groth16 proof
+    /// @param band              Band public input (0=Common, 1=Rare, 2=Legendary)
+    /// @param basisPointsSum    Must equal 10_000
+    /// @param splitCommitment   Σ (bps[i] * uint128(uint160(artists[i])))
+    ///                          Computed by RoyaltyDistributor from the calldata arrays.
+    /// @param proof             192-byte encoded Groth16 proof
     function verifyProof(
         uint8   band,
         uint256 basisPointsSum,
+        uint256 splitCommitment,
         bytes   calldata proof
     ) external view returns (bool) {
         require(vk.set, "ZKVerifier: verifying key not set");
@@ -83,9 +94,10 @@ contract ZKVerifier {
         if (proof.length != 192) return false;
         Proof memory p = _decodeProof(proof);
 
-        uint256[2] memory publicInputs;
+        uint256[3] memory publicInputs;
         publicInputs[0] = uint256(band);
         publicInputs[1] = basisPointsSum;
+        publicInputs[2] = splitCommitment;
 
         return _groth16Verify(p, publicInputs);
     }
@@ -99,7 +111,7 @@ contract ZKVerifier {
     }
 
     function _groth16Verify(
-        Proof memory proof, uint256[2] memory inputs
+        Proof memory proof, uint256[3] memory inputs
     ) private view returns (bool) {
         // Compute linear combination of IC points with public inputs
         uint256[2] memory acc;

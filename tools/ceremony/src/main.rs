@@ -30,6 +30,10 @@ use std::path::PathBuf;
 // ── Duplicate the circuit here so ceremony is self-contained ────────────
 // In production this would be `use zk_circuits::RoyaltySplitCircuit;`
 // but ceremony is a standalone binary to avoid circular workspace deps.
+//
+// IMPORTANT: this circuit definition MUST stay in sync with
+// libs/zk-circuits/src/royalty_split.rs. Any constraint change requires
+// re-running the ceremony and updating ZKVerifier.sol's IC count.
 
 const MAX_ARTISTS: usize = 16;
 const BASIS_POINTS: u64 = 10_000;
@@ -37,14 +41,18 @@ const BASIS_POINTS: u64 = 10_000;
 #[derive(Clone, Default)]
 struct ArtistWitness {
     bps: u16,
+    /// Lower 128 bits of the artist's Ethereum address (fits within BN254 Fr).
+    addr_lo: u128,
 }
 
 #[derive(Clone)]
 struct CeremonyCircuit {
-    #[allow(dead_code)] // shape is carried by witnesses.len(); kept for documentation
+    #[allow(dead_code)]
     n_artists: usize,
     band: u8,
     witnesses: Vec<ArtistWitness>,
+    /// Split commitment public input: Σ (bps[i] * addr_lo[i])
+    split_commitment: u128,
 }
 
 impl CeremonyCircuit {
@@ -53,6 +61,7 @@ impl CeremonyCircuit {
             n_artists,
             band: 0,
             witnesses: vec![ArtistWitness::default(); n_artists],
+            split_commitment: 0,
         }
     }
 }
@@ -78,17 +87,31 @@ impl ConstraintSynthesizer<Fr> for CeremonyCircuit {
             Ok(Fr::from(BASIS_POINTS))
         })?;
 
-        // Private: sum of bps == bp_var
-        // ns! requires a string literal; per-slot identity is not needed for
-        // correctness — the constraint index provides uniqueness.
+        // Public input 3: split commitment — binds proof to specific (artist, bps) pairs
+        let commitment_var =
+            FpVar::<Fr>::new_input(ark_relations::ns!(cs, "split_commitment"), || {
+                Ok(Fr::from(self.split_commitment))
+            })?;
+
+        // Private witnesses: bps values and address lower bits
         let mut sum = FpVar::constant(Fr::zero());
+        let mut commitment_acc = FpVar::constant(Fr::zero());
+
         for w in self.witnesses.iter() {
             let bps_var = FpVar::<Fr>::new_witness(ark_relations::ns!(cs, "bps"), || {
                 Ok(Fr::from(w.bps as u64))
             })?;
-            sum += bps_var;
+            sum += &bps_var;
+
+            let addr_var = FpVar::<Fr>::new_witness(ark_relations::ns!(cs, "addr_lo"), || {
+                Ok(Fr::from(w.addr_lo))
+            })?;
+            commitment_acc += &bps_var * &addr_var;
         }
+
         sum.enforce_equal(&bp_var)?;
+        commitment_acc.enforce_equal(&commitment_var)?;
+
         Ok(())
     }
 }
@@ -184,6 +207,7 @@ fn main() -> anyhow::Result<()> {
     println!("╚═══════════════════════════════════════════════════════╝");
     println!();
     println!("Artists in circuit: {n_artists}");
+    println!("Public inputs: band, basis_points_sum, split_commitment (3 inputs)");
     println!("WARNING: single-party setup. For mainnet use MPC ceremony.");
     println!("See docs/ceremony.md for multi-party instructions.");
     println!();
@@ -201,7 +225,7 @@ fn main() -> anyhow::Result<()> {
 
     println!("[3/3] Serialising verifying key to JSON...");
 
-    // Prepare IC points (1 + n_public_inputs = 1 + 2 = 3)
+    // Prepare IC points (1 + n_public_inputs = 1 + 3 = 4)
     let ic_json: Vec<Value> = vk
         .gamma_abc_g1
         .iter()
@@ -222,7 +246,11 @@ fn main() -> anyhow::Result<()> {
             "curve":          "BN254",
             "protocol":       "groth16",
             "n_artists":      n_artists,
-            "public_inputs":  ["band (u8, 0-2)", "basis_points_sum (u64, must = 10000)"],
+            "public_inputs":  [
+                "band (u8, 0-2)",
+                "basis_points_sum (u64, must = 10000)",
+                "split_commitment (u128 = Σ bps[i]*addr_lo[i])"
+            ],
             "ceremony_type":  "single_party_testnet",
             "generated_at":   chrono::Utc::now().to_rfc3339(),
             "warning":        "Single-party setup: toxic waste not destroyed. Use MPC for mainnet."
@@ -234,7 +262,7 @@ fn main() -> anyhow::Result<()> {
         "ic":    ic_json,
         "deployment": {
             "step1": "Deploy ZKVerifier.sol (already done by Foundry script)",
-            "step2": "Call ZKVerifier.setVerifyingKey(band, alpha, beta, gamma, delta, ic)",
+            "step2": "Call ZKVerifier.setVerifyingKey(alpha, beta, gamma, delta, ic) — requires 4 IC points",
             "step3": "Set BTTC_DEV_MODE=0 in .env",
             "step4": "Run integration test: cargo test --package backend test_full_pipeline"
         }

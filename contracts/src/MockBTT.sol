@@ -4,19 +4,30 @@ pragma solidity ^0.8.24;
 /// @title MockBTT
 /// @notice ERC-20 mock of BTT for BTTC testnet (Donau) / Foundry anvil.
 ///         Production canonical BTT: 0x23181F21DEa5936e24163FFABa4Ea3B316B57f3C (BTTC mainnet)
+///
+/// SECURITY: mint() is restricted to the owner to prevent accidental deployment
+/// of an unconstrained faucet. Do NOT deploy this to mainnet — use the canonical BTT.
 contract MockBTT {
     string  public constant name     = "BitTorrent";
     string  public constant symbol   = "BTT";
     uint8   public constant decimals = 18;
+
+    address public immutable owner;
 
     uint256 public totalSupply;
     mapping(address => uint256)                     public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(address indexed owner, address indexed spender, uint256 value);
+    event Approval(address indexed owner_, address indexed spender, uint256 value);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "MockBTT: not owner");
+        _;
+    }
 
     constructor(uint256 initialSupply) {
+        owner                 = msg.sender;
         totalSupply           = initialSupply * (10 ** decimals);
         balanceOf[msg.sender] = totalSupply;
         emit Transfer(address(0), msg.sender, totalSupply);
@@ -47,7 +58,8 @@ contract MockBTT {
     }
 
     /// Testnet faucet — remove in production (use canonical BTT contract).
-    function mint(address to, uint256 amount) external {
+    /// Restricted to owner; prevents arbitrary inflation if accidentally deployed.
+    function mint(address to, uint256 amount) external onlyOwner {
         balanceOf[to] += amount;
         totalSupply   += amount;
         emit Transfer(address(0), to, amount);

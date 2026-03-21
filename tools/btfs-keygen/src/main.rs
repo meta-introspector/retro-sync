@@ -41,22 +41,24 @@ fn encode_libp2p_privkey(signing_key: &SigningKey) -> Vec<u8> {
     // Protobuf encoding:
     // field 1 (KeyType), wire type 0 (varint): tag = (1 << 3) | 0 = 0x08
     // field 2 (Data), wire type 2 (length-delimited): tag = (2 << 3) | 2 = 0x12
-    let mut proto = Vec::new();
-    proto.push(0x08); // field 1, varint
-    proto.push(LIBP2P_KEY_TYPE_ED25519); // Ed25519 = 1
-    proto.push(0x12); // field 2, length-delimited
-    proto.push(key_data.len() as u8); // length
+    let mut proto = vec![
+        0x08,                    // field 1, varint
+        LIBP2P_KEY_TYPE_ED25519, // Ed25519 = 1
+        0x12,                    // field 2, length-delimited
+        key_data.len() as u8,    // length
+    ];
     proto.extend_from_slice(&key_data);
     proto
 }
 
 /// Encode Ed25519 public key in libp2p protobuf format.
 fn encode_libp2p_pubkey(verifying_key: &VerifyingKey) -> Vec<u8> {
-    let mut proto = Vec::new();
-    proto.push(0x08);
-    proto.push(LIBP2P_KEY_TYPE_ED25519);
-    proto.push(0x12);
-    proto.push(32u8);
+    let mut proto = vec![
+        0x08,                    // field 1, varint
+        LIBP2P_KEY_TYPE_ED25519, // Ed25519 = 1
+        0x12,                    // field 2, length-delimited
+        32u8,                    // public key length
+    ];
     proto.extend_from_slice(verifying_key.as_bytes());
     proto
 }
@@ -68,9 +70,10 @@ fn encode_libp2p_pubkey(verifying_key: &VerifyingKey) -> Vec<u8> {
 fn derive_peer_id(verifying_key: &VerifyingKey) -> String {
     let pubkey_proto = encode_libp2p_pubkey(verifying_key);
     // Identity multihash: 0x00 (identity code) + varint(len) + data
-    let mut multihash = Vec::new();
-    multihash.push(0x00); // identity multihash code
-    multihash.push(pubkey_proto.len() as u8); // length as varint
+    let mut multihash = vec![
+        0x00,                     // identity multihash code
+        pubkey_proto.len() as u8, // length as varint
+    ];
     multihash.extend_from_slice(&pubkey_proto);
     bs58::encode(multihash).into_string()
 }
@@ -100,8 +103,8 @@ async fn main() -> Result<()> {
     println!("║  Retrosync BTFS Node Keygen — Ledger Hardware Derivation ║");
     println!("╚══════════════════════════════════════════════════════════╝");
     println!();
-    println!("HD path:     m/44'/60'/0'/0/{}", hd_index);
-    println!("Chain ID:    {}", chain_id);
+    println!("HD path:     m/44'/60'/0'/0/{hd_index}");
+    println!("Chain ID:    {chain_id}");
     println!("Output dir:  {}", output.display());
     println!();
     println!("Make sure your Ledger is connected, unlocked, and the");
@@ -115,13 +118,12 @@ async fn main() -> Result<()> {
         .await
         .map_err(|e| {
             anyhow!(
-                "Cannot open Ledger: {}. Device must be connected, unlocked, Ethereum app open.",
-                e
+                "Cannot open Ledger: {e}. Device must be connected, unlocked, Ethereum app open."
             )
         })?;
 
     let eth_address = ledger.address();
-    println!("      Ledger address: {:#x}", eth_address);
+    println!("      Ledger address: {eth_address:#x}");
 
     // ── Sign domain separation message ───────────────────────────────────────
     // We sign a fixed message so the same Ledger + HD path always produces
@@ -137,7 +139,7 @@ async fn main() -> Result<()> {
     let signature = ledger
         .sign_message(DOMAIN_MSG)
         .await
-        .map_err(|e| anyhow!("Ledger signing failed: {}", e))?;
+        .map_err(|e| anyhow!("Ledger signing failed: {e}"))?;
 
     // ── Derive Ed25519 seed ──────────────────────────────────────────────────
     // Stretch 65-byte signature (r + s + v) into 32-byte Ed25519 seed via SHA-256.
@@ -181,13 +183,13 @@ async fn main() -> Result<()> {
 
     // ledger_address.txt — the Ethereum/TRON address that owns this node
     let addr_path = output.join("ledger_address.txt");
-    std::fs::write(&addr_path, format!("{:#x}", eth_address))?;
+    std::fs::write(&addr_path, format!("{eth_address:#x}"))?;
 
     // Summary JSON (no private material)
     let summary = serde_json::json!({
         "peer_id":        peer_id,
-        "ledger_address": format!("{:#x}", eth_address),
-        "hd_path":        format!("m/44'/60'/0'/0/{}", hd_index),
+        "ledger_address": format!("{eth_address:#x}"),
+        "hd_path":        format!("m/44'/60'/0'/0/{hd_index}"),
         "chain_id":       chain_id,
         "domain_msg":     std::str::from_utf8(DOMAIN_MSG).unwrap(),
         "derivation":     "SHA256(Ledger.sign_hash(SHA256(domain_msg))) -> Ed25519 seed",
@@ -210,8 +212,8 @@ async fn main() -> Result<()> {
     println!("║  ✅  Keypair derived successfully                        ║");
     println!("╚══════════════════════════════════════════════════════════╝");
     println!();
-    println!("Peer ID:        {}", peer_id);
-    println!("Ledger address: {:#x}", eth_address);
+    println!("Peer ID:        {peer_id}");
+    println!("Ledger address: {eth_address:#x}");
     println!();
     println!("NEXT STEPS — apply to BTFS config:");
     println!();
@@ -224,7 +226,7 @@ async fn main() -> Result<()> {
         "  btfs config Identity.PeerID  $(cat {}/peer_id.txt)",
         output.display()
     );
-    println!("  btfs config Identity.TronKey {:#x}", eth_address);
+    println!("  btfs config Identity.TronKey {eth_address:#x}");
     println!("  systemctl --user start btfs");
     println!();
     println!("To delete the on-disk key material after applying:");
