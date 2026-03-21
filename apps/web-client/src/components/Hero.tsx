@@ -12,28 +12,15 @@ const Hero = () => {
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/5 blur-[100px]" />
 
       <div className="relative z-10 container mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="inline-flex items-center gap-2 bg-zinc-950 border border-primary/50 px-4 py-1 mb-8 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
-            <Terminal className="w-3 h-3 text-primary" />
-            <span className="text-[10px] text-primary font-bold uppercase tracking-[0.3em] terminal-cursor">
-              Protocol v1.0.4 Initialized
-            </span>
-          </div>
-        </motion.div>
-
         <motion.h1
           className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter leading-[0.8] mb-8 uppercase italic"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Privacy is
+          RetroSync:
           <br />
-          <span className="text-gradient-primary">Non-Negotiable.</span>
+          <span className="text-gradient-primary">Our Mission, Driven by an Artist's Journey</span>
         </motion.h1>
 
         <motion.p
@@ -42,9 +29,9 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          For five years, I immersed myself in the music industry, learning its intricacies from the ground up. As an artist, and a full-time mom, I understand the struggle of wanting to build a sustainable career from your passion while balancing life's demands. The reality for many artists is a frustrating "black box" of royalty payments – money earned, but never received, or lost in opaque systems. This disconnect hinders not just individual artists, but the vibrant ecosystem of music creation.
+          At RetroSync, our mission is deeply personal, born from a five-year journey navigating the music industry from an artist's perspective. As a professional artist and a dedicated mother, I've experienced firsthand the frustration of unreceived or lost payments – a reality that stifles creativity and makes sustainable careers incredibly challenging. This systemic issue affects countless talents worldwide who dream of earning a living from their art.
           <br /><br />
-          This frustration fueled a personal mission: to build a better way. RetroSync was born from a desire to empower artists like myself, my boyfriend, and my friends – anyone who dreams of making a living through their music without losing their hard-earned royalties. I created RetroSync to ensure that artists are compensated fairly and transparently, putting the power back where it belongs: with the creators. It's more than just an application; it's a commitment to an artist-first future.
+          Fueled by this passion for fairness and a deep understanding of artists' needs, RetroSync was conceived. We are building a transparent, artist-centric platform designed to empower creators. Our goal is to ensure artists are compensated fairly and equitably, putting control back into their hands. RetroSync is our answer to a broken system, a commitment to building a future where every artist is valued and rightfully rewarded for their work.
         </motion.p>
 
         <motion.div
