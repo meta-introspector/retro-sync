@@ -20,7 +20,7 @@ const Hero = () => {
         >
           RetroSync:
           <br />
-          <span className="text-gradient-primary">Our Mission, Driven by an Artist's Journey</span>
+          <span className="text-gradient-primary">A New Infrastructure for Artist Sovereignty</span>
         </motion.h1>
 
         <motion.p
@@ -29,9 +29,7 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          At RetroSync, our mission is deeply personal, born from a five-year journey navigating the music industry from an artist's perspective. As a professional artist and a dedicated mother, I've experienced firsthand the frustration of unreceived or lost payments – a reality that stifles creativity and makes sustainable careers incredibly challenging. This systemic issue affects countless talents worldwide who dream of earning a living from their art.
-          <br /><br />
-          Fueled by this passion for fairness and a deep understanding of artists' needs, RetroSync was conceived. We are building a transparent, artist-centric platform designed to empower creators. Our goal is to ensure artists are compensated fairly and equitably, putting control back into their hands. RetroSync is our answer to a broken system, a commitment to building a future where every artist is valued and rightfully rewarded for their work.
+          We're building a revolutionary new infrastructure for music distribution, designed from the ground up for artists. Tired of opaque royalty systems and lost payments? RetroSync provides a transparent, direct, and equitable way for artists to earn a living from their work, empowering creators and fostering a thriving ecosystem. Built with deep industry insight and a passion for fairness, RetroSync is the foundation for an artist'B true sovereignty.
         </motion.p>
 
         <motion.div
