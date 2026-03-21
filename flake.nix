@@ -100,9 +100,6 @@
           src = ./.;
           cargoLock = {
             lockFile = ./Cargo.lock;
-            outputHashes = {
-              "earleybird-0.1.0" = "sha256-naFAv96BmMzUD7GxViVujSEKSC3W/BjuWluvo7b7668=";
-            };
           };
           nativeBuildInputs = [ pkgs.pkg-config ];
           buildInputs = [ pkgs.openssl pkgs.lmdb ];

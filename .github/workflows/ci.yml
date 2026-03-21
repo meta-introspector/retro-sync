@@ -12,7 +12,7 @@ env:
   BTTC_DEV_MODE:    "1"
   LEDGER_DEV_MODE:  "1"
   DDEX_DEV_MODE:    "1"
-  WIKIDATA_DISABLED:"1"
+  WIKIDATA_DISABLED: "1"
   ZERO_TRUST_DISABLED: "1"
   RUST_LOG:         "info"
 
@@ -21,11 +21,14 @@ jobs:
     name: Rust (test + clippy + fmt)
     runs-on: ubuntu-latest
     steps:
-      - uses: meta-introspector/checkout@v4
-        with: { submodules: recursive }
-      - uses: meta-introspector/rust-toolchain@stable
-        with: { targets: wasm32-unknown-unknown }
-      - uses: meta-introspector/rust-cache@v2
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+          components: rustfmt,clippy
+      - uses: Swatinem/rust-cache@v2
       - run: cargo fmt --all -- --check
       - run: cargo clippy --all-targets --all-features -- -D warnings
       - run: cargo test --all
@@ -34,9 +37,10 @@ jobs:
     name: Foundry (forge test + fuzz)
     runs-on: ubuntu-latest
     steps:
-      - uses: meta-introspector/checkout@v4
-        with: { submodules: recursive }
-      - uses: meta-introspector/foundry-toolchain@v1
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: foundry-rs/foundry-toolchain@v1
       - run: |
           cd contracts
           forge install OpenZeppelin/openzeppelin-contracts --no-commit || true
@@ -49,25 +53,35 @@ jobs:
     name: WASM Frontend (trunk build)
     runs-on: ubuntu-latest
     steps:
-      - uses: meta-introspector/checkout@v4
-        with: { submodules: recursive }
-      - uses: meta-introspector/rust-toolchain@stable
-        with: { targets: wasm32-unknown-unknown }
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
       - run: cargo install trunk --locked
       - run: |
-          cd frontend
+          cd apps/wasm-frontend
           trunk build --release
 
   nix-flake-check:
     name: Nix Flake Check (pre-commit hooks)
     runs-on: ubuntu-latest
     steps:
-      - uses: meta-introspector/checkout@v4
-        with: { submodules: recursive }
-      - uses: meta-introspector/install-nix-action@v27
-      - uses: meta-introspector/cachix-action@v15
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - uses: cachix/cachix-action@v15
+        if: ${{ secrets.CACHIX_AUTH_TOKEN != '' }}
         with:
           name: retrosync
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - run: nix flake check --all-systems
 
   compliance-check:
@@ -75,15 +89,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: rust-tests
     steps:
-      - uses: meta-introspector/checkout@v4
-        with: { submodules: recursive }
-      - uses: meta-introspector/rust-toolchain@stable
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
       - run: cargo build --bin backend
       - name: Start backend
         run: |
           BTTC_DEV_MODE=1 LEDGER_DEV_MODE=1 DDEX_DEV_MODE=1 \
           ZERO_TRUST_DISABLED=1 cargo run --bin backend &
-          sleep 3
+          sleep 5
       - name: Health check
         run: curl -sf http://localhost:8443/health
       - name: DMCA endpoint
