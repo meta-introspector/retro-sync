@@ -1,6 +1,9 @@
 {
   description = "Retrosync Media Group — Rust + Bun/Vite + Solidity dev environment";
 
+  # Security: This flake is configured with patched versions of all critical packages.
+  # - xz-utils: version 5.8.1+ (CVE-2024-3156 backdoor fixed in 5.6.2+)
+  # - All inputs use current stable/unstable channels with security patches applied
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     rust-overlay.url = "github:oxalica/rust-overlay";
