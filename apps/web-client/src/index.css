@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -36,7 +36,7 @@
     --input: 240 10% 12%;
     --ring: 142 70% 50%;
 
-    --radius: 0px; /* Sharp corners for cypherpunk feel */
+    --radius: 0px;
 
     /* Custom tokens */
     --glow-primary: 142 70% 50%;
@@ -51,22 +51,22 @@
   }
 
   body {
-    @apply bg-background text-foreground font-mono antialiased selection:bg-primary selection:text-primary-foreground;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground;
     background-image: 
-      radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.05), transparent 50%),
+      radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.03), transparent 50%),
       linear-gradient(hsl(var(--background)), hsl(var(--background)));
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tighter uppercase;
-    font-family: 'JetBrains Mono', monospace;
+    @apply font-bold tracking-tight;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
   }
 }
 
 @layer utilities {
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
   }
 
   .glow-primary {
@@ -87,9 +87,9 @@
 
   .grid-pattern {
     background-image: 
-      linear-gradient(hsl(var(--border) / 0.2) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.2) 1px, transparent 1px);
-    background-size: 40px 40px;
+      linear-gradient(hsl(var(--border) / 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 
   .scanline {
@@ -107,16 +107,10 @@
     right: 0;
     background: linear-gradient(
       rgba(18, 16, 16, 0) 50%,
-      rgba(0, 0, 0, 0.1) 50%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 0, 0, 0.02),
-      rgba(0, 255, 0, 0.01),
-      rgba(0, 0, 255, 0.02)
+      rgba(0, 0, 0, 0.06) 50%
     );
     z-index: 99;
-    background-size: 100% 4px, 3px 100%;
+    background-size: 100% 4px;
     pointer-events: none;
   }
 
@@ -128,5 +122,16 @@
   @keyframes blink {
     from, to { opacity: 1; }
     50% { opacity: 0; }
+  }
+
+  /* Editorial offset utility */
+  .offset-right {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .offset-left {
+    margin-left: 0;
+    margin-right: auto;
   }
 }
