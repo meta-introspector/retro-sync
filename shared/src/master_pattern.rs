@@ -36,7 +36,10 @@ const fn sum_arr4(a: [u64; 4]) -> u64 {
 const _: () = assert!(digit_root_const(sum_arr7(BAND0)) == 4, "Band0 DR must be 4");
 const _: () = assert!(digit_root_const(sum_arr4(BAND1)) == 3, "Band1 DR must be 3");
 const _: () = assert!(digit_root_const(sum_arr4(BAND2)) == 2, "Band2 DR must be 2");
-const _: () = assert!((4 + 3 + 2) % 9 == 0, "Closure: 4+3+2 mod 9 must be 0");
+const CLOSURE_SUM: u64 = digit_root_const(sum_arr7(BAND0))
+    + digit_root_const(sum_arr4(BAND1))
+    + digit_root_const(sum_arr4(BAND2));
+const _: () = assert!(CLOSURE_SUM % 9 == 0, "Closure: 4+3+2 mod 9 must be 0");
 
 // ── Runtime API ───────────────────────────────────────────────────────────
 /// Mod-9 digit root (9→9, not 0).
@@ -156,6 +159,6 @@ pub fn pattern_fingerprint(isrc_bytes: &[u8], audio_hash: &[u8; 32]) -> PatternF
         mapped_prime: prime,
         parity: hash_u64 % 2 == 1,
         parity_inverted: hash_u64 % 2 == 0,
-        closure_verified: (4 + 3 + 2) % 9 == 0,
+        closure_verified: CLOSURE_SUM % 9 == 0,
     }
 }
