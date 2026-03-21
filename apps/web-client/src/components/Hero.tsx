@@ -42,10 +42,9 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          &gt; Retrosync: A sovereign music distribution protocol.<br />
-          &gt; No names. No middleman. No fees.<br />
-          &gt; Encrypted storage. Instant settlement.<br />
-          &gt; The code is the only authority.
+          For five years, I immersed myself in the music industry, learning its intricacies from the ground up. As an artist, and a full-time mom, I understand the struggle of wanting to build a sustainable career from your passion while balancing life's demands. The reality for many artists is a frustrating "black box" of royalty payments – money earned, but never received, or lost in opaque systems. This disconnect hinders not just individual artists, but the vibrant ecosystem of music creation.
+          <br /><br />
+          This frustration fueled a personal mission: to build a better way. RetroSync was born from a desire to empower artists like myself, my boyfriend, and my friends – anyone who dreams of making a living through their music without losing their hard-earned royalties. I created RetroSync to ensure that artists are compensated fairly and transparently, putting the power back where it belongs: with the creators. It's more than just an application; it's a commitment to an artist-first future.
         </motion.p>
 
         <motion.div

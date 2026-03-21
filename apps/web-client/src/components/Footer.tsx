@@ -38,6 +38,13 @@ const Footer = () => {
           </div>
 
           <div>
+            <h4 className="font-black text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-6">Learn More</h4>
+            <ul className="space-y-4 text-sm text-zinc-600">
+              <li><a href="/docs/whitepaper.md" className="hover:text-primary transition-colors">Whitepaper</a></li>
+            </ul>
+          </div>
+
+          <div>
             <h4 className="font-black text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-6">Security</h4>
             <ul className="space-y-4 text-sm text-zinc-600">
               <li className="flex items-center gap-2"><Shield className="w-3 h-3 text-primary" /> 256-bit AES</li>
