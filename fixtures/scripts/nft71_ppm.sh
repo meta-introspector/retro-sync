@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # nft71_ppm.sh — Generate 71 PPM tile images for NFT collection
-# Each tile: 64x64, cuneiform text + notes + shard metadata
+# Each tile: 512x512, cuneiform text + notes + shard metadata
 # Pattern follows Roebling NFT PPM tile approach
 set -euo pipefail
 
+SZ=512
 OUT="fixtures/output/nft71_ppm"
 mkdir -p "$OUT"
 
@@ -105,7 +106,7 @@ interval_for() {
   echo "${INTERVALS[$idx]}"
 }
 
-echo "=== Generating 71 NFT PPM tiles (64×64) ==="
+echo "=== Generating 71 NFT PPM tiles (${SZ}×${SZ}) ==="
 
 for idx in $(seq 1 71); do
   padded=$(printf "%02d" "$idx")
@@ -124,18 +125,24 @@ for idx in $(seq 1 71); do
     border_color="#444444"
   fi
 
-  # Generate 64x64 PPM with layered text
-  convert -size 64x64 "xc:${bg}" \
-    -fill "$border_color" -draw "rectangle 0,0 63,1" -draw "rectangle 0,0 1,63" \
-    -draw "rectangle 0,62 63,63" -draw "rectangle 62,0 63,63" \
-    -fill "#ffd700" -font "$FONT_CUNEI" -pointsize 18 \
-    -gravity North -annotate +0+3 "$cunei" \
-    -fill "#c9d1d9" -font "$FONT_MONO" -pointsize 7 \
-    -gravity Center -annotate +0-4 "$interval" \
-    -fill "#8b949e" -font "$FONT_MONO" -pointsize 6 \
-    -gravity South -annotate +0+12 "${marker}${padded} ${cat}" \
-    -fill "#58a6ff" -font "$FONT_MONO" -pointsize 5 \
-    -gravity South -annotate +0+4 "$notation" \
+  # Generate 512x512 PPM with layered text
+  convert -size ${SZ}x${SZ} "xc:${bg}" \
+    -fill "$border_color" -draw "rectangle 0,0 $((SZ-1)),3" -draw "rectangle 0,0 3,$((SZ-1))" \
+    -draw "rectangle 0,$((SZ-4)) $((SZ-1)),$((SZ-1))" -draw "rectangle $((SZ-4)),0 $((SZ-1)),$((SZ-1))" \
+    -fill "#ffd700" -font "$FONT_CUNEI" -pointsize 72 \
+    -gravity North -annotate +0+20 "$cunei" \
+    -fill "#c9d1d9" -font "$FONT_MONO" -pointsize 24 \
+    -gravity Center -annotate +0-60 "$interval" \
+    -fill "#7ee787" -font "$FONT_MONO" -pointsize 14 \
+    -gravity Center -annotate +0+0 "$NOTATION_L1" \
+    -fill "#7ee787" -font "$FONT_MONO" -pointsize 14 \
+    -gravity Center -annotate +0+20 "$NOTATION_L2" \
+    -fill "#8b949e" -font "$FONT_MONO" -pointsize 18 \
+    -gravity South -annotate +0+60 "${marker}${padded} ${cat}" \
+    -fill "#58a6ff" -font "$FONT_MONO" -pointsize 12 \
+    -gravity South -annotate +0+30 "Hurrian Hymn h.6 · Tablet RS 15.30 · ~1400 BC · Ugarit" \
+    -fill "#484848" -font "$FONT_MONO" -pointsize 10 \
+    -gravity South -annotate +0+12 "DA51 CBOR · Groth16/BN254 · Cl(15,0,0) · 6-layer stego" \
     "ppm:${OUT}/${padded}.ppm"
 
   echo "${marker} ${padded} [${cat}] ${cunei} — ${interval}"
@@ -144,7 +151,7 @@ done
 # Also generate a 8×9 mosaic (72 tiles, last one blank)
 echo ""
 echo "=== Generating mosaic ==="
-montage "${OUT}/"*.ppm -tile 8x9 -geometry 64x64+2+2 -background '#0d1117' \
+montage "${OUT}/"*.ppm -tile 8x9 -geometry ${SZ}x${SZ}+2+2 -background '#0d1117' \
   "ppm:${OUT}/mosaic.ppm"
 
 TOTAL=$(du -sh "$OUT" | cut -f1)
