@@ -10,6 +10,57 @@ use axum::{
 };
 use tracing::warn;
 
+// ── HTTP Security Headers middleware ──────────────────────────────────────────
+//
+// Injected as the outermost layer so every response — including 4xx/5xx from
+// inner middleware — carries the full set of defensive headers.
+//
+// Headers enforced:
+//   X-Content-Type-Options    — prevents MIME-sniff attacks
+//   X-Frame-Options           — blocks clickjacking / framing
+//   Referrer-Policy           — restricts referrer leakage
+//   X-XSS-Protection          — legacy XSS filter (belt+suspenders)
+//   Strict-Transport-Security — forces HTTPS (HSTS); also sent from Replit edge
+//   Content-Security-Policy   — strict source allowlist; frame-ancestors 'none'
+//   Permissions-Policy        — opt-out of unused browser APIs
+//   Cache-Control             — API responses must not be cached by shared caches
+
+pub async fn add_security_headers(request: Request, next: Next) -> Response {
+    use axum::http::header::{HeaderName, HeaderValue};
+
+    let mut response = next.run(request).await;
+    let headers = response.headers_mut();
+
+    // All values are ASCII string literals known to be valid header values;
+    // HeaderValue::from_static() panics only on non-ASCII, which none of these are.
+    let security_headers: &[(&str, &str)] = &[
+        ("x-content-type-options",  "nosniff"),
+        ("x-frame-options",         "DENY"),
+        ("referrer-policy",         "strict-origin-when-cross-origin"),
+        ("x-xss-protection",        "1; mode=block"),
+        ("strict-transport-security", "max-age=31536000; includeSubDomains; preload"),
+        // CSP: this is an API server (JSON only) — no scripts, frames, or embedded
+        // content are ever served, so we use the most restrictive possible policy.
+        ("content-security-policy",
+         "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"),
+        ("permissions-policy",
+         "geolocation=(), camera=(), microphone=(), payment=(), usb=(), serial=()"),
+        // API responses contain real-time financial/rights data — must not be cached.
+        ("cache-control", "no-store, no-cache, must-revalidate, private"),
+    ];
+
+    for (name, value) in security_headers {
+        if let (Ok(n), Ok(v)) = (
+            HeaderName::from_bytes(name.as_bytes()),
+            HeaderValue::from_str(value),
+        ) {
+            headers.insert(n, v);
+        }
+    }
+
+    response
+}
+
 pub async fn verify_zero_trust(
     State(_state): State<AppState>,
     request: Request,

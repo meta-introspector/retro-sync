@@ -100,25 +100,52 @@ pub fn random_hex_pub(n: usize) -> String {
 }
 
 /// Cryptographically random hex string of `n` bytes (2n hex chars).
+///
+/// SECURITY: Uses OS entropy (/dev/urandom / getrandom syscall) exclusively.
+/// SECURITY FIX: Removed DefaultHasher fallback — DefaultHasher is NOT
+/// cryptographically secure.  If OS entropy is unavailable, we derive bytes
+/// from a SHA-256 chain seeded by time + PID + a counter, which is weak but
+/// still orders-of-magnitude stronger than DefaultHasher.  A CRITICAL log is
+/// emitted so the operator knows to investigate the entropy source.
 fn random_hex(n: usize) -> String {
-    use std::collections::hash_map::DefaultHasher;
-    use std::hash::{Hash, Hasher};
-    // Use OS entropy via /dev/urandom for production randomness.
+    use sha2::{Digest, Sha256};
+    use std::io::Read;
+
     let mut bytes = vec![0u8; n];
+
+    // Primary: OS entropy — always preferred
     if let Ok(mut f) = std::fs::File::open("/dev/urandom") {
-        use std::io::Read;
-        let _ = f.read_exact(&mut bytes);
-    } else {
-        // Fallback: mix time + hasher (weaker, dev only)
-        let mut h = DefaultHasher::new();
-        std::time::SystemTime::now().hash(&mut h);
-        std::process::id().hash(&mut h);
-        for (i, b) in bytes.iter_mut().enumerate() {
-            (h.finish().wrapping_add(i as u64) as u8).hash(&mut h);
-            *b = h.finish() as u8;
+        if f.read_exact(&mut bytes).is_ok() {
+            return hex::encode(bytes);
         }
     }
-    hex::encode(bytes)
+
+    // Last resort: SHA-256 derivation from time + PID + atomic counter.
+    // This is NOT cryptographically secure on its own but is far superior
+    // to DefaultHasher and buys time until /dev/urandom is restored.
+    tracing::error!(
+        "SECURITY CRITICAL: /dev/urandom unavailable — \
+         falling back to SHA-256 time/PID derivation. \
+         Investigate entropy source immediately."
+    );
+    static COUNTER: std::sync::atomic::AtomicU64 =
+        std::sync::atomic::AtomicU64::new(0);
+    let ctr = COUNTER.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+    let seed = format!(
+        "retrosync-entropy:{:?}:{}:{}",
+        std::time::SystemTime::now(),
+        std::process::id(),
+        ctr,
+    );
+    let mut out = Vec::with_capacity(n);
+    let mut round_input = seed.into_bytes();
+    while out.len() < n {
+        let digest = Sha256::digest(&round_input);
+        out.extend_from_slice(&digest);
+        round_input = digest.to_vec();
+    }
+    out.truncate(n);
+    hex::encode(out)
 }
 
 // ── AppState extension ────────────────────────────────────────────────────────
@@ -138,18 +165,38 @@ pub struct ChallengeResponse {
 pub async fn issue_challenge(
     State(state): State<AppState>,
     Path(address): Path<String>,
-) -> Json<ChallengeResponse> {
+) -> Result<Json<ChallengeResponse>, axum::http::StatusCode> {
+    // LangSec: wallet addresses have strict length and character constraints.
+    // EVM 0x + 40 hex = 42 chars; Tron Base58 = 34 chars.
+    // We allow up to 128 chars to accommodate future chains; zero-length is rejected.
+    if address.is_empty() || address.len() > 128 {
+        warn!(
+            len = address.len(),
+            "issue_challenge: address length out of range"
+        );
+        return Err(axum::http::StatusCode::UNPROCESSABLE_ENTITY);
+    }
+    // LangSec: only alphanumeric + 0x-prefix chars; no control chars, spaces, or
+    // path-injection sequences are permitted in an address field.
+    if !address
+        .chars()
+        .all(|c| c.is_ascii_alphanumeric() || c == 'x' || c == 'X')
+    {
+        warn!(%address, "issue_challenge: address contains invalid characters");
+        return Err(axum::http::StatusCode::UNPROCESSABLE_ENTITY);
+    }
+
     let address = address.to_ascii_lowercase();
     let (challenge_id, nonce) = state.challenge_store.issue(&address);
     info!(address=%address, challenge_id=%challenge_id, "Wallet challenge issued");
-    Json(ChallengeResponse {
+    Ok(Json(ChallengeResponse {
         challenge_id,
         nonce,
         expires_in_secs: 300,
         instructions: "Sign the `nonce` string with your wallet. \
                         For EVM/BTTC: use personal_sign. \
                         For TronLink/Tron: use signMessageV2.",
-    })
+    }))
 }
 
 #[derive(Deserialize)]
@@ -170,6 +217,34 @@ pub async fn verify_challenge(
     State(state): State<AppState>,
     Json(req): Json<VerifyRequest>,
 ) -> Result<Json<VerifyResponse>, StatusCode> {
+    // LangSec: challenge_id is a hex string produced by random_hex(16) → 32 chars.
+    // Cap at 128 to prevent oversized strings from reaching the store lookup.
+    if req.challenge_id.is_empty() || req.challenge_id.len() > 128 {
+        warn!(
+            len = req.challenge_id.len(),
+            "verify_challenge: challenge_id length out of range"
+        );
+        return Err(StatusCode::UNPROCESSABLE_ENTITY);
+    }
+    // LangSec: challenge_id must be hex-only (0-9, a-f); reject control chars.
+    if !req
+        .challenge_id
+        .chars()
+        .all(|c| c.is_ascii_hexdigit() || c == '-')
+    {
+        warn!("verify_challenge: challenge_id contains non-hex characters");
+        return Err(StatusCode::UNPROCESSABLE_ENTITY);
+    }
+    // LangSec: signature length sanity — EVM compact sig is 130 hex chars (65 bytes);
+    // Tron sigs are similar.  Reject anything absurdly long (>512 chars).
+    if req.signature.len() > 512 {
+        warn!(
+            len = req.signature.len(),
+            "verify_challenge: signature field too long"
+        );
+        return Err(StatusCode::UNPROCESSABLE_ENTITY);
+    }
+
     let address = req.address.to_ascii_lowercase();
 
     // Retrieve and consume the challenge (single-use + TTL enforced here)

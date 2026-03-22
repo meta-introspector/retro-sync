@@ -242,8 +242,58 @@ pub async fn submit_report(
     ))
 }
 
-pub async fn get_queue(State(state): State<AppState>) -> Json<Vec<ContentReport>> {
-    Json(state.mod_queue.all())
+/// SECURITY FIX: Admin-only endpoint.
+///
+/// The queue exposes CSAM report details, hate-speech evidence, and reporter
+/// identities.  Access is restricted to addresses listed in the
+/// `ADMIN_WALLET_ADDRESSES` env var (comma-separated, lower-case 0x or Tron).
+///
+/// In development (var not set), a warning is logged and access is denied so
+/// developers are reminded to configure admin wallets before shipping.
+pub async fn get_queue(
+    State(state): State<AppState>,
+    request: axum::extract::Request,
+) -> Result<Json<Vec<ContentReport>>, axum::http::StatusCode> {
+    // Extract the caller's wallet address from the JWT (injected by verify_zero_trust
+    // as the X-Wallet-Address header).
+    let caller = request
+        .headers()
+        .get("x-wallet-address")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("")
+        .to_ascii_lowercase();
+
+    let admin_list_raw =
+        std::env::var("ADMIN_WALLET_ADDRESSES").unwrap_or_default();
+
+    if admin_list_raw.is_empty() {
+        tracing::warn!(
+            caller=%caller,
+            "ADMIN_WALLET_ADDRESSES not set — denying access to moderation queue. \
+             Configure this env var before enabling admin access."
+        );
+        return Err(axum::http::StatusCode::FORBIDDEN);
+    }
+
+    let is_admin = admin_list_raw
+        .split(',')
+        .map(|a| a.trim().to_ascii_lowercase())
+        .any(|a| a == caller);
+
+    if !is_admin {
+        tracing::warn!(
+            %caller,
+            "Unauthorized attempt to access moderation queue — not in ADMIN_WALLET_ADDRESSES"
+        );
+        return Err(axum::http::StatusCode::FORBIDDEN);
+    }
+
+    state
+        .audit_log
+        .record(&format!("ADMIN_MOD_QUEUE_ACCESS caller='{caller}'"))
+        .ok();
+
+    Ok(Json(state.mod_queue.all()))
 }
 
 pub async fn resolve_report(

@@ -13,7 +13,7 @@ use axum::{
 };
 use shared::parsers::recognize_isrc;
 use std::sync::Arc;
-use tower_http::cors::{Any, CorsLayer};
+use tower_http::cors::CorsLayer;
 use tracing::{info, warn};
 use tracing_subscriber::EnvFilter;
 
@@ -255,23 +255,38 @@ async fn main() -> anyhow::Result<()> {
         .route("/api/dsr/parse", post(dsr_parse_inline))
         .layer({
             // SECURITY: CORS locked to explicit allowed origins (ALLOWED_ORIGINS env var).
+            // SECURITY FIX: removed open-wildcard fallback.  If origins list is empty
+            // (e.g. ALLOWED_ORIGINS="") we use the localhost dev defaults, never Any.
             use axum::http::header::{AUTHORIZATION, CONTENT_TYPE};
             let origins = auth::allowed_origins();
-            if !origins.is_empty() {
-                CorsLayer::new()
-                    .allow_origin(origins)
-                    .allow_methods([Method::GET, Method::POST, Method::DELETE])
-                    .allow_headers([AUTHORIZATION, CONTENT_TYPE])
-            } else {
-                CorsLayer::new()
-                    .allow_origin(Any)
-                    .allow_methods(Any)
-                    .allow_headers(Any)
+            if origins.is_empty() {
+                let env = std::env::var("RETROSYNC_ENV").unwrap_or_default();
+                if env == "production" {
+                    panic!(
+                        "SECURITY: ALLOWED_ORIGINS must be set in production — aborting startup"
+                    );
+                }
+                warn!("ALLOWED_ORIGINS is empty — restricting CORS to localhost dev origins");
             }
+            // Use only the configured origins; never open wildcard.
+            let allow_origins: Vec<axum::http::HeaderValue> = if origins.is_empty() {
+                ["http://localhost:5173", "http://localhost:3000", "http://localhost:5001"]
+                    .iter()
+                    .filter_map(|o| o.parse().ok())
+                    .collect()
+            } else {
+                origins
+            };
+            CorsLayer::new()
+                .allow_origin(allow_origins)
+                .allow_methods([Method::GET, Method::POST, Method::DELETE])
+                .allow_headers([AUTHORIZATION, CONTENT_TYPE])
         })
-        // Middleware execution order (Axum applies last-added = outermost):
-        //   1. rate_limit::enforce — outermost: reject flood before doing any work
-        //   2. auth::verify_zero_trust — inner: only verified requests reach handlers
+        // Middleware execution order (Axum applies last-to-first, outermost = last .layer()):
+        //   Outermost → innermost:
+        //   1. add_security_headers  — always inject security response headers first
+        //   2. rate_limit::enforce   — reject floods before auth work
+        //   3. auth::verify_zero_trust — only verified requests reach handlers
         .layer(middleware::from_fn_with_state(
             state.clone(),
             auth::verify_zero_trust,
@@ -280,6 +295,7 @@ async fn main() -> anyhow::Result<()> {
             state.clone(),
             rate_limit::enforce,
         ))
+        .layer(middleware::from_fn(auth::add_security_headers))
         .with_state(state);
 
     let addr = "0.0.0.0:8443";
@@ -337,6 +353,62 @@ async fn upload_track(
                 audio_bytes = bytes.to_vec();
             }
             _ => {}
+        }
+    }
+
+    // ── LangSec: audio file magic-byte validation ─────────────────────────
+    // Reject known non-audio file signatures (polyglot/zip-bomb/executable).
+    // We do not attempt to enumerate every valid audio format; instead we
+    // block the most common attack vectors by their leading magic bytes.
+    if !audio_bytes.is_empty() {
+        let sig = &audio_bytes[..audio_bytes.len().min(12)];
+
+        // Reject if signature matches a known non-audio type
+        let is_forbidden = sig.starts_with(b"PK\x03\x04")      // ZIP / DOCX / JAR
+            || sig.starts_with(b"PK\x05\x06")                  // empty ZIP
+            || sig.starts_with(b"MZ")                           // Windows PE/EXE
+            || sig.starts_with(b"\x7FELF")                      // ELF binary
+            || sig.starts_with(b"%PDF")                         // PDF
+            || sig.starts_with(b"#!")                           // shell script
+            || sig.starts_with(b"<?php")                        // PHP
+            || sig.starts_with(b"<script")                      // JS/HTML
+            || sig.starts_with(b"<html")                        // HTML
+            || sig.starts_with(b"\x89PNG")                      // PNG image
+            || sig.starts_with(b"\xFF\xD8\xFF")                 // JPEG image
+            || sig.starts_with(b"GIF8")                         // GIF image
+            || (sig.len() >= 4 && &sig[..4] == b"RIFF"         // AVI (not WAV)
+                && sig.len() >= 12 && &sig[8..12] == b"AVI ");
+
+        if is_forbidden {
+            warn!(
+                size = audio_bytes.len(),
+                magic = ?&sig[..sig.len().min(4)],
+                "Upload rejected: file signature matches forbidden non-audio type"
+            );
+            state.metrics.record_defect("upload_forbidden_mime");
+            return Err(StatusCode::UNPROCESSABLE_ENTITY);
+        }
+
+        // Confirm at least one recognised audio signature is present.
+        // Unknown signatures are logged as warnings but not blocked here —
+        // QC pipeline will reject non-audio content downstream.
+        let is_known_audio = sig.starts_with(b"ID3")                // MP3 with ID3
+            || (sig.len() >= 2 && sig[0] == 0xFF                    // MPEG sync
+                && (sig[1] & 0xE0) == 0xE0)
+            || sig.starts_with(b"fLaC")                             // FLAC
+            || (sig.starts_with(b"RIFF")                            // WAV/AIFF
+                && sig.len() >= 12 && (&sig[8..12] == b"WAVE" || &sig[8..12] == b"AIFF"))
+            || sig.starts_with(b"OggS")                             // OGG/OPUS
+            || (sig.len() >= 8 && &sig[4..8] == b"ftyp")            // AAC/M4A/MP4
+            || sig.starts_with(b"FORM")                             // AIFF
+            || sig.starts_with(b"\x30\x26\xB2\x75");               // WMA/ASF
+
+        if !is_known_audio {
+            warn!(
+                size = audio_bytes.len(),
+                magic = ?&sig[..sig.len().min(8)],
+                "Upload: unrecognised audio signature — QC pipeline will validate"
+            );
         }
     }
 
