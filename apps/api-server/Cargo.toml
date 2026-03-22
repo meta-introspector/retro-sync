@@ -30,6 +30,9 @@ ethers-contract  = { version = "2" }
 quick-xml    = { workspace = true }
 xot          = { workspace = true }
 tower-http = { version = "0.6.8", features = ["cors"] }
+xrust        = { path = "../../nix/xrust" }
+erdfa-publish = { path = "../../nix/erdfa-publish" }
+ciborium     = "0.2"
 
 [features]
 default = []

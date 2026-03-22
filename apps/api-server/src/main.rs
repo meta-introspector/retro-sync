@@ -43,6 +43,7 @@ mod wallet_auth;
 mod wikidata;
 mod xslt;
 mod zk_cache;
+mod shard;
 
 #[derive(Clone)]
 pub struct AppState {
@@ -59,6 +60,7 @@ pub struct AppState {
     pub gtms_db: Arc<gtms::GtmsStore>,
     pub challenge_store: Arc<wallet_auth::ChallengeStore>,
     pub rate_limiter: Arc<rate_limit::RateLimiter>,
+    pub shard_db: Arc<std::collections::HashMap<String, serde_json::Value>>,
 }
 
 #[tokio::main]
