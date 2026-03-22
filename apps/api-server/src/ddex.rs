@@ -13,9 +13,9 @@ pub struct DdexRegistration {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DdexContributor {
     pub wallet_address: String,
-    pub ipi_number:     String,
-    pub role:           String,
-    pub bps:            u16,
+    pub ipi_number: String,
+    pub role: String,
+    pub bps: u16,
 }
 
 /// Escape a string for safe embedding in XML content or attribute values.
@@ -60,9 +60,9 @@ pub fn build_ern_xml_with_contributors(
         .enumerate()
         .map(|(i, c)| {
             let wallet = xml_escape(&c.wallet_address);
-            let ipi    = xml_escape(&c.ipi_number);
-            let role   = xml_escape(&c.role);
-            let bps    = c.bps;
+            let ipi = xml_escape(&c.ipi_number);
+            let role = xml_escape(&c.role);
+            let bps = c.bps;
             // DDEX ERN 4.1 ResourceContributor element with extended retrosync namespace
             format!(
                 r#"      <ResourceContributor SequenceNumber="{seq}">
@@ -72,11 +72,11 @@ pub fn build_ern_xml_with_contributors(
         <rs:CreatorWallet>{wallet}</rs:CreatorWallet>
         <rs:RoyaltyBps>{bps}</rs:RoyaltyBps>
       </ResourceContributor>"#,
-                seq    = i + 1,
-                role   = role,
-                ipi    = ipi,
+                seq = i + 1,
+                role = role,
+                ipi = ipi,
                 wallet = wallet,
-                bps    = bps,
+                bps = bps,
             )
         })
         .collect::<Vec<_>>()
@@ -136,24 +136,24 @@ pub fn build_ern_xml_with_contributors(
     </Release>
   </ReleaseList>
 </ern:NewReleaseMessage>"#,
-        isrc           = isrc,
-        title          = title,
-        cid            = cid,
+        isrc = isrc,
+        title = title,
+        cid = cid,
         contributor_xml = contributor_xml,
-        band           = fp.band,
-        band_name      = tier.as_str(),
-        residue        = fp.band_residue,
-        prime          = fp.mapped_prime,
-        cycle          = fp.cycle_position,
-        dr             = fp.digit_root,
-        closure        = fp.closure_verified,
-        ts             = chrono::Utc::now().to_rfc3339(),
-        wikidata_qid   = wikidata_qid,
-        wikidata_url   = wikidata_url,
-        mbid           = mbid,
-        label_name     = label_name,
-        country        = country,
-        genres         = genres,
+        band = fp.band,
+        band_name = tier.as_str(),
+        residue = fp.band_residue,
+        prime = fp.mapped_prime,
+        cycle = fp.cycle_position,
+        dr = fp.digit_root,
+        closure = fp.closure_verified,
+        ts = chrono::Utc::now().to_rfc3339(),
+        wikidata_qid = wikidata_qid,
+        wikidata_url = wikidata_url,
+        mbid = mbid,
+        label_name = label_name,
+        country = country,
+        genres = genres,
     )
 }
 

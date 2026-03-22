@@ -12,18 +12,22 @@
 //! Rust module) live in `shards/` at the repo root and can be served directly
 //! via GET /api/shard/:cid once indexed at startup or via POST /api/shard/index.
 
-use axum::{extract::{Path, State}, http::StatusCode, Json};
+use axum::{
+    extract::{Path, State},
+    http::StatusCode,
+    Json,
+};
 use erdfa_publish::{cft::Scale as TextScale, Component, Shard, ShardSet};
 use shared::types::Isrc;
-use std::{
-    collections::HashMap,
-    sync::RwLock,
-};
+use std::{collections::HashMap, sync::RwLock};
 use tracing::{info, warn};
 
 // ── Audio CFT scale tower ──────────────────────────────────────────────────
 
 /// Audio-native CFT scales — mirrors the text CFT in erdfa-publish.
+/// All six variants are part of the public tower API even if only Track/Stem/Segment
+/// are emitted by the current decompose_track() implementation.
+#[allow(dead_code)]
 #[derive(Clone, Copy, Debug)]
 pub enum AudioScale {
     Track,   // whole release
@@ -34,36 +38,37 @@ pub enum AudioScale {
     Byte,    // raw bytes
 }
 
+#[allow(dead_code)]
 impl AudioScale {
     pub fn tag(&self) -> &'static str {
         match self {
-            Self::Track   => "cft.track",
-            Self::Stem    => "cft.stem",
+            Self::Track => "cft.track",
+            Self::Stem => "cft.stem",
             Self::Segment => "cft.segment",
-            Self::Frame   => "cft.frame",
-            Self::Sample  => "cft.sample",
-            Self::Byte    => "cft.byte",
+            Self::Frame => "cft.frame",
+            Self::Sample => "cft.sample",
+            Self::Byte => "cft.byte",
         }
     }
     pub fn depth(&self) -> u8 {
         match self {
-            Self::Track   => 0,
-            Self::Stem    => 1,
+            Self::Track => 0,
+            Self::Stem => 1,
             Self::Segment => 2,
-            Self::Frame   => 3,
-            Self::Sample  => 4,
-            Self::Byte    => 5,
+            Self::Frame => 3,
+            Self::Sample => 4,
+            Self::Byte => 5,
         }
     }
     /// Corresponding text-domain scale for cross-tower morphisms.
     pub fn text_analogue(&self) -> TextScale {
         match self {
-            Self::Track   => TextScale::Post,
-            Self::Stem    => TextScale::Paragraph,
+            Self::Track => TextScale::Post,
+            Self::Stem => TextScale::Paragraph,
             Self::Segment => TextScale::Line,
-            Self::Frame   => TextScale::Token,
-            Self::Sample  => TextScale::Emoji,
-            Self::Byte    => TextScale::Byte,
+            Self::Frame => TextScale::Token,
+            Self::Sample => TextScale::Emoji,
+            Self::Byte => TextScale::Byte,
         }
     }
 }
@@ -72,10 +77,10 @@ impl AudioScale {
 
 #[derive(serde::Serialize, serde::Deserialize, Clone, Debug)]
 pub enum ShardQuality {
-    Full,                    // lossless, NFT-gated
-    Preview,                 // 30-second truncated
+    Full,                   // lossless, NFT-gated
+    Preview,                // 30-second truncated
     Degraded { kbps: u16 }, // low-bitrate public stream
-    Steganographic,          // hidden in cover content
+    Steganographic,         // hidden in cover content
 }
 
 // ── In-memory shard store ──────────────────────────────────────────────────
@@ -98,6 +103,12 @@ impl ShardStore {
     }
 }
 
+impl Default for ShardStore {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 // ── CFT decomposition ──────────────────────────────────────────────────────
 
 /// Decompose track metadata into erdfa-publish `Shard`s at each audio scale.
@@ -112,12 +123,12 @@ pub fn decompose_track(isrc: &Isrc, stems: &[&str], segments: &[&str]) -> Vec<Sh
 
     // Track level
     shards.push(Shard::new(
-        format!("{}_track", prefix),
+        format!("{prefix}_track"),
         Component::KeyValue {
             pairs: vec![
-                ("isrc".into(),     isrc.0.clone()),
-                ("scale".into(),    AudioScale::Track.tag().into()),
-                ("stems".into(),    stems.len().to_string()),
+                ("isrc".into(), isrc.0.clone()),
+                ("scale".into(), AudioScale::Track.tag().into()),
+                ("stems".into(), stems.len().to_string()),
                 ("segments".into(), segments.len().to_string()),
             ],
         },
@@ -126,14 +137,14 @@ pub fn decompose_track(isrc: &Isrc, stems: &[&str], segments: &[&str]) -> Vec<Sh
     // Stem level
     for (i, stem) in stems.iter().enumerate() {
         shards.push(Shard::new(
-            format!("{}_{}", prefix, stem),
+            format!("{prefix}_{stem}"),
             Component::KeyValue {
                 pairs: vec![
-                    ("isrc".into(),   isrc.0.clone()),
-                    ("scale".into(),  AudioScale::Stem.tag().into()),
-                    ("stem".into(),   stem.to_string()),
-                    ("index".into(),  i.to_string()),
-                    ("parent".into(), format!("{}_track", prefix)),
+                    ("isrc".into(), isrc.0.clone()),
+                    ("scale".into(), AudioScale::Stem.tag().into()),
+                    ("stem".into(), stem.to_string()),
+                    ("index".into(), i.to_string()),
+                    ("parent".into(), format!("{prefix}_track")),
                 ],
             },
         ));
@@ -142,14 +153,14 @@ pub fn decompose_track(isrc: &Isrc, stems: &[&str], segments: &[&str]) -> Vec<Sh
     // Segment level
     for (i, seg) in segments.iter().enumerate() {
         shards.push(Shard::new(
-            format!("{}_seg{}", prefix, i),
+            format!("{prefix}_seg{i}"),
             Component::KeyValue {
                 pairs: vec![
-                    ("isrc".into(),   isrc.0.clone()),
-                    ("scale".into(),  AudioScale::Segment.tag().into()),
-                    ("label".into(),  seg.to_string()),
-                    ("index".into(),  i.to_string()),
-                    ("parent".into(), format!("{}_track", prefix)),
+                    ("isrc".into(), isrc.0.clone()),
+                    ("scale".into(), AudioScale::Segment.tag().into()),
+                    ("label".into(), seg.to_string()),
+                    ("index".into(), i.to_string()),
+                    ("parent".into(), format!("{prefix}_track")),
                 ],
             },
         ));
@@ -158,10 +169,11 @@ pub fn decompose_track(isrc: &Isrc, stems: &[&str], segments: &[&str]) -> Vec<Sh
     shards
 }
 
-/// Build a `ShardSet` manifest and serialise all shards to DA51-tagged CBOR.
+/// Build a `ShardSet` manifest and serialise all shards to a DA51-tagged CBOR tar archive.
 ///
 /// Each shard is encoded individually with `Shard::to_cbor()` (DA51 tag) and
-/// collected into a tar archive using `ShardSet::to_tar()`.
+/// collected using `ShardSet::to_tar()`.  Intended for batch export of track shards.
+#[allow(dead_code)]
 pub fn shards_to_tar(name: &str, shards: &[Shard]) -> anyhow::Result<Vec<u8>> {
     let mut set = ShardSet::new(name);
     for s in shards {
@@ -191,10 +203,7 @@ pub async fn get_shard(
         .and_then(|v| v.to_str().ok())
         .map(String::from);
 
-    let shard_data = state
-        .shard_store
-        .get(&cid)
-        .ok_or(StatusCode::NOT_FOUND)?;
+    let shard_data = state.shard_store.get(&cid).ok_or(StatusCode::NOT_FOUND)?;
 
     let has_access = match &wallet {
         Some(addr) => check_nft_ownership(addr, &cid).await,
@@ -228,30 +237,31 @@ pub async fn decompose_and_index(
     State(state): State<AppState>,
     Json(body): Json<serde_json::Value>,
 ) -> Result<Json<serde_json::Value>, StatusCode> {
-    let isrc_str = body.get("isrc")
+    let isrc_str = body
+        .get("isrc")
         .and_then(|v| v.as_str())
         .ok_or(StatusCode::BAD_REQUEST)?;
 
-    let isrc = shared::parsers::recognize_isrc(isrc_str)
-        .map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
+    let isrc =
+        shared::parsers::recognize_isrc(isrc_str).map_err(|_| StatusCode::UNPROCESSABLE_ENTITY)?;
 
-    let stems: Vec<&str> = body.get("stems")
+    let stems: Vec<&str> = body
+        .get("stems")
         .and_then(|v| v.as_array())
         .map(|a| a.iter().filter_map(|v| v.as_str()).collect())
         .unwrap_or_default();
 
-    let segments: Vec<&str> = body.get("segments")
+    let segments: Vec<&str> = body
+        .get("segments")
         .and_then(|v| v.as_array())
         .map(|a| a.iter().filter_map(|v| v.as_str()).collect())
         .unwrap_or_default();
 
     let shards = decompose_track(&isrc, &stems, &segments);
-    let mut cids = Vec::new();
 
     for shard in &shards {
         let json = serde_json::to_value(shard).map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
         state.shard_store.insert(&shard.cid, json);
-        cids.push(&shard.cid as &str);
         info!(id = %shard.id, cid = %shard.cid, "Shard indexed");
     }
 
@@ -278,7 +288,7 @@ async fn check_nft_ownership(wallet: &str, _cid: &str) -> bool {
 fn truncate_shard(data: &serde_json::Value) -> serde_json::Value {
     match data.get("component") {
         Some(c) => serde_json::json!({ "component": c, "truncated": true }),
-        None    => serde_json::json!({ "truncated": true }),
+        None => serde_json::json!({ "truncated": true }),
     }
 }
 

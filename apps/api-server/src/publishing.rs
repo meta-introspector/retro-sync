@@ -200,8 +200,13 @@ pub async fn register_track(
     // ── Build registration ID ──────────────────────────────────────────────
     use sha2::{Digest, Sha256};
     let reg_id_bytes: [u8; 32] = Sha256::digest(
-        format!("{}-{}-{}", isrc.0, req.btfs_cid, chrono::Utc::now().timestamp_nanos_opt().unwrap_or(0))
-            .as_bytes(),
+        format!(
+            "{}-{}-{}",
+            isrc.0,
+            req.btfs_cid,
+            chrono::Utc::now().timestamp_nanos_opt().unwrap_or(0)
+        )
+        .as_bytes(),
     )
     .into();
     let registration_id = hex::encode(&reg_id_bytes[..16]);
@@ -217,9 +222,9 @@ pub async fn register_track(
         .iter()
         .map(|c| crate::ddex::DdexContributor {
             wallet_address: c.address.clone(),
-            ipi_number:     c.ipi_number.clone(),
-            role:           c.role.clone(),
-            bps:            c.bps,
+            ipi_number: c.ipi_number.clone(),
+            role: c.role.clone(),
+            bps: c.bps,
         })
         .collect();
 

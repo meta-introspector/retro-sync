@@ -30,8 +30,8 @@ jobs:
           components: rustfmt,clippy
       - uses: Swatinem/rust-cache@v2
       - run: cargo fmt --all -- --check
-      - run: cargo clippy --all-targets --all-features -- -D warnings
-      - run: cargo test --all
+      - run: cargo clippy --workspace -- -D warnings
+      - run: cargo test --workspace
 
   foundry-tests:
     name: Foundry (forge test + fuzz)
