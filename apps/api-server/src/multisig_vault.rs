@@ -49,16 +49,12 @@ impl Chain {
     /// Safe Transaction Service base URL for this chain.
     pub fn safe_api_url(self) -> String {
         match self {
-            Self::EthereumMainnet => {
-                "https://safe-transaction-mainnet.safe.global/api/v1".into()
-            }
+            Self::EthereumMainnet => "https://safe-transaction-mainnet.safe.global/api/v1".into(),
             Self::Polygon => "https://safe-transaction-polygon.safe.global/api/v1".into(),
             Self::Arbitrum => "https://safe-transaction-arbitrum.safe.global/api/v1".into(),
             Self::Base => "https://safe-transaction-base.safe.global/api/v1".into(),
-            Self::Bttc | Self::Custom(_) => {
-                std::env::var("SAFE_API_URL")
-                    .unwrap_or_else(|_| "http://localhost:8080/api/v1".into())
-            }
+            Self::Bttc | Self::Custom(_) => std::env::var("SAFE_API_URL")
+                .unwrap_or_else(|_| "http://localhost:8080/api/v1".into()),
         }
     }
 
@@ -116,9 +112,7 @@ impl VaultConfig {
                 .ok()
                 .and_then(|v| v.parse().ok())
                 .unwrap_or(2_592_000), // 30 days
-            require_zk_proof: std::env::var("VAULT_REQUIRE_ZK_PROOF")
-                .unwrap_or_default()
-                != "0",
+            require_zk_proof: std::env::var("VAULT_REQUIRE_ZK_PROOF").unwrap_or_default() != "0",
             dev_mode: std::env::var("VAULT_DEV_MODE").unwrap_or_default() == "1",
         }
     }
@@ -182,8 +176,7 @@ pub async fn query_usdc_balance(config: &VaultConfig) -> anyhow::Result<u64> {
         .as_str()
         .ok_or_else(|| anyhow::anyhow!("eth_call: missing result"))?
         .trim_start_matches("0x");
-    let balance = u64::from_str_radix(&hex[hex.len().saturating_sub(16)..], 16)
-        .unwrap_or(0);
+    let balance = u64::from_str_radix(&hex[hex.len().saturating_sub(16)..], 16).unwrap_or(0);
     info!(safe = %config.safe_address, usdc = balance, "USDC balance queried");
     Ok(balance)
 }
@@ -203,9 +196,7 @@ pub struct SafePendingTx {
 }
 
 /// Fetch pending Safe transactions awaiting confirmation.
-pub async fn list_pending_transactions(
-    config: &VaultConfig,
-) -> anyhow::Result<Vec<SafePendingTx>> {
+pub async fn list_pending_transactions(config: &VaultConfig) -> anyhow::Result<Vec<SafePendingTx>> {
     if config.dev_mode {
         return Ok(vec![]);
     }
@@ -475,15 +466,15 @@ pub async fn scan_usdc_deposits(
             let from = log["topics"].get(1)?.as_str().map(|t| {
                 format!("0x{}", &t[26..]) // strip 12-byte padding
             })?;
-            let data = log["data"].as_str().unwrap_or("0x").trim_start_matches("0x");
-            let usdc_amount = u64::from_str_radix(
-                &data[data.len().saturating_sub(16)..],
-                16,
-            )
-            .unwrap_or(0);
+            let data = log["data"]
+                .as_str()
+                .unwrap_or("0x")
+                .trim_start_matches("0x");
+            let usdc_amount =
+                u64::from_str_radix(&data[data.len().saturating_sub(16)..], 16).unwrap_or(0);
             let block_hex = log["blockNumber"].as_str().unwrap_or("0x0");
-            let block_number = u64::from_str_radix(block_hex.trim_start_matches("0x"), 16)
-                .unwrap_or(0);
+            let block_number =
+                u64::from_str_radix(block_hex.trim_start_matches("0x"), 16).unwrap_or(0);
             Some(IncomingDeposit {
                 tx_hash,
                 from,
@@ -570,4 +561,3 @@ pub async fn vault_summary(config: &VaultConfig) -> anyhow::Result<VaultSummary>
         queried_at: chrono::Utc::now().to_rfc3339(),
     })
 }
-

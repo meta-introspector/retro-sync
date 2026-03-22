@@ -20,8 +20,6 @@ use tracing_subscriber::EnvFilter;
 mod audio_qc;
 mod auth;
 mod bbs;
-mod ddex_gateway;
-mod dsr_parser;
 mod btfs;
 mod bttc;
 mod bwarm;
@@ -29,8 +27,10 @@ mod cmrra;
 mod coinbase;
 mod collection_societies;
 mod ddex;
+mod ddex_gateway;
 mod dqi;
 mod dsp;
+mod dsr_parser;
 mod durp;
 mod fraud;
 mod gtms;
@@ -243,10 +243,7 @@ async fn main() -> anyhow::Result<()> {
         .route("/api/vault/summary", get(vault_summary))
         .route("/api/vault/deposits", get(vault_deposits))
         .route("/api/vault/payout", post(vault_propose_payout))
-        .route(
-            "/api/vault/tx/:safe_tx_hash",
-            get(vault_tx_status),
-        )
+        .route("/api/vault/tx/:safe_tx_hash", get(vault_tx_status))
         // ── NFT Shard Manifest
         .route("/api/manifest/:token_id", get(manifest_lookup))
         .route("/api/manifest/mint", post(manifest_mint))
@@ -270,10 +267,14 @@ async fn main() -> anyhow::Result<()> {
             }
             // Use only the configured origins; never open wildcard.
             let allow_origins: Vec<axum::http::HeaderValue> = if origins.is_empty() {
-                ["http://localhost:5173", "http://localhost:3000", "http://localhost:5001"]
-                    .iter()
-                    .filter_map(|o| o.parse().ok())
-                    .collect()
+                [
+                    "http://localhost:5173",
+                    "http://localhost:3000",
+                    "http://localhost:5001",
+                ]
+                .iter()
+                .filter_map(|o| o.parse().ok())
+                .collect()
             } else {
                 origins
             };
@@ -401,7 +402,7 @@ async fn upload_track(
             || sig.starts_with(b"OggS")                             // OGG/OPUS
             || (sig.len() >= 8 && &sig[4..8] == b"ftyp")            // AAC/M4A/MP4
             || sig.starts_with(b"FORM")                             // AIFF
-            || sig.starts_with(b"\x30\x26\xB2\x75");               // WMA/ASF
+            || sig.starts_with(b"\x30\x26\xB2\x75"); // WMA/ASF
 
         if !is_known_audio {
             warn!(
@@ -1139,9 +1140,7 @@ async fn societies_route_royalty(
 
 // ── DDEX Gateway handlers ─────────────────────────────────────────────────────
 
-async fn gateway_status(
-    State(state): State<AppState>,
-) -> Json<serde_json::Value> {
+async fn gateway_status(State(state): State<AppState>) -> Json<serde_json::Value> {
     let status = ddex_gateway::gateway_status(&state.gateway_config);
     Json(serde_json::to_value(&status).unwrap_or_default())
 }
@@ -1184,9 +1183,7 @@ async fn gateway_ern_push(
     })))
 }
 
-async fn gateway_dsr_cycle(
-    State(state): State<AppState>,
-) -> Json<serde_json::Value> {
+async fn gateway_dsr_cycle(State(state): State<AppState>) -> Json<serde_json::Value> {
     let results = ddex_gateway::run_dsr_cycle(&state.gateway_config).await;
     let total_records: usize = results.iter().map(|r| r.total_records).sum();
     let total_revenue: f64 = results.iter().map(|r| r.total_revenue_usd).sum();
@@ -1233,14 +1230,10 @@ async fn gateway_dsr_parse_upload(
                 if bytes.len() > 52_428_800 {
                     return Err(StatusCode::PAYLOAD_TOO_LARGE);
                 }
-                content =
-                    String::from_utf8(bytes.to_vec()).map_err(|_| StatusCode::BAD_REQUEST)?;
+                content = String::from_utf8(bytes.to_vec()).map_err(|_| StatusCode::BAD_REQUEST)?;
             }
             "dialect" => {
-                let text = field
-                    .text()
-                    .await
-                    .map_err(|_| StatusCode::BAD_REQUEST)?;
+                let text = field.text().await.map_err(|_| StatusCode::BAD_REQUEST)?;
                 dialect_hint = match text.to_lowercase().as_str() {
                     "spotify" => Some(dsr_parser::DspDialect::Spotify),
                     "apple" => Some(dsr_parser::DspDialect::AppleMusic),
@@ -1355,18 +1348,13 @@ async fn vault_propose_payout(
         }
     }
 
-    let proposal = multisig_vault::propose_artist_payouts(
-        &state.vault_config,
-        &payouts,
-        total_usdc,
-        None,
-        0,
-    )
-    .await
-    .map_err(|e| {
-        warn!(err=%e, "vault_propose_payout failed");
-        StatusCode::BAD_GATEWAY
-    })?;
+    let proposal =
+        multisig_vault::propose_artist_payouts(&state.vault_config, &payouts, total_usdc, None, 0)
+            .await
+            .map_err(|e| {
+                warn!(err=%e, "vault_propose_payout failed");
+                StatusCode::BAD_GATEWAY
+            })?;
 
     state
         .audit_log
@@ -1388,13 +1376,12 @@ async fn vault_tx_status(
     if safe_tx_hash.len() > 66 || !safe_tx_hash.starts_with("0x") {
         return Err(StatusCode::UNPROCESSABLE_ENTITY);
     }
-    let status =
-        multisig_vault::check_execution_status(&state.vault_config, &safe_tx_hash)
-            .await
-            .map_err(|e| {
-                warn!(err=%e, "vault_tx_status failed");
-                StatusCode::BAD_GATEWAY
-            })?;
+    let status = multisig_vault::check_execution_status(&state.vault_config, &safe_tx_hash)
+        .await
+        .map_err(|e| {
+            warn!(err=%e, "vault_tx_status failed");
+            StatusCode::BAD_GATEWAY
+        })?;
     Ok(Json(serde_json::to_value(&status).unwrap_or_default()))
 }
 
@@ -1507,8 +1494,7 @@ async fn manifest_ownership_proof(
             StatusCode::NOT_FOUND
         })?;
 
-    let proof =
-        nft_manifest::generate_manifest_ownership_proof_stub(token_id, wallet, &manifest);
+    let proof = nft_manifest::generate_manifest_ownership_proof_stub(token_id, wallet, &manifest);
 
     Ok(Json(serde_json::to_value(&proof).unwrap_or_default()))
 }

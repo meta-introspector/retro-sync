@@ -262,10 +262,7 @@ pub struct ErnDeliveryResult {
 /// Push an ERN for a single release to all target DSPs.
 ///
 /// Returns one `ErnDeliveryResult` per DSP attempted.
-pub async fn push_ern(
-    config: &GatewayConfig,
-    release: &PendingRelease,
-) -> Vec<ErnDeliveryResult> {
+pub async fn push_ern(config: &GatewayConfig, release: &PendingRelease) -> Vec<ErnDeliveryResult> {
     let mut results = Vec::new();
 
     // Build the ERN XML once (same XML goes to all DSPs)
@@ -323,7 +320,10 @@ pub async fn push_ern(
                     GatewayEventType::ErnDelivered,
                     dsp_name,
                     Some(&release.isrc),
-                    format!("Delivered {} bytes, sha256={}", receipt.bytes, receipt.sha256),
+                    format!(
+                        "Delivered {} bytes, sha256={}",
+                        receipt.bytes, receipt.sha256
+                    ),
                     true,
                 );
                 info!(seq = ev.seq, dsp = %dsp_name, isrc = %release.isrc, "ERN delivered");

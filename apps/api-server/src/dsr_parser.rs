@@ -354,9 +354,8 @@ fn parse_row(
     dialect: DspDialect,
     _sep: char,
 ) -> Result<DsrRecord, String> {
-    let get = |idx: Option<usize>| -> &str {
-        idx.and_then(|i| fields.get(i).copied()).unwrap_or("")
-    };
+    let get =
+        |idx: Option<usize>| -> &str { idx.and_then(|i| fields.get(i).copied()).unwrap_or("") };
 
     let isrc = get(col.isrc).trim().to_uppercase();
     if isrc.is_empty() {

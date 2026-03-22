@@ -128,8 +128,7 @@ fn random_hex(n: usize) -> String {
          falling back to SHA-256 time/PID derivation. \
          Investigate entropy source immediately."
     );
-    static COUNTER: std::sync::atomic::AtomicU64 =
-        std::sync::atomic::AtomicU64::new(0);
+    static COUNTER: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
     let ctr = COUNTER.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
     let seed = format!(
         "retrosync-entropy:{:?}:{}:{}",

@@ -64,9 +64,7 @@ impl SftpConfig {
                 std::env::var(pf("KEY_PATH"))
                     .unwrap_or_else(|_| "/run/secrets/sftp_ed25519".into()),
             ),
-            known_hosts: std::env::var(pf("KNOWN_HOSTS"))
-                .ok()
-                .map(PathBuf::from),
+            known_hosts: std::env::var(pf("KNOWN_HOSTS")).ok().map(PathBuf::from),
             remote_inbound_dir: std::env::var(pf("INBOUND_DIR"))
                 .unwrap_or_else(|_| "/inbound/ern".into()),
             remote_drop_dir: std::env::var(pf("DROP_DIR"))
@@ -111,9 +109,7 @@ fn sha256_hex(data: &[u8]) -> String {
 // ── Dev mode helpers ──────────────────────────────────────────────────────────
 
 fn dev_root() -> PathBuf {
-    PathBuf::from(
-        std::env::var("SFTP_DEV_ROOT").unwrap_or_else(|_| "/tmp/sftp_dev".into()),
-    )
+    PathBuf::from(std::env::var("SFTP_DEV_ROOT").unwrap_or_else(|_| "/tmp/sftp_dev".into()))
 }
 
 /// Resolve a remote path to a local path under the dev root.
@@ -158,10 +154,7 @@ pub async fn sftp_put(
             "sftp_put (dev): copied locally"
         );
     } else {
-        let target = format!(
-            "{}@{}:{}",
-            config.username, config.host, remote_path
-        );
+        let target = format!("{}@{}:{}", config.username, config.host, remote_path);
         let status = build_sftp_command(config)
             .arg(format!("-P {}", config.port))
             .args([local_path.to_str().unwrap_or(""), &target])
@@ -198,10 +191,7 @@ pub async fn sftp_list(config: &SftpConfig) -> anyhow::Result<Vec<String>> {
         let mut names = Vec::new();
         while let Some(entry) = entries.next_entry().await? {
             if let Ok(name) = entry.file_name().into_string() {
-                if name.ends_with(".tsv")
-                    || name.ends_with(".csv")
-                    || name.ends_with(".txt")
-                {
+                if name.ends_with(".tsv") || name.ends_with(".csv") || name.ends_with(".txt") {
                     names.push(name);
                 }
             }
@@ -252,8 +242,7 @@ pub async fn sftp_list(config: &SftpConfig) -> anyhow::Result<Vec<String>> {
         .lines()
         .map(|l| l.trim().to_string())
         .filter(|l| {
-            !l.is_empty()
-                && (l.ends_with(".tsv") || l.ends_with(".csv") || l.ends_with(".txt"))
+            !l.is_empty() && (l.ends_with(".tsv") || l.ends_with(".csv") || l.ends_with(".txt"))
         })
         .collect();
     info!(host = %config.host, count = names.len(), "sftp_list: found DSR files");
@@ -385,7 +374,8 @@ fn host_key_args(config: &SftpConfig) -> Vec<String> {
 
 fn build_sftp_command(config: &SftpConfig) -> Command {
     let mut cmd = Command::new("sftp");
-    cmd.arg("-i").arg(config.identity_file.to_str().unwrap_or(""));
+    cmd.arg("-i")
+        .arg(config.identity_file.to_str().unwrap_or(""));
     cmd.arg("-o").arg("BatchMode=yes");
     for arg in host_key_args(config) {
         cmd.arg(arg);
@@ -395,7 +385,8 @@ fn build_sftp_command(config: &SftpConfig) -> Command {
 
 fn build_sftp_batch_command(config: &SftpConfig) -> Command {
     let mut cmd = Command::new("sftp");
-    cmd.arg("-i").arg(config.identity_file.to_str().unwrap_or(""));
+    cmd.arg("-i")
+        .arg(config.identity_file.to_str().unwrap_or(""));
     cmd.arg("-o").arg("BatchMode=yes");
     cmd.arg(format!("-P{}", config.port));
     for arg in host_key_args(config) {

@@ -263,8 +263,7 @@ pub async fn get_queue(
         .unwrap_or("")
         .to_ascii_lowercase();
 
-    let admin_list_raw =
-        std::env::var("ADMIN_WALLET_ADDRESSES").unwrap_or_default();
+    let admin_list_raw = std::env::var("ADMIN_WALLET_ADDRESSES").unwrap_or_default();
 
     if admin_list_raw.is_empty() {
         tracing::warn!(

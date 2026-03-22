@@ -162,13 +162,9 @@ pub async fn mint_manifest_nft(manifest: &mut ShardManifest) -> anyhow::Result<M
     // ── Step 2 + 3: mint NFT on BTTC ────────────────────────────────────
     let (token_id, tx_hash) = if dev_mode {
         warn!("BTTC_DEV_MODE=1 — stub NFT mint");
-        (
-            999_001u64,
-            format!("0x{}", "ab12".repeat(16)),
-        )
+        (999_001u64, format!("0x{}", "ab12".repeat(16)))
     } else {
-        call_mint_manifest_contract(&manifest.isrc, &manifest_cid, &manifest.zk_commit_hash)
-            .await?
+        call_mint_manifest_contract(&manifest.isrc, &manifest_cid, &manifest.zk_commit_hash).await?
     };
 
     manifest.token_id = Some(token_id);
@@ -212,9 +208,7 @@ pub async fn lookup_manifest_by_token(token_id: u64) -> anyhow::Result<ShardMani
                 end_index: 8,
             },
         );
-        let shard_order: Vec<String> = (0..8)
-            .map(|i| format!("bafyrei-shard-{i:04}"))
-            .collect();
+        let shard_order: Vec<String> = (0..8).map(|i| format!("bafyrei-shard-{i:04}")).collect();
         return Ok(ShardManifest::new(
             "GBAYE0601498",
             "bafyrei-track-root",
@@ -231,10 +225,7 @@ pub async fn lookup_manifest_by_token(token_id: u64) -> anyhow::Result<ShardMani
     let manifest: ShardManifest = serde_json::from_str(&manifest_json)?;
 
     // Validate commit hash
-    let expected = compute_zk_commit(
-        &manifest.shard_order,
-        manifest.enc_key_hex.as_deref(),
-    );
+    let expected = compute_zk_commit(&manifest.shard_order, manifest.enc_key_hex.as_deref());
     if manifest.zk_commit_hash != expected {
         anyhow::bail!(
             "Manifest ZK commit mismatch: on-chain {}, computed {}",

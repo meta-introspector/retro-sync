@@ -34,19 +34,29 @@ pub async fn add_security_headers(request: Request, next: Next) -> Response {
     // All values are ASCII string literals known to be valid header values;
     // HeaderValue::from_static() panics only on non-ASCII, which none of these are.
     let security_headers: &[(&str, &str)] = &[
-        ("x-content-type-options",  "nosniff"),
-        ("x-frame-options",         "DENY"),
-        ("referrer-policy",         "strict-origin-when-cross-origin"),
-        ("x-xss-protection",        "1; mode=block"),
-        ("strict-transport-security", "max-age=31536000; includeSubDomains; preload"),
+        ("x-content-type-options", "nosniff"),
+        ("x-frame-options", "DENY"),
+        ("referrer-policy", "strict-origin-when-cross-origin"),
+        ("x-xss-protection", "1; mode=block"),
+        (
+            "strict-transport-security",
+            "max-age=31536000; includeSubDomains; preload",
+        ),
         // CSP: this is an API server (JSON only) — no scripts, frames, or embedded
         // content are ever served, so we use the most restrictive possible policy.
-        ("content-security-policy",
-         "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"),
-        ("permissions-policy",
-         "geolocation=(), camera=(), microphone=(), payment=(), usb=(), serial=()"),
+        (
+            "content-security-policy",
+            "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+        ),
+        (
+            "permissions-policy",
+            "geolocation=(), camera=(), microphone=(), payment=(), usb=(), serial=()",
+        ),
         // API responses contain real-time financial/rights data — must not be cached.
-        ("cache-control", "no-store, no-cache, must-revalidate, private"),
+        (
+            "cache-control",
+            "no-store, no-cache, must-revalidate, private",
+        ),
     ];
 
     for (name, value) in security_headers {

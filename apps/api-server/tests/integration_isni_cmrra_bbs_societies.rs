@@ -146,7 +146,10 @@ fn cmrra_generate_statement_csv_has_header() {
         csv.contains("ISRC") || csv.to_uppercase().contains("ISRC"),
         "CSV must have an ISRC column header"
     );
-    assert!(csv.contains("CAXXX2300001"), "CSV must contain the ISRC value");
+    assert!(
+        csv.contains("CAXXX2300001"),
+        "CSV must contain the ISRC value"
+    );
 }
 
 #[test]
@@ -249,7 +252,10 @@ fn bbs_estimate_blanket_fee_positive() {
 #[test]
 fn bbs_estimate_blanket_fee_zero_hours_uses_clamp_floor() {
     let fee = bbs::estimate_blanket_fee(&BbsLicenceType::RadioBroadcast, "US", 0.0);
-    assert!(fee > 0.0, "fee with 0 hours should use clamp floor and remain positive");
+    assert!(
+        fee > 0.0,
+        "fee with 0 hours should use clamp floor and remain positive"
+    );
 }
 
 #[test]
@@ -295,11 +301,10 @@ fn societies_registry_has_minimum_count() {
 fn societies_registry_contains_major_orgs() {
     let all = collection_societies::all_societies();
     let ids: Vec<&str> = all.iter().map(|s| s.id).collect();
-    for major in &["ASCAP", "BMI", "SESAC", "SOCAN", "PRS", "GEMA", "SACEM", "JASRAC"] {
-        assert!(
-            ids.contains(major),
-            "registry must contain {major}"
-        );
+    for major in &[
+        "ASCAP", "BMI", "SESAC", "SOCAN", "PRS", "GEMA", "SACEM", "JASRAC",
+    ] {
+        assert!(ids.contains(major), "registry must contain {major}");
     }
 }
 
