@@ -144,6 +144,14 @@ fn main() {
         "cl15": {"algebra": "Cl(15,0,0)", "generators": 15, "dimension": "2^15 = 32768"},
     });
 
+    // Load PPM tile images (71 tiles, one per shard)
+    let ppm_dir = out_dir.join("nft71_ppm");
+    let mut ppm_mosaic = Vec::new();
+    for i in 1..=71u64 {
+        let path = ppm_dir.join(format!("{:02}.ppm", i));
+        ppm_mosaic.extend(std::fs::read(&path).unwrap_or_default());
+    }
+
     // Collect all layers as named byte blobs, then stripe across 71 shards
     let layers: Vec<(&str, Vec<u8>)> = vec![
         ("source",          src_text.as_bytes().to_vec()),
@@ -151,6 +159,7 @@ fn main() {
         ("midi",            base64::Engine::decode(&base64::engine::general_purpose::STANDARD, &midi_b64).unwrap_or_default()),
         ("pdf",             base64::Engine::decode(&base64::engine::general_purpose::STANDARD, &pdf_b64).unwrap_or_default()),
         ("wav",             base64::Engine::decode(&base64::engine::general_purpose::STANDARD, &wav_b64).unwrap_or_default()),
+        ("ppm_tiles",       ppm_mosaic),
         ("witnesses",       serde_json::to_vec(&witnesses).unwrap()),
         ("eigenspace",      serde_json::to_vec(&eigenspace_json).unwrap()),
         ("metadata",        serde_json::to_vec(&metadata_json).unwrap()),
