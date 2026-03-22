@@ -9,4 +9,4 @@
         url = https://github.com/meta-introspector/erdfa-publish.git
 [submodule "nix/fractran-vm"]
         path = nix/fractran-vm
-        url = https://github.com/meta-introspector/fractran-vm.git
+        url = /home/mdupont/.emacs.d.kiro/kiro.el-research/fractran-vm
