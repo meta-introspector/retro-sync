@@ -11,3 +11,6 @@ serde        = { workspace = true }
 serde_json   = { workspace = true }
 ciborium     = "0.2"
 chrono       = { workspace = true }
+base64       = "0.22"
+zk_circuits  = { path = "../libs/zk-circuits" }
+ark-bn254    = { workspace = true }

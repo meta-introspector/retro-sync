@@ -10,3 +10,6 @@
 [submodule "nix/fractran-vm"]
 	path = nix/fractran-vm
 	url = /home/mdupont/.emacs.d.kiro/kiro.el-research/fractran-vm
+[submodule "datasets/public"]
+	path = datasets/public
+	url = git@hf.co:datasets/introspector/retro-sync

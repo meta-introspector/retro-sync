@@ -1,0 +1,27 @@
+# youtube_sources.txt — YouTube URLs for PRIVATE audio comparison witnessing
+# Pipeline: moltis browser → navigate → Web Audio API capture → spectral hash
+# Audio is captured privately, NEVER redistributed — only witness hashes are public
+# Used to validate our MIDI reconstruction against known performances
+
+## Kilmer interpretation (Anne Kilmer interviews + performance)
+# Interview Part 1
+https://www.youtube.com/watch?v=QpxN2VXPMLc
+# Interview Part 2
+https://www.youtube.com/watch?v=MEwVHrdFBTY
+# Interview Part 3
+https://www.youtube.com/watch?v=4DnUbr2XTBU
+
+## Dumbrill interpretation (Peter Pringle performance — most popular)
+https://www.youtube.com/watch?v=w8tfBLvlN98
+
+## Vitale interpretation
+https://web.archive.org/web/20180924035347/http://www.ramivitale.com/?p=450
+
+## General performances
+# "A performance of the Hymn to Nikkal"
+https://www.youtube.com/watch?v=7ZatnTPhYWc
+# "Oldest known music notation in history"
+https://www.youtube.com/watch?v=DBhB9gRnIHE
+
+## Michael Levy (ancient lyre reconstruction)
+https://www.youtube.com/watch?v=QUcTsFe1PVs

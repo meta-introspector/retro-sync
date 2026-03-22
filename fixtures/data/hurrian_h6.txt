@@ -1,0 +1,47 @@
+Hurrian Hymn h.6 — Hymn to Nikkal
+
+Source: Tablet RS 15.30 + 15.49 + 17.387, Royal Palace at Ugarit
+Date: approximately 1400 BC
+Catalogue: h.6 (Laroche)
+Scribe: Ammurabi
+Tuning: nid qabli (nīd qablim)
+Genre: zaluzi (prayer to the gods)
+Instrument: sammûm (9-string lyre)
+Deity: Nikkal (goddess of orchards)
+
+Notation (Dietrich & Loretz 1975 transcription):
+
+Line 1: qáb-li-te 3 ir-bu-te 1 qáb-li-te 3 ša-aḫ-ri 1 i-šar-te 10 ušta-ma-a-ri
+Line 2: ti-ti-mi-šar-te 2 zi-ir-te 1 ša-aḫ-ri 2 ša-aš-ša-te 2 ir-bu-te 2
+
+Babylonian Interval Terms (14 terms → 15 SSP mapping):
+
+Primary intervals (tuning names):
+  nīš tuḫrim    (strings 1–5, fifth)   → SSP[0]  = p2
+  išartum        (strings 2–6, fifth)   → SSP[1]  = p3
+  embūbum        (strings 3–7, fifth)   → SSP[2]  = p5
+  nīd qablim     (strings 4–1, fourth)  → SSP[3]  = p7
+  qablītum       (strings 5–2, fourth)  → SSP[4]  = p11
+  kitmum         (strings 6–3, fourth)  → SSP[5]  = p13
+  pītum          (strings 7–4, fourth)  → SSP[6]  = p17
+
+Secondary intervals:
+  šērum          (strings 7–5, third)   → SSP[7]  = p19
+  šalšatum       (strings 1–6, third)   → SSP[8]  = p23
+  rebûttum       (strings 2–7, sixth)   → SSP[9]  = p29
+  isqum          (strings 1–3, third)   → SSP[10] = p31
+  titur qablītim (strings 2–4, third)   → SSP[11] = p41
+  titur išartim  (strings 3–5, third)   → SSP[12] = p47
+  ṣerdum         (strings 4–6, third)   → SSP[13] = p59
+
+Crown (provenance):
+  colophon       (scribe/tuning/genre)  → SSP[14] = p71
+
+Colophon: "This [is] a song [in the] nitkibli [tuning], a zaluzi, written down by Ammurabi"
+
+Pipeline: shem-hamephorash SSP boustrophedon → Cl(15,0,0) → Earth/Spoke/Hub eigenspace
+Algebra: Cl(15,0,0) — 15 generators corresponding to 15 supersingular primes
+Reading strategy: boustrophedon (Way of the Oxen) — alternating direction rows
+
+Reference: Wikipedia contributors, "Hurrian songs," Wikipedia, The Free Encyclopedia
+AGPL-3.0-or-later

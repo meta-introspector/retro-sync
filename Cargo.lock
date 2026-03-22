@@ -2135,12 +2135,15 @@ checksum = "0ce7134b9999ecaf8bcd65542e436736ef32ddca1b3e06094cb6ec5755203b80"
 name = "fixtures"
 version = "0.1.0"
 dependencies = [
+ "ark-bn254",
+ "base64 0.22.1",
  "chrono",
  "ciborium",
  "hex",
  "serde",
  "serde_json",
  "sha2",
+ "zk_circuits",
 ]
 
 [[package]]

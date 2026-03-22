@@ -1,0 +1,42 @@
+# references.txt — URLs for zkTLS witness capture
+# Pipeline: moltis browser → navigate + snapshot → witness → erdfa shard
+# Each URL gets: DOM snapshot hash, screenshot hash, timestamp, tool witness
+# License: content is captured for witnessing only, not redistribution
+
+## Primary Source
+https://en.wikipedia.org/wiki/Hurrian_songs
+
+## Wikipedia Cross-References
+https://en.wikipedia.org/wiki/Music_of_Mesopotamia
+https://en.wikipedia.org/wiki/Seikilos_epitaph
+https://en.wikipedia.org/wiki/Hittite_music
+https://en.wikipedia.org/wiki/Ugarit
+https://en.wikipedia.org/wiki/Nikkal
+https://en.wikipedia.org/wiki/Cuneiform
+https://en.wikipedia.org/wiki/Musical_notation
+https://en.wikipedia.org/wiki/Ancient_music
+https://en.wikipedia.org/wiki/Raoul_Gregory_Vitale
+https://en.wikipedia.org/wiki/Richard_Dumbrill_(musicologist)
+
+## Scholarly References (from Wikipedia citations)
+http://www.thesaurus.ugarit.org/
+https://dh-abstracts.library.virginia.edu/works/9970
+https://www.researchgate.net/publication/272494271_The_Hurrian_Pieces_ca_1350_BCE_Part_One-Notation_and_Analysis
+http://tonalsoft.com/monzo/babylonian/hurrian/monzh6.htm
+http://lumma.org/tuning/gws/hurrian.htm
+
+## LilyPond Documentation (from pastebin items 9-14)
+https://lilypond.org/doc/v2.23/Documentation/essay/long-literature-list
+https://lilypond.org/doc/v2.24/Documentation/essay-big-page.html
+https://www.tug.org/TUGboat/tb37-3/tb117lemberg.pdf
+https://lilypond.org/doc/v2.24/Documentation/notation/chants-psalms-and-hymns
+https://lilypond.org/doc/v2.24/Documentation/essay.hu.pdf
+
+## Community Discussion
+https://www.reddit.com/r/Archaeology/comments/13vm2es/listen_to_the_worlds_oldest_sheet_music_a/
+
+## Performer/Reconstruction Pages
+https://ancientlyre.com/track/1982130/hurrian-hymn-no-6-c-1400bce-ancient-mesopotamian-musical-fragment
+
+## University of Toronto (MIDI + score examples of multiple interpretations)
+https://www.semitone.ca/hurrian/

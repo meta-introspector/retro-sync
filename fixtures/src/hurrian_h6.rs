@@ -16,6 +16,13 @@ use std::collections::HashMap;
 /// The 15 supersingular primes — generators of Cl(15,0,0).
 pub const SSP: [u64; 15] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 41, 47, 59, 71];
 
+/// Human-readable names for the 15 SSP slots (14 intervals + colophon).
+pub const INTERVAL_NAMES: [&str; 15] = [
+    "nis_tuhrim", "isartum", "embubum", "nid_qablim", "qablitum",
+    "kitmum", "pitum", "serum", "salsatum", "rebuttum",
+    "isqum", "titur_qablitim", "titur_isartim", "serdum", "colophon",
+];
+
 /// Babylonian interval terms → SSP index.
 /// 7 primary (tuning names, fifths/fourths) + 7 secondary (thirds/sixths) = 14.
 /// Index 14 (p=71) reserved for the colophon/provenance "crown" dimension.
