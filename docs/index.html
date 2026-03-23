@@ -118,7 +118,8 @@ window.loadPreset = loadPreset;
 function initFromParams() {
   const p = new URLSearchParams(location.search);
   const base = p.get('base') || p.get('src') || p.get('url');
-  if (base) { $('urls').value = base; loadFromURLs(); }
+  if (base) { $('urls').value = base; loadFromURLs(); return true; }
+  return false;
 }
 
 async function loadFromURLs() {
@@ -303,26 +304,79 @@ function reconstruct() {
     return;
   }
 
-  let out = `🎵 NFT7 decoded — ${parsed.segments.length} segments:\n\n`;
-  for (const s of parsed.segments) out += `  ${s.name}: ${s.size.toLocaleString()} bytes\n`;
+  let out = `🎵 NFT7 decoded — ${parsed.segments.length} segments:\n`;
+  for (const s of parsed.segments) out += `  ${s.name}: ${s.size.toLocaleString()} B  sha256:${s.sha256.slice(0,16)}…\n`;
   $('decode-out').textContent = out;
   log(`🎵 ${parsed.segments.length} segments reconstructed`);
 
-  // Extract WAV via WASM
-  if (parsed.wav_size > 0) {
-    const wavData = extract_segment(allBytes, 'wav');
-    const blob = new Blob([wavData], {type: 'audio/wav'});
-    const url = URL.createObjectURL(blob);
-    $('player').innerHTML =
-      `<p style="color:#0ff">🎵 Hurrian Hymn h.6 — reconstructed from ${n} stego tiles</p>
-       <audio controls src="${url}"></audio>
-       <p><a href="${url}" download="h6_west.wav" style="color:#0f0">⬇ Download WAV (${(parsed.wav_size/1048576).toFixed(1)} MB)</a></p>`;
+  const MIME = {wav:'audio/wav', midi:'audio/midi', pdf:'application/pdf',
+    source:'text/plain', lilypond:'text/x-lilypond', cuneiform:'text/plain', witnesses:'application/json'};
+  const EXT = {wav:'.wav', midi:'.midi', pdf:'.pdf',
+    source:'.txt', lilypond:'.ly', cuneiform:'.txt', witnesses:'.json'};
+
+  let html = `<p style="color:#0ff">𒀸𒌑𒄴𒊑 Hurrian Hymn h.6 — ${parsed.segments.length} files from ${n} tiles</p>`;
+
+  // Parse witnesses for verification
+  let witnesses = [];
+  try {
+    const wData = extract_segment(allBytes, 'witnesses');
+    const wText = new TextDecoder().decode(wData);
+    // witnesses are concatenated JSON objects — split on }{ boundary
+    witnesses = wText.split(/\}\s*\{/).map((s,i,a) =>
+      JSON.parse((i>0?'{':'') + s + (i<a.length-1?'}':''))
+    );
+  } catch(e) {}
+
+  // Show witness chain
+  if (witnesses.length) {
+    html += `<div style="margin:8px 0;padding:6px;background:#111;border:1px solid #333">`;
+    html += `<div style="color:#0ff;margin-bottom:4px">🔗 Witness Chain (${witnesses.length} steps)</div>`;
+    for (const w of witnesses) {
+      if (w.output_hash) {
+        html += `<div style="font-size:.75em;color:#8b949e">`;
+        html += `${w.step}: <span style="color:#ff0">${w.output_hash.slice(0,16)}…</span> `;
+        html += `${w.output_file||''} ${w.output_bytes?'('+w.output_bytes.toLocaleString()+'B)':''} `;
+        html += `<span style="color:#666">${w.tool||''} ${w.tool_version||''}</span></div>`;
+      } else if (w.chain_hash) {
+        html += `<div style="font-size:.75em;color:#0f0">`;
+        html += `${w.step}: commitment <span style="color:#ff0">${w.chain_hash.slice(0,32)}…</span></div>`;
+      } else if (w.sha256) {
+        html += `<div style="font-size:.75em;color:#8b949e">`;
+        html += `${w.step}: source <span style="color:#ff0">${w.sha256.slice(0,16)}…</span> ${w.file||''}</div>`;
+      }
+    }
+    html += `</div>`;
   }
+
+  // Download + preview for each segment
+  for (const s of parsed.segments) {
+    const data = extract_segment(allBytes, s.name);
+    const blob = new Blob([data], {type: MIME[s.name] || 'application/octet-stream'});
+    const url = URL.createObjectURL(blob);
+    const ext = EXT[s.name] || '.bin';
+    const sz = s.size > 1048576 ? (s.size/1048576).toFixed(1)+' MB' : (s.size/1024).toFixed(1)+' KB';
+    html += `<div style="margin:4px 0">`;
+    html += `<a href="${url}" download="h6_west${ext}" style="color:#0f0">⬇ ${s.name}${ext}</a> `;
+    html += `<span style="color:#888">${sz}</span> `;
+    html += `<span style="color:#ff0;font-size:.7em">sha256:${s.sha256.slice(0,16)}…</span>`;
+    if (s.name === 'wav') {
+      html += `<br><audio controls src="${url}" style="width:100%;margin:2px 0"></audio>`;
+    } else if (s.name === 'pdf') {
+      html += ` <a href="${url}" target="_blank" style="color:#58a6ff">📄 view</a>`;
+    } else if (s.name === 'midi') {
+      html += ` <span style="color:#888">🎹 MIDI</span>`;
+    } else if (['source','lilypond','cuneiform','witnesses'].includes(s.name)) {
+      const text = new TextDecoder().decode(data);
+      html += `<pre style="color:#0f0;font-size:.7em;max-height:80px;overflow:auto;margin:2px 0;padding:3px;background:#111;border:1px solid #222">${text.replace(/</g,'&lt;').slice(0,2000)}</pre>`;
+    }
+    html += `</div>`;
+  }
+  $('player').innerHTML = html;
 }
 window.reconstruct = reconstruct;
 
 renderGrid();
-initFromParams();
+if (!initFromParams()) { loadPreset('space'); }
 </script>
 </body>
 </html>

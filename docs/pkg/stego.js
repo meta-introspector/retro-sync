@@ -31,7 +31,7 @@ export function extract_segment(all_bytes, name) {
 
 /**
  * Reconstruct NFT7 payload from concatenated tile bytes.
- * Returns JSON: {"segments":[{"name":"wav","size":123},...], "wav_offset":N, "wav_size":N}
+ * Returns JSON with segments including sha256 hashes.
  * @param {Uint8Array} all_bytes
  * @returns {string}
  */

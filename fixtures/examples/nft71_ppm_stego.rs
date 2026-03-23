@@ -165,6 +165,11 @@ fn main() {
         let out_path = out_dir.join(format!("{padded}.ppm"));
         ppm.write(&out_path);
 
+        // Also write stripped PNG (no gamma — safe for browser Canvas stego)
+        let png_dir = Path::new("fixtures/output/nft71_stego_png");
+        std::fs::create_dir_all(png_dir).unwrap();
+        stego::write_png(&png_dir.join(format!("{padded}.png")), &ppm.data, W as u32, H as u32);
+
         // Verify
         let verify = Ppm::read(&out_path);
         let extracted = verify.extract_all(chunk_size);

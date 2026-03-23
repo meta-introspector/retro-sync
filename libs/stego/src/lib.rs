@@ -173,6 +173,8 @@ pub fn svg_to_rgb(svg_data: &[u8], w: u32, h: u32) -> Vec<u8> {
 
 // ── WASM bindings ─────────────────────────────────────────────────
 
+use sha2::{Digest, Sha256};
+
 #[cfg(feature = "wasm")]
 #[wasm_bindgen]
 /// Decode one tile from RGBA pixel data. Returns raw stego bytes (TILE_CAP).
@@ -183,7 +185,7 @@ pub fn decode_tile(rgba: &[u8]) -> Vec<u8> {
 #[cfg(feature = "wasm")]
 #[wasm_bindgen]
 /// Reconstruct NFT7 payload from concatenated tile bytes.
-/// Returns JSON: {"segments":[{"name":"wav","size":123},...], "wav_offset":N, "wav_size":N}
+/// Returns JSON with segments including sha256 hashes.
 pub fn reconstruct_payload(all_bytes: &[u8]) -> String {
     match nft7_decode(all_bytes) {
         None => {
@@ -192,19 +194,12 @@ pub fn reconstruct_payload(all_bytes: &[u8]) -> String {
             format!("{{\"error\":\"bad magic\",\"first32\":\"{hex}\"}}")
         }
         Some(segs) => {
-            let mut wav_offset = 0usize;
-            let mut wav_size = 0usize;
+            let payload_hash = hex::encode(Sha256::digest(all_bytes));
             let items: Vec<String> = segs.iter().map(|s| {
-                format!("{{\"name\":\"{}\",\"size\":{}}}", s.name, s.data.len())
+                let hash = hex::encode(Sha256::digest(&s.data));
+                format!("{{\"name\":\"{}\",\"size\":{},\"sha256\":\"{hash}\"}}", s.name, s.data.len())
             }).collect();
-            // Find WAV offset in the raw stream for direct extraction
-            let mut off = 8usize; // skip magic + count
-            for s in &segs {
-                off += 4 + s.name.len() + 4; // name_len + name + data_len
-                if s.name == "wav" { wav_offset = off; wav_size = s.data.len(); }
-                off += s.data.len();
-            }
-            format!("{{\"segments\":[{}],\"wav_offset\":{wav_offset},\"wav_size\":{wav_size}}}",
+            format!("{{\"segments\":[{}],\"payload_sha256\":\"{payload_hash}\"}}",
                 items.join(","))
         }
     }
