@@ -4,6 +4,7 @@ members  = [
     "apps/api-server",
     "apps/wasm-frontend",
     "libs/shared",
+    "libs/stego",
     "libs/zk-circuits",
     "tools/font_check",
     "tools/btfs-keygen",
