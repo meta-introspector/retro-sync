@@ -1,0 +1,32 @@
+[project]
+name        = "bach-late"
+title       = "J.S. Bach — Late Works (BWV 500+)"
+date        = "1723-1750"
+license     = "PD"
+description = "Leipzig period: cantatas, Mass in B minor, Art of Fugue, Musical Offering"
+
+[theme]
+style       = "christian-baroque"
+palette     = ["#2F1B14", "#C0A060", "#4A0E0E", "#E8D5B7", "#1A1A2E"]
+motifs      = ["cruciform", "fugue_subject", "thomaskirche", "cantata_score", "basso_continuo"]
+
+[sources.wikipedia]
+articles    = ["Johann_Sebastian_Bach", "Mass_in_B_minor", "The_Art_of_Fugue", "Musical_Offering"]
+lang        = "en"
+
+[sources.wikidata]
+qid         = "Q1339"
+
+[sources.midi]
+dir         = "datasets/midi-classical-data"
+pattern     = "bach-*.mid"
+split       = "second_half"
+
+[tiles]
+count       = 71
+pattern     = "{:02}.png"
+width       = 512
+height      = 512
+
+[segments]
+names       = ["midi_bundle", "metadata", "blade_data", "wikipedia", "wikidata", "erdfa"]

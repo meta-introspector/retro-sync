@@ -1,0 +1,42 @@
+{
+  "eras": {
+    "Late Romantic": {
+      "n": 111,
+      "mean_grade": 6.864864864864865
+    },
+    "Classical": {
+      "n": 2374,
+      "mean_grade": 7.247683235046336
+    },
+    "Baroque": {
+      "n": 2136,
+      "mean_grade": 7.349250936329588
+    },
+    "Early Romantic": {
+      "n": 91,
+      "mean_grade": 6.956043956043956
+    }
+  },
+  "bins": {
+    "epic": {
+      "n": 2111,
+      "mean_grade": 7.270487920416864
+    },
+    "long": {
+      "n": 1802,
+      "mean_grade": 7.355160932297447
+    },
+    "medium": {
+      "n": 635,
+      "mean_grade": 7.111811023622047
+    },
+    "short": {
+      "n": 159,
+      "mean_grade": 7.30188679245283
+    },
+    "tiny": {
+      "n": 5,
+      "mean_grade": 4.0
+    }
+  }
+}

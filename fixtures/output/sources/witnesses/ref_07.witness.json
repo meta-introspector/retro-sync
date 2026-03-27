@@ -1,0 +1,12 @@
+{
+  "id": "ref_07",
+  "timestamp": "20260323T172702Z",
+  "url": "https://en.wikipedia.org/wiki/Cuneiform",
+  "file": "ref_07.html",
+  "type": "reference_page",
+  "sha256": "0fe36fc9b668f7f52782d034d57a3a86e4b63f0e5a048148363012dbf7304ffb",
+  "bytes": 1448302,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

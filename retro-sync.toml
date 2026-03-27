@@ -1,0 +1,42 @@
+# retro-sync platform config
+
+[platform]
+name         = "retro-sync"
+description  = "Queryable NFT dataset for music publishers"
+projects_dir = "projects"
+default      = "hurrian-h6"
+
+[sources]
+# API endpoints for data ingest
+wikidata_sparql = "https://query.wikidata.org/sparql"
+wikipedia_api   = "https://en.wikipedia.org/w/api.php"
+archive_org_api = "https://archive.org"
+youtube_dl      = "yt-dlp"
+
+[sources.pd_music]
+# Public domain music sources
+freepd      = "https://freepd.com/"
+musopen     = "https://archive.org/details/musopen"
+openmusicarchive = "http://www.openmusicarchive.org/"
+voa_music   = "https://www.youtube.com/user/VOAMusic/featured"
+us_navy_band = "https://www.youtube.com/c/usnavyband/videos"
+tom_lehrer  = "https://web.archive.org/web/20210713134630/https://tomlehrersongs.com/"
+imslp       = "https://imslp.org/"
+archive_audio = "https://archive.org/details/audio"
+
+[sources.datasets]
+midi_classical = "datasets/midi-classical-data"
+bach_chorales  = "datasets/bach-370-chorales"
+bach_violin    = "datasets/bach-violin"
+
+[publish]
+# Output targets
+huggingface_dataset = "meta-introspector/retro-sync"
+huggingface_space   = "meta-introspector/retro-sync"
+btfs_gateway        = "https://gateway.btfs.io"
+ipfs_gateway        = "https://ipfs.io"
+
+[stego]
+# Platform-wide stego defaults
+planes   = 6
+tile_cap = 196608

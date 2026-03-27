@@ -1,0 +1,32 @@
+[project]
+name        = "bach-early"
+title       = "J.S. Bach — Early Works (BWV 1-500)"
+date        = "1708-1723"
+license     = "PD"
+description = "Weimar and Köthen periods: organ works, Brandenburg concertos, Well-Tempered Clavier Book I"
+
+[theme]
+style       = "christian-baroque"
+palette     = ["#8B4513", "#DAA520", "#2F1B14", "#F5DEB3", "#800020"]
+motifs      = ["cross", "organ_pipes", "rose_window", "manuscript", "counterpoint_lines"]
+
+[sources.wikipedia]
+articles    = ["Johann_Sebastian_Bach", "List_of_compositions_by_Johann_Sebastian_Bach", "Brandenburg_Concertos", "The_Well-Tempered_Clavier"]
+lang        = "en"
+
+[sources.wikidata]
+qid         = "Q1339"
+
+[sources.midi]
+dir         = "datasets/midi-classical-data"
+pattern     = "bach-*.mid"
+split       = "first_half"
+
+[tiles]
+count       = 71
+pattern     = "{:02}.png"
+width       = 512
+height      = 512
+
+[segments]
+names       = ["midi_bundle", "metadata", "blade_data", "wikipedia", "wikidata", "erdfa"]

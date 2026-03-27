@@ -1,0 +1,409 @@
+[
+  {
+    "sign": "𒀸𒌑𒄴𒊑",
+    "codepoints": [
+      "0x12038",
+      "0x12311",
+      "0x12134",
+      "0x12291"
+    ],
+    "n_chars": 4,
+    "sum": 296718,
+    "product": 30277677498330849120,
+    "mod71": 9,
+    "mod59": 7,
+    "mod47": 7,
+    "orbifold": [
+      9,
+      7,
+      7
+    ],
+    "sum_factors_ssp": {
+      "2": 1,
+      "3": 1,
+      "17": 1
+    },
+    "hamming": 8,
+    "digit_sum": 33,
+    "name": "nīš tuḫrim",
+    "index": 0
+  },
+  {
+    "sign": "𒄿𒊭𒅈𒌈",
+    "codepoints": [
+      "0x1213f",
+      "0x122ad",
+      "0x12148",
+      "0x12308"
+    ],
+    "n_chars": 4,
+    "sum": 297020,
+    "product": 30401577712544656064,
+    "mod71": 27,
+    "mod59": 14,
+    "mod47": 27,
+    "orbifold": [
+      27,
+      14,
+      27
+    ],
+    "sum_factors_ssp": {
+      "2": 2,
+      "5": 1
+    },
+    "hamming": 7,
+    "digit_sum": 20,
+    "name": "išartum",
+    "index": 1
+  },
+  {
+    "sign": "𒂊𒁍𒁍",
+    "codepoints": [
+      "0x1208a",
+      "0x1204d",
+      "0x1204d"
+    ],
+    "n_chars": 3,
+    "sum": 221476,
+    "product": 402361251994650,
+    "mod71": 27,
+    "mod59": 49,
+    "mod47": 12,
+    "orbifold": [
+      27,
+      49,
+      12
+    ],
+    "sum_factors_ssp": {
+      "2": 2,
+      "17": 1
+    },
+    "hamming": 7,
+    "digit_sum": 22,
+    "name": "embūbum",
+    "index": 2
+  },
+  {
+    "sign": "𒉌𒀉𒃻",
+    "codepoints": [
+      "0x1224c",
+      "0x12009",
+      "0x120fb"
+    ],
+    "n_chars": 3,
+    "sum": 222032,
+    "product": 405393001391268,
+    "mod71": 15,
+    "mod59": 15,
+    "mod47": 4,
+    "orbifold": [
+      15,
+      15,
+      4
+    ],
+    "sum_factors_ssp": {
+      "2": 4
+    },
+    "hamming": 8,
+    "digit_sum": 11,
+    "name": "nīd qablim",
+    "index": 3
+  },
+  {
+    "sign": "𒃻𒇷𒌈",
+    "codepoints": [
+      "0x120fb",
+      "0x121f7",
+      "0x12308"
+    ],
+    "n_chars": 3,
+    "sum": 222714,
+    "product": 409141334741096,
+    "mod71": 58,
+    "mod59": 48,
+    "mod47": 28,
+    "orbifold": [
+      58,
+      48,
+      28
+    ],
+    "sum_factors_ssp": {
+      "2": 1,
+      "3": 2
+    },
+    "hamming": 12,
+    "digit_sum": 18,
+    "name": "qablītum",
+    "index": 4
+  },
+  {
+    "sign": "𒆠𒁴𒈬",
+    "codepoints": [
+      "0x121a0",
+      "0x12074",
+      "0x1222c"
+    ],
+    "n_chars": 3,
+    "sum": 222272,
+    "product": 406711551092224,
+    "mod71": 42,
+    "mod59": 19,
+    "mod47": 9,
+    "orbifold": [
+      42,
+      19,
+      9
+    ],
+    "sum_factors_ssp": {
+      "2": 6,
+      "23": 1
+    },
+    "hamming": 6,
+    "digit_sum": 17,
+    "name": "kitmum",
+    "index": 5
+  },
+  {
+    "sign": "𒁉𒌈",
+    "codepoints": [
+      "0x12049",
+      "0x12308"
+    ],
+    "n_chars": 2,
+    "sum": 148305,
+    "product": 5498469704,
+    "mod71": 57,
+    "mod59": 38,
+    "mod47": 20,
+    "orbifold": [
+      57,
+      38,
+      20
+    ],
+    "sum_factors_ssp": {
+      "3": 1,
+      "5": 1
+    },
+    "hamming": 7,
+    "digit_sum": 21,
+    "name": "pītum",
+    "index": 6
+  },
+  {
+    "sign": "𒊺𒊒",
+    "codepoints": [
+      "0x122ba",
+      "0x12292"
+    ],
+    "n_chars": 2,
+    "sum": 148812,
+    "product": 5536252436,
+    "mod71": 67,
+    "mod59": 14,
+    "mod47": 10,
+    "orbifold": [
+      67,
+      14,
+      10
+    ],
+    "sum_factors_ssp": {
+      "2": 2,
+      "3": 1
+    },
+    "hamming": 7,
+    "digit_sum": 24,
+    "name": "šērum",
+    "index": 7
+  },
+  {
+    "sign": "𒊭𒅖𒊭𒌈",
+    "codepoints": [
+      "0x122ad",
+      "0x12156",
+      "0x122ad",
+      "0x12308"
+    ],
+    "n_chars": 4,
+    "sum": 297400,
+    "product": 30557622539709238320,
+    "mod71": 52,
+    "mod59": 40,
+    "mod47": 31,
+    "orbifold": [
+      52,
+      40,
+      31
+    ],
+    "sum_factors_ssp": {
+      "2": 3,
+      "5": 2
+    },
+    "hamming": 8,
+    "digit_sum": 22,
+    "name": "šalšatum",
+    "index": 8
+  },
+  {
+    "sign": "𒊑𒁍𒌈",
+    "codepoints": [
+      "0x12291",
+      "0x1204d",
+      "0x12308"
+    ],
+    "n_chars": 3,
+    "sum": 222694,
+    "product": 409025836852200,
+    "mod71": 38,
+    "mod59": 28,
+    "mod47": 8,
+    "orbifold": [
+      38,
+      28,
+      8
+    ],
+    "sum_factors_ssp": {
+      "2": 1
+    },
+    "hamming": 11,
+    "digit_sum": 25,
+    "name": "rebûttum",
+    "index": 9
+  },
+  {
+    "sign": "𒅖𒄣",
+    "codepoints": [
+      "0x12156",
+      "0x12123"
+    ],
+    "n_chars": 2,
+    "sum": 148089,
+    "product": 5482587330,
+    "mod71": 54,
+    "mod59": 58,
+    "mod47": 39,
+    "orbifold": [
+      54,
+      58,
+      39
+    ],
+    "sum_factors_ssp": {
+      "3": 1
+    },
+    "hamming": 8,
+    "digit_sum": 30,
+    "name": "isqum",
+    "index": 10
+  },
+  {
+    "sign": "𒋾𒌅𒅈𒃻",
+    "codepoints": [
+      "0x122fe",
+      "0x12305",
+      "0x12148",
+      "0x120fb"
+    ],
+    "n_chars": 4,
+    "sum": 297030,
+    "product": 30405496813197527056,
+    "mod71": 37,
+    "mod59": 24,
+    "mod47": 37,
+    "orbifold": [
+      37,
+      24,
+      37
+    ],
+    "sum_factors_ssp": {
+      "2": 1,
+      "3": 1,
+      "5": 1
+    },
+    "hamming": 6,
+    "digit_sum": 21,
+    "name": "titur qablītim",
+    "index": 11
+  },
+  {
+    "sign": "𒋾𒌅𒅈𒄿",
+    "codepoints": [
+      "0x122fe",
+      "0x12305",
+      "0x12148",
+      "0x1213f"
+    ],
+    "n_chars": 4,
+    "sum": 297098,
+    "product": 30433444930680832208,
+    "mod71": 34,
+    "mod59": 33,
+    "mod47": 11,
+    "orbifold": [
+      34,
+      33,
+      11
+    ],
+    "sum_factors_ssp": {
+      "2": 1
+    },
+    "hamming": 6,
+    "digit_sum": 35,
+    "name": "titur išartim",
+    "index": 12
+  },
+  {
+    "sign": "𒊺𒅈𒁺",
+    "codepoints": [
+      "0x122ba",
+      "0x12148",
+      "0x1207a"
+    ],
+    "n_chars": 3,
+    "sum": 222332,
+    "product": 407038443565600,
+    "mod71": 31,
+    "mod59": 20,
+    "mod47": 22,
+    "orbifold": [
+      31,
+      20,
+      22
+    ],
+    "sum_factors_ssp": {
+      "2": 2,
+      "11": 1,
+      "31": 1
+    },
+    "hamming": 10,
+    "digit_sum": 14,
+    "name": "ṣerdum",
+    "index": 13
+  },
+  {
+    "sign": "𒀀𒈬𒊏𒁉",
+    "codepoints": [
+      "0x12000",
+      "0x1222c",
+      "0x1228f",
+      "0x12049"
+    ],
+    "n_chars": 4,
+    "sum": 296196,
+    "product": 30065170507066146816,
+    "mod71": 55,
+    "mod59": 16,
+    "mod47": 2,
+    "orbifold": [
+      55,
+      16,
+      2
+    ],
+    "sum_factors_ssp": {
+      "2": 2,
+      "3": 1
+    },
+    "hamming": 5,
+    "digit_sum": 33,
+    "name": "colophon",
+    "index": 14
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "id": "ref_13",
+  "timestamp": "20260323T172703Z",
+  "url": "https://dh-abstracts.library.virginia.edu/works/9970",
+  "file": "ref_13.html",
+  "type": "reference_page",
+  "sha256": "39549a533ca211d55c5aee742699ab4cca4e78fe7ea208f53cdd762568b75da4",
+  "bytes": 24095,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

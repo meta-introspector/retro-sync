@@ -47,50 +47,128 @@ fn category(idx: u64) -> &'static str {
 
 fn cat_color(cat: &str) -> &'static str {
     match cat {
-        "generator"      => "#1a1a2e",
-        "source"         => "#2d1b2e",
-        "artifact"       => "#1b2e1b",
-        "witness"        => "#2e2e1b",
-        "eigenspace"     => "#1b2e2e",
-        "metadata"       => "#2e1b1b",
-        "reconstruction" => "#1b1b2e",
-        "reference"      => "#2e2b1b",
-        "youtube"        => "#2e1b2b",
-        "pipeline"       => "#1b2b1b",
-        _                => "#1a1a1a",
+        "generator"      => "#50507e",
+        "source"         => "#7d5b7e",
+        "artifact"       => "#5b7e5b",
+        "witness"        => "#7e7e5b",
+        "eigenspace"     => "#5b7e7e",
+        "metadata"       => "#7e5b5b",
+        "reconstruction" => "#5b5b7e",
+        "reference"      => "#7e7b5b",
+        "youtube"        => "#7e5b7b",
+        "pipeline"       => "#5b7b5b",
+        _                => "#505068",
     }
 }
 
 fn tile_svg(idx: u64) -> String {
     let cat = category(idx);
     let bg = cat_color(cat);
-    let border = if is_prime(idx) { "#ffd700" } else { "#444444" };
+    let border = if is_prime(idx) { "#ffd700" } else { "#666666" };
     let marker = if is_prime(idx) { "★" } else { "·" };
     let cunei = CUNEIFORM[((idx - 1) as usize) % CUNEIFORM.len()];
     let interval = INTERVALS[((idx - 1) as usize) % INTERVALS.len()];
 
+    // Data-encoding visual elements: positions/colors carry information
+    let hash = idx.wrapping_mul(2654435761); // knuth hash for pseudo-random
+    let zig_h = 80 + (hash % 40) as u32;    // ziggurat height varies per tile
+    let star_x = 40 + (hash % 60) as u32;   // star position encodes data
+    let star_y = 30 + ((hash >> 8) % 40) as u32;
+    let orb_r = 6 + (hash % 8) as u32;      // orbifold indicator radius
+    let stripe_w = 3 + (hash % 4) as u32;   // border stripe width
+
+    // Orbifold coords as visual data
+    let o71 = idx % 71;
+    let o59 = idx % 59;
+    let o47 = idx % 47;
+
+    // Generate ziggurat steps (Sumerian temple shape)
+    let mut zig = String::new();
+    let steps = 4 + (idx % 3) as u32;
+    for s in 0..steps {
+        let w = 200 - s * 30;
+        let x = 256 - w / 2;
+        let y = 340 + s * (zig_h / steps);
+        let shade = 0x50 + (s * 0x10) as u8;
+        zig.push_str(&format!(
+            "  <rect x=\"{x}\" y=\"{y}\" width=\"{w}\" height=\"{}\" fill=\"#{shade:02x}{:02x}{:02x}\" opacity=\"0.6\"/>\n",
+            zig_h / steps, shade / 2, shade / 3
+        ));
+    }
+
+    // Decorative border pattern (encodes data in spacing)
+    let mut deco = String::new();
+    for i in 0..16 {
+        let x = 8 + i * 32 + (((hash >> (i % 8)) & 3) as u32);
+        deco.push_str(&format!(
+            "  <rect x=\"{x}\" y=\"6\" width=\"{stripe_w}\" height=\"8\" fill=\"{border}\" opacity=\"0.4\"/>\n"
+        ));
+        deco.push_str(&format!(
+            "  <rect x=\"{x}\" y=\"498\" width=\"{stripe_w}\" height=\"8\" fill=\"{border}\" opacity=\"0.4\"/>\n"
+        ));
+    }
+
+    // Star/rosette (Sumerian symbol, position encodes orbifold)
+    let star_points: String = (0..8).map(|i| {
+        let angle = std::f64::consts::PI * 2.0 * i as f64 / 8.0;
+        let r = if i % 2 == 0 { 18.0 } else { 8.0 };
+        let px = star_x as f64 + angle.cos() * r;
+        let py = star_y as f64 + angle.sin() * r;
+        format!("{:.1},{:.1}", px, py)
+    }).collect::<Vec<_>>().join(" ");
+
     format!(r##"<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="{SZ}" height="{SZ}" viewBox="0 0 {SZ} {SZ}">
-  <rect width="{SZ}" height="{SZ}" fill="{bg}"/>
+  <defs>
+    <linearGradient id="bg{idx}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="{bg}"/>
+      <stop offset="100%" stop-color="#404060"/>
+    </linearGradient>
+  </defs>
+  <rect width="{SZ}" height="{SZ}" fill="url(#bg{idx})"/>
   <!-- border -->
   <rect x="0" y="0" width="{SZ}" height="4" fill="{border}"/>
   <rect x="0" y="0" width="4" height="{SZ}" fill="{border}"/>
   <rect x="0" y="{y_bot}" width="{SZ}" height="4" fill="{border}"/>
   <rect x="{x_rt}" y="0" width="4" height="{SZ}" fill="{border}"/>
+  <!-- decorative border pattern (data in spacing) -->
+{deco}
+  <!-- star/rosette (position = orbifold coords) -->
+  <polygon points="{star_points}" fill="#ffd700" opacity="0.5"/>
+  <polygon points="{star_points2}" fill="#ffd700" opacity="0.3" transform="translate({sx2},0)"/>
+  <!-- text panel background (high contrast for OCR survival) -->
+  <rect x="40" y="60" width="432" height="60" fill="#808090" rx="4" opacity="0.8"/>
   <!-- cuneiform -->
-  <text x="256" y="90" text-anchor="middle" fill="#ffd700" font-size="64">{cunei}</text>
-  <!-- interval name -->
-  <text x="256" y="200" text-anchor="middle" fill="#c9d1d9" font-family="monospace" font-size="22">{interval}</text>
+  <text x="256" y="105" text-anchor="middle" fill="#ffd700" font-size="64" font-weight="bold">{cunei}</text>
+  <!-- interval panel -->
+  <rect x="60" y="140" width="392" height="40" fill="#707080" rx="4" opacity="0.7"/>
+  <text x="256" y="168" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="24" font-weight="bold">{interval}</text>
   <!-- notation -->
-  <text x="256" y="250" text-anchor="middle" fill="#7ee787" font-family="monospace" font-size="11">{NOTATION_L1}</text>
-  <text x="256" y="268" text-anchor="middle" fill="#7ee787" font-family="monospace" font-size="11">{NOTATION_L2}</text>
+  <text x="256" y="230" text-anchor="middle" fill="#a0e8a0" font-family="monospace" font-size="11">{NOTATION_L1}</text>
+  <text x="256" y="248" text-anchor="middle" fill="#a0e8a0" font-family="monospace" font-size="11">{NOTATION_L2}</text>
+  <!-- orbifold coords (visible data) -->
+  <text x="256" y="280" text-anchor="middle" fill="#8888aa" font-family="monospace" font-size="10">orbifold ({o71},{o59},{o47}) mod (71,59,47)</text>
+  <!-- ziggurat -->
+{zig}
+  <!-- orbifold indicator circles -->
+  <circle cx="460" cy="40" r="{orb_r}" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="460" cy="40" r="{orb_r2}" fill="none" stroke="#ff6858" stroke-width="1" opacity="0.4"/>
   <!-- shard info -->
-  <text x="256" y="440" text-anchor="middle" fill="#8b949e" font-family="monospace" font-size="16">{marker}{idx:02} {cat}</text>
-  <text x="256" y="470" text-anchor="middle" fill="#58a6ff" font-family="monospace" font-size="11">Hurrian Hymn h.6 · Tablet RS 15.30 · ~1400 BC · Ugarit</text>
-  <text x="256" y="492" text-anchor="middle" fill="#484848" font-family="monospace" font-size="9">DA51 CBOR · Groth16/BN254 · Cl(15,0,0) · 6-layer stego</text>
+  <text x="256" y="440" text-anchor="middle" fill="#b0b8c0" font-family="monospace" font-size="16">{marker}{idx:02} {cat}</text>
+  <text x="256" y="465" text-anchor="middle" fill="#78b6ff" font-family="monospace" font-size="12">Hurrian Hymn h.6 · Tablet RS 15.30 · ~1400 BC · Ugarit</text>
+  <text x="256" y="485" text-anchor="middle" fill="#606878" font-family="monospace" font-size="9">DA51 CBOR · Groth16/BN254 · Cl(15,0,0) · 6-layer stego</text>
+  <text x="256" y="500" text-anchor="middle" fill="#505060" font-family="monospace" font-size="8">shard {idx}/71 · prime {prime} · blade grade 8</text>
 </svg>"##,
         y_bot = SZ - 4,
         x_rt = SZ - 4,
+        star_points2 = (0..8).map(|i| {
+            let angle = std::f64::consts::PI * 2.0 * i as f64 / 8.0;
+            let r = if i % 2 == 0 { 14.0 } else { 6.0 };
+            format!("{:.1},{:.1}", star_x as f64 + angle.cos() * r, star_y as f64 + angle.sin() * r)
+        }).collect::<Vec<_>>().join(" "),
+        sx2 = SZ - star_x * 2,
+        orb_r2 = orb_r + 4,
+        prime = PRIMES[((idx - 1) as usize) % PRIMES.len()],
     )
 }
 

@@ -1,0 +1,3040 @@
+{
+  "total": 4712,
+  "skipped": 0,
+  "composers": {
+    "bach": 1031,
+    "unknown_artist": 719,
+    "scarlatti": 693,
+    "mozart": 257,
+    "beethoven": 219,
+    "haendel": 201,
+    "chopin": 136,
+    "schubert": 134,
+    "vivaldi": 107,
+    "haydn": 91,
+    "clementi": 61,
+    "schumann": 61,
+    "brahms": 60,
+    "mendelsonn": 54,
+    "burgmuller": 53
+  },
+  "grade_distribution": {
+    "10": 750,
+    "8": 1659,
+    "12": 104,
+    "6": 1328,
+    "4": 390,
+    "5": 79,
+    "7": 157,
+    "11": 29,
+    "9": 99,
+    "3": 46,
+    "14": 5,
+    "13": 3,
+    "2": 45,
+    "1": 18
+  },
+  "orbifold_coverage": 365,
+  "pieces": [
+    {
+      "name": "albeniz-aragon_fantasia_op47_part_6",
+      "composer": "albeniz",
+      "notes": 3184,
+      "intervals": 3183,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        172,
+        189,
+        375,
+        342,
+        301,
+        338,
+        229,
+        320,
+        193,
+        204,
+        116,
+        73,
+        187,
+        59,
+        85
+      ]
+    },
+    {
+      "name": "albeniz-castilla_seguidillas_op47_part_7",
+      "composer": "albeniz",
+      "notes": 2213,
+      "intervals": 2212,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        33,
+        0
+      ],
+      "histogram": [
+        336,
+        81,
+        216,
+        187,
+        258,
+        236,
+        172,
+        117,
+        79,
+        191,
+        117,
+        35,
+        141,
+        12,
+        34
+      ]
+    },
+    {
+      "name": "albeniz-cataluna_courranda_no2_from_suite_espanola_2",
+      "composer": "albeniz",
+      "notes": 2286,
+      "intervals": 2285,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        15,
+        0
+      ],
+      "histogram": [
+        356,
+        197,
+        184,
+        145,
+        206,
+        192,
+        184,
+        111,
+        96,
+        143,
+        61,
+        45,
+        295,
+        19,
+        51
+      ]
+    },
+    {
+      "name": "albeniz-cataluna_courranda_no2_from_suite_espanola",
+      "composer": "albeniz",
+      "notes": 2196,
+      "intervals": 2195,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        25,
+        0
+      ],
+      "histogram": [
+        155,
+        206,
+        164,
+        233,
+        238,
+        230,
+        120,
+        172,
+        129,
+        160,
+        55,
+        60,
+        208,
+        34,
+        31
+      ]
+    },
+    {
+      "name": "albeniz-espana_op_165_no1",
+      "composer": "albeniz",
+      "notes": 634,
+      "intervals": 633,
+      "blade_grade": 12,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        23,
+        11,
+        41,
+        24,
+        36,
+        42,
+        15,
+        38,
+        58,
+        80,
+        55,
+        13,
+        136,
+        23,
+        38
+      ]
+    },
+    {
+      "name": "albeniz-espana_op_165_no2",
+      "composer": "albeniz",
+      "notes": 680,
+      "intervals": 679,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        32,
+        70,
+        71,
+        72,
+        89,
+        54,
+        51,
+        41,
+        33,
+        53,
+        34,
+        18,
+        34,
+        14,
+        13
+      ]
+    },
+    {
+      "name": "albeniz-espana_op_165_no3",
+      "composer": "albeniz",
+      "notes": 1184,
+      "intervals": 1183,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        75,
+        55,
+        164,
+        74,
+        172,
+        85,
+        54,
+        60,
+        46,
+        93,
+        64,
+        23,
+        153,
+        19,
+        46
+      ]
+    },
+    {
+      "name": "albeniz-espana_op_165_no4",
+      "composer": "albeniz",
+      "notes": 1398,
+      "intervals": 1397,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        82,
+        116,
+        150,
+        212,
+        175,
+        109,
+        73,
+        76,
+        79,
+        106,
+        58,
+        24,
+        90,
+        27,
+        20
+      ]
+    },
+    {
+      "name": "albeniz-espana_op_165_no5",
+      "composer": "albeniz",
+      "notes": 929,
+      "intervals": 928,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        58,
+        68,
+        53,
+        134,
+        116,
+        74,
+        50,
+        120,
+        49,
+        55,
+        35,
+        13,
+        52,
+        7,
+        44
+      ]
+    },
+    {
+      "name": "albeniz-espana_op_165_no6",
+      "composer": "albeniz",
+      "notes": 1489,
+      "intervals": 1488,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        6,
+        0
+      ],
+      "histogram": [
+        59,
+        98,
+        164,
+        205,
+        218,
+        130,
+        90,
+        114,
+        63,
+        107,
+        78,
+        16,
+        88,
+        10,
+        48
+      ]
+    },
+    {
+      "name": "albeniz-espana_op_165",
+      "composer": "albeniz",
+      "notes": 634,
+      "intervals": 633,
+      "blade_grade": 12,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        23,
+        11,
+        41,
+        24,
+        36,
+        42,
+        15,
+        38,
+        58,
+        80,
+        55,
+        13,
+        136,
+        23,
+        38
+      ]
+    },
+    {
+      "name": "albeniz-mallorca_barcarola",
+      "composer": "albeniz",
+      "notes": 1694,
+      "intervals": 1693,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        53,
+        129,
+        215,
+        258,
+        216,
+        202,
+        87,
+        141,
+        56,
+        90,
+        58,
+        24,
+        119,
+        15,
+        30
+      ]
+    },
+    {
+      "name": "albeniz-piezas_caracteristicas_gavotte",
+      "composer": "albeniz",
+      "notes": 1257,
+      "intervals": 1256,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        30,
+        0
+      ],
+      "histogram": [
+        56,
+        110,
+        92,
+        208,
+        172,
+        99,
+        81,
+        85,
+        86,
+        93,
+        46,
+        24,
+        58,
+        16,
+        30
+      ]
+    },
+    {
+      "name": "albeniz-suite_espanola_no5_asturias",
+      "composer": "albeniz",
+      "notes": 2615,
+      "intervals": 2614,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        31,
+        18,
+        0
+      ],
+      "histogram": [
+        316,
+        215,
+        254,
+        180,
+        265,
+        196,
+        36,
+        182,
+        56,
+        135,
+        56,
+        77,
+        560,
+        23,
+        63
+      ]
+    },
+    {
+      "name": "albeniz-titulo_desconocido_2",
+      "composer": "albeniz",
+      "notes": 1363,
+      "intervals": 1362,
+      "blade_grade": 4,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        27,
+        0
+      ],
+      "histogram": [
+        45,
+        106,
+        177,
+        80,
+        285,
+        85,
+        76,
+        103,
+        88,
+        191,
+        39,
+        10,
+        42,
+        8,
+        27
+      ]
+    },
+    {
+      "name": "albeniz-titulo_desconocido_3",
+      "composer": "albeniz",
+      "notes": 5640,
+      "intervals": 5639,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        1080,
+        240,
+        448,
+        842,
+        792,
+        315,
+        202,
+        255,
+        314,
+        223,
+        162,
+        211,
+        219,
+        143,
+        193
+      ]
+    },
+    {
+      "name": "albeniz-titulo_desconocido_4",
+      "composer": "albeniz",
+      "notes": 3942,
+      "intervals": 3941,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        6,
+        9,
+        0
+      ],
+      "histogram": [
+        639,
+        400,
+        497,
+        367,
+        354,
+        442,
+        64,
+        373,
+        105,
+        178,
+        99,
+        60,
+        205,
+        36,
+        122
+      ]
+    },
+    {
+      "name": "albeniz-titulo_desconocido",
+      "composer": "albeniz",
+      "notes": 3357,
+      "intervals": 3356,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        20,
+        0,
+        0
+      ],
+      "histogram": [
+        276,
+        194,
+        374,
+        401,
+        390,
+        370,
+        221,
+        262,
+        175,
+        279,
+        115,
+        64,
+        175,
+        22,
+        38
+      ]
+    },
+    {
+      "name": "albeniz-torre_bermeja_serenata_from_piezas_caracteristicas",
+      "composer": "albeniz",
+      "notes": 1710,
+      "intervals": 1709,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        35,
+        0
+      ],
+      "histogram": [
+        93,
+        130,
+        155,
+        198,
+        185,
+        194,
+        127,
+        161,
+        105,
+        164,
+        66,
+        16,
+        73,
+        10,
+        32
+      ]
+    },
+    {
+      "name": "albeniz-triana",
+      "composer": "albeniz",
+      "notes": 3720,
+      "intervals": 3719,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        24,
+        0
+      ],
+      "histogram": [
+        266,
+        251,
+        408,
+        380,
+        417,
+        373,
+        256,
+        355,
+        258,
+        182,
+        138,
+        76,
+        232,
+        67,
+        60
+      ]
+    },
+    {
+      "name": "alkan-chantes_op_38no1",
+      "composer": "alkan",
+      "notes": 2067,
+      "intervals": 2066,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        106,
+        97,
+        159,
+        275,
+        205,
+        273,
+        160,
+        161,
+        68,
+        155,
+        48,
+        57,
+        156,
+        61,
+        85
+      ]
+    },
+    {
+      "name": "alkan-etude_op35_no5",
+      "composer": "alkan",
+      "notes": 3897,
+      "intervals": 3896,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        7,
+        29,
+        0
+      ],
+      "histogram": [
+        863,
+        163,
+        334,
+        246,
+        138,
+        145,
+        99,
+        117,
+        89,
+        494,
+        89,
+        35,
+        930,
+        54,
+        100
+      ]
+    },
+    {
+      "name": "alkan-etude_op39_no12",
+      "composer": "alkan",
+      "notes": 10063,
+      "intervals": 10062,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        849,
+        922,
+        781,
+        1517,
+        928,
+        808,
+        580,
+        557,
+        505,
+        920,
+        347,
+        197,
+        810,
+        162,
+        179
+      ]
+    },
+    {
+      "name": "alkan-etude_op76_no2",
+      "composer": "alkan",
+      "notes": 9240,
+      "intervals": 9239,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        38,
+        0
+      ],
+      "histogram": [
+        508,
+        569,
+        915,
+        1582,
+        1152,
+        1094,
+        422,
+        756,
+        476,
+        613,
+        241,
+        95,
+        700,
+        44,
+        72
+      ]
+    },
+    {
+      "name": "alkan-etude_op76_no3_for_both_hands",
+      "composer": "alkan",
+      "notes": 6686,
+      "intervals": 6685,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        558,
+        313,
+        368,
+        432,
+        262,
+        237,
+        208,
+        211,
+        180,
+        1442,
+        165,
+        118,
+        1981,
+        108,
+        102
+      ]
+    },
+    {
+      "name": "alkan-gros_temps_foul_weather_from_les_mois_op_74_bk_4_no_1",
+      "composer": "alkan",
+      "notes": 1553,
+      "intervals": 1552,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        67,
+        8,
+        11
+      ],
+      "histogram": [
+        280,
+        95,
+        92,
+        178,
+        192,
+        272,
+        47,
+        109,
+        97,
+        57,
+        61,
+        8,
+        48,
+        3,
+        13
+      ]
+    },
+    {
+      "name": "alkan-hallelujah_psalm_150",
+      "composer": "alkan",
+      "notes": 1128,
+      "intervals": 1127,
+      "blade_grade": 4,
+      "blade_terms": 1,
+      "orbifold": [
+        60,
+        0,
+        0
+      ],
+      "histogram": [
+        244,
+        52,
+        46,
+        111,
+        111,
+        103,
+        25,
+        86,
+        47,
+        69,
+        13,
+        4,
+        191,
+        14,
+        11
+      ]
+    },
+    {
+      "name": "alkan-saltarelle_op_23",
+      "composer": "alkan",
+      "notes": 4275,
+      "intervals": 4274,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        47,
+        0
+      ],
+      "histogram": [
+        280,
+        516,
+        426,
+        504,
+        426,
+        322,
+        133,
+        232,
+        155,
+        527,
+        131,
+        105,
+        376,
+        59,
+        82
+      ]
+    },
+    {
+      "name": "alkan-un_nuit_dete_suite_no_1_from_les_mois_sequenced",
+      "composer": "alkan",
+      "notes": 1119,
+      "intervals": 1118,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        53,
+        9,
+        0
+      ],
+      "histogram": [
+        49,
+        70,
+        107,
+        114,
+        87,
+        75,
+        40,
+        88,
+        144,
+        142,
+        43,
+        4,
+        120,
+        10,
+        25
+      ]
+    },
+    {
+      "name": "alkan-valentin_alkan_82le_festin_desope_op39",
+      "composer": "alkan",
+      "notes": 10062,
+      "intervals": 10061,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        951,
+        916,
+        768,
+        1371,
+        987,
+        834,
+        750,
+        557,
+        439,
+        863,
+        284,
+        188,
+        789,
+        165,
+        199
+      ]
+    },
+    {
+      "name": "ambroise-dance_fantastique",
+      "composer": "ambroise",
+      "notes": 1572,
+      "intervals": 1571,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        16,
+        13,
+        0
+      ],
+      "histogram": [
+        65,
+        164,
+        293,
+        178,
+        197,
+        145,
+        59,
+        82,
+        91,
+        81,
+        38,
+        28,
+        110,
+        13,
+        27
+      ]
+    },
+    {
+      "name": "ambroise-polonaise_1905",
+      "composer": "ambroise",
+      "notes": 2695,
+      "intervals": 2694,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        19,
+        0
+      ],
+      "histogram": [
+        193,
+        166,
+        434,
+        296,
+        366,
+        358,
+        193,
+        105,
+        97,
+        168,
+        69,
+        60,
+        139,
+        5,
+        45
+      ]
+    },
+    {
+      "name": "arensky-a_fairy_tale",
+      "composer": "arensky",
+      "notes": 1576,
+      "intervals": 1575,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        222,
+        100,
+        161,
+        123,
+        137,
+        141,
+        37,
+        135,
+        42,
+        121,
+        62,
+        55,
+        177,
+        25,
+        37
+      ]
+    },
+    {
+      "name": "arensky-psalm_119",
+      "composer": "arensky",
+      "notes": 2164,
+      "intervals": 2163,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        117,
+        240,
+        366,
+        189,
+        211,
+        203,
+        75,
+        149,
+        112,
+        184,
+        61,
+        37,
+        158,
+        12,
+        49
+      ]
+    },
+    {
+      "name": "arndt-nola_novelty_piano_solo",
+      "composer": "arndt",
+      "notes": 1049,
+      "intervals": 1048,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        46,
+        0
+      ],
+      "histogram": [
+        25,
+        70,
+        215,
+        139,
+        123,
+        93,
+        99,
+        55,
+        50,
+        52,
+        14,
+        9,
+        66,
+        9,
+        29
+      ]
+    },
+    {
+      "name": "bacewitz-sonata_no4_for_piano_violin_mov1",
+      "composer": "bacewitz",
+      "notes": 3387,
+      "intervals": 3386,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        476,
+        356,
+        294,
+        397,
+        201,
+        243,
+        169,
+        339,
+        205,
+        167,
+        107,
+        64,
+        258,
+        42,
+        68
+      ]
+    },
+    {
+      "name": "bacewitz-sonata_no4_for_piano_violin_mov2",
+      "composer": "bacewitz",
+      "notes": 902,
+      "intervals": 901,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        88,
+        81,
+        72,
+        118,
+        80,
+        129,
+        52,
+        70,
+        58,
+        54,
+        21,
+        32,
+        20,
+        8,
+        18
+      ]
+    },
+    {
+      "name": "bacewitz-sonata_no4_for_piano_violin_mov3",
+      "composer": "bacewitz",
+      "notes": 3164,
+      "intervals": 3163,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        206,
+        257,
+        385,
+        296,
+        278,
+        338,
+        170,
+        329,
+        218,
+        177,
+        149,
+        85,
+        176,
+        39,
+        60
+      ]
+    },
+    {
+      "name": "bacewitz-sonata_no4_for_piano_violin_mov4",
+      "composer": "bacewitz",
+      "notes": 4203,
+      "intervals": 4202,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        355,
+        555,
+        544,
+        379,
+        373,
+        497,
+        186,
+        272,
+        185,
+        208,
+        157,
+        102,
+        225,
+        70,
+        94
+      ]
+    },
+    {
+      "name": "bach-avemaria",
+      "composer": "bach",
+      "notes": 793,
+      "intervals": 792,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        49,
+        0
+      ],
+      "histogram": [
+        34,
+        32,
+        54,
+        192,
+        118,
+        72,
+        12,
+        36,
+        40,
+        69,
+        29,
+        7,
+        78,
+        7,
+        12
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-003706b",
+      "composer": "bach",
+      "notes": 304,
+      "intervals": 303,
+      "blade_grade": 5,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        16,
+        8,
+        19,
+        38,
+        37,
+        28,
+        17,
+        34,
+        26,
+        29,
+        14,
+        8,
+        21,
+        2,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-003806b",
+      "composer": "bach",
+      "notes": 253,
+      "intervals": 252,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        22,
+        4,
+        11,
+        40,
+        37,
+        29,
+        11,
+        31,
+        11,
+        13,
+        8,
+        10,
+        12,
+        2,
+        11
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-003907b",
+      "composer": "bach",
+      "notes": 285,
+      "intervals": 284,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        11,
+        9,
+        24,
+        37,
+        30,
+        31,
+        9,
+        44,
+        21,
+        32,
+        8,
+        3,
+        15,
+        1,
+        9
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-003907bv",
+      "composer": "bach",
+      "notes": 285,
+      "intervals": 284,
+      "blade_grade": 4,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        4,
+        0
+      ],
+      "histogram": [
+        12,
+        8,
+        26,
+        35,
+        30,
+        34,
+        11,
+        42,
+        22,
+        31,
+        8,
+        2,
+        15,
+        0,
+        8
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004003b",
+      "composer": "bach",
+      "notes": 204,
+      "intervals": 203,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        13,
+        7,
+        12,
+        28,
+        30,
+        21,
+        7,
+        22,
+        11,
+        14,
+        8,
+        4,
+        16,
+        3,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004006b",
+      "composer": "bach",
+      "notes": 250,
+      "intervals": 249,
+      "blade_grade": 11,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        15,
+        11,
+        19,
+        32,
+        21,
+        28,
+        9,
+        31,
+        17,
+        25,
+        10,
+        5,
+        14,
+        1,
+        11
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004008b",
+      "composer": "bach",
+      "notes": 358,
+      "intervals": 357,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        15,
+        14,
+        36,
+        48,
+        51,
+        32,
+        13,
+        46,
+        20,
+        27,
+        12,
+        5,
+        29,
+        2,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004106b",
+      "composer": "bach",
+      "notes": 927,
+      "intervals": 926,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        28,
+        74,
+        54,
+        130,
+        125,
+        93,
+        22,
+        82,
+        46,
+        88,
+        30,
+        8,
+        91,
+        20,
+        35
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004106bs",
+      "composer": "bach",
+      "notes": 541,
+      "intervals": 540,
+      "blade_grade": 4,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        12,
+        21,
+        53,
+        53,
+        68,
+        58,
+        22,
+        72,
+        37,
+        44,
+        30,
+        14,
+        31,
+        10,
+        15
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004207b",
+      "composer": "bach",
+      "notes": 599,
+      "intervals": 598,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        139,
+        23,
+        48,
+        54,
+        62,
+        60,
+        21,
+        55,
+        21,
+        35,
+        19,
+        7,
+        38,
+        4,
+        12
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004311b",
+      "composer": "bach",
+      "notes": 261,
+      "intervals": 260,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        2,
+        0
+      ],
+      "histogram": [
+        19,
+        7,
+        18,
+        22,
+        35,
+        19,
+        6,
+        46,
+        24,
+        23,
+        3,
+        3,
+        22,
+        1,
+        12
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004407b",
+      "composer": "bach",
+      "notes": 208,
+      "intervals": 207,
+      "blade_grade": 5,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        13,
+        9,
+        14,
+        20,
+        20,
+        25,
+        9,
+        34,
+        13,
+        20,
+        4,
+        4,
+        14,
+        2,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004507b",
+      "composer": "bach",
+      "notes": 297,
+      "intervals": 296,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        67,
+        8,
+        19,
+        28,
+        33,
+        31,
+        11,
+        38,
+        16,
+        12,
+        9,
+        2,
+        12,
+        1,
+        9
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004606b",
+      "composer": "bach",
+      "notes": 851,
+      "intervals": 850,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        42,
+        0
+      ],
+      "histogram": [
+        61,
+        26,
+        51,
+        149,
+        105,
+        119,
+        38,
+        97,
+        28,
+        89,
+        10,
+        11,
+        51,
+        8,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004606bs",
+      "composer": "bach",
+      "notes": 239,
+      "intervals": 238,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        15,
+        9,
+        25,
+        42,
+        27,
+        32,
+        12,
+        26,
+        6,
+        18,
+        1,
+        2,
+        15,
+        2,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004705b",
+      "composer": "bach",
+      "notes": 186,
+      "intervals": 185,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        10,
+        6,
+        10,
+        33,
+        23,
+        23,
+        6,
+        24,
+        7,
+        16,
+        6,
+        2,
+        9,
+        1,
+        9
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004803b",
+      "composer": "bach",
+      "notes": 157,
+      "intervals": 156,
+      "blade_grade": 4,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        9,
+        0
+      ],
+      "histogram": [
+        10,
+        10,
+        18,
+        22,
+        15,
+        18,
+        8,
+        21,
+        7,
+        12,
+        4,
+        2,
+        6,
+        0,
+        3
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-004807b",
+      "composer": "bach",
+      "notes": 280,
+      "intervals": 279,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        13,
+        16,
+        20,
+        31,
+        46,
+        34,
+        7,
+        35,
+        14,
+        22,
+        5,
+        2,
+        25,
+        3,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-005206b",
+      "composer": "bach",
+      "notes": 323,
+      "intervals": 322,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        31,
+        17,
+        19,
+        39,
+        38,
+        43,
+        6,
+        39,
+        18,
+        27,
+        12,
+        1,
+        26,
+        1,
+        5
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-005505b",
+      "composer": "bach",
+      "notes": 278,
+      "intervals": 277,
+      "blade_grade": 5,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        14,
+        10,
+        12,
+        24,
+        34,
+        25,
+        19,
+        34,
+        30,
+        25,
+        14,
+        4,
+        20,
+        3,
+        9
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-005605b",
+      "composer": "bach",
+      "notes": 353,
+      "intervals": 352,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        81,
+        10,
+        20,
+        47,
+        40,
+        31,
+        20,
+        34,
+        20,
+        10,
+        6,
+        9,
+        19,
+        2,
+        3
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-005708b",
+      "composer": "bach",
+      "notes": 213,
+      "intervals": 212,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        9,
+        8,
+        19,
+        27,
+        14,
+        33,
+        9,
+        32,
+        10,
+        16,
+        6,
+        2,
+        15,
+        2,
+        10
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-005903b",
+      "composer": "bach",
+      "notes": 745,
+      "intervals": 744,
+      "blade_grade": 12,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        59,
+        35,
+        25,
+        98,
+        115,
+        80,
+        28,
+        77,
+        47,
+        67,
+        16,
+        8,
+        66,
+        6,
+        17
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006005b",
+      "composer": "bach",
+      "notes": 282,
+      "intervals": 281,
+      "blade_grade": 9,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        17,
+        13,
+        23,
+        30,
+        29,
+        33,
+        25,
+        36,
+        14,
+        18,
+        9,
+        3,
+        18,
+        3,
+        10
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006106b",
+      "composer": "bach",
+      "notes": 551,
+      "intervals": 550,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        114,
+        38,
+        71,
+        43,
+        45,
+        40,
+        19,
+        30,
+        21,
+        32,
+        27,
+        11,
+        40,
+        8,
+        11
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006206b",
+      "composer": "bach",
+      "notes": 188,
+      "intervals": 187,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        45,
+        4,
+        10,
+        19,
+        19,
+        16,
+        9,
+        16,
+        10,
+        13,
+        8,
+        3,
+        11,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006206bv",
+      "composer": "bach",
+      "notes": 188,
+      "intervals": 187,
+      "blade_grade": 5,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        46,
+        3,
+        10,
+        20,
+        20,
+        16,
+        9,
+        16,
+        10,
+        13,
+        8,
+        3,
+        9,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006402b",
+      "composer": "bach",
+      "notes": 173,
+      "intervals": 172,
+      "blade_grade": 4,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        10,
+        4,
+        8,
+        28,
+        25,
+        24,
+        8,
+        20,
+        9,
+        4,
+        9,
+        2,
+        14,
+        1,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006404b",
+      "composer": "bach",
+      "notes": 368,
+      "intervals": 367,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        87,
+        22,
+        40,
+        33,
+        30,
+        38,
+        12,
+        43,
+        16,
+        14,
+        4,
+        1,
+        19,
+        3,
+        5
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006408b",
+      "composer": "bach",
+      "notes": 272,
+      "intervals": 271,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        13,
+        6,
+        30,
+        30,
+        41,
+        25,
+        12,
+        32,
+        16,
+        21,
+        10,
+        5,
+        21,
+        2,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006502b",
+      "composer": "bach",
+      "notes": 147,
+      "intervals": 146,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        7,
+        5,
+        15,
+        15,
+        21,
+        27,
+        10,
+        15,
+        8,
+        8,
+        0,
+        1,
+        8,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006507b",
+      "composer": "bach",
+      "notes": 332,
+      "intervals": 331,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        10,
+        0
+      ],
+      "histogram": [
+        14,
+        20,
+        31,
+        52,
+        38,
+        43,
+        8,
+        39,
+        12,
+        25,
+        7,
+        8,
+        23,
+        3,
+        8
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006606b",
+      "composer": "bach",
+      "notes": 163,
+      "intervals": 162,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        13,
+        9,
+        13,
+        27,
+        18,
+        23,
+        2,
+        22,
+        5,
+        9,
+        4,
+        1,
+        10,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006704b",
+      "composer": "bach",
+      "notes": 173,
+      "intervals": 172,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        2,
+        0
+      ],
+      "histogram": [
+        10,
+        5,
+        10,
+        21,
+        27,
+        23,
+        10,
+        23,
+        11,
+        10,
+        1,
+        2,
+        15,
+        0,
+        4
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006707b",
+      "composer": "bach",
+      "notes": 190,
+      "intervals": 189,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        7,
+        11,
+        14,
+        28,
+        35,
+        28,
+        10,
+        19,
+        7,
+        2,
+        4,
+        3,
+        16,
+        1,
+        4
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006906b",
+      "composer": "bach",
+      "notes": 619,
+      "intervals": 618,
+      "blade_grade": 12,
+      "blade_terms": 1,
+      "orbifold": [
+        14,
+        0,
+        0
+      ],
+      "histogram": [
+        71,
+        33,
+        23,
+        56,
+        73,
+        48,
+        28,
+        66,
+        42,
+        85,
+        11,
+        7,
+        48,
+        15,
+        12
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006906ba",
+      "composer": "bach",
+      "notes": 305,
+      "intervals": 304,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        42,
+        10,
+        19,
+        43,
+        33,
+        31,
+        4,
+        43,
+        17,
+        19,
+        4,
+        1,
+        21,
+        5,
+        12
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-006906bav",
+      "composer": "bach",
+      "notes": 245,
+      "intervals": 244,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        14,
+        10,
+        16,
+        35,
+        24,
+        31,
+        10,
+        35,
+        16,
+        24,
+        2,
+        5,
+        11,
+        4,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007007b",
+      "composer": "bach",
+      "notes": 276,
+      "intervals": 275,
+      "blade_grade": 5,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        7,
+        12,
+        25,
+        35,
+        43,
+        43,
+        10,
+        42,
+        20,
+        10,
+        2,
+        2,
+        14,
+        2,
+        8
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007011b",
+      "composer": "bach",
+      "notes": 388,
+      "intervals": 387,
+      "blade_grade": 3,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        25,
+        16,
+        30,
+        45,
+        46,
+        44,
+        14,
+        50,
+        20,
+        40,
+        8,
+        8,
+        28,
+        8,
+        5
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007011ch",
+      "composer": "bach",
+      "notes": 221,
+      "intervals": 220,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        15,
+        7,
+        27,
+        25,
+        25,
+        22,
+        8,
+        26,
+        14,
+        20,
+        9,
+        5,
+        11,
+        1,
+        5
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007206b",
+      "composer": "bach",
+      "notes": 409,
+      "intervals": 408,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        104,
+        4,
+        20,
+        45,
+        31,
+        34,
+        13,
+        48,
+        24,
+        33,
+        11,
+        5,
+        21,
+        4,
+        11
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007305b",
+      "composer": "bach",
+      "notes": 233,
+      "intervals": 232,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        9,
+        12,
+        16,
+        31,
+        26,
+        24,
+        14,
+        35,
+        13,
+        24,
+        5,
+        1,
+        14,
+        2,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007305bv",
+      "composer": "bach",
+      "notes": 233,
+      "intervals": 232,
+      "blade_grade": 10,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        45,
+        0
+      ],
+      "histogram": [
+        10,
+        13,
+        17,
+        29,
+        29,
+        24,
+        14,
+        36,
+        9,
+        26,
+        5,
+        1,
+        13,
+        1,
+        5
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007408b",
+      "composer": "bach",
+      "notes": 257,
+      "intervals": 256,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        48,
+        0
+      ],
+      "histogram": [
+        8,
+        9,
+        14,
+        31,
+        32,
+        27,
+        14,
+        29,
+        18,
+        26,
+        9,
+        7,
+        21,
+        2,
+        9
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007507b",
+      "composer": "bach",
+      "notes": 1256,
+      "intervals": 1255,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        158,
+        73,
+        128,
+        95,
+        144,
+        111,
+        65,
+        122,
+        42,
+        68,
+        74,
+        11,
+        109,
+        24,
+        31
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007514b",
+      "composer": "bach",
+      "notes": 1256,
+      "intervals": 1255,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        158,
+        73,
+        128,
+        95,
+        144,
+        111,
+        65,
+        122,
+        42,
+        68,
+        74,
+        11,
+        109,
+        24,
+        31
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007607b",
+      "composer": "bach",
+      "notes": 1393,
+      "intervals": 1392,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        167,
+        74,
+        120,
+        136,
+        129,
+        122,
+        72,
+        117,
+        77,
+        125,
+        39,
+        25,
+        135,
+        20,
+        34
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007614b",
+      "composer": "bach",
+      "notes": 1393,
+      "intervals": 1392,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        167,
+        74,
+        120,
+        136,
+        129,
+        122,
+        72,
+        117,
+        77,
+        125,
+        39,
+        25,
+        135,
+        20,
+        34
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007706b",
+      "composer": "bach",
+      "notes": 255,
+      "intervals": 254,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        8,
+        7,
+        22,
+        37,
+        41,
+        38,
+        8,
+        35,
+        9,
+        10,
+        7,
+        3,
+        18,
+        3,
+        8
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007807b",
+      "composer": "bach",
+      "notes": 283,
+      "intervals": 282,
+      "blade_grade": 14,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        15,
+        11,
+        17,
+        33,
+        43,
+        35,
+        17,
+        41,
+        21,
+        13,
+        9,
+        5,
+        13,
+        2,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007903b",
+      "composer": "bach",
+      "notes": 1230,
+      "intervals": 1229,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        129,
+        68,
+        93,
+        144,
+        241,
+        81,
+        65,
+        129,
+        41,
+        91,
+        7,
+        16,
+        84,
+        15,
+        25
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007903bs",
+      "composer": "bach",
+      "notes": 215,
+      "intervals": 214,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        13,
+        0
+      ],
+      "histogram": [
+        6,
+        13,
+        12,
+        25,
+        49,
+        31,
+        5,
+        23,
+        12,
+        6,
+        3,
+        3,
+        18,
+        0,
+        8
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-007906b",
+      "composer": "bach",
+      "notes": 231,
+      "intervals": 230,
+      "blade_grade": 8,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        19,
+        16,
+        13,
+        27,
+        28,
+        26,
+        11,
+        26,
+        7,
+        28,
+        2,
+        5,
+        14,
+        3,
+        5
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-008008b",
+      "composer": "bach",
+      "notes": 338,
+      "intervals": 337,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        14,
+        15,
+        32,
+        57,
+        33,
+        29,
+        4,
+        45,
+        25,
+        31,
+        16,
+        6,
+        18,
+        4,
+        8
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-008107b",
+      "composer": "bach",
+      "notes": 283,
+      "intervals": 282,
+      "blade_grade": 6,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        25,
+        0
+      ],
+      "histogram": [
+        14,
+        7,
+        21,
+        33,
+        52,
+        25,
+        9,
+        36,
+        22,
+        22,
+        9,
+        8,
+        18,
+        0,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-008305b",
+      "composer": "bach",
+      "notes": 202,
+      "intervals": 201,
+      "blade_grade": 11,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        10,
+        7,
+        9,
+        29,
+        23,
+        32,
+        11,
+        25,
+        16,
+        9,
+        9,
+        1,
+        11,
+        2,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-008405b",
+      "composer": "bach",
+      "notes": 218,
+      "intervals": 217,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        15,
+        8,
+        16,
+        38,
+        30,
+        27,
+        9,
+        26,
+        9,
+        11,
+        8,
+        2,
+        9,
+        2,
+        7
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-008506b",
+      "composer": "bach",
+      "notes": 292,
+      "intervals": 291,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        11,
+        11,
+        15,
+        33,
+        39,
+        40,
+        15,
+        39,
+        26,
+        26,
+        6,
+        2,
+        20,
+        2,
+        6
+      ]
+    },
+    {
+      "name": "bach-bwv001-_400_chorales-008606b",
+      "composer": "bach",
+      "notes": 270,
+      "intervals": 269,
+      "blade_grade": 7,
+      "blade_terms": 1,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "histogram": [
+        11,
+        12,
+        27,
+        35,
+        33,
+        34,
+        12,
+        28,
+        17,
+        17,
+        10,
+        6,
+        17,
+        4,
+        6
+      ]
+    }
+  ]
+}

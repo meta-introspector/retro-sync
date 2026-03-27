@@ -1,0 +1,996 @@
+[
+  {
+    "name": "01",
+    "positions": 1218,
+    "notes": 1218,
+    "intervals": 466,
+    "grade": 8,
+    "blade_mask": 10979,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 181
+  },
+  {
+    "name": "02",
+    "positions": 1342,
+    "notes": 1342,
+    "intervals": 473,
+    "grade": 5,
+    "blade_mask": 2217,
+    "orbifold": [
+      39,
+      36,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "03",
+    "positions": 991,
+    "notes": 991,
+    "intervals": 397,
+    "grade": 7,
+    "blade_mask": 25713,
+    "orbifold": [
+      0,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "04",
+    "positions": 1285,
+    "notes": 1285,
+    "intervals": 445,
+    "grade": 5,
+    "blade_mask": 3266,
+    "orbifold": [
+      7,
+      28,
+      0
+    ],
+    "cbor_size": 161
+  },
+  {
+    "name": "05",
+    "positions": 1099,
+    "notes": 1099,
+    "intervals": 483,
+    "grade": 9,
+    "blade_mask": 16074,
+    "orbifold": [
+      31,
+      0,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "06",
+    "positions": 1305,
+    "notes": 1305,
+    "intervals": 503,
+    "grade": 6,
+    "blade_mask": 10396,
+    "orbifold": [
+      67,
+      0,
+      0
+    ],
+    "cbor_size": 158
+  },
+  {
+    "name": "07",
+    "positions": 1343,
+    "notes": 1343,
+    "intervals": 444,
+    "grade": 6,
+    "blade_mask": 4764,
+    "orbifold": [
+      60,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "08",
+    "positions": 943,
+    "notes": 943,
+    "intervals": 393,
+    "grade": 9,
+    "blade_mask": 16014,
+    "orbifold": [
+      29,
+      0,
+      0
+    ],
+    "cbor_size": 133
+  },
+  {
+    "name": "09",
+    "positions": 1268,
+    "notes": 1268,
+    "intervals": 466,
+    "grade": 6,
+    "blade_mask": 6531,
+    "orbifold": [
+      15,
+      17,
+      0
+    ],
+    "cbor_size": 149
+  },
+  {
+    "name": "10",
+    "positions": 1484,
+    "notes": 1484,
+    "intervals": 586,
+    "grade": 4,
+    "blade_mask": 2314,
+    "orbifold": [
+      21,
+      3,
+      0
+    ],
+    "cbor_size": 176
+  },
+  {
+    "name": "11",
+    "positions": 1404,
+    "notes": 1404,
+    "intervals": 434,
+    "grade": 8,
+    "blade_mask": 3960,
+    "orbifold": [
+      61,
+      48,
+      0
+    ],
+    "cbor_size": 150
+  },
+  {
+    "name": "12",
+    "positions": 1444,
+    "notes": 1444,
+    "intervals": 435,
+    "grade": 3,
+    "blade_mask": 2178,
+    "orbifold": [
+      36,
+      16,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "13",
+    "positions": 725,
+    "notes": 725,
+    "intervals": 270,
+    "grade": 10,
+    "blade_mask": 13631,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "14",
+    "positions": 1062,
+    "notes": 1062,
+    "intervals": 410,
+    "grade": 6,
+    "blade_mask": 3468,
+    "orbifold": [
+      70,
+      16,
+      0
+    ],
+    "cbor_size": 160
+  },
+  {
+    "name": "15",
+    "positions": 813,
+    "notes": 813,
+    "intervals": 358,
+    "grade": 4,
+    "blade_mask": 1093,
+    "orbifold": [
+      58,
+      33,
+      0
+    ],
+    "cbor_size": 129
+  },
+  {
+    "name": "16",
+    "positions": 1218,
+    "notes": 1218,
+    "intervals": 466,
+    "grade": 8,
+    "blade_mask": 10979,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 181
+  },
+  {
+    "name": "17",
+    "positions": 1342,
+    "notes": 1342,
+    "intervals": 473,
+    "grade": 5,
+    "blade_mask": 2217,
+    "orbifold": [
+      39,
+      36,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "18",
+    "positions": 991,
+    "notes": 991,
+    "intervals": 397,
+    "grade": 7,
+    "blade_mask": 25713,
+    "orbifold": [
+      0,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "19",
+    "positions": 1285,
+    "notes": 1285,
+    "intervals": 445,
+    "grade": 5,
+    "blade_mask": 3266,
+    "orbifold": [
+      7,
+      28,
+      0
+    ],
+    "cbor_size": 161
+  },
+  {
+    "name": "20",
+    "positions": 1099,
+    "notes": 1099,
+    "intervals": 483,
+    "grade": 9,
+    "blade_mask": 16074,
+    "orbifold": [
+      31,
+      0,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "21",
+    "positions": 1305,
+    "notes": 1305,
+    "intervals": 503,
+    "grade": 6,
+    "blade_mask": 10396,
+    "orbifold": [
+      67,
+      0,
+      0
+    ],
+    "cbor_size": 158
+  },
+  {
+    "name": "22",
+    "positions": 1343,
+    "notes": 1343,
+    "intervals": 444,
+    "grade": 6,
+    "blade_mask": 4764,
+    "orbifold": [
+      60,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "23",
+    "positions": 943,
+    "notes": 943,
+    "intervals": 393,
+    "grade": 9,
+    "blade_mask": 16014,
+    "orbifold": [
+      29,
+      0,
+      0
+    ],
+    "cbor_size": 133
+  },
+  {
+    "name": "24",
+    "positions": 1268,
+    "notes": 1268,
+    "intervals": 466,
+    "grade": 6,
+    "blade_mask": 6531,
+    "orbifold": [
+      15,
+      17,
+      0
+    ],
+    "cbor_size": 149
+  },
+  {
+    "name": "25",
+    "positions": 1484,
+    "notes": 1484,
+    "intervals": 586,
+    "grade": 4,
+    "blade_mask": 2314,
+    "orbifold": [
+      21,
+      3,
+      0
+    ],
+    "cbor_size": 176
+  },
+  {
+    "name": "26",
+    "positions": 1404,
+    "notes": 1404,
+    "intervals": 434,
+    "grade": 8,
+    "blade_mask": 3960,
+    "orbifold": [
+      61,
+      48,
+      0
+    ],
+    "cbor_size": 150
+  },
+  {
+    "name": "27",
+    "positions": 1444,
+    "notes": 1444,
+    "intervals": 435,
+    "grade": 3,
+    "blade_mask": 2178,
+    "orbifold": [
+      36,
+      16,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "28",
+    "positions": 725,
+    "notes": 725,
+    "intervals": 270,
+    "grade": 10,
+    "blade_mask": 13631,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "29",
+    "positions": 1062,
+    "notes": 1062,
+    "intervals": 410,
+    "grade": 6,
+    "blade_mask": 3468,
+    "orbifold": [
+      70,
+      16,
+      0
+    ],
+    "cbor_size": 160
+  },
+  {
+    "name": "30",
+    "positions": 813,
+    "notes": 813,
+    "intervals": 358,
+    "grade": 4,
+    "blade_mask": 1093,
+    "orbifold": [
+      58,
+      33,
+      0
+    ],
+    "cbor_size": 129
+  },
+  {
+    "name": "31",
+    "positions": 1218,
+    "notes": 1218,
+    "intervals": 466,
+    "grade": 8,
+    "blade_mask": 10979,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 181
+  },
+  {
+    "name": "32",
+    "positions": 1342,
+    "notes": 1342,
+    "intervals": 473,
+    "grade": 5,
+    "blade_mask": 2217,
+    "orbifold": [
+      39,
+      36,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "33",
+    "positions": 991,
+    "notes": 991,
+    "intervals": 397,
+    "grade": 7,
+    "blade_mask": 25713,
+    "orbifold": [
+      0,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "34",
+    "positions": 1285,
+    "notes": 1285,
+    "intervals": 445,
+    "grade": 5,
+    "blade_mask": 3266,
+    "orbifold": [
+      7,
+      28,
+      0
+    ],
+    "cbor_size": 161
+  },
+  {
+    "name": "35",
+    "positions": 1099,
+    "notes": 1099,
+    "intervals": 483,
+    "grade": 9,
+    "blade_mask": 16074,
+    "orbifold": [
+      31,
+      0,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "36",
+    "positions": 1305,
+    "notes": 1305,
+    "intervals": 503,
+    "grade": 6,
+    "blade_mask": 10396,
+    "orbifold": [
+      67,
+      0,
+      0
+    ],
+    "cbor_size": 158
+  },
+  {
+    "name": "37",
+    "positions": 1343,
+    "notes": 1343,
+    "intervals": 444,
+    "grade": 6,
+    "blade_mask": 4764,
+    "orbifold": [
+      60,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "38",
+    "positions": 943,
+    "notes": 943,
+    "intervals": 393,
+    "grade": 9,
+    "blade_mask": 16014,
+    "orbifold": [
+      29,
+      0,
+      0
+    ],
+    "cbor_size": 133
+  },
+  {
+    "name": "39",
+    "positions": 1268,
+    "notes": 1268,
+    "intervals": 466,
+    "grade": 6,
+    "blade_mask": 6531,
+    "orbifold": [
+      15,
+      17,
+      0
+    ],
+    "cbor_size": 149
+  },
+  {
+    "name": "40",
+    "positions": 1484,
+    "notes": 1484,
+    "intervals": 586,
+    "grade": 4,
+    "blade_mask": 2314,
+    "orbifold": [
+      21,
+      3,
+      0
+    ],
+    "cbor_size": 176
+  },
+  {
+    "name": "41",
+    "positions": 1404,
+    "notes": 1404,
+    "intervals": 434,
+    "grade": 8,
+    "blade_mask": 3960,
+    "orbifold": [
+      61,
+      48,
+      0
+    ],
+    "cbor_size": 150
+  },
+  {
+    "name": "42",
+    "positions": 1444,
+    "notes": 1444,
+    "intervals": 435,
+    "grade": 3,
+    "blade_mask": 2178,
+    "orbifold": [
+      36,
+      16,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "43",
+    "positions": 725,
+    "notes": 725,
+    "intervals": 270,
+    "grade": 10,
+    "blade_mask": 13631,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "44",
+    "positions": 1062,
+    "notes": 1062,
+    "intervals": 410,
+    "grade": 6,
+    "blade_mask": 3468,
+    "orbifold": [
+      70,
+      16,
+      0
+    ],
+    "cbor_size": 160
+  },
+  {
+    "name": "45",
+    "positions": 813,
+    "notes": 813,
+    "intervals": 358,
+    "grade": 4,
+    "blade_mask": 1093,
+    "orbifold": [
+      58,
+      33,
+      0
+    ],
+    "cbor_size": 129
+  },
+  {
+    "name": "46",
+    "positions": 1218,
+    "notes": 1218,
+    "intervals": 466,
+    "grade": 8,
+    "blade_mask": 10979,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 181
+  },
+  {
+    "name": "47",
+    "positions": 1342,
+    "notes": 1342,
+    "intervals": 473,
+    "grade": 5,
+    "blade_mask": 2217,
+    "orbifold": [
+      39,
+      36,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "48",
+    "positions": 991,
+    "notes": 991,
+    "intervals": 397,
+    "grade": 7,
+    "blade_mask": 25713,
+    "orbifold": [
+      0,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "49",
+    "positions": 1285,
+    "notes": 1285,
+    "intervals": 445,
+    "grade": 5,
+    "blade_mask": 3266,
+    "orbifold": [
+      7,
+      28,
+      0
+    ],
+    "cbor_size": 161
+  },
+  {
+    "name": "50",
+    "positions": 1099,
+    "notes": 1099,
+    "intervals": 483,
+    "grade": 9,
+    "blade_mask": 16074,
+    "orbifold": [
+      31,
+      0,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "51",
+    "positions": 1305,
+    "notes": 1305,
+    "intervals": 503,
+    "grade": 6,
+    "blade_mask": 10396,
+    "orbifold": [
+      67,
+      0,
+      0
+    ],
+    "cbor_size": 158
+  },
+  {
+    "name": "52",
+    "positions": 1343,
+    "notes": 1343,
+    "intervals": 444,
+    "grade": 6,
+    "blade_mask": 4764,
+    "orbifold": [
+      60,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "53",
+    "positions": 943,
+    "notes": 943,
+    "intervals": 393,
+    "grade": 9,
+    "blade_mask": 16014,
+    "orbifold": [
+      29,
+      0,
+      0
+    ],
+    "cbor_size": 133
+  },
+  {
+    "name": "54",
+    "positions": 1268,
+    "notes": 1268,
+    "intervals": 466,
+    "grade": 6,
+    "blade_mask": 6531,
+    "orbifold": [
+      15,
+      17,
+      0
+    ],
+    "cbor_size": 149
+  },
+  {
+    "name": "55",
+    "positions": 1484,
+    "notes": 1484,
+    "intervals": 586,
+    "grade": 4,
+    "blade_mask": 2314,
+    "orbifold": [
+      21,
+      3,
+      0
+    ],
+    "cbor_size": 176
+  },
+  {
+    "name": "56",
+    "positions": 1404,
+    "notes": 1404,
+    "intervals": 434,
+    "grade": 8,
+    "blade_mask": 3960,
+    "orbifold": [
+      61,
+      48,
+      0
+    ],
+    "cbor_size": 150
+  },
+  {
+    "name": "57",
+    "positions": 1444,
+    "notes": 1444,
+    "intervals": 435,
+    "grade": 3,
+    "blade_mask": 2178,
+    "orbifold": [
+      36,
+      16,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "58",
+    "positions": 725,
+    "notes": 725,
+    "intervals": 270,
+    "grade": 10,
+    "blade_mask": 13631,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "59",
+    "positions": 1062,
+    "notes": 1062,
+    "intervals": 410,
+    "grade": 6,
+    "blade_mask": 3468,
+    "orbifold": [
+      70,
+      16,
+      0
+    ],
+    "cbor_size": 160
+  },
+  {
+    "name": "60",
+    "positions": 813,
+    "notes": 813,
+    "intervals": 358,
+    "grade": 4,
+    "blade_mask": 1093,
+    "orbifold": [
+      58,
+      33,
+      0
+    ],
+    "cbor_size": 129
+  },
+  {
+    "name": "61",
+    "positions": 1218,
+    "notes": 1218,
+    "intervals": 466,
+    "grade": 8,
+    "blade_mask": 10979,
+    "orbifold": [
+      12,
+      0,
+      0
+    ],
+    "cbor_size": 181
+  },
+  {
+    "name": "62",
+    "positions": 1342,
+    "notes": 1342,
+    "intervals": 473,
+    "grade": 5,
+    "blade_mask": 2217,
+    "orbifold": [
+      39,
+      36,
+      0
+    ],
+    "cbor_size": 142
+  },
+  {
+    "name": "63",
+    "positions": 991,
+    "notes": 991,
+    "intervals": 397,
+    "grade": 7,
+    "blade_mask": 25713,
+    "orbifold": [
+      0,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "64",
+    "positions": 1285,
+    "notes": 1285,
+    "intervals": 445,
+    "grade": 5,
+    "blade_mask": 3266,
+    "orbifold": [
+      7,
+      28,
+      0
+    ],
+    "cbor_size": 161
+  },
+  {
+    "name": "65",
+    "positions": 1099,
+    "notes": 1099,
+    "intervals": 483,
+    "grade": 9,
+    "blade_mask": 16074,
+    "orbifold": [
+      31,
+      0,
+      0
+    ],
+    "cbor_size": 155
+  },
+  {
+    "name": "66",
+    "positions": 1305,
+    "notes": 1305,
+    "intervals": 503,
+    "grade": 6,
+    "blade_mask": 10396,
+    "orbifold": [
+      67,
+      0,
+      0
+    ],
+    "cbor_size": 158
+  },
+  {
+    "name": "67",
+    "positions": 1343,
+    "notes": 1343,
+    "intervals": 444,
+    "grade": 6,
+    "blade_mask": 4764,
+    "orbifold": [
+      60,
+      0,
+      0
+    ],
+    "cbor_size": 170
+  },
+  {
+    "name": "68",
+    "positions": 943,
+    "notes": 943,
+    "intervals": 393,
+    "grade": 9,
+    "blade_mask": 16014,
+    "orbifold": [
+      29,
+      0,
+      0
+    ],
+    "cbor_size": 133
+  },
+  {
+    "name": "69",
+    "positions": 1268,
+    "notes": 1268,
+    "intervals": 466,
+    "grade": 6,
+    "blade_mask": 6531,
+    "orbifold": [
+      15,
+      17,
+      0
+    ],
+    "cbor_size": 149
+  },
+  {
+    "name": "70",
+    "positions": 1484,
+    "notes": 1484,
+    "intervals": 586,
+    "grade": 4,
+    "blade_mask": 2314,
+    "orbifold": [
+      21,
+      3,
+      0
+    ],
+    "cbor_size": 176
+  },
+  {
+    "name": "71",
+    "positions": 1404,
+    "notes": 1404,
+    "intervals": 434,
+    "grade": 8,
+    "blade_mask": 3960,
+    "orbifold": [
+      61,
+      48,
+      0
+    ],
+    "cbor_size": 150
+  }
+]

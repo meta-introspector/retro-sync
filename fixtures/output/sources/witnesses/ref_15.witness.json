@@ -1,0 +1,12 @@
+{
+  "id": "ref_15",
+  "timestamp": "20260323T172703Z",
+  "url": "http://tonalsoft.com/monzo/babylonian/hurrian/monzh6.htm",
+  "file": "ref_15.html",
+  "type": "reference_page",
+  "sha256": "0fe2dca71d30279fb690e6146d42cb6030f7e0bc625c4ffd902213443629b3ee",
+  "bytes": 14576,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

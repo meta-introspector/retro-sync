@@ -1,0 +1,12 @@
+{
+  "id": "ref_22",
+  "timestamp": "20260323T172703Z",
+  "url": "https://www.reddit.com/r/Archaeology/comments/13vm2es/listen_to_the_worlds_oldest_sheet_music_a/",
+  "file": "ref_22.html",
+  "type": "reference_page",
+  "sha256": "13bcba13bd1bad5aace04e8a76880b710337a8d595224967e874401832cc203c",
+  "bytes": 189908,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

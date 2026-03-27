@@ -1,0 +1,12 @@
+{
+  "id": "yt_06",
+  "timestamp": "20260323T172702Z",
+  "url": "https://www.youtube.com/watch?v=7ZatnTPhYWc",
+  "file": "yt_06.wav",
+  "type": "youtube_audio",
+  "sha256": "069dd1242d68a8ff1f7b2774c791e8c58b11d156a9a490bfe54a6923519b0901",
+  "bytes": 24718742,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

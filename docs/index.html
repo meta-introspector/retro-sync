@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hurrian Hymn h.6 — 71-Shard NFT</title>
+<title>retro-sync — 71-Shard NFT</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:monospace;background:#0a0a0a;color:#0f0;padding:1em;max-width:960px;margin:0 auto}
@@ -17,6 +17,7 @@ button:hover{background:#0ff;color:#000}
 .out{background:#111;border:1px solid #333;padding:.4em;margin:.3em 0;word-break:break-all;min-height:1.5em;font-size:.8em;max-height:200px;overflow:auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:3px;margin:.5em 0}
 .tile{border:1px solid #333;text-align:center;font-size:9px;padding:2px;cursor:pointer;position:relative;min-height:70px}
+.tile img{width:100%;image-rendering:pixelated;image-rendering:crisp-edges}
 .tile.found{border-color:#0f0;background:#0f01}
 .tile.prime{border-color:#ff0}
 .tile.prime.found{border-color:#0f0}
@@ -30,7 +31,7 @@ audio{width:100%;margin:.3em 0}
 </style>
 </head>
 <body>
-<h1>𒀸𒌑𒄴𒊑 Hurrian Hymn h.6 — 71-Shard NFT</h1>
+<h1>retro-sync — 71-Shard NFT</h1>
 <p class="status">6-layer stego · WASM decoder · Groth16/BN254 · Cl(15,0,0)
   <span id="progress" style="color:#0ff">0/71</span>
   <span id="wasm-status" style="color:#f00">⏳ loading WASM…</span>
@@ -45,6 +46,7 @@ https://example.com/retro-sync
   <button onclick="loadFromFile()">📂 Load Image</button>
   <input type="file" id="file-input" accept="image/*" multiple style="display:none">
   <button onclick="loadFromPaste()">📋 Paste Image</button>
+  <button onclick="loadPreset('local')">📍 Local</button>
   <button onclick="loadPreset('space')">HF Space</button>
   <button onclick="loadPreset('dataset')">HF Dataset</button>
   <button onclick="loadPreset('archive')">Archive.org</button>
@@ -106,6 +108,7 @@ function shareLog() {
 window.shareLog = shareLog;
 
 const PRESETS = {
+  local:   location.origin + location.pathname.replace(/\/[^/]*$/, ''),
   space:   'https://huggingface.co/spaces/introspector/retro-sync/resolve/main',
   dataset: 'https://huggingface.co/datasets/introspector/retro-sync/resolve/main',
   archive: 'https://archive.org/download/retro-sync',
@@ -123,17 +126,25 @@ function initFromParams() {
 }
 
 async function loadFromURLs() {
-  const text = $('urls').value.trim();
-  if (!text) return;
+  let text = $('urls').value.trim();
+  if (!text) {
+    // Auto-detect: try local path first
+    text = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '');
+    $('urls').value = text;
+    log('Auto-detecting local tiles...');
+  }
   const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
 
   if (lines.length === 1 && !lines[0].match(/\.(png|jpg|json)$/i)) {
     const base = lines[0].replace(/\/+$/, '');
-    log(`Base URL: ${base} — fetching 71 tiles + shards...`);
+    log(`Base URL: ${base} — fetching 71 tiles...`);
     let loaded = 0;
+    let failed = 0;
     for (let i = 1; i <= 71; i++) {
       const pad = String(i).padStart(2, '0');
-      loadTileFromURL(`${base}/tiles/${pad}.png`, i);
+      const tileUrl = `${base}/tiles/${pad}.png`;
+      if (i === 1) log(`First tile: ${tileUrl}`);
+      loadTileFromURL(tileUrl, i);
       fetchShard(`${base}/nft71/${pad}.json`, i).then(() => {
         loaded++; $('progress').textContent = `${loaded}/71`;
       }).catch(() => {});
@@ -310,11 +321,11 @@ function reconstruct() {
   log(`🎵 ${parsed.segments.length} segments reconstructed`);
 
   const MIME = {wav:'audio/wav', midi:'audio/midi', pdf:'application/pdf',
-    source:'text/plain', lilypond:'text/x-lilypond', cuneiform:'text/plain', witnesses:'application/json'};
+    source:'text/plain', lilypond:'text/x-lilypond', data:'text/plain', witnesses:'application/json'};
   const EXT = {wav:'.wav', midi:'.midi', pdf:'.pdf',
-    source:'.txt', lilypond:'.ly', cuneiform:'.txt', witnesses:'.json'};
+    source:'.txt', lilypond:'.ly', data:'.txt', witnesses:'.json'};
 
-  let html = `<p style="color:#0ff">𒀸𒌑𒄴𒊑 Hurrian Hymn h.6 — ${parsed.segments.length} files from ${n} tiles</p>`;
+  let html = `<p style="color:#0ff">retro-sync — ${parsed.segments.length} files from ${n} tiles</p>`;
 
   // Parse witnesses for verification
   let witnesses = [];
@@ -356,16 +367,36 @@ function reconstruct() {
     const ext = EXT[s.name] || '.bin';
     const sz = s.size > 1048576 ? (s.size/1048576).toFixed(1)+' MB' : (s.size/1024).toFixed(1)+' KB';
     html += `<div style="margin:4px 0">`;
-    html += `<a href="${url}" download="h6_west${ext}" style="color:#0f0">⬇ ${s.name}${ext}</a> `;
+    html += `<a href="${url}" download="segment${ext}" style="color:#0f0">⬇ ${s.name}${ext}</a> `;
     html += `<span style="color:#888">${sz}</span> `;
     html += `<span style="color:#ff0;font-size:.7em">sha256:${s.sha256.slice(0,16)}…</span>`;
     if (s.name === 'wav') {
       html += `<br><audio controls src="${url}" style="width:100%;margin:2px 0"></audio>`;
     } else if (s.name === 'pdf') {
       html += ` <a href="${url}" target="_blank" style="color:#58a6ff">📄 view</a>`;
+    } else if (s.name === 'midi_bundle') {
+      // Split bundle into individual MIDIs at MThd boundaries
+      const arr = new Uint8Array(data);
+      const midis = [];
+      for (let j = 0; j < arr.length - 4; j++) {
+        if (arr[j]===0x4D && arr[j+1]===0x54 && arr[j+2]===0x68 && arr[j+3]===0x64) midis.push(j);
+      }
+      html += `<div style="margin:4px 0;color:#0ff">${midis.length} MIDIs in bundle</div>`;
+      for (let m = 0; m < midis.length; m++) {
+        const start = midis[m];
+        const end = m+1 < midis.length ? midis[m+1] : arr.length;
+        const midiData = arr.slice(start, end);
+        const midiBlob = new Blob([midiData], {type:'audio/midi'});
+        const midiUrl = URL.createObjectURL(midiBlob);
+        html += `<div style="margin:2px 0">`;
+        html += `<a href="${midiUrl}" download="invention_${m+1}.mid" style="color:#0f0">⬇ #${m+1}</a> `;
+        html += `<span style="color:#888">${(end-start/1024).toFixed(1)}KB</span> `;
+        html += `<button onclick="playMidi(this,'${midiUrl}')" style="font-size:10px">▶ Play</button>`;
+        html += `</div>`;
+      }
     } else if (s.name === 'midi') {
       html += ` <span style="color:#888">🎹 MIDI</span>`;
-    } else if (['source','lilypond','cuneiform','witnesses'].includes(s.name)) {
+    } else if (['source','lilypond','data','witnesses'].includes(s.name)) {
       const text = new TextDecoder().decode(data);
       html += `<pre style="color:#0f0;font-size:.7em;max-height:80px;overflow:auto;margin:2px 0;padding:3px;background:#111;border:1px solid #222">${text.replace(/</g,'&lt;').slice(0,2000)}</pre>`;
     }
@@ -375,8 +406,50 @@ function reconstruct() {
 }
 window.reconstruct = reconstruct;
 
+// MIDI player via Tone.js + @tonejs/midi
+let toneLoaded = false;
+async function loadTone() {
+  if (toneLoaded) return;
+  const s1 = document.createElement('script');
+  s1.src = 'https://cdn.jsdelivr.net/npm/tone@14/build/Tone.min.js';
+  document.head.appendChild(s1);
+  const s2 = document.createElement('script');
+  s2.src = 'https://cdn.jsdelivr.net/npm/@tonejs/midi@2/build/Midi.js';
+  document.head.appendChild(s2);
+  await new Promise(r => { s2.onload = r; setTimeout(r, 3000); });
+  toneLoaded = true;
+}
+
+let currentSynth = null;
+async function playMidi(btn, url) {
+  await loadTone();
+  if (currentSynth) { currentSynth.dispose(); currentSynth = null; btn.textContent = '▶ Play'; }
+  btn.textContent = '⏳';
+  try {
+    const resp = await fetch(url);
+    const buf = await resp.arrayBuffer();
+    const midi = new Midi(buf);
+    await Tone.start();
+    const synth = new Tone.PolySynth(Tone.Synth, {maxPolyphony: 16}).toDestination();
+    currentSynth = synth;
+    const now = Tone.now();
+    for (const track of midi.tracks) {
+      for (const note of track.notes) {
+        synth.triggerAttackRelease(note.name, note.duration, now + note.time, note.velocity);
+      }
+    }
+    btn.textContent = '⏹ Stop';
+    btn.onclick = () => { synth.dispose(); currentSynth = null; btn.textContent = '▶ Play'; btn.onclick = () => playMidi(btn, url); };
+  } catch(e) { log('⚠ MIDI play error: ' + e.message); btn.textContent = '▶ Play'; }
+}
+window.playMidi = playMidi;
+
 renderGrid();
-if (!initFromParams()) { loadPreset('space'); }
+log('🚀 Page loaded, checking params...');
+if (!initFromParams()) {
+  log('📍 No URL params, loading local preset...');
+  loadPreset('local');
+}
 </script>
 </body>
 </html>

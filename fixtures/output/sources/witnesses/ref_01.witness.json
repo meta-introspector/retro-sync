@@ -1,0 +1,12 @@
+{
+  "id": "ref_01",
+  "timestamp": "20260323T172702Z",
+  "url": "https://en.wikipedia.org/wiki/Hurrian_songs",
+  "file": "ref_01.html",
+  "type": "reference_page",
+  "sha256": "359efb978cc5bbd38610fec7709fff8560c0796d9fc18b0a15d9a15ea01c6a92",
+  "bytes": 138604,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

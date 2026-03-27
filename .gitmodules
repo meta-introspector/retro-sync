@@ -13,3 +13,21 @@
 [submodule "datasets/public"]
 	path = datasets/public
 	url = git@hf.co:datasets/introspector/retro-sync
+[submodule "datasets/bach-370-chorales"]
+	path = datasets/bach-370-chorales
+	url = https://github.com/craigsapp/bach-370-chorales.git
+[submodule "datasets/bach-violin"]
+	path = datasets/bach-violin
+	url = https://github.com/salu133445/bach-violin-dataset.git
+[submodule "datasets/bachgpt"]
+	path = datasets/bachgpt
+	url = https://github.com/halfrost/BachGPT.git
+[submodule "datasets/bachsformer"]
+	path = datasets/bachsformer
+	url = https://github.com/pier-maker92/bachsformer.git
+[submodule "datasets/music-gen"]
+	path = datasets/music-gen
+	url = https://github.com/BSteiner1/Music-Gen.git
+[submodule "datasets/hf-music"]
+	path = datasets/hf-music
+	url = /mnt/data1/time-2026/03-march/20/retro-sync-datasets

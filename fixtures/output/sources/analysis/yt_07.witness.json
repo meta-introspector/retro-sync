@@ -1,0 +1,12 @@
+{
+  "id": "yt_07_analysis",
+  "timestamp": "20260323T172711Z",
+  "source": "yt_07.wav",
+  "source_sha256": "d41b169334f5940cd059299725e7f604c4b9227fcd8ed962d8ced6d44cb977b8",
+  "duration_s": 342.041562,
+  "onsets": 0,
+  "pitch_frames": 0,
+  "notes": 1809,
+  "tool": "aubio",
+  "pipeline": "retro-sync/extract-notes"
+}

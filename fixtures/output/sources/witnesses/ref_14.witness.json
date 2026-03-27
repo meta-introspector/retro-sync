@@ -1,0 +1,12 @@
+{
+  "id": "ref_14",
+  "timestamp": "20260323T172703Z",
+  "url": "https://www.researchgate.net/publication/272494271_The_Hurrian_Pieces_ca_1350_BCE_Part_One-Notation_and_Analysis",
+  "file": "ref_14.html",
+  "type": "reference_page",
+  "sha256": "66a1aec8c3669c1c2e13625849996ab09a81a4df712e8ce6c88d025d110cdad9",
+  "bytes": 16,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

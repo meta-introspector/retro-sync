@@ -1,0 +1,971 @@
+[
+  {
+    "name": "nīš tuḫrim",
+    "sign": "𒀸𒌑𒄴𒊑",
+    "glyphs": [
+      {
+        "char": "𒀸",
+        "codepoint": 73784,
+        "hex": "U+12038",
+        "name": "CUNEIFORM SIGN ASH",
+        "block_offset": 56,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 1,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 2
+      },
+      {
+        "char": "𒌑",
+        "codepoint": 74513,
+        "hex": "U+12311",
+        "name": "CUNEIFORM SIGN U2",
+        "block_offset": 785,
+        "wedge_estimate": 2,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 2
+      },
+      {
+        "char": "𒄴",
+        "codepoint": 74036,
+        "hex": "U+12134",
+        "name": "CUNEIFORM SIGN HI TIMES NUN",
+        "block_offset": 308,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 1
+      },
+      {
+        "char": "𒊑",
+        "codepoint": 74385,
+        "hex": "U+12291",
+        "name": "CUNEIFORM SIGN RI",
+        "block_offset": 657,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 12,
+    "wedges": 11,
+    "orbifold": [
+      12,
+      12,
+      12
+    ],
+    "factors": {
+      "2": 2,
+      "3": 1
+    }
+  },
+  {
+    "name": "išartum",
+    "sign": "𒄿𒊭𒅈𒌈",
+    "glyphs": [
+      {
+        "char": "𒄿",
+        "codepoint": 74047,
+        "hex": "U+1213F",
+        "name": "CUNEIFORM SIGN I",
+        "block_offset": 319,
+        "wedge_estimate": 5,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 5
+      },
+      {
+        "char": "𒊭",
+        "codepoint": 74413,
+        "hex": "U+122AD",
+        "name": "CUNEIFORM SIGN SHA",
+        "block_offset": 685,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒅈",
+        "codepoint": 74056,
+        "hex": "U+12148",
+        "name": "CUNEIFORM SIGN IGI RI",
+        "block_offset": 328,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒌈",
+        "codepoint": 74504,
+        "hex": "U+12308",
+        "name": "CUNEIFORM SIGN TUM",
+        "block_offset": 776,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 26,
+    "wedges": 26,
+    "orbifold": [
+      26,
+      26,
+      26
+    ],
+    "factors": {
+      "2": 1,
+      "13": 1
+    }
+  },
+  {
+    "name": "embūbum",
+    "sign": "𒂊𒁍𒁍",
+    "glyphs": [
+      {
+        "char": "𒂊",
+        "codepoint": 73866,
+        "hex": "U+1208A",
+        "name": "CUNEIFORM SIGN E",
+        "block_offset": 138,
+        "wedge_estimate": 6,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 6
+      },
+      {
+        "char": "𒁍",
+        "codepoint": 73805,
+        "hex": "U+1204D",
+        "name": "CUNEIFORM SIGN BU",
+        "block_offset": 77,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 1
+      },
+      {
+        "char": "𒁍",
+        "codepoint": 73805,
+        "hex": "U+1204D",
+        "name": "CUNEIFORM SIGN BU",
+        "block_offset": 77,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 1
+      }
+    ],
+    "total_strokes": 8,
+    "wedges": 8,
+    "orbifold": [
+      8,
+      8,
+      8
+    ],
+    "factors": {
+      "2": 3
+    }
+  },
+  {
+    "name": "nīd qablim",
+    "sign": "𒉌𒀉𒃻",
+    "glyphs": [
+      {
+        "char": "𒉌",
+        "codepoint": 74316,
+        "hex": "U+1224C",
+        "name": "CUNEIFORM SIGN NI",
+        "block_offset": 588,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 1
+      },
+      {
+        "char": "𒀉",
+        "codepoint": 73737,
+        "hex": "U+12009",
+        "name": "CUNEIFORM SIGN A2",
+        "block_offset": 9,
+        "wedge_estimate": 3,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 3
+      },
+      {
+        "char": "𒃻",
+        "codepoint": 73979,
+        "hex": "U+120FB",
+        "name": "CUNEIFORM SIGN GAR",
+        "block_offset": 251,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 11,
+    "wedges": 11,
+    "orbifold": [
+      11,
+      11,
+      11
+    ],
+    "factors": {
+      "11": 1
+    }
+  },
+  {
+    "name": "qablītum",
+    "sign": "𒃻𒇷𒌈",
+    "glyphs": [
+      {
+        "char": "𒃻",
+        "codepoint": 73979,
+        "hex": "U+120FB",
+        "name": "CUNEIFORM SIGN GAR",
+        "block_offset": 251,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒇷",
+        "codepoint": 74231,
+        "hex": "U+121F7",
+        "name": "CUNEIFORM SIGN LI",
+        "block_offset": 503,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒌈",
+        "codepoint": 74504,
+        "hex": "U+12308",
+        "name": "CUNEIFORM SIGN TUM",
+        "block_offset": 776,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 21,
+    "wedges": 21,
+    "orbifold": [
+      21,
+      21,
+      21
+    ],
+    "factors": {
+      "3": 1,
+      "7": 1
+    }
+  },
+  {
+    "name": "kitmum",
+    "sign": "𒆠𒁴𒈬",
+    "glyphs": [
+      {
+        "char": "𒆠",
+        "codepoint": 74144,
+        "hex": "U+121A0",
+        "name": "CUNEIFORM SIGN KI",
+        "block_offset": 416,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      },
+      {
+        "char": "𒁴",
+        "codepoint": 73844,
+        "hex": "U+12074",
+        "name": "CUNEIFORM SIGN DIM",
+        "block_offset": 116,
+        "wedge_estimate": 5,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 5
+      },
+      {
+        "char": "𒈬",
+        "codepoint": 74284,
+        "hex": "U+1222C",
+        "name": "CUNEIFORM SIGN MU",
+        "block_offset": 556,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      }
+    ],
+    "total_strokes": 13,
+    "wedges": 13,
+    "orbifold": [
+      13,
+      13,
+      13
+    ],
+    "factors": {
+      "13": 1
+    }
+  },
+  {
+    "name": "pītum",
+    "sign": "𒁉𒌈",
+    "glyphs": [
+      {
+        "char": "𒁉",
+        "codepoint": 73801,
+        "hex": "U+12049",
+        "name": "CUNEIFORM SIGN BI",
+        "block_offset": 73,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      },
+      {
+        "char": "𒌈",
+        "codepoint": 74504,
+        "hex": "U+12308",
+        "name": "CUNEIFORM SIGN TUM",
+        "block_offset": 776,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 11,
+    "wedges": 11,
+    "orbifold": [
+      11,
+      11,
+      11
+    ],
+    "factors": {
+      "11": 1
+    }
+  },
+  {
+    "name": "šērum",
+    "sign": "𒊺𒊒",
+    "glyphs": [
+      {
+        "char": "𒊺",
+        "codepoint": 74426,
+        "hex": "U+122BA",
+        "name": "CUNEIFORM SIGN SHE",
+        "block_offset": 698,
+        "wedge_estimate": 6,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 6
+      },
+      {
+        "char": "𒊒",
+        "codepoint": 74386,
+        "hex": "U+12292",
+        "name": "CUNEIFORM SIGN RU",
+        "block_offset": 658,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 1
+      }
+    ],
+    "total_strokes": 7,
+    "wedges": 7,
+    "orbifold": [
+      7,
+      7,
+      7
+    ],
+    "factors": {
+      "7": 1
+    }
+  },
+  {
+    "name": "šalšatum",
+    "sign": "𒊭𒅖𒊭𒌈",
+    "glyphs": [
+      {
+        "char": "𒊭",
+        "codepoint": 74413,
+        "hex": "U+122AD",
+        "name": "CUNEIFORM SIGN SHA",
+        "block_offset": 685,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒅖",
+        "codepoint": 74070,
+        "hex": "U+12156",
+        "name": "CUNEIFORM SIGN ISH",
+        "block_offset": 342,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒊭",
+        "codepoint": 74413,
+        "hex": "U+122AD",
+        "name": "CUNEIFORM SIGN SHA",
+        "block_offset": 685,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒌈",
+        "codepoint": 74504,
+        "hex": "U+12308",
+        "name": "CUNEIFORM SIGN TUM",
+        "block_offset": 776,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 28,
+    "wedges": 28,
+    "orbifold": [
+      28,
+      28,
+      28
+    ],
+    "factors": {
+      "2": 2,
+      "7": 1
+    }
+  },
+  {
+    "name": "rebûttum",
+    "sign": "𒊑𒁍𒌈",
+    "glyphs": [
+      {
+        "char": "𒊑",
+        "codepoint": 74385,
+        "hex": "U+12291",
+        "name": "CUNEIFORM SIGN RI",
+        "block_offset": 657,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒁍",
+        "codepoint": 73805,
+        "hex": "U+1204D",
+        "name": "CUNEIFORM SIGN BU",
+        "block_offset": 77,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 1
+      },
+      {
+        "char": "𒌈",
+        "codepoint": 74504,
+        "hex": "U+12308",
+        "name": "CUNEIFORM SIGN TUM",
+        "block_offset": 776,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 15,
+    "wedges": 15,
+    "orbifold": [
+      15,
+      15,
+      15
+    ],
+    "factors": {
+      "3": 1,
+      "5": 1
+    }
+  },
+  {
+    "name": "isqum",
+    "sign": "𒅖𒄣",
+    "glyphs": [
+      {
+        "char": "𒅖",
+        "codepoint": 74070,
+        "hex": "U+12156",
+        "name": "CUNEIFORM SIGN ISH",
+        "block_offset": 342,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒄣",
+        "codepoint": 74019,
+        "hex": "U+12123",
+        "name": "CUNEIFORM SIGN GUM",
+        "block_offset": 291,
+        "wedge_estimate": 5,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 5
+      }
+    ],
+    "total_strokes": 12,
+    "wedges": 12,
+    "orbifold": [
+      12,
+      12,
+      12
+    ],
+    "factors": {
+      "2": 2,
+      "3": 1
+    }
+  },
+  {
+    "name": "titur qablītim",
+    "sign": "𒋾𒌅𒅈𒃻",
+    "glyphs": [
+      {
+        "char": "𒋾",
+        "codepoint": 74494,
+        "hex": "U+122FE",
+        "name": "CUNEIFORM SIGN TI",
+        "block_offset": 766,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      },
+      {
+        "char": "𒌅",
+        "codepoint": 74501,
+        "hex": "U+12305",
+        "name": "CUNEIFORM SIGN TU",
+        "block_offset": 773,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      },
+      {
+        "char": "𒅈",
+        "codepoint": 74056,
+        "hex": "U+12148",
+        "name": "CUNEIFORM SIGN IGI RI",
+        "block_offset": 328,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒃻",
+        "codepoint": 73979,
+        "hex": "U+120FB",
+        "name": "CUNEIFORM SIGN GAR",
+        "block_offset": 251,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      }
+    ],
+    "total_strokes": 22,
+    "wedges": 22,
+    "orbifold": [
+      22,
+      22,
+      22
+    ],
+    "factors": {
+      "2": 1,
+      "11": 1
+    }
+  },
+  {
+    "name": "titur išartim",
+    "sign": "𒋾𒌅𒅈𒄿",
+    "glyphs": [
+      {
+        "char": "𒋾",
+        "codepoint": 74494,
+        "hex": "U+122FE",
+        "name": "CUNEIFORM SIGN TI",
+        "block_offset": 766,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      },
+      {
+        "char": "𒌅",
+        "codepoint": 74501,
+        "hex": "U+12305",
+        "name": "CUNEIFORM SIGN TU",
+        "block_offset": 773,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      },
+      {
+        "char": "𒅈",
+        "codepoint": 74056,
+        "hex": "U+12148",
+        "name": "CUNEIFORM SIGN IGI RI",
+        "block_offset": 328,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒄿",
+        "codepoint": 74047,
+        "hex": "U+1213F",
+        "name": "CUNEIFORM SIGN I",
+        "block_offset": 319,
+        "wedge_estimate": 5,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 5
+      }
+    ],
+    "total_strokes": 20,
+    "wedges": 20,
+    "orbifold": [
+      20,
+      20,
+      20
+    ],
+    "factors": {
+      "2": 2,
+      "5": 1
+    }
+  },
+  {
+    "name": "ṣerdum",
+    "sign": "𒊺𒅈𒁺",
+    "glyphs": [
+      {
+        "char": "𒊺",
+        "codepoint": 74426,
+        "hex": "U+122BA",
+        "name": "CUNEIFORM SIGN SHE",
+        "block_offset": 698,
+        "wedge_estimate": 6,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 6
+      },
+      {
+        "char": "𒅈",
+        "codepoint": 74056,
+        "hex": "U+12148",
+        "name": "CUNEIFORM SIGN IGI RI",
+        "block_offset": 328,
+        "wedge_estimate": 7,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 7
+      },
+      {
+        "char": "𒁺",
+        "codepoint": 73850,
+        "hex": "U+1207A",
+        "name": "CUNEIFORM SIGN DU",
+        "block_offset": 122,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      }
+    ],
+    "total_strokes": 17,
+    "wedges": 17,
+    "orbifold": [
+      17,
+      17,
+      17
+    ],
+    "factors": {
+      "17": 1
+    }
+  },
+  {
+    "name": "colophon",
+    "sign": "𒀀𒈬𒊏𒁉",
+    "glyphs": [
+      {
+        "char": "𒀀",
+        "codepoint": 73728,
+        "hex": "U+12000",
+        "name": "CUNEIFORM SIGN A",
+        "block_offset": 0,
+        "wedge_estimate": 1,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 1
+      },
+      {
+        "char": "𒈬",
+        "codepoint": 74284,
+        "hex": "U+1222C",
+        "name": "CUNEIFORM SIGN MU",
+        "block_offset": 556,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      },
+      {
+        "char": "𒊏",
+        "codepoint": 74383,
+        "hex": "U+1228F",
+        "name": "CUNEIFORM SIGN RA",
+        "block_offset": 655,
+        "wedge_estimate": 5,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 5
+      },
+      {
+        "char": "𒁉",
+        "codepoint": 73801,
+        "hex": "U+12049",
+        "name": "CUNEIFORM SIGN BI",
+        "block_offset": 73,
+        "wedge_estimate": 4,
+        "strokes": {
+          "horizontal": 0,
+          "vertical": 0,
+          "diagonal": 0,
+          "hook": 0
+        },
+        "total_strokes": 4
+      }
+    ],
+    "total_strokes": 14,
+    "wedges": 14,
+    "orbifold": [
+      14,
+      14,
+      14
+    ],
+    "factors": {
+      "2": 1,
+      "7": 1
+    }
+  }
+]

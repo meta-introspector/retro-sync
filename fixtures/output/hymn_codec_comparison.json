@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Cl(15) blade signature",
+    "data_bytes": 2,
+    "codec_bytes": 3,
+    "total_bytes": 5,
+    "encode_ns": 17638,
+    "decode_ns": 0,
+    "lossless": "structural",
+    "ordered": "grade"
+  },
+  {
+    "name": "Orbifold triple",
+    "data_bytes": 3,
+    "codec_bytes": 3,
+    "total_bytes": 6,
+    "encode_ns": 2449,
+    "decode_ns": 0,
+    "lossless": false,
+    "ordered": false
+  },
+  {
+    "name": "Cl(15,0,0) multivector",
+    "data_bytes": 6,
+    "codec_bytes": 3,
+    "total_bytes": 9,
+    "encode_ns": 19499,
+    "decode_ns": 6548,
+    "lossless": "algebraic",
+    "ordered": "blade order"
+  },
+  {
+    "name": "Run-length 7-bit pairs",
+    "data_bytes": 10,
+    "codec_bytes": 4,
+    "total_bytes": 14,
+    "encode_ns": 140,
+    "decode_ns": 0,
+    "lossless": true,
+    "ordered": true
+  },
+  {
+    "name": "Expanded 4-bit",
+    "data_bytes": 14,
+    "codec_bytes": 2,
+    "total_bytes": 16,
+    "encode_ns": 1897,
+    "decode_ns": 0,
+    "lossless": true,
+    "ordered": true
+  },
+  {
+    "name": "FRACTRAN integer",
+    "data_bytes": 16,
+    "codec_bytes": 15,
+    "total_bytes": 31,
+    "encode_ns": 4130,
+    "decode_ns": 1331,
+    "lossless": "bag",
+    "ordered": false
+  },
+  {
+    "name": "Ramanujan \u03c4 projection",
+    "data_bytes": 48,
+    "codec_bytes": 48,
+    "total_bytes": 96,
+    "encode_ns": 17070,
+    "decode_ns": 0,
+    "lossless": false,
+    "ordered": false
+  },
+  {
+    "name": "Raw (name+count)",
+    "data_bytes": 105,
+    "codec_bytes": 135,
+    "total_bytes": 240,
+    "encode_ns": 227,
+    "decode_ns": 0,
+    "lossless": true,
+    "ordered": true
+  }
+]

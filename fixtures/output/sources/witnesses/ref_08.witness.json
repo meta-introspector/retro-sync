@@ -1,0 +1,12 @@
+{
+  "id": "ref_08",
+  "timestamp": "20260323T172702Z",
+  "url": "https://en.wikipedia.org/wiki/Musical_notation",
+  "file": "ref_08.html",
+  "type": "reference_page",
+  "sha256": "8ca795d00b6beee1bb44bad7cdae9ab8e85332b7707559e1f1060dcdd18c64ff",
+  "bytes": 402027,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

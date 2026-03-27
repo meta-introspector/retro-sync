@@ -1,0 +1,12 @@
+{
+  "id": "ref_06",
+  "timestamp": "20260323T172702Z",
+  "url": "https://en.wikipedia.org/wiki/Nikkal",
+  "file": "ref_06.html",
+  "type": "reference_page",
+  "sha256": "58c6c6f1f056ed8c5513df9875dfeba1b87811e8a2b3ddf5f45745fcb35ce4f5",
+  "bytes": 161997,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

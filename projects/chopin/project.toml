@@ -1,0 +1,31 @@
+[project]
+name        = "chopin"
+title       = "Frédéric Chopin — Complete Works"
+date        = "1829-1849"
+license     = "PD"
+description = "Nocturnes, études, ballades, polonaises, mazurkas — the poet of the piano"
+
+[theme]
+style       = "romantic-salon"
+palette     = ["#1C1C2E", "#C9A96E", "#4A2040", "#E8D5C4", "#2E4057"]
+motifs      = ["piano_silhouette", "nocturne_moon", "polish_eagle", "salon_interior", "rain_drops"]
+
+[sources.wikipedia]
+articles    = ["Frédéric_Chopin", "List_of_compositions_by_Frédéric_Chopin", "Nocturnes_(Chopin)"]
+lang        = "en"
+
+[sources.wikidata]
+qid         = "Q1268"
+
+[sources.midi]
+dir         = "datasets/midi-classical-data"
+pattern     = "chopin-*.mid"
+
+[tiles]
+count       = 71
+pattern     = "{:02}.png"
+width       = 512
+height      = 512
+
+[segments]
+names       = ["midi_bundle", "metadata", "blade_data", "wikipedia", "wikidata", "erdfa"]

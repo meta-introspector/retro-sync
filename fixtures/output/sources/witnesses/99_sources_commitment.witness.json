@@ -1,0 +1,8 @@
+{
+  "step": "99_sources_commitment",
+  "timestamp": "20260323T172703Z",
+  "chain_hash": "be75fa52ad405c6fc1ab992eaef100c98fd81c7963a5939bb323f2969c3b7173",
+  "witness_count": 34,
+  "pipeline": "retro-sync/witness-sources",
+  "sop": "SOP-RETROSYNC-WIT-001"
+}

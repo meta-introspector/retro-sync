@@ -1,0 +1,12 @@
+{
+  "id": "ref_17",
+  "timestamp": "20260323T172703Z",
+  "url": "https://lilypond.org/doc/v2.23/Documentation/essay/long-literature-list",
+  "file": "ref_17.html",
+  "type": "reference_page",
+  "sha256": "4cae37b5a08e0e36e616fbbb92f342c86cb503cf19bd9155c4f00aa2d8591abe",
+  "bytes": 44417,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "yt_07_meta",
+  "timestamp": "20260323T172702Z",
+  "url": "https://www.youtube.com/watch?v=DBhB9gRnIHE",
+  "file": "yt_07.info.json",
+  "type": "youtube_metadata",
+  "sha256": "0dffb9e8364fd39a03d40c43f3d2f1a664df9efd2bfd86106dce9f79859a9408",
+  "bytes": 521695,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

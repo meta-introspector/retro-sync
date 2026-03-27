@@ -15,6 +15,7 @@ base64       = "0.22"
 zk_circuits  = { path = "../libs/zk-circuits" }
 stego        = { path = "../libs/stego", features = ["png", "svg"] }
 png          = "0.17"
+toml         = "0.8"
 ark-bn254    = { workspace = true }
 erdfa-publish = { path = "../nix/erdfa-publish" }
 
@@ -29,3 +30,15 @@ path = "examples/verify_stego.rs"
 [[example]]
 name = "ecc_zoo"
 path = "examples/ecc_zoo.rs"
+
+[[example]]
+name = "nft71_stego_svg"
+path = "examples/nft71_stego_svg.rs"
+
+[[example]]
+name = "nft71_svg"
+path = "examples/nft71_svg.rs"
+
+[[example]]
+name = "interval_prime"
+path = "examples/interval_prime.rs"

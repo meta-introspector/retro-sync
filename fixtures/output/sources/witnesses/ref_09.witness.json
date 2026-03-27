@@ -1,0 +1,12 @@
+{
+  "id": "ref_09",
+  "timestamp": "20260323T172702Z",
+  "url": "https://en.wikipedia.org/wiki/Ancient_music",
+  "file": "ref_09.html",
+  "type": "reference_page",
+  "sha256": "047319e4e62e5ead0ca3847c0f830381fd10016fa15ab537b6850d13f8506310",
+  "bytes": 208392,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

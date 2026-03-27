@@ -1,0 +1,48 @@
+# Project: Hurrian Hymn h.6
+
+[project]
+name        = "hurrian-h6"
+title       = "Hurrian Hymn No. 6 (Hymn to Nikkal)"
+date        = "~1400 BCE"
+license     = "PD"
+description = "Oldest known melody with substantially complete notation, from Ugarit tablet RS 15.30 + 17.387"
+
+[sources.wikidata]
+qid     = "Q1471309"
+sparql  = "SELECT ?work ?workLabel ?composer ?composerLabel WHERE { ?work wdt:P31 wd:Q105543609. SERVICE wikibase:label { bd:serviceParam wikibase:language 'en'. } }"
+
+[sources.wikipedia]
+article = "Hurrian_songs"
+lang    = "en"
+
+[sources.youtube]
+# Witnessed performances — yt-dlp IDs
+yt_01 = { id = "QpxN2VXPMLc", label = "Kilmer 1972 reconstruction" }
+yt_04 = { id = "w8tfBLvlN98", label = "Dumbrill reconstruction" }
+yt_06 = { id = "DBhB9gRnIHE", label = "Nikkal ensemble" }
+yt_07 = { id = "Ynbv-MlJGk0", label = "Oldest known melody" }
+yt_08 = { id = "LDB4PkE1gM4", label = "Michael Levy lyre" }
+
+[sources.archive_org]
+# Tablet photographs, scholarly PDFs
+items = ["ugarit-music-tablets"]
+
+[tiles]
+count   = 71
+pattern = "{:02}.png"
+width   = 512
+height  = 512
+
+[paths]
+stego_png = "fixtures/output/nft71_stego_png"
+svg       = "fixtures/output/nft71_svg"
+output    = "fixtures/output"
+lilypond  = "fixtures/lilypond"
+scripts   = "fixtures/scripts"
+midi      = "fixtures/output/midi"
+wav       = "fixtures/output/wav"
+erdfa_tar = "fixtures/output/retro-sync.tar"
+
+[segments]
+# NFT7 container segments for this project
+names = ["wav", "midi_west", "midi_01", "midi_04", "midi_06", "midi_07", "midi_08", "pdf", "source", "lilypond", "cuneiform", "witnesses", "erdfa"]

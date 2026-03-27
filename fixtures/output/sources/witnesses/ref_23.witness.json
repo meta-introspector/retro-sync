@@ -1,0 +1,12 @@
+{
+  "id": "ref_23",
+  "timestamp": "20260323T172703Z",
+  "url": "https://ancientlyre.com/track/1982130/hurrian-hymn-no-6-c-1400bce-ancient-mesopotamian-musical-fragment",
+  "file": "ref_23.html",
+  "type": "reference_page",
+  "sha256": "e3137adbae98c8df056e373c0bf5c10e7ec47be1797c0b2603c7eb6dc230a4be",
+  "bytes": 76233,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

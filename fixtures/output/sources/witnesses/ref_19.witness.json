@@ -1,0 +1,12 @@
+{
+  "id": "ref_19",
+  "timestamp": "20260323T172703Z",
+  "url": "https://www.tug.org/TUGboat/tb37-3/tb117lemberg.pdf",
+  "file": "ref_19.html",
+  "type": "reference_page",
+  "sha256": "dd1b163f751008ff866727c94d589980ca951386e52abf49cc4b3c1b3498dea6",
+  "bytes": 21059325,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

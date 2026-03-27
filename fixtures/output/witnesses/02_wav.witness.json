@@ -1,0 +1,12 @@
+{
+  "step": "02_wav",
+  "timestamp": "20260323T234954Z",
+  "tool": "fluidsynth",
+  "tool_version": "FluidSynth runtime version 2.5.2",
+  "input_hash": "7a7e8c376411d707fd373294ed6e1a3627d80ab6d55687a6fa2f4b202dfd318d",
+  "output_file": "h6_west.wav",
+  "output_hash": "90ea3f9ac1717f21ba36aac31ed461e13a1e70ed6bfa3a8ed01280c85d1f8964",
+  "output_bytes": 8726572,
+  "hostname": "mdupont-G470",
+  "platform": "Linux-x86_64"
+}

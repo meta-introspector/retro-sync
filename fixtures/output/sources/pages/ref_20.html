@@ -1,0 +1,1898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Copyright C 1998-2022 by the authors.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1
+or any later version published by the Free Software Foundation;
+with no Invariant Sections.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+
+ -->
+<!-- Created by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>LilyPond Notation Reference: 2.1.7 Chants psalms and hymns</title>
+
+<meta name="description" content="LilyPond Notation Reference: 2.1.7 Chants psalms and hymns">
+<meta name="keywords" content="LilyPond Notation Reference: 2.1.7 Chants psalms and hymns">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index#index" rel="start" title="LilyPond &mdash; Notation Reference">
+<link href="lilypond-command-index#lilypond-command-index" rel="index" title="D. LilyPond command index">
+<link href="index_toc#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index_abt#SEC_About" rel="help" title="About This Document">
+<link href="vocal-music#vocal-music" rel="up" title="2.1 Vocal music">
+<link href="lilypond-index#lilypond-index" rel="next" title="E. LilyPond index">
+<link href="opera-and-stage-musicals#opera-and-stage-musicals" rel="previous" title="2.1.6 Opera and stage musicals">
+<link rel="stylesheet" type="text/css" title="Default style" href="../css/lilypond-manuals.css">
+<link rel="stylesheet" type="text/css" title="" href="../css/lilypond-highlighting.css">
+
+
+</head>
+
+<body lang="en" class="notation">
+
+<div id="main">
+<a name="Chants-psalms-and-hymns"></a>
+<table class="nav_table">
+<tr><td align="left">[<a href="specialist-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Specialist notation </a>]</td><td align="center">[<a href="index" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index" title="Index" rel="index">Index</a>]</td><td align="right">[<a href="general-input-and-output" title="Next chapter"> General input and output &gt;&gt; </a>]</td></tr>
+<tr><td align="left">[<a href="opera-and-stage-musicals#dialogue-over-music" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Dialogue over music </a>]</td><td align="center">[<a href="vocal-music" title="Up section" accesskey="u" rel="up"> Up : Vocal music </a>]</td><td align="right">[<a href="#references-for-chants-and-psalms" title="Next section in reading order" accesskey="n" rel="next"> References for chants and psalms &gt; </a>]</td></tr>
+</table>
+<a name="chants-psalms-and-hymns"></a>
+<h3 class="subsection">2.1.7 Chants psalms and hymns</h3>
+
+<a name="index-chant"></a>
+<a name="index-psalm"></a>
+<a name="index-hymn"></a>
+<a name="index-canticle"></a>
+<a name="index-religious-music"></a>
+
+<p>The music and words for chants, psalms and hymns usually follow a
+well-established format in any particular church.  Although the
+formats may differ from church to church the typesetting problems
+which arise are broadly similar, and are covered in this section.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#references-for-chants-and-psalms" accesskey="1">References for chants and psalms</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#setting-a-chant" accesskey="2">Setting a chant</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#pointing-a-psalm" accesskey="3">Pointing a psalm</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#phrase-bar-lines-in-hymn-tunes" accesskey="4">Phrase bar lines in hymn tunes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#partial-measures-in-hymn-tunes" accesskey="5">Partial measures in hymn tunes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="References-for-chants-and-psalms"></a>
+<table class="nav_table">
+<tr><td align="left">[<a href="specialist-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Specialist notation </a>]</td><td align="center">[<a href="index" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index" title="Index" rel="index">Index</a>]</td><td align="right">[<a href="general-input-and-output" title="Next chapter"> General input and output &gt;&gt; </a>]</td></tr>
+<tr><td align="left">[<a href="#chants-psalms-and-hymns" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Chants psalms and hymns </a>]</td><td align="center">[<a href="#chants-psalms-and-hymns" title="Up section" accesskey="u" rel="up"> Up : Chants psalms and hymns </a>]</td><td align="right">[<a href="#setting-a-chant" title="Next section in reading order" accesskey="n" rel="next"> Setting a chant &gt; </a>]</td></tr>
+</table>
+<a name="references-for-chants-and-psalms"></a>
+<h4 class="unnumberedsubsubsec">References for chants and psalms</h4>
+
+<p>Typesetting Gregorian chant in various styles of ancient notation
+is described in <a href="ancient-notation">Ancient notation</a>.
+</p>
+<a name="See-also-219"></a>
+<h4 class="subsubheading">See also</h4>
+
+<p>Notation reference:
+<a href="ancient-notation">Ancient notation</a>.
+</p>
+<p>Snippets:
+<a href="../snippets/vocal-music">Vocal music</a>.
+</p>
+
+
+<hr size="6">
+<a name="Setting-a-chant"></a>
+<table class="nav_table">
+<tr><td align="left">[<a href="specialist-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Specialist notation </a>]</td><td align="center">[<a href="index" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index" title="Index" rel="index">Index</a>]</td><td align="right">[<a href="general-input-and-output" title="Next chapter"> General input and output &gt;&gt; </a>]</td></tr>
+<tr><td align="left">[<a href="#references-for-chants-and-psalms" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; References for chants and psalms </a>]</td><td align="center">[<a href="#chants-psalms-and-hymns" title="Up section" accesskey="u" rel="up"> Up : Chants psalms and hymns </a>]</td><td align="right">[<a href="#pointing-a-psalm" title="Next section in reading order" accesskey="n" rel="next"> Pointing a psalm &gt; </a>]</td></tr>
+</table>
+<a name="setting-a-chant"></a>
+<h4 class="unnumberedsubsubsec">Setting a chant</h4>
+
+<p>Modern chant settings use modern notation with varying numbers of
+elements taken from ancient notation.  Some of the elements and
+methods to consider are shown here.
+</p>
+<p>Chants often use quarter notes without stems to indicate the pitch,
+with the rhythm being taken from the spoken rhythm of the words.
+</p>
+
+<blockquote><pre class="verbatim"><span class="n n-Lvalue">stemOff</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb nb-MusicFunction">\hide</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="p">.</span><span class="nb nb-Grob">Stem</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class=" -Pitch">c&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n n-BackslashReference">\stemOff</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a&#39;</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../98/lily-7ca7e715.ly">
+  <img align="middle"
+       border="0"
+       src="../98/lily-7ca7e715.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Chants often omit measure bar lines or use shortened or dotted bar
+lines to indicate pauses in the music.  To set a chant with no
+musical meter, see <a href="displaying-rhythms#unmetered-music">Unmetered music</a>.  To retain all the effects
+of a time signature but disable automatic measure bar lines, set
+<code>measureBarType</code> to <code>'()</code>.  Without regular bar lines,
+you might need to take steps to control horizontal spacing;
+see <a href="line-breaking">Line breaking</a>.
+</p>
+
+<blockquote><pre class="verbatim"><span class="k">\score</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">StaffGroup</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class=" -Pitch">a&#39;</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">        </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb nb-MusicCommand">\section</span><span class="w"></span>
+<span class="w">        </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class=" -Pitch">a&#39;</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">        </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb nb-MusicCommand">\section</span><span class="w"></span>
+<span class="w">        </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="k">\layout</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-Context">\Staff</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-ContextProperty">measureBarType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="o">&#39;</span><span class="p">()</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-ContextProperty">forbidBreakBetweenBarLines</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="no">#f</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../18/lily-d1bd73b1.ly">
+  <img align="middle"
+       border="0"
+       src="../18/lily-d1bd73b1.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Measure bar lines can also be modified on a staff-by-staff basis;
+see <a href="modifying-context-plug_002dins">Modifying context plug-ins</a>.
+</p>
+<p>Rests or pauses in chants can be indicated by modified bar lines.
+</p>
+
+<blockquote><pre class="verbatim"><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class=" -Pitch">a&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicCommand">\cadenzaOn</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\bar</span><span class="w"> </span><span class="s">&quot;&#39;&quot;</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\bar</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\bar</span><span class="w"> </span><span class="s">&quot;;&quot;</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\bar</span><span class="w"> </span><span class="s">&quot;!&quot;</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\bar</span><span class="w"> </span><span class="s">&quot;||&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../94/lily-47b93cd0.ly">
+  <img align="middle"
+       border="0"
+       src="../94/lily-47b93cd0.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Alternatively, the notation used in Gregorian chant for pauses or
+rests is sometimes used even though the rest of the notation is
+modern.
+</p>
+
+<blockquote><pre class="verbatim"><span class="n n-Lvalue">divisioMinima</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\caesura</span><span class="w"></span>
+<span class="n n-Lvalue">divisioMaior</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb nb-MusicFunction">\caesura</span><span class="w"> </span><span class="nb nb-Articulation">\shortfermata</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n n-Lvalue">divisioMaxima</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb nb-MusicFunction">\caesura</span><span class="w"> </span><span class="nb nb-Articulation">\fermata</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n n-Lvalue">finalis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicCommand">\section</span><span class="w"></span>
+
+<span class="k">\score</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class=" -Pitch">g&#39;</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\divisioMinima</span><span class="w"></span>
+<span class="w">    </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\divisioMaior</span><span class="w"></span>
+<span class="w">    </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\divisioMaxima</span><span class="w"></span>
+<span class="w">    </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\finalis</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">\layout</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-Context">\Staff</span><span class="w"></span>
+<span class="w">      </span><span class="k">\remove</span><span class="w"> </span>Caesura_engraver<span class="w"></span>
+<span class="w">      </span><span class="k">\consists</span><span class="w"> </span>Divisio_engraver<span class="w"></span>
+<span class="w">      </span><span class="n n-BackslashReference">\EnableGregorianDivisiones</span><span class="w"></span>
+<span class="w">      </span><span class="n n-Lvalue">caesuraType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="o">&#39;</span><span class="p">((</span><span class="nf">breath</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="nv">chantquarterbar</span><span class="p">))</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-ContextProperty">measureBarType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="o">&#39;</span><span class="p">()</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-ContextProperty">forbidBreakBetweenBarLines</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="no">#f</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../3c/lily-bc9c8c79.ly">
+  <img align="middle"
+       border="0"
+       src="../3c/lily-bc9c8c79.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Chants usually omit the time signature and often omit the clef too.
+</p>
+
+<blockquote><pre class="verbatim"><span class="k">\score</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class=" -Pitch">a&#39;</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">      </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">      </span><span class=" -Pitch">a</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">\layout</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-Context">\Staff</span><span class="w"></span>
+<span class="w">      </span><span class="k">\remove</span><span class="w"> </span><span class="nb nb-Translator">Time_signature_engraver</span><span class="w"></span>
+<span class="w">      </span><span class="k">\remove</span><span class="w"> </span><span class="nb nb-Translator">Clef_engraver</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-ContextProperty">measureBarType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="o">&#39;</span><span class="p">()</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-ContextProperty">forbidBreakBetweenBarLines</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="no">#f</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../cc/lily-16dbd248.ly">
+  <img align="middle"
+       border="0"
+       src="../cc/lily-16dbd248.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Chants for psalms in the Anglican tradition are usually either
+<em>single</em>, with 7 bars of music, or <em>double</em>, with two lots
+of 7 bars.  Each group of 7 bars is divided into two halves,
+corresponding to the two halves of each verse, usually separated by
+a double bar line.  Only whole and half notes are used.  The 1st bar
+in each half always contains a single chord of whole notes.  This is
+the &ldquo;reciting note&rdquo;.  Chants are usually centered on the page.
+</p>
+
+<blockquote><pre class="verbatim"><span class="n n-Lvalue">SopranoMusic</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">g&#39;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">a</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">c</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">c</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">AltoMusic</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">e&#39;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">f</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">f</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">f</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">e</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">TenorMusic</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">c&#39;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">c</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">c</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">d</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g,</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">BassMusic</span><span class="w"> </span><span class="p">=</span><span class="w">  </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">c</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">e</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">e</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">f</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">d</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">c</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g&#39;</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">c,</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">global</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\time</span><span class="w"> </span><span class="m m-Fraction">2/2</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\skip</span><span class="w"> </span><span class="m">1*3</span><span class="w"> </span><span class="nb nb-MusicCommand">\section</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\skip</span><span class="w"> </span><span class="m">1*4</span><span class="w"> </span><span class="nb nb-MusicCommand">\fine</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">% Use markup to center the chant on the page</span><span class="w"></span>
+<span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\fill-line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">\score</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">% centered</span><span class="w"></span>
+<span class="w">      </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">        </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">ChoirStaff</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">          </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">            </span><span class="n n-BackslashReference">\global</span><span class="w"></span>
+<span class="w">            </span><span class="nb nb-MusicFunction">\clef</span><span class="w"> </span><span class="s">&quot;treble&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Soprano&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">              </span><span class="nb nb-MusicCommand">\voiceOne</span><span class="w"></span>
+<span class="w">              </span><span class="n n-BackslashReference">\SopranoMusic</span><span class="w"></span>
+<span class="w">            </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">            </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Alto&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">              </span><span class="nb nb-MusicCommand">\voiceTwo</span><span class="w"></span>
+<span class="w">              </span><span class="n n-BackslashReference">\AltoMusic</span><span class="w"></span>
+<span class="w">            </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">            </span><span class="nb nb-MusicFunction">\clef</span><span class="w"> </span><span class="s">&quot;bass&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="n n-BackslashReference">\global</span><span class="w"></span>
+<span class="w">            </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Tenor&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">              </span><span class="nb nb-MusicCommand">\voiceOne</span><span class="w"></span>
+<span class="w">              </span><span class="n n-BackslashReference">\TenorMusic</span><span class="w"></span>
+<span class="w">            </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">            </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Bass&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">              </span><span class="nb nb-MusicCommand">\voiceTwo</span><span class="w"></span>
+<span class="w">              </span><span class="n n-BackslashReference">\BassMusic</span><span class="w"></span>
+<span class="w">            </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">          </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="k">\layout</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-Context">\Score</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-MusicFunction">\override</span><span class="w"> </span><span class="nb nb-Grob">SpacingSpanner</span><span class="p">.</span><span class="nb nb-GrobProperty">base-shortest-duration</span><span class="w"> </span><span class="p">=</span><span class="w"></span>
+<span class="w">            </span><span class="p">#(</span><span class="nb nb-SchemeFunction">ly:make-moment</span><span class="w"> </span><span class="mi">1/2</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-ContextProperty">fineBarType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;||&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-Context">\Staff</span><span class="w"></span>
+<span class="w">          </span><span class="k">\remove</span><span class="w"> </span><span class="nb nb-Translator">Time_signature_engraver</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w">  </span><span class="c1">% End score</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w">  </span><span class="c1">% End markup</span><span class="w"></span>
+</pre>
+<p><a href="../1c/lily-fbe8d7fd.ly">
+  <img align="middle"
+       border="0"
+       src="../1c/lily-fbe8d7fd.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Some other approaches to setting such a chant are shown in the first
+of the following snippets.
+</p>
+
+<a name="Selected-Snippets-28"></a>
+<h4 class="subsubheading">Selected Snippets</h4>
+
+<a name="index-chant-1"></a>
+<a name="index-psalm-1"></a>
+<a name="index-hymn-1"></a>
+<a name="index-canticle-1"></a>
+
+<a name="Chant-or-psalms-notation"></a>
+<h4 class="subsubheading"><i>Chant or psalms notation</i></h4>
+
+
+<p>This form of notation is used for Psalm chant, where verses aren&rsquo;t
+always the same length.
+</p>
+
+
+<blockquote><pre class="verbatim"><span class="n n-Lvalue">stemOff</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\hide</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="p">.</span><span class="nb nb-Grob">Stem</span><span class="w"></span>
+<span class="n n-Lvalue">stemOn</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\undo</span><span class="w"> </span><span class="n n-BackslashReference">\stemOff</span><span class="w"></span>
+
+<span class="k">\score</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="k">\with</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">\remove</span><span class="w"> </span><span class="s">&quot;Time_signature_engraver&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MusicFunction">\key</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="nb nb-Scale">\minor</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MusicCommand">\cadenzaOn</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\stemOff</span><span class="w"> </span><span class=" -Pitch">a&#39;</span><span class="m">\breve</span><span class="w"> </span><span class=" -Pitch">bes&#39;</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g&#39;</span><span class="m">4</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\stemOn</span><span class="w"> </span><span class=" -Pitch">a&#39;</span><span class="m">2</span><span class="w"> </span><span class="nb nb-MusicCommand">\section</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\stemOff</span><span class="w"> </span><span class=" -Pitch">a&#39;</span><span class="m">\breve</span><span class="w"> </span><span class=" -Pitch">g&#39;</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">a&#39;</span><span class="m">4</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\stemOn</span><span class="w"> </span><span class=" -Pitch">f&#39;</span><span class="m">2</span><span class="w"> </span><span class="nb nb-MusicCommand">\section</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\stemOff</span><span class="w"> </span><span class=" -Pitch">a&#39;</span><span class="m">\breve</span><span class="nb nb-MarkupCommand">^\markup</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb nb-MarkupCommand">\italic</span><span class="w"> </span>flexe<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n n-BackslashReference">\stemOn</span><span class="w"> </span><span class=" -Pitch">g&#39;</span><span class="m">2</span><span class="w"> </span><span class="nb nb-MusicCommand">\fine</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../7f/lily-f8c9e5aa.ly">
+  <img align="middle"
+       border="0"
+       src="../7f/lily-f8c9e5aa.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Canticles and other liturgical texts may be set more freely, and
+may use notational elements from ancient music.  Often the words
+are shown underneath and aligned with the notes.  If so, the notes
+are spaced in accordance with the syllables rather than the notes&rsquo;
+durations.
+</p>
+<a name="index-Gregorian-music_002c-modern-transcription"></a>
+<a name="index-transcription_002c-modern-of-Gregorian-music"></a>
+<a name="index-modern-transcription-of-Gregorian-music"></a>
+
+<a name="Ancient-notation-template-_002d_002d-modern-transcription-of-gregorian-music"></a>
+<h4 class="subsubheading"><i>Ancient notation template &ndash; modern transcription of gregorian music</i></h4>
+
+
+<p>This example demonstrates how to do modern transcription of Gregorian
+music. Gregorian music has no measure, no stems; it uses only half and
+quarter note heads, and special marks, indicating rests of different
+length.
+</p>
+
+
+<blockquote><pre class="verbatim"><span class="k">\include</span><span class="w"> </span><span class="s">&quot;gregorian.ly&quot;</span><span class="w"></span>
+
+<span class="n n-Lvalue">chant</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class=" -Pitch">c&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\set</span><span class="w"> </span><span class="nb nb-Context">Score</span><span class="p">.</span><span class="nb nb-ContextProperty">timing</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="no">#f</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">f</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">2</span><span class="w"> </span><span class="n n-BackslashReference">\divisioMinima</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">g</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">2</span><span class="w"> </span><span class=" -Pitch">f</span><span class="m">2</span><span class="w"> </span><span class="n n-BackslashReference">\divisioMaior</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">g</span><span class="m">4</span><span class="nb nb-Articulation">(</span><span class="w"> </span><span class=" -Pitch">f</span><span class="nb nb-Articulation">)</span><span class="w"> </span><span class=" -Pitch">f</span><span class="nb nb-Articulation">(</span><span class="w"> </span><span class=" -Pitch">g</span><span class="nb nb-Articulation">)</span><span class="w"> </span><span class=" -Pitch">a</span><span class="m">2</span><span class="w"> </span><span class="n n-BackslashReference">\finalis</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">verba</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">\lyricmode</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span>Lo<span class="w"> </span><span class="p">--</span><span class="w"> </span>rem<span class="w"> </span>ip<span class="w"> </span><span class="p">--</span><span class="w"> </span>sum<span class="w"> </span><span class=" -Pitch">do</span><span class="w"> </span><span class="p">--</span><span class="w"> </span>lor<span class="w"> </span>sit<span class="w"> </span><span class=" -Pitch">a</span><span class="w"> </span><span class="p">--</span><span class="w"> </span>met<span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">\score</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">GregorianTranscriptionStaff</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">GregorianTranscriptionVoice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;melody&quot;</span><span class="w"> </span><span class="n n-BackslashReference">\chant</span><span class="w"></span>
+<span class="w">    </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">GregorianTranscriptionLyrics</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;one&quot;</span><span class="w"> </span><span class="k">\lyricsto</span><span class="w"> </span>melody<span class="w"> </span><span class="n n-BackslashReference">\verba</span><span class="w"></span>
+<span class="w">  </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../15/lily-d88ed5a4.ly">
+  <img align="middle"
+       border="0"
+       src="../15/lily-d88ed5a4.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+
+<a name="See-also-102"></a>
+<h4 class="subsubheading">See also</h4>
+
+<p>Learning Manual:
+<a name="index-Visibility-and-color-of-objects-3"></a>
+<a href="../learning/visibility-and-color-of-objects">Visibility and color of objects</a>,
+<a name="index-Vocal-ensembles-templates-4"></a>
+<a href="../learning/vocal-ensembles-templates">Vocal ensembles templates</a>.
+</p>
+<p>Notation Reference:
+<a href="ancient-notation">Ancient notation</a>,
+<a href="bars#bar-lines">Bar lines</a>,
+<a href="modifying-context-plug_002dins">Modifying context plug-ins</a>,
+<a href="typesetting-gregorian-chant">Typesetting Gregorian chant</a>,
+<a href="displaying-rhythms#unmetered-music">Unmetered music</a>,
+<a href="visibility-of-objects">Visibility of objects</a>.
+</p>
+
+
+<hr size="6">
+<a name="Pointing-a-psalm"></a>
+<table class="nav_table">
+<tr><td align="left">[<a href="specialist-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Specialist notation </a>]</td><td align="center">[<a href="index" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index" title="Index" rel="index">Index</a>]</td><td align="right">[<a href="general-input-and-output" title="Next chapter"> General input and output &gt;&gt; </a>]</td></tr>
+<tr><td align="left">[<a href="#setting-a-chant" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Setting a chant </a>]</td><td align="center">[<a href="#chants-psalms-and-hymns" title="Up section" accesskey="u" rel="up"> Up : Chants psalms and hymns </a>]</td><td align="right">[<a href="#phrase-bar-lines-in-hymn-tunes" title="Next section in reading order" accesskey="n" rel="next"> Phrase bar lines in hymn tunes &gt; </a>]</td></tr>
+</table>
+<a name="pointing-a-psalm"></a>
+<h4 class="unnumberedsubsubsec">Pointing a psalm</h4>
+
+<p>The words to an Anglican psalm are usually printed in separate
+verses centered underneath the chant.
+</p>
+<p>Single chants (with 7 bars) are repeated for every verse.  Double
+chants (with 14 bars) are repeated for every pair of verses.  Marks
+are inserted in the words to show how they should be fitted to the
+chant.  Each verse is divided into two halves.  A colon is usually
+used to indicate this division.  This corresponds to the double bar
+line in the music.  The words before the colon are sung to the first
+three bars of music; the words after the colon are sung to the last
+four bars.
+</p>
+<p>Single bar lines (or in some psalters an inverted comma or similar
+symbol) are inserted between words to indicate where the bar lines
+in the music fall.  In markup mode a single bar line can be entered
+with the bar check symbol, <code>|</code>.
+</p>
+
+<blockquote><pre class="verbatim"><span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\fill-line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MarkupCommand">\column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MarkupCommand">\left-align</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>O<span class="w"> </span>come<span class="w"> </span>let<span class="w"> </span>us<span class="w"> </span>sing<span class="w"> </span><span class="p">|</span><span class="w"> </span>unto<span class="w"> </span>the<span class="w"> </span><span class="p">|</span><span class="w"> </span>Lord<span class="w"> </span><span class="p">:</span><span class="w"> </span>let<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>us<span class="w"> </span>heartily<span class="w"> </span>rejoice<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span><span class="p">|</span><span class="w"> </span>strength<span class="w"> </span>of<span class="w"> </span><span class="p">|</span><span class="w"> </span>our<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>sal-<span class="w"> </span><span class="p">|</span><span class="w"> </span>-vation<span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../46/lily-2dbb1e27.ly">
+  <img align="middle"
+       border="0"
+       src="../46/lily-2dbb1e27.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Other symbols may require glyphs from the <code>fetaMusic</code> fonts.
+For details, see <a href="fonts">Fonts</a>.
+</p>
+
+<blockquote><pre class="verbatim"><span class="n n-Lvalue">tick</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\raise</span><span class="w"> </span><span class="p">#</span><span class="mi">1</span><span class="w"> </span><span class="nb nb-MarkupCommand">\fontsize</span><span class="w"> </span><span class="p">#</span><span class="mi">-5</span><span class="w"> </span><span class="nb nb-MarkupCommand">\musicglyph</span><span class="w"> </span><span class="s">&quot;scripts.rvarcomma&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\fill-line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MarkupCommand">\column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MarkupCommand">\left-align</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>O<span class="w"> </span>come<span class="w"> </span>let<span class="w"> </span>us<span class="w"> </span>sing<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>unto<span class="w"> </span>the<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>Lord<span class="w"> </span><span class="p">:</span><span class="w"> </span>let<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span>us<span class="w"> </span>heartily<span class="w"> </span>rejoice<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>strength<span class="w"> </span>of<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>our<span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>sal<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>vation<span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../a9/lily-164fb6cf.ly">
+  <img align="middle"
+       border="0"
+       src="../a9/lily-164fb6cf.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>Where there is one whole note in a bar all the words corresponding
+to that bar are recited on that one note in speech rhythm.  Where
+there are two notes in a bar there will usually be only one or two
+corresponding syllables.  If there are more that two syllables a
+dot is usually inserted to indicate where the change in note occurs.
+</p>
+
+<blockquote><pre class="verbatim"><span class="nb nb-GrobProperty">dot</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\raise</span><span class="w"> </span><span class="p">#</span><span class="mf">0.7</span><span class="w"> </span><span class="nb nb-MarkupCommand">\musicglyph</span><span class="w"> </span><span class="s">&quot;dots.dot&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n n-Lvalue">tick</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\raise</span><span class="w"> </span><span class="p">#</span><span class="mi">1</span><span class="w"> </span><span class="nb nb-MarkupCommand">\fontsize</span><span class="w"> </span><span class="p">#</span><span class="mi">-5</span><span class="w"> </span><span class="nb nb-MarkupCommand">\musicglyph</span><span class="w"> </span><span class="s">&quot;scripts.rvarcomma&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\fill-line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MarkupCommand">\column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MarkupCommand">\left-align</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span>O<span class="w"> </span>come<span class="w"> </span>let<span class="w"> </span>us<span class="w"> </span>sing<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>unto<span class="w"> </span><span class="n n-BackslashReference">\dot</span><span class="w"> </span>the<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>Lord<span class="w"> </span><span class="p">:</span><span class="w"> </span>let<span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span>us<span class="w"> </span>heartily<span class="w"> </span>rejoice<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>strength<span class="w"> </span>of<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>our<span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>sal<span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>vation<span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../f2/lily-22c70854.ly">
+  <img align="middle"
+       border="0"
+       src="../f2/lily-22c70854.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>In some psalters an asterisk is used to indicate a break in a
+recited section instead of a comma, and stressed or slightly
+lengthened syllables are indicated in bold text.
+</p>
+
+<blockquote><pre class="verbatim"><span class="nb nb-GrobProperty">dot</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\raise</span><span class="w"> </span><span class="p">#</span><span class="mf">0.7</span><span class="w"> </span><span class="nb nb-MarkupCommand">\musicglyph</span><span class="w"> </span><span class="s">&quot;dots.dot&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n n-Lvalue">tick</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\raise</span><span class="w"> </span><span class="p">#</span><span class="mi">1</span><span class="w"> </span><span class="nb nb-MarkupCommand">\fontsize</span><span class="w"> </span><span class="p">#</span><span class="mi">-5</span><span class="w"> </span><span class="nb nb-MarkupCommand">\musicglyph</span><span class="w"> </span><span class="s">&quot;scripts.rvarcomma&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\fill-line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MarkupCommand">\column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MarkupCommand">\left-align</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>Today<span class="w"> </span>if<span class="w"> </span>ye<span class="w"> </span>will<span class="w"> </span>hear<span class="w"> </span><span class=" -Pitch">his</span><span class="w"> </span>voice<span class="w"> </span><span class="m">*</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-MarkupCommand">\concat</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb nb-MarkupCommand">\bold</span><span class="w"> </span>hard<span class="w"> </span>en<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="p">|</span><span class="w"> </span>not<span class="w"> </span>your<span class="w"> </span><span class="p">|</span><span class="w"> </span>hearts<span class="w"> </span><span class="p">:</span><span class="w"> </span><span class=" -Pitch">as</span><span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>pro-<span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>vocation<span class="w"> </span><span class="m">*</span><span class="w"> </span>and<span class="w"> </span><span class=" -Pitch">as</span><span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span><span class="nb nb-MarkupCommand">\bold</span><span class="w"> </span>day<span class="w"> </span>of<span class="w"> </span>tempt-<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>-ation<span class="w"> </span><span class="p">|</span><span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span><span class="p">|</span><span class="w"> </span>wilderness<span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../84/lily-5594b2bf.ly">
+  <img align="middle"
+       border="0"
+       src="../84/lily-5594b2bf.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>In other psalters an accent is placed over the syllable to indicate
+stress.
+</p>
+
+<blockquote><pre class="verbatim"><span class="n n-Lvalue">tick</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\raise</span><span class="w"> </span><span class="p">#</span><span class="mi">2</span><span class="w"> </span><span class="nb nb-MarkupCommand">\fontsize</span><span class="w"> </span><span class="p">#</span><span class="mi">-5</span><span class="w"> </span><span class="nb nb-MarkupCommand">\musicglyph</span><span class="w"> </span><span class="s">&quot;scripts.rvarcomma&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\fill-line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-MarkupCommand">\column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MarkupCommand">\left-align</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span>O<span class="w"> </span>come<span class="w"> </span>let<span class="w"> </span>us<span class="w"> </span><span class="nb nb-MarkupCommand">\concat</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class=" -Pitch">si</span><span class="w"> </span><span class="nb nb-MarkupCommand">\combine</span><span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>ng<span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="p">|</span><span class="w"> </span>unto<span class="w"> </span>the<span class="w"> </span><span class="p">|</span><span class="w"> </span>Lord<span class="w"> </span><span class="p">:</span><span class="w"> </span>let<span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span>us<span class="w"> </span>heartily<span class="w"> </span><span class="nb nb-MarkupCommand">\concat</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span>rejo<span class="w"> </span><span class="nb nb-MarkupCommand">\combine</span><span class="w"> </span><span class="n n-BackslashReference">\tick</span><span class="w"> </span>ice<span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span>in<span class="w"> </span>the<span class="w"> </span><span class="p">|</span><span class="w"> </span>strength<span class="w"> </span>of<span class="w"> </span><span class="p">|</span><span class="w"> </span>our<span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\line</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>sal-<span class="w"> </span><span class="p">|</span><span class="w"> </span>-vation<span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre>
+<p><a href="../2e/lily-d874550c.ly">
+  <img align="middle"
+       border="0"
+       src="../2e/lily-d874550c.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>The use of markup to center text, and arrange lines in columns is
+described in <a href="formatting-text">Formatting text</a>.
+</p>
+<p>Most of these elements are shown in one or other of the two verses
+in the template, see <a name="index-Psalms"></a>
+<a href="../learning/psalms">Psalms</a>.
+</p>
+<a name="See-also-220"></a>
+<h4 class="subsubheading">See also</h4>
+
+<p>Learning Manual:
+<a name="index-Psalms-1"></a>
+<a href="../learning/psalms">Psalms</a>,
+<a name="index-Vocal-ensembles-templates-5"></a>
+<a href="../learning/vocal-ensembles-templates">Vocal ensembles templates</a>.
+</p>
+<p>Notation Reference:
+<a href="fonts">Fonts</a>,
+<a href="formatting-text">Formatting text</a>.
+</p>
+
+
+<hr size="6">
+<a name="Phrase-bar-lines-in-hymn-tunes"></a>
+<table class="nav_table">
+<tr><td align="left">[<a href="specialist-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Specialist notation </a>]</td><td align="center">[<a href="index" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index" title="Index" rel="index">Index</a>]</td><td align="right">[<a href="general-input-and-output" title="Next chapter"> General input and output &gt;&gt; </a>]</td></tr>
+<tr><td align="left">[<a href="#pointing-a-psalm" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Pointing a psalm </a>]</td><td align="center">[<a href="#chants-psalms-and-hymns" title="Up section" accesskey="u" rel="up"> Up : Chants psalms and hymns </a>]</td><td align="right">[<a href="#partial-measures-in-hymn-tunes" title="Next section in reading order" accesskey="n" rel="next"> Partial measures in hymn tunes &gt; </a>]</td></tr>
+</table>
+<a name="phrase-bar-lines-in-hymn-tunes"></a>
+<h4 class="unnumberedsubsubsec">Phrase bar lines in hymn tunes</h4>
+
+<a name="index-_005ccaesura-8"></a>
+<a name="index-_005ccaesura-9"></a>
+<a name="index-bar-line_002c-in-hymns"></a>
+<a name="index-caesura-bar-line_002c-in-hymns"></a>
+<a name="index-phrase-bar-line_002c-in-hymns"></a>
+
+<p>The <code>\caesura</code> command can be configured to create phrase bar
+lines that interact well with other automatic bar lines
+(see <a href="bars#automatic-bar-lines">Automatic bar lines</a>).
+</p>
+<p>In the following examples, the source code for the tune in
+&lsquo;<tt>old-hundredth-example.ly</tt>&rsquo; uses <code>\caesura</code> between
+poetic lines and <code>\fine</code> at the end.  There are no
+<code>\fermata</code> or <code>\bar</code> commands; those symbols appear in
+the output because of the caesura configuration.
+</p>
+<p><cite>The Boston Handel and Haydn Society Collection of Church
+Music</cite> (1830) has a thick bar after each phrase.  For this tune,
+it also has fermatas over the bar lines:
+</p>
+
+<blockquote><pre class="verbatim"><span class="k">\layout</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-Context">\Score</span><span class="w"> </span>
+<span class="w">    </span><span class="n n-Lvalue">caesuraType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="o">&#39;</span><span class="p">((</span><span class="nf">bar-line</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">                     </span><span class="p">(</span><span class="nf">scripts</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="nf">fermata</span><span class="p">)))</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-ContextProperty">fineBarType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;..&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">\include</span><span class="w"> </span><span class="s">&quot;old-hundredth-example.ly&quot;</span><span class="w"></span>
+</pre>
+<p><a href="../42/lily-4bfc4560.ly">
+  <img align="middle"
+       border="0"
+       src="../42/lily-4bfc4560.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<p>J.S. James&rsquo; <cite>Original Sacred Harp</cite> (1911) has a thick bar
+when a line is broken in mid-measure at the end of a phrase.
+</p>
+
+<blockquote><pre class="verbatim"><span class="k">\layout</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-Context">\Score</span><span class="w"> </span>
+<span class="w">    </span><span class="n n-Lvalue">caesuraType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="o">&#39;</span><span class="p">((</span><span class="nf">underlying-bar-line</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;x-.&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-ContextProperty">fineBarType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;..&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="k">\include</span><span class="w"> </span><span class="s">&quot;old-hundredth-example.ly&quot;</span><span class="w"></span>
+</pre>
+<p><a href="../cb/lily-88d4c6f4.ly">
+  <img align="middle"
+       border="0"
+       src="../cb/lily-88d4c6f4.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+<hr size="6">
+<a name="Partial-measures-in-hymn-tunes"></a>
+<table class="nav_table">
+<tr><td align="left">[<a href="specialist-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Specialist notation </a>]</td><td align="center">[<a href="index" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index" title="Index" rel="index">Index</a>]</td><td align="right">[<a href="general-input-and-output" title="Next chapter"> General input and output &gt;&gt; </a>]</td></tr>
+<tr><td align="left">[<a href="#phrase-bar-lines-in-hymn-tunes" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Phrase bar lines in hymn tunes </a>]</td><td align="center">[<a href="#chants-psalms-and-hymns" title="Up section" accesskey="u" rel="up"> Up : Chants psalms and hymns </a>]</td><td align="right">[<a href="ancient-vocal-music" title="Next section in reading order" accesskey="n" rel="next"> Ancient vocal music &gt; </a>]</td></tr>
+</table>
+<a name="partial-measures-in-hymn-tunes"></a>
+<h4 class="unnumberedsubsubsec">Partial measures in hymn tunes</h4>
+
+<p>Hymn tunes frequently start and end every line of music with
+partial measures so that each line of music corresponds exactly
+with a line of text.  This requires a <code>\partial</code> command at
+the start of the music and a bar line at the end of each line.
+</p>
+<a name="index-hymn_002c-and-partial-measures"></a>
+<a name="index-partial-measure_002c-in-hymns"></a>
+<a name="index-measure_002c-partial_002c-in-hymns"></a>
+
+<a name="Hymn-template"></a>
+<h4 class="subsubheading"><i>Hymn template</i></h4>
+
+
+<p>This code shows one way of setting out a hymn tune when each line
+starts and ends with a partial measure.  It also shows how to add the
+verses as stand-alone text under the music.
+</p>
+
+
+<blockquote><pre class="verbatim"><span class="n n-Lvalue">Timeline</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\time</span><span class="w"> </span><span class="m m-Fraction">4/4</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\tempo</span><span class="w"> </span><span class="m">4</span><span class="p">=</span><span class="m">96</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MusicFunction">\partial</span><span class="w"> </span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span>s<span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">2</span><span class="w"> </span><span class="nb nb-MusicFunction">\breathe</span><span class="w"> </span>s<span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">2</span><span class="w"> </span><span class="nb nb-MusicFunction">\caesura</span><span class="w"> </span><span class="nb nb-MusicCommand">\break</span><span class="w"></span>
+<span class="w">  </span>s<span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">2</span><span class="w"> </span><span class="nb nb-MusicFunction">\breathe</span><span class="w"> </span>s<span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>s<span class="m">2</span><span class="w"> </span><span class="nb nb-MusicCommand">\fine</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">SopranoMusic</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class=" -Pitch">g&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">g</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">g</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">AltoMusic</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class=" -Pitch">c&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">d</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">d</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class=" -Pitch">d</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">d</span><span class="m">2</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">TenorMusic</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class=" -Pitch">a</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">b</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">b</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class=" -Pitch">b</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">b</span><span class="m">2</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">BassMusic</span><span class="w"> </span><span class="p">=</span><span class="w">  </span><span class="nb nb-MusicFunction">\relative</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">g</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"></span>
+<span class="w">  </span><span class=" -Pitch">g</span><span class="m">4</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class=" -Pitch">g</span><span class="m">2</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n n-Lvalue">global</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="nb nb-MusicFunction">\key</span><span class="w"> </span><span class=" -Pitch">g</span><span class="w"> </span><span class="nb nb-Scale">\major</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">\score</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">% Start score</span><span class="w"></span>
+<span class="w">  </span><span class="p">&lt;&lt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">PianoStaff</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w">  </span><span class="c1">% Start pianostaff</span><span class="w"></span>
+<span class="w">      </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w">  </span><span class="c1">% Start Staff = RH</span><span class="w"></span>
+<span class="w">        </span><span class="n n-BackslashReference">\global</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MusicFunction">\clef</span><span class="w"> </span><span class="s">&quot;treble&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Soprano&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w">  </span><span class="c1">% Start Voice = &quot;Soprano&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\Timeline</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-MusicCommand">\voiceOne</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\SopranoMusic</span><span class="w"></span>
+<span class="w">        </span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c1">% End Voice = &quot;Soprano&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Alto&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w">  </span><span class="c1">% Start Voice = &quot;Alto&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\Timeline</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-MusicCommand">\voiceTwo</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\AltoMusic</span><span class="w"></span>
+<span class="w">        </span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c1">% End Voice = &quot;Alto&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c1">% End Staff = RH</span><span class="w"></span>
+<span class="w">      </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Staff</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w">  </span><span class="c1">% Start Staff = LH</span><span class="w"></span>
+<span class="w">        </span><span class="n n-BackslashReference">\global</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MusicFunction">\clef</span><span class="w"> </span><span class="s">&quot;bass&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Tenor&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w">  </span><span class="c1">% Start Voice = &quot;Tenor&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\Timeline</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-MusicCommand">\voiceOne</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\TenorMusic</span><span class="w"></span>
+<span class="w">        </span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c1">% End Voice = &quot;Tenor&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="k">\new</span><span class="w"> </span><span class="nb nb-Context">Voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Bass&quot;</span><span class="w"> </span><span class="p">&lt;&lt;</span><span class="w">  </span><span class="c1">% Start Voice = &quot;Bass&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\Timeline</span><span class="w"></span>
+<span class="w">          </span><span class="nb nb-MusicCommand">\voiceTwo</span><span class="w"></span>
+<span class="w">          </span><span class="n n-BackslashReference">\BassMusic</span><span class="w"></span>
+<span class="w">        </span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c1">% End Voice = &quot;Bass&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c1">% End Staff = LH</span><span class="w"></span>
+<span class="w">    </span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c1">% End pianostaff</span><span class="w"></span>
+<span class="w">  </span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">}</span><span class="w">  </span><span class="c1">% End score</span><span class="w"></span>
+
+<span class="nb nb-MarkupCommand">\markup</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-MarkupCommand">\fill-line</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nb nb-MarkupCommand">\column</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb nb-MarkupCommand">\left-align</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;This is line one of the first verse&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;This is line two of the same&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;And here&#39;s line three of the first verse&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;And the last line of the same&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">\layout</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">\context</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-Context">\Score</span><span class="w"></span>
+<span class="w">    </span><span class="n n-Lvalue">caesuraType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">#</span><span class="o">&#39;</span><span class="p">((</span><span class="nf">bar-line</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s">&quot;||&quot;</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="nb nb-ContextProperty">fineBarType</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;||&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">\paper</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">% Start paper block</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-PaperVariable">indent</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">0</span><span class="w">     </span><span class="c1">% don&#39;t indent first system</span><span class="w"></span>
+<span class="w">  </span><span class="nb nb-PaperVariable">line-width</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">130</span><span class="w">   </span><span class="c1">% shorten line length to suit music</span><span class="w"></span>
+<span class="p">}</span><span class="w">  </span><span class="c1">% End paper block</span><span class="w"></span>
+</pre>
+<p><a href="../1c/lily-b10971f9.ly">
+  <img align="middle"
+       border="0"
+       src="../1c/lily-b10971f9.png"
+       alt="[image of music]"></a></p></blockquote>
+
+
+
+<hr size="6">
+<table class="nav_table">
+<tr><td align="left">[<a href="specialist-notation" title="Beginning of this chapter or previous chapter"> &lt;&lt; Specialist notation </a>]</td><td align="center">[<a href="index" title="Cover (top) of document" rel="start">Top</a>][<a href="index_toc#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="lilypond-command-index" title="Index" rel="index">Index</a>]</td><td align="right">[<a href="general-input-and-output" title="Next chapter"> General input and output &gt;&gt; </a>]</td></tr>
+<tr><td align="left">[<a href="#phrase-bar-lines-in-hymn-tunes" title="Previous section in reading order" accesskey="p" rel="previous"> &lt; Phrase bar lines in hymn tunes </a>]</td><td align="center">[<a href="#chants-psalms-and-hymns" title="Up section" accesskey="u" rel="up"> Up : Chants psalms and hymns </a>]</td><td align="right">[<a href="ancient-vocal-music" title="Next section in reading order" accesskey="n" rel="next"> Ancient vocal music &gt; </a>]</td></tr>
+</table>
+<div id="footer">
+<p class="footer_version">
+This page is for LilyPond-2.24.4 (stable-branch).
+</p>
+<p class="footer_report">
+We welcome your aid; please <a href="https://lilypond.org/help-us.html">help us</a> by reporting errors to our <a href="https://lists.gnu.org/mailman/listinfo/bug-lilypond">bug list</a>.
+</p>
+
+<p id="languages">
+Other languages: <a href="chants-psalms-and-hymns.ca.html">Català</a>, <a href="chants-psalms-and-hymns.de.html">Deutsch</a>, <a href="chants-psalms-and-hymns.es.html">Español</a>, <a href="chants-psalms-and-hymns.fr.html">Français</a>, <a href="chants-psalms-and-hymns.it.html">Italiano</a>, <a href="chants-psalms-and-hymns.ja.html">日本語</a>.
+<br>
+About <a href="http://www.lilypond.org/website/misc/browser-language">automatic language selection</a>.
+</p>
+
+<script>
+    // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later
+    (function () {
+        let handled = false;
+        function restoreHighlighting () {
+            if (handled) return;
+            if (localStorage.getItem('syntax-highlighting') !== 'no') {
+            enable_highlighting();
+            }
+            else {
+              disable_highlighting();
+            }
+            handled = true;
+        }
+
+        // Attempt early handling but fall back to onload just in case.
+        document.addEventListener('DOMContentLoaded', restoreHighlighting);
+        document.addEventListener('load', restoreHighlighting);
+    })();
+
+    let enabled = true;
+    function enable_highlighting() {
+        document.body.classList.add('highlight');
+        enabled = true;
+        document.getElementById('highlighting-active-link').innerHTML =
+            "<a href='javascript:disable_highlighting()'>Disable syntax highlighting</a>";
+    }
+    function disable_highlighting() {
+        document.body.classList.remove('highlight');
+        enabled = false;
+        document.getElementById('highlighting-active-link').innerHTML =
+            "<a href='javascript:enable_highlighting()'>Enable syntax highlighting</a>";
+    }
+
+    function save_preference() {
+        if (confirm("Remembering your preference regarding syntax highlighting for later visits on this documentation necessitates storing the preference in cookie-like browser storage.  This information remains local to your device and is never accessed by lilypond.org.")) // EU law compliance
+            localStorage.setItem('syntax-highlighting', enabled ? 'yes' : 'no');
+    }
+    // @license-end
+</script>
+
+<div id="highlighting-settings">
+  <a id="highlighting-active-link"></a>
+  &ndash;
+  <a href='javascript:save_preference()'>Save syntax highlighting preference</a>
+</div>
+</div>
+<!-- FOOTER -->
+
+<!-- end div#main here -->
+</div>
+
+
+
+<div id="tocframe">
+<p class="toc_uplink"><a href="../web/manuals.html"
+         title="Documentation Index">&lt;&lt; Back to Documentation Index</a></p>
+<h4 class="toc_header"> <a href="index" title="Start of the manual">LilyPond &mdash; Notation Reference  v2.24.4 (stable-branch). </a></h4>
+<div class="contents">
+
+<ul class="toc">
+  <li><a name="toc-Musical-notation-1" href="musical-notation">1. Musical notation</a>
+  <ul class="toc">
+    <li><a name="toc-Pitches-1" href="pitches">1.1 Pitches</a>
+    <ul class="toc">
+      <li><a name="toc-Writing-pitches-1" href="writing-pitches">1.1.1 Writing pitches</a>
+      <ul class="toc">
+        <li><a name="toc-Absolute-octave-entry-1" href="writing-pitches#absolute-octave-entry">Absolute octave entry</a></li>
+        <li><a name="toc-Relative-octave-entry-1" href="writing-pitches#relative-octave-entry">Relative octave entry</a></li>
+        <li><a name="toc-Accidentals-1" href="writing-pitches#accidentals">Accidentals</a></li>
+        <li><a name="toc-Note-names-in-other-languages-1" href="writing-pitches#note-names-in-other-languages">Note names in other languages</a></li>
+      </ul></li>
+      <li><a name="toc-Changing-multiple-pitches-1" href="changing-multiple-pitches">1.1.2 Changing multiple pitches</a>
+      <ul class="toc">
+        <li><a name="toc-Octave-checks-1" href="changing-multiple-pitches#octave-checks">Octave checks</a></li>
+        <li><a name="toc-Transpose-1" href="changing-multiple-pitches#transpose">Transpose</a></li>
+        <li><a name="toc-Inversion-1" href="changing-multiple-pitches#inversion">Inversion</a></li>
+        <li><a name="toc-Retrograde-1" href="changing-multiple-pitches#retrograde">Retrograde</a></li>
+        <li><a name="toc-Modal-transformations-1" href="changing-multiple-pitches#modal-transformations">Modal transformations</a></li>
+      </ul></li>
+      <li><a name="toc-Displaying-pitches-1" href="displaying-pitches">1.1.3 Displaying pitches</a>
+      <ul class="toc">
+        <li><a name="toc-Clef-1" href="displaying-pitches#clef">Clef</a></li>
+        <li><a name="toc-Key-signature-1" href="displaying-pitches#key-signature">Key signature</a></li>
+        <li><a name="toc-Ottava-brackets-1" href="displaying-pitches#ottava-brackets">Ottava brackets</a></li>
+        <li><a name="toc-Instrument-transpositions-1" href="displaying-pitches#instrument-transpositions">Instrument transpositions</a></li>
+        <li><a name="toc-Automatic-accidentals-1" href="displaying-pitches#automatic-accidentals">Automatic accidentals</a></li>
+        <li><a name="toc-Alternate-accidental-glyphs-1" href="displaying-pitches#alternate-accidental-glyphs">Alternate accidental glyphs</a></li>
+        <li><a name="toc-Ambitus-1" href="displaying-pitches#ambitus">Ambitus</a></li>
+      </ul></li>
+      <li><a name="toc-Note-heads-1" href="note-heads">1.1.4 Note heads</a>
+      <ul class="toc">
+        <li><a name="toc-Special-note-heads-1" href="note-heads#special-note-heads">Special note heads</a></li>
+        <li><a name="toc-Easy-notation-note-heads-1" href="note-heads#easy-notation-note-heads">Easy notation note heads</a></li>
+        <li><a name="toc-Shape-note-heads-1" href="note-heads#shape-note-heads">Shape note heads</a></li>
+        <li><a name="toc-Improvisation-1" href="note-heads#improvisation">Improvisation</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Rhythms-1" href="rhythms">1.2 Rhythms</a>
+    <ul class="toc">
+      <li><a name="toc-Writing-rhythms-1" href="writing-rhythms">1.2.1 Writing rhythms</a>
+      <ul class="toc">
+        <li><a name="toc-Durations-1" href="writing-rhythms#durations">Durations</a></li>
+        <li><a name="toc-Tuplets-1" href="writing-rhythms#tuplets">Tuplets</a></li>
+        <li><a name="toc-Scaling-durations-1" href="writing-rhythms#scaling-durations">Scaling durations</a></li>
+        <li><a name="toc-Ties-1" href="writing-rhythms#ties">Ties</a></li>
+      </ul></li>
+      <li><a name="toc-Writing-rests-1" href="writing-rests">1.2.2 Writing rests</a>
+      <ul class="toc">
+        <li><a name="toc-Rests-1" href="writing-rests#rests">Rests</a></li>
+        <li><a name="toc-Invisible-rests-1" href="writing-rests#invisible-rests">Invisible rests</a></li>
+        <li><a name="toc-Full-measure-rests-1" href="writing-rests#full-measure-rests">Full measure rests</a></li>
+        <li><a name="toc-Caesuras-1" href="writing-rests#caesuras">Caesuras</a></li>
+      </ul></li>
+      <li><a name="toc-Displaying-rhythms-1" href="displaying-rhythms">1.2.3 Displaying rhythms</a>
+      <ul class="toc">
+        <li><a name="toc-Time-signature-1" href="displaying-rhythms#time-signature">Time signature</a></li>
+        <li><a name="toc-Metronome-marks-1" href="displaying-rhythms#metronome-marks">Metronome marks</a></li>
+        <li><a name="toc-Upbeats-1" href="displaying-rhythms#upbeats">Upbeats</a></li>
+        <li><a name="toc-Unmetered-music-1" href="displaying-rhythms#unmetered-music">Unmetered music</a></li>
+        <li><a name="toc-Polymetric-notation-1" href="displaying-rhythms#polymetric-notation">Polymetric notation</a></li>
+        <li><a name="toc-Automatic-note-splitting-1" href="displaying-rhythms#automatic-note-splitting">Automatic note splitting</a></li>
+        <li><a name="toc-Showing-melody-rhythms-1" href="displaying-rhythms#showing-melody-rhythms">Showing melody rhythms</a></li>
+      </ul></li>
+      <li><a name="toc-Beams-1" href="beams">1.2.4 Beams</a>
+      <ul class="toc">
+        <li><a name="toc-Automatic-beams-1" href="beams#automatic-beams">Automatic beams</a></li>
+        <li><a name="toc-Setting-automatic-beam-behavior-1" href="beams#setting-automatic-beam-behavior">Setting automatic beam behavior</a></li>
+        <li><a name="toc-Manual-beams-1" href="beams#manual-beams">Manual beams</a></li>
+        <li><a name="toc-Feathered-beams-1" href="beams#feathered-beams">Feathered beams</a></li>
+      </ul></li>
+      <li><a name="toc-Bars-1" href="bars">1.2.5 Bars</a>
+      <ul class="toc">
+        <li><a name="toc-Bar-lines-1" href="bars#bar-lines">Bar lines</a></li>
+        <li><a name="toc-Automatic-bar-lines-1" href="bars#automatic-bar-lines">Automatic bar lines</a></li>
+        <li><a name="toc-Bar-numbers-1" href="bars#bar-numbers">Bar numbers</a></li>
+        <li><a name="toc-Bar-and-bar-number-checks-1" href="bars#bar-and-bar-number-checks">Bar and bar number checks</a></li>
+        <li><a name="toc-Rehearsal-marks-1" href="bars#rehearsal-marks">Rehearsal marks</a></li>
+        <li><a name="toc-Measure-counts-1" href="bars#measure-counts">Measure counts</a></li>
+        <li><a name="toc-Section-divisions-1" href="bars#section-divisions">Section divisions</a></li>
+      </ul></li>
+      <li><a name="toc-Special-rhythmic-concerns-1" href="special-rhythmic-concerns">1.2.6 Special rhythmic concerns</a>
+      <ul class="toc">
+        <li><a name="toc-Grace-notes-1" href="special-rhythmic-concerns#grace-notes">Grace notes</a></li>
+        <li><a name="toc-Aligning-to-cadenzas-1" href="special-rhythmic-concerns#aligning-to-cadenzas">Aligning to cadenzas</a></li>
+        <li><a name="toc-Time-administration-1" href="special-rhythmic-concerns#time-administration">Time administration</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Expressive-marks-1" href="expressive-marks">1.3 Expressive marks</a>
+    <ul class="toc">
+      <li><a name="toc-Expressive-marks-attached-to-notes-1" href="expressive-marks-attached-to-notes">1.3.1 Expressive marks attached to notes</a>
+      <ul class="toc">
+        <li><a name="toc-Articulations-and-ornamentations-1" href="expressive-marks-attached-to-notes#articulations-and-ornamentations">Articulations and ornamentations</a></li>
+        <li><a name="toc-Dynamics-1" href="expressive-marks-attached-to-notes#dynamics">Dynamics</a></li>
+        <li><a name="toc-New-dynamic-marks-1" href="expressive-marks-attached-to-notes#new-dynamic-marks">New dynamic marks</a></li>
+      </ul></li>
+      <li><a name="toc-Expressive-marks-as-curves-1" href="expressive-marks-as-curves">1.3.2 Expressive marks as curves</a>
+      <ul class="toc">
+        <li><a name="toc-Slurs-1" href="expressive-marks-as-curves#slurs">Slurs</a></li>
+        <li><a name="toc-Phrasing-slurs-1" href="expressive-marks-as-curves#phrasing-slurs">Phrasing slurs</a></li>
+        <li><a name="toc-Breath-marks-1" href="expressive-marks-as-curves#breath-marks">Breath marks</a></li>
+        <li><a name="toc-Falls-and-doits-1" href="expressive-marks-as-curves#falls-and-doits">Falls and doits</a></li>
+      </ul></li>
+      <li><a name="toc-Expressive-marks-as-lines-1" href="expressive-marks-as-lines">1.3.3 Expressive marks as lines</a>
+      <ul class="toc">
+        <li><a name="toc-Glissando-1" href="expressive-marks-as-lines#glissando">Glissando</a></li>
+        <li><a name="toc-Arpeggio-1" href="expressive-marks-as-lines#arpeggio">Arpeggio</a></li>
+        <li><a name="toc-Trills-1" href="expressive-marks-as-lines#trills">Trills</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Repeats-1" href="repeats">1.4 Repeats</a>
+    <ul class="toc">
+      <li><a name="toc-Long-repeats-1" href="long-repeats">1.4.1 Long repeats</a>
+      <ul class="toc">
+        <li><a name="toc-Written_002dout-repeats-1" href="long-repeats#written_002dout-repeats">Written-out repeats</a></li>
+        <li><a name="toc-Simple-repeats-1" href="long-repeats#simple-repeats">Simple repeats</a></li>
+        <li><a name="toc-Alternative-endings-1" href="long-repeats#alternative-endings">Alternative endings</a></li>
+        <li><a name="toc-Other-variation-in-repeated-sections-1" href="long-repeats#other-variation-in-repeated-sections">Other variation in repeated sections</a></li>
+        <li><a name="toc-Al_002dfine-repeats-1" href="long-repeats#al_002dfine-repeats">Al-fine repeats</a></li>
+        <li><a name="toc-Segno-repeat-structure-1" href="long-repeats#segno-repeat-structure">Segno repeat structure</a></li>
+        <li><a name="toc-Segno-repeat-appearance-1" href="long-repeats#segno-repeat-appearance">Segno repeat appearance</a></li>
+        <li><a name="toc-Manual-repeat-marks-1" href="long-repeats#manual-repeat-marks">Manual repeat marks</a></li>
+      </ul></li>
+      <li><a name="toc-Short-repeats-1" href="short-repeats">1.4.2 Short repeats</a>
+      <ul class="toc">
+        <li><a name="toc-Percent-repeats-1" href="short-repeats#percent-repeats">Percent repeats</a></li>
+        <li><a name="toc-Tremolo-repeats-1" href="short-repeats#tremolo-repeats">Tremolo repeats</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Simultaneous-notes-1" href="simultaneous-notes">1.5 Simultaneous notes</a>
+    <ul class="toc">
+      <li><a name="toc-Single-voice-1" href="single-voice">1.5.1 Single voice</a>
+      <ul class="toc">
+        <li><a name="toc-Chorded-notes-1" href="single-voice#chorded-notes">Chorded notes</a></li>
+        <li><a name="toc-Chord-repetition-1" href="single-voice#chord-repetition">Chord repetition</a></li>
+        <li><a name="toc-Simultaneous-expressions-1" href="single-voice#simultaneous-expressions">Simultaneous expressions</a></li>
+        <li><a name="toc-Clusters-1" href="single-voice#clusters">Clusters</a></li>
+      </ul></li>
+      <li><a name="toc-Multiple-voices-1" href="multiple-voices">1.5.2 Multiple voices</a>
+      <ul class="toc">
+        <li><a name="toc-Single_002dstaff-polyphony-1" href="multiple-voices#single_002dstaff-polyphony">Single-staff polyphony</a></li>
+        <li><a name="toc-Voice-styles-1" href="multiple-voices#voice-styles">Voice styles</a></li>
+        <li><a name="toc-Collision-resolution-1" href="multiple-voices#collision-resolution">Collision resolution</a></li>
+        <li><a name="toc-Merging-rests-1" href="multiple-voices#merging-rests">Merging rests</a></li>
+        <li><a name="toc-Automatic-part-combining-1" href="multiple-voices#automatic-part-combining">Automatic part combining</a></li>
+        <li><a name="toc-Writing-music-in-parallel-1" href="multiple-voices#writing-music-in-parallel">Writing music in parallel</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Staff-notation-1" href="staff-notation">1.6 Staff notation</a>
+    <ul class="toc">
+      <li><a name="toc-Displaying-staves-1" href="displaying-staves">1.6.1 Displaying staves</a>
+      <ul class="toc">
+        <li><a name="toc-Instantiating-new-staves-1" href="displaying-staves#instantiating-new-staves">Instantiating new staves</a></li>
+        <li><a name="toc-Grouping-staves-1" href="displaying-staves#grouping-staves">Grouping staves</a></li>
+        <li><a name="toc-Nested-staff-groups-1" href="displaying-staves#nested-staff-groups">Nested staff groups</a></li>
+        <li><a name="toc-Separating-systems-1" href="displaying-staves#separating-systems">Separating systems</a></li>
+      </ul></li>
+      <li><a name="toc-Modifying-single-staves-1" href="modifying-single-staves">1.6.2 Modifying single staves</a>
+      <ul class="toc">
+        <li><a name="toc-Staff-symbol-1" href="modifying-single-staves#staff-symbol">Staff symbol</a></li>
+        <li><a name="toc-Ossia-staves-1" href="modifying-single-staves#ossia-staves">Ossia staves</a></li>
+        <li><a name="toc-Hiding-staves-1" href="modifying-single-staves#hiding-staves">Hiding staves</a></li>
+      </ul></li>
+      <li><a name="toc-Writing-parts-1" href="writing-parts">1.6.3 Writing parts</a>
+      <ul class="toc">
+        <li><a name="toc-Instrument-names-1" href="writing-parts#instrument-names">Instrument names</a></li>
+        <li><a name="toc-Quoting-other-voices-1" href="writing-parts#quoting-other-voices">Quoting other voices</a></li>
+        <li><a name="toc-Formatting-cue-notes-1" href="writing-parts#formatting-cue-notes">Formatting cue notes</a></li>
+        <li><a name="toc-Compressing-empty-measures-1" href="writing-parts#compressing-empty-measures">Compressing empty measures</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Editorial-annotations-1" href="editorial-annotations">1.7 Editorial annotations</a>
+    <ul class="toc">
+      <li><a name="toc-Inside-the-staff-1" href="inside-the-staff">1.7.1 Inside the staff</a>
+      <ul class="toc">
+        <li><a name="toc-Selecting-notation-font-size-1" href="inside-the-staff#selecting-notation-font-size">Selecting notation font size</a></li>
+        <li><a name="toc-Fingering-instructions-1" href="inside-the-staff#fingering-instructions">Fingering instructions</a></li>
+        <li><a name="toc-Gliding-fingers-1" href="inside-the-staff#gliding-fingers">Gliding fingers</a></li>
+        <li><a name="toc-Hidden-notes-1" href="inside-the-staff#hidden-notes">Hidden notes</a></li>
+        <li><a name="toc-Coloring-objects-1" href="inside-the-staff#coloring-objects">Coloring objects</a></li>
+        <li><a name="toc-Staff-highlights-1" href="inside-the-staff#staff-highlights">Staff highlights</a></li>
+        <li><a name="toc-Parentheses-1" href="inside-the-staff#parentheses">Parentheses</a></li>
+        <li><a name="toc-Stems-1" href="inside-the-staff#stems">Stems</a></li>
+      </ul></li>
+      <li><a name="toc-Outside-the-staff-1" href="outside-the-staff">1.7.2 Outside the staff</a>
+      <ul class="toc">
+        <li><a name="toc-Note-names-1" href="outside-the-staff#note-names">Note names</a></li>
+        <li><a name="toc-Balloon-help-1" href="outside-the-staff#balloon-help">Balloon help</a></li>
+        <li><a name="toc-Grid-lines-1" href="outside-the-staff#grid-lines">Grid lines</a></li>
+        <li><a name="toc-Analysis-brackets-1" href="outside-the-staff#analysis-brackets">Analysis brackets</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Text-1" href="text">1.8 Text</a>
+    <ul class="toc">
+      <li><a name="toc-Writing-text-1" href="writing-text">1.8.1 Writing text</a>
+      <ul class="toc">
+        <li><a name="toc-Text-objects-overview-1" href="writing-text#text-objects-overview">Text objects overview</a></li>
+        <li><a name="toc-Text-scripts-1" href="writing-text#text-scripts">Text scripts</a></li>
+        <li><a name="toc-Text-spanners-1" href="writing-text#text-spanners">Text spanners</a></li>
+        <li><a name="toc-Section-labels-1" href="writing-text#section-labels">Section labels</a></li>
+        <li><a name="toc-Text-marks-1" href="writing-text#text-marks">Text marks</a></li>
+        <li><a name="toc-Separate-text-1" href="writing-text#separate-text">Separate text</a></li>
+      </ul></li>
+      <li><a name="toc-Formatting-text-1" href="formatting-text">1.8.2 Formatting text</a>
+      <ul class="toc">
+        <li><a name="toc-Text-markup-introduction-1" href="formatting-text#text-markup-introduction">Text markup introduction</a></li>
+        <li><a name="toc-Selecting-font-and-font-size-1" href="formatting-text#selecting-font-and-font-size">Selecting font and font size</a></li>
+        <li><a name="toc-Text-alignment-1" href="formatting-text#text-alignment">Text alignment</a></li>
+        <li><a name="toc-Graphic-notation-inside-markup-1" href="formatting-text#graphic-notation-inside-markup">Graphic notation inside markup</a></li>
+        <li><a name="toc-Music-notation-inside-markup-1" href="formatting-text#music-notation-inside-markup">Music notation inside markup</a></li>
+      </ul></li>
+      <li><a name="toc-Fonts-1" href="fonts">1.8.3 Fonts</a>
+      <ul class="toc">
+        <li><a name="toc-Finding-fonts-1" href="fonts#finding-fonts">Finding fonts</a></li>
+        <li><a name="toc-Font-families-1" href="fonts#font-families">Font families</a></li>
+        <li><a name="toc-Font-features-1" href="fonts#font-features">Font features</a></li>
+        <li><a name="toc-Single-entry-fonts-1" href="fonts#single-entry-fonts">Single entry fonts</a></li>
+        <li><a name="toc-Entire-document-fonts-1" href="fonts#entire-document-fonts">Entire document fonts</a></li>
+        <li><a name="toc-Music-fonts-1" href="fonts#music-fonts">Music fonts</a></li>
+      </ul>
+</li>
+    </ul>
+</li>
+  </ul></li>
+  <li class="toc_current"><a name="toc-Specialist-notation-1" href="specialist-notation">2. Specialist notation</a>
+  <ul class="toc">
+    <li class="toc_current"><a name="toc-Vocal-music-1" href="vocal-music">2.1 Vocal music</a>
+    <ul class="toc">
+      <li><a name="toc-Common-notation-for-vocal-music-1" href="common-notation-for-vocal-music">2.1.1 Common notation for vocal music</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-vocal-music-1" href="common-notation-for-vocal-music#references-for-vocal-music">References for vocal music</a></li>
+        <li><a name="toc-Entering-lyrics-1" href="common-notation-for-vocal-music#entering-lyrics">Entering lyrics</a></li>
+        <li><a name="toc-Aligning-lyrics-to-a-melody-1" href="common-notation-for-vocal-music#aligning-lyrics-to-a-melody">Aligning lyrics to a melody</a></li>
+        <li><a name="toc-Automatic-syllable-durations-1" href="common-notation-for-vocal-music#automatic-syllable-durations">Automatic syllable durations</a></li>
+        <li><a name="toc-Manual-syllable-durations-1" href="common-notation-for-vocal-music#manual-syllable-durations">Manual syllable durations</a></li>
+        <li><a name="toc-Multiple-syllables-to-one-note-1" href="common-notation-for-vocal-music#multiple-syllables-to-one-note">Multiple syllables to one note</a></li>
+        <li><a name="toc-Multiple-notes-to-one-syllable-1" href="common-notation-for-vocal-music#multiple-notes-to-one-syllable">Multiple notes to one syllable</a></li>
+        <li><a name="toc-Extenders-and-hyphens-1" href="common-notation-for-vocal-music#extenders-and-hyphens">Extenders and hyphens</a></li>
+        <li><a name="toc-Gradual-changes-of-vowel-1" href="common-notation-for-vocal-music#gradual-changes-of-vowel">Gradual changes of vowel</a></li>
+      </ul></li>
+      <li><a name="toc-Techniques-specific-to-lyrics-1" href="techniques-specific-to-lyrics">2.1.2 Techniques specific to lyrics</a>
+      <ul class="toc">
+        <li><a name="toc-Working-with-lyrics-and-variables-1" href="techniques-specific-to-lyrics#working-with-lyrics-and-variables">Working with lyrics and variables</a></li>
+        <li><a name="toc-Placing-lyrics-vertically-1" href="techniques-specific-to-lyrics#placing-lyrics-vertically">Placing lyrics vertically</a></li>
+        <li><a name="toc-Placing-syllables-horizontally-1" href="techniques-specific-to-lyrics#placing-syllables-horizontally">Placing syllables horizontally</a></li>
+        <li><a name="toc-Lyrics-and-repeats-1" href="techniques-specific-to-lyrics#lyrics-and-repeats">Lyrics and repeats</a></li>
+        <li><a name="toc-Divisi-lyrics-1" href="techniques-specific-to-lyrics#divisi-lyrics">Divisi lyrics</a></li>
+        <li><a name="toc-Polyphony-with-shared-lyrics-1" href="techniques-specific-to-lyrics#polyphony-with-shared-lyrics">Polyphony with shared lyrics</a></li>
+      </ul></li>
+      <li><a name="toc-Stanzas-1" href="stanzas">2.1.3 Stanzas</a>
+      <ul class="toc">
+        <li><a name="toc-Adding-stanza-numbers-1" href="stanzas#adding-stanza-numbers">Adding stanza numbers</a></li>
+        <li><a name="toc-Adding-dynamics-marks-to-stanzas-1" href="stanzas#adding-dynamics-marks-to-stanzas">Adding dynamics marks to stanzas</a></li>
+        <li><a name="toc-Adding-singers_0027-names-to-stanzas-1" href="stanzas#adding-singers_0027-names-to-stanzas">Adding singers&rsquo; names to stanzas</a></li>
+        <li><a name="toc-Stanzas-with-different-rhythms-1" href="stanzas#stanzas-with-different-rhythms">Stanzas with different rhythms</a></li>
+        <li><a name="toc-Printing-stanzas-at-the-end-1" href="stanzas#printing-stanzas-at-the-end">Printing stanzas at the end</a></li>
+        <li><a name="toc-Printing-stanzas-at-the-end-in-multiple-columns-1" href="stanzas#printing-stanzas-at-the-end-in-multiple-columns">Printing stanzas at the end in multiple columns</a></li>
+      </ul></li>
+      <li><a name="toc-Songs-1" href="songs">2.1.4 Songs</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-songs-1" href="songs#references-for-songs">References for songs</a></li>
+        <li><a name="toc-Lead-sheets-1" href="songs#lead-sheets">Lead sheets</a></li>
+      </ul></li>
+      <li><a name="toc-Choral-1" href="choral">2.1.5 Choral</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-choral-1" href="choral#references-for-choral">References for choral</a></li>
+        <li><a name="toc-Score-layouts-for-choral-1" href="choral#score-layouts-for-choral">Score layouts for choral</a></li>
+      </ul></li>
+      <li><a name="toc-Opera-and-stage-musicals-1" href="opera-and-stage-musicals">2.1.6 Opera and stage musicals</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-opera-and-stage-musicals-1" href="opera-and-stage-musicals#references-for-opera-and-stage-musicals">References for opera and stage musicals</a></li>
+        <li><a name="toc-Character-names-1" href="opera-and-stage-musicals#character-names">Character names</a></li>
+        <li><a name="toc-Musical-cues-1" href="opera-and-stage-musicals#musical-cues">Musical cues</a></li>
+        <li><a name="toc-Spoken-music-1" href="opera-and-stage-musicals#spoken-music">Spoken music</a></li>
+        <li><a name="toc-Dialogue-over-music-1" href="opera-and-stage-musicals#dialogue-over-music">Dialogue over music</a></li>
+      </ul></li>
+      <li class="toc_current"><a name="toc-Chants-psalms-and-hymns-1" href="chants-psalms-and-hymns">2.1.7 Chants psalms and hymns</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-chants-and-psalms-1" href="chants-psalms-and-hymns#references-for-chants-and-psalms">References for chants and psalms</a></li>
+        <li><a name="toc-Setting-a-chant-1" href="chants-psalms-and-hymns#setting-a-chant">Setting a chant</a></li>
+        <li><a name="toc-Pointing-a-psalm-1" href="chants-psalms-and-hymns#pointing-a-psalm">Pointing a psalm</a></li>
+        <li><a name="toc-Phrase-bar-lines-in-hymn-tunes-1" href="chants-psalms-and-hymns#phrase-bar-lines-in-hymn-tunes">Phrase bar lines in hymn tunes</a></li>
+        <li><a name="toc-Partial-measures-in-hymn-tunes-1" href="chants-psalms-and-hymns#partial-measures-in-hymn-tunes">Partial measures in hymn tunes</a></li>
+      </ul></li>
+      <li><a name="toc-Ancient-vocal-music-1" href="ancient-vocal-music">2.1.8 Ancient vocal music</a></li>
+    </ul></li>
+    <li><a name="toc-Keyboard-and-other-multi_002dstaff-instruments-1" href="keyboard-and-other-multi_002dstaff-instruments">2.2 Keyboard and other multi-staff instruments</a>
+    <ul class="toc">
+      <li><a name="toc-Common-notation-for-keyboards-1" href="common-notation-for-keyboards">2.2.1 Common notation for keyboards</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-keyboards-1" href="common-notation-for-keyboards#references-for-keyboards">References for keyboards</a></li>
+        <li><a name="toc-Changing-staff-manually-1" href="common-notation-for-keyboards#changing-staff-manually">Changing staff manually</a></li>
+        <li><a name="toc-Changing-staff-automatically-1" href="common-notation-for-keyboards#changing-staff-automatically">Changing staff automatically</a></li>
+        <li><a name="toc-Staff_002dchange-lines-1" href="common-notation-for-keyboards#staff_002dchange-lines">Staff-change lines</a></li>
+      </ul></li>
+      <li><a name="toc-Piano-1" href="piano">2.2.2 Piano</a>
+      <ul class="toc">
+        <li><a name="toc-Piano-pedals-1" href="piano#piano-pedals">Piano pedals</a></li>
+      </ul></li>
+      <li><a name="toc-Accordion-1" href="accordion">2.2.3 Accordion</a>
+      <ul class="toc">
+        <li><a name="toc-Discant-symbols-1" href="accordion#discant-symbols">Discant symbols</a></li>
+      </ul></li>
+      <li><a name="toc-Harp-1" href="harp">2.2.4 Harp</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-harps-1" href="harp#references-for-harps">References for harps</a></li>
+        <li><a name="toc-Harp-pedals-1" href="harp#harp-pedals">Harp pedals</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Unfretted-string-instruments-1" href="unfretted-string-instruments">2.3 Unfretted string instruments</a>
+    <ul class="toc">
+      <li><a name="toc-Common-notation-for-unfretted-strings-1" href="common-notation-for-unfretted-strings">2.3.1 Common notation for unfretted strings</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-unfretted-strings-1" href="common-notation-for-unfretted-strings#references-for-unfretted-strings">References for unfretted strings</a></li>
+        <li><a name="toc-Bowing-indications-1" href="common-notation-for-unfretted-strings#bowing-indications">Bowing indications</a></li>
+        <li><a name="toc-Harmonics-1" href="common-notation-for-unfretted-strings#harmonics">Harmonics</a></li>
+        <li><a name="toc-Snap-_0028Bartok_0029-pizzicato-1" href="common-notation-for-unfretted-strings#snap-_0028bartok_0029-pizzicato">Snap (Bartók) pizzicato</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Fretted-string-instruments-1" href="fretted-string-instruments">2.4 Fretted string instruments</a>
+    <ul class="toc">
+      <li><a name="toc-Common-notation-for-fretted-strings-1" href="common-notation-for-fretted-strings">2.4.1 Common notation for fretted strings</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-fretted-strings-1" href="common-notation-for-fretted-strings#references-for-fretted-strings">References for fretted strings</a></li>
+        <li><a name="toc-String-number-indications-1" href="common-notation-for-fretted-strings#string-number-indications">String number indications</a></li>
+        <li><a name="toc-Default-tablatures-1" href="common-notation-for-fretted-strings#default-tablatures">Default tablatures</a></li>
+        <li><a name="toc-Custom-tablatures-1" href="common-notation-for-fretted-strings#custom-tablatures">Custom tablatures</a></li>
+        <li><a name="toc-Fret-diagram-markups-1" href="common-notation-for-fretted-strings#fret-diagram-markups">Fret diagram markups</a></li>
+        <li><a name="toc-Predefined-fret-diagrams-1" href="common-notation-for-fretted-strings#predefined-fret-diagrams">Predefined fret diagrams</a></li>
+        <li><a name="toc-Automatic-fret-diagrams-1" href="common-notation-for-fretted-strings#automatic-fret-diagrams">Automatic fret diagrams</a></li>
+        <li><a name="toc-Right_002dhand-fingerings-1" href="common-notation-for-fretted-strings#right_002dhand-fingerings">Right-hand fingerings</a></li>
+      </ul></li>
+      <li><a name="toc-Guitar-1" href="guitar">2.4.2 Guitar</a>
+      <ul class="toc">
+        <li><a name="toc-Indicating-position-and-barring-1" href="guitar#indicating-position-and-barring">Indicating position and barring</a></li>
+        <li><a name="toc-Indicating-harmonics-and-dampened-notes-1" href="guitar#indicating-harmonics-and-dampened-notes">Indicating harmonics and dampened notes</a></li>
+        <li><a name="toc-Indicating-power-chords-1" href="guitar#indicating-power-chords">Indicating power chords</a></li>
+      </ul></li>
+      <li><a name="toc-Banjo-1" href="banjo">2.4.3 Banjo</a>
+      <ul class="toc">
+        <li><a name="toc-Banjo-tablatures-1" href="banjo#banjo-tablatures">Banjo tablatures</a></li>
+      </ul></li>
+      <li><a name="toc-Lute-1" href="lute">2.4.4 Lute</a>
+      <ul class="toc">
+        <li><a name="toc-Lute-tablatures-1" href="lute#lute-tablatures">Lute tablatures</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Percussion-1" href="percussion">2.5 Percussion</a>
+    <ul class="toc">
+      <li><a name="toc-Common-notation-for-percussion-1" href="common-notation-for-percussion">2.5.1 Common notation for percussion</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-percussion-1" href="common-notation-for-percussion#references-for-percussion">References for percussion</a></li>
+        <li><a name="toc-Basic-percussion-notation-1" href="common-notation-for-percussion#basic-percussion-notation">Basic percussion notation</a></li>
+        <li><a name="toc-Drum-rolls-1" href="common-notation-for-percussion#drum-rolls">Drum rolls</a></li>
+        <li><a name="toc-Pitched-percussion-1" href="common-notation-for-percussion#pitched-percussion">Pitched percussion</a></li>
+        <li><a name="toc-Percussion-staves-1" href="common-notation-for-percussion#percussion-staves">Percussion staves</a></li>
+        <li><a name="toc-Custom-percussion-staves-1" href="common-notation-for-percussion#custom-percussion-staves">Custom percussion staves</a></li>
+        <li><a name="toc-Ghost-notes-1" href="common-notation-for-percussion#ghost-notes">Ghost notes</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Wind-instruments-1" href="wind-instruments">2.6 Wind instruments</a>
+    <ul class="toc">
+      <li><a name="toc-Common-notation-for-wind-instruments-1" href="common-notation-for-wind-instruments">2.6.1 Common notation for wind instruments</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-wind-instruments-1" href="common-notation-for-wind-instruments#references-for-wind-instruments">References for wind instruments</a></li>
+        <li><a name="toc-Fingerings-1" href="common-notation-for-wind-instruments#fingerings">Fingerings</a></li>
+      </ul></li>
+      <li><a name="toc-Bagpipes-1" href="bagpipes">2.6.2 Bagpipes</a>
+      <ul class="toc">
+        <li><a name="toc-Bagpipe-definitions-1" href="bagpipes#bagpipe-definitions">Bagpipe definitions</a></li>
+        <li><a name="toc-Bagpipe-example-1" href="bagpipes#bagpipe-example">Bagpipe example</a></li>
+      </ul></li>
+      <li><a name="toc-Woodwinds-1" href="woodwinds">2.6.3 Woodwinds</a>
+      <ul class="toc">
+        <li><a name="toc-Woodwind-diagrams-1" href="woodwind-diagrams">2.6.3.1 Woodwind diagrams</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Chord-notation-1" href="chord-notation">2.7 Chord notation</a>
+    <ul class="toc">
+      <li><a name="toc-Chord-mode-1" href="chord-mode">2.7.1 Chord mode</a>
+      <ul class="toc">
+        <li><a name="toc-Chord-mode-overview-1" href="chord-mode#chord-mode-overview">Chord mode overview</a></li>
+        <li><a name="toc-Common-chords-1" href="chord-mode#common-chords">Common chords</a></li>
+        <li><a name="toc-Extended-and-altered-chords-1" href="chord-mode#extended-and-altered-chords">Extended and altered chords</a></li>
+        <li><a name="toc-Chord-inversions-and-specific-voicings-1" href="chord-mode#chord-inversions-and-specific-voicings">Chord inversions and specific voicings</a></li>
+      </ul></li>
+      <li><a name="toc-Displaying-chords-1" href="displaying-chords">2.7.2 Displaying chords</a>
+      <ul class="toc">
+        <li><a name="toc-Printing-chord-names-1" href="displaying-chords#printing-chord-names">Printing chord names</a></li>
+        <li><a name="toc-Customizing-chord-names-1" href="displaying-chords#customizing-chord-names">Customizing chord names</a></li>
+        <li><a name="toc-Chord-grids-1" href="displaying-chords#chord-grids">Chord grids</a></li>
+      </ul></li>
+      <li><a name="toc-Figured-bass-1" href="figured-bass">2.7.3 Figured bass</a>
+      <ul class="toc">
+        <li><a name="toc-Introduction-to-figured-bass-1" href="figured-bass#introduction-to-figured-bass">Introduction to figured bass</a></li>
+        <li><a name="toc-Entering-figured-bass-1" href="figured-bass#entering-figured-bass">Entering figured bass</a></li>
+        <li><a name="toc-Displaying-figured-bass-1" href="figured-bass#displaying-figured-bass">Displaying figured bass</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Contemporary-music-1" href="contemporary-music">2.8 Contemporary music</a>
+    <ul class="toc">
+      <li><a name="toc-Pitch-and-harmony-in-contemporary-music-1" href="pitch-and-harmony-in-contemporary-music">2.8.1 Pitch and harmony in contemporary music</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-pitch-and-harmony-in-contemporary-music-1" href="pitch-and-harmony-in-contemporary-music#references-for-pitch-and-harmony-in-contemporary-music">References for pitch and harmony in contemporary music</a></li>
+        <li><a name="toc-Microtonal-notation-1" href="pitch-and-harmony-in-contemporary-music#microtonal-notation">Microtonal notation</a></li>
+        <li><a name="toc-Contemporary-key-signatures-and-harmony-1" href="pitch-and-harmony-in-contemporary-music#contemporary-key-signatures-and-harmony">Contemporary key signatures and harmony</a></li>
+      </ul></li>
+      <li><a name="toc-Contemporary-approaches-to-rhythm-1" href="contemporary-approaches-to-rhythm">2.8.2 Contemporary approaches to rhythm</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-contemporary-approaches-to-rhythm-1" href="contemporary-approaches-to-rhythm#references-for-contemporary-approaches-to-rhythm">References for contemporary approaches to rhythm</a></li>
+        <li><a name="toc-Tuplets-in-contemporary-music-1" href="contemporary-approaches-to-rhythm#tuplets-in-contemporary-music">Tuplets in contemporary music</a></li>
+        <li><a name="toc-Contemporary-time-signatures-1" href="contemporary-approaches-to-rhythm#contemporary-time-signatures">Contemporary time signatures</a></li>
+        <li><a name="toc-Extended-polymetric-notation-1" href="contemporary-approaches-to-rhythm#extended-polymetric-notation">Extended polymetric notation</a></li>
+        <li><a name="toc-Beams-in-contemporary-music-1" href="contemporary-approaches-to-rhythm#beams-in-contemporary-music">Beams in contemporary music</a></li>
+        <li><a name="toc-Bar-lines-in-contemporary-music-1" href="contemporary-approaches-to-rhythm#bar-lines-in-contemporary-music">Bar lines in contemporary music</a></li>
+      </ul></li>
+      <li><a name="toc-Graphical-notation-1" href="graphical-notation">2.8.3 Graphical notation</a></li>
+      <li><a name="toc-Contemporary-scoring-techniques-1" href="contemporary-scoring-techniques">2.8.4 Contemporary scoring techniques</a></li>
+      <li><a name="toc-New-instrumental-techniques-1" href="new-instrumental-techniques">2.8.5 New instrumental techniques</a></li>
+      <li><a name="toc-Further-reading-and-scores-of-interest-1" href="further-reading-and-scores-of-interest">2.8.6 Further reading and scores of interest</a>
+      <ul class="toc">
+        <li><a name="toc-Books-and-articles-on-contemporary-musical-notation-1" href="further-reading-and-scores-of-interest#books-and-articles-on-contemporary-musical-notation">Books and articles on contemporary musical notation</a></li>
+        <li><a name="toc-Scores-and-musical-examples-1" href="further-reading-and-scores-of-interest#scores-and-musical-examples">Scores and musical examples</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Ancient-notation-1" href="ancient-notation">2.9 Ancient notation</a>
+    <ul class="toc">
+      <li><a name="toc-Overview-of-the-supported-styles-1" href="overview-of-the-supported-styles">2.9.1 Overview of the supported styles</a></li>
+      <li><a name="toc-Ancient-notation-_002d_002d-common-features-1" href="ancient-notation-_002d-common-features">2.9.2 Ancient notation &ndash; common features</a>
+      <ul class="toc">
+        <li><a name="toc-Predefined-contexts-1" href="ancient-notation-_002d-common-features#predefined-contexts">Predefined contexts</a></li>
+        <li><a name="toc-Ligatures-1" href="ancient-notation-_002d-common-features#ligatures">Ligatures</a></li>
+        <li><a name="toc-Custodes-1" href="ancient-notation-_002d-common-features#custodes">Custodes</a></li>
+      </ul></li>
+      <li><a name="toc-Typesetting-mensural-music-1" href="typesetting-mensural-music">2.9.3 Typesetting mensural music</a>
+      <ul class="toc">
+        <li><a name="toc-Mensural-contexts-1" href="typesetting-mensural-music#mensural-contexts">Mensural contexts</a></li>
+        <li><a name="toc-Mensural-clefs-1" href="typesetting-mensural-music#mensural-clefs">Mensural clefs</a></li>
+        <li><a name="toc-Mensural-time-signatures-1" href="typesetting-mensural-music#mensural-time-signatures">Mensural time signatures</a></li>
+        <li><a name="toc-Mensural-note-heads-1" href="typesetting-mensural-music#mensural-note-heads">Mensural note heads</a></li>
+        <li><a name="toc-Mensural-flags-1" href="typesetting-mensural-music#mensural-flags">Mensural flags</a></li>
+        <li><a name="toc-Mensural-rests-1" href="typesetting-mensural-music#mensural-rests">Mensural rests</a></li>
+        <li><a name="toc-Mensural-accidentals-and-key-signatures-1" href="typesetting-mensural-music#mensural-accidentals-and-key-signatures">Mensural accidentals and key signatures</a></li>
+        <li><a name="toc-Annotational-accidentals-_0028musica-ficta_0029-1" href="typesetting-mensural-music#annotational-accidentals-_0028musica-ficta_0029">Annotational accidentals (<em>musica ficta</em>)</a></li>
+        <li><a name="toc-White-mensural-ligatures-1" href="typesetting-mensural-music#white-mensural-ligatures">White mensural ligatures</a></li>
+      </ul></li>
+      <li><a name="toc-Typesetting-Gregorian-chant-1" href="typesetting-gregorian-chant">2.9.4 Typesetting Gregorian chant</a>
+      <ul class="toc">
+        <li><a name="toc-Gregorian-chant-contexts-1" href="typesetting-gregorian-chant#gregorian-chant-contexts">Gregorian chant contexts</a></li>
+        <li><a name="toc-Gregorian-clefs-1" href="typesetting-gregorian-chant#gregorian-clefs">Gregorian clefs</a></li>
+        <li><a name="toc-Gregorian-accidentals-and-key-signatures-1" href="typesetting-gregorian-chant#gregorian-accidentals-and-key-signatures">Gregorian accidentals and key signatures</a></li>
+        <li><a name="toc-Divisiones-1" href="typesetting-gregorian-chant#divisiones">Divisiones</a></li>
+        <li><a name="toc-Gregorian-articulation-signs-1" href="typesetting-gregorian-chant#gregorian-articulation-signs">Gregorian articulation signs</a></li>
+        <li><a name="toc-Augmentum-dots-_0028morae_0029-1" href="typesetting-gregorian-chant#augmentum-dots-_0028morae_0029">Augmentum dots (<em>morae</em>)</a></li>
+        <li><a name="toc-Gregorian-square-neume-ligatures-1" href="typesetting-gregorian-chant#gregorian-square-neume-ligatures">Gregorian square neume ligatures</a></li>
+      </ul></li>
+      <li><a name="toc-Typesetting-Kievan-square-notation-1" href="typesetting-kievan-square-notation">2.9.5 Typesetting Kievan square notation</a>
+      <ul class="toc">
+        <li><a name="toc-Kievan-contexts-1" href="typesetting-kievan-square-notation#kievan-contexts">Kievan contexts</a></li>
+        <li><a name="toc-Kievan-clefs-1" href="typesetting-kievan-square-notation#kievan-clefs">Kievan clefs</a></li>
+        <li><a name="toc-Kievan-notes-1" href="typesetting-kievan-square-notation#kievan-notes">Kievan notes</a></li>
+        <li><a name="toc-Kievan-accidentals-1" href="typesetting-kievan-square-notation#kievan-accidentals">Kievan accidentals</a></li>
+        <li><a name="toc-Kievan-bar-lines-1" href="typesetting-kievan-square-notation#kievan-bar-lines">Kievan bar lines</a></li>
+        <li><a name="toc-Kievan-melismata-1" href="typesetting-kievan-square-notation#kievan-melismata">Kievan melismata</a></li>
+      </ul></li>
+      <li><a name="toc-Working-with-ancient-music-_002d_002d-scenarios-and-solutions-1" href="working-with-ancient-music-_002d-scenarios-and-solutions">2.9.6 Working with ancient music &ndash; scenarios and solutions</a>
+      <ul class="toc">
+        <li><a name="toc-Incipits-1" href="working-with-ancient-music-_002d-scenarios-and-solutions#incipits">Incipits</a></li>
+        <li><a name="toc-Mensurstriche-layout-1" href="working-with-ancient-music-_002d-scenarios-and-solutions#mensurstriche-layout">Mensurstriche layout</a></li>
+        <li><a name="toc-Transcribing-Gregorian-chant-1" href="working-with-ancient-music-_002d-scenarios-and-solutions#transcribing-gregorian-chant">Transcribing Gregorian chant</a></li>
+        <li><a name="toc-Ancient-and-modern-from-one-source-1" href="working-with-ancient-music-_002d-scenarios-and-solutions#ancient-and-modern-from-one-source">Ancient and modern from one source</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-World-music-1" href="world-music">2.10 World music</a>
+    <ul class="toc">
+      <li><a name="toc-Common-notation-for-non_002dWestern-music-1" href="common-notation-for-non_002dwestern-music">2.10.1 Common notation for non-Western music</a>
+      <ul class="toc">
+        <li><a name="toc-Extending-notation-and-tuning-systems-1" href="common-notation-for-non_002dwestern-music#extending-notation-and-tuning-systems">Extending notation and tuning systems</a></li>
+      </ul></li>
+      <li><a name="toc-Arabic-music-1" href="arabic-music">2.10.2 Arabic music</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-Arabic-music-1" href="arabic-music#references-for-arabic-music">References for Arabic music</a></li>
+        <li><a name="toc-Arabic-note-names-1" href="arabic-music#arabic-note-names">Arabic note names</a></li>
+        <li><a name="toc-Arabic-key-signatures-1" href="arabic-music#arabic-key-signatures">Arabic key signatures</a></li>
+        <li><a name="toc-Arabic-time-signatures-1" href="arabic-music#arabic-time-signatures">Arabic time signatures</a></li>
+        <li><a name="toc-Arabic-music-example-1" href="arabic-music#arabic-music-example">Arabic music example</a></li>
+        <li><a name="toc-Further-reading-for-Arabic-music-1" href="arabic-music#further-reading-for-arabic-music">Further reading for Arabic music</a></li>
+      </ul></li>
+      <li><a name="toc-Turkish-classical-music-1" href="turkish-classical-music">2.10.3 Turkish classical music</a>
+      <ul class="toc">
+        <li><a name="toc-References-for-Turkish-classical-music-1" href="turkish-classical-music#references-for-turkish-classical-music">References for Turkish classical music</a></li>
+        <li><a name="toc-Turkish-note-names-1" href="turkish-classical-music#turkish-note-names">Turkish note names</a></li>
+        <li><a name="toc-Turkish-key-signatures-1" href="turkish-classical-music#turkish-key-signatures">Turkish key signatures</a></li>
+        <li><a name="toc-Further-reading-for-Turkish-music-1" href="turkish-classical-music#further-reading-for-turkish-music">Further reading for Turkish music</a></li>
+      </ul></li>
+      <li><a name="toc-Persian-classical-music-1" href="persian-classical-music">2.10.4 Persian classical music</a>
+      <ul class="toc">
+        <li><a name="toc-Persian-music-notation-1" href="persian-classical-music#persian-music-notation">Persian music notation</a></li>
+        <li><a name="toc-Persian-tunings-1" href="persian-classical-music#persian-tunings">Persian tunings</a></li>
+        <li><a name="toc-Persian-key-signatures-1" href="persian-classical-music#persian-key-signatures">Persian key signatures</a></li>
+        <li><a name="toc-Further-reading-on-Persian-music-1" href="persian-classical-music#further-reading-on-persian-music">Further reading on Persian music</a></li>
+      </ul>
+</li>
+    </ul>
+</li>
+  </ul></li>
+  <li><a name="toc-General-input-and-output-1" href="general-input-and-output">3. General input and output</a>
+  <ul class="toc">
+    <li><a name="toc-Input-modes-1" href="input-modes">3.1 Input modes</a></li>
+    <li><a name="toc-Input-structure-1" href="input-structure">3.2 Input structure</a>
+    <ul class="toc">
+      <li><a name="toc-Structure-of-a-score-1" href="structure-of-a-score">3.2.1 Structure of a score</a></li>
+      <li><a name="toc-Multiple-scores-in-a-book-1" href="multiple-scores-in-a-book">3.2.2 Multiple scores in a book</a></li>
+      <li><a name="toc-Multiple-output-files-from-one-input-file-1" href="multiple-output-files-from-one-input-file">3.2.3 Multiple output files from one input file</a></li>
+      <li><a name="toc-Output-file-names-1" href="output-file-names">3.2.4 Output file names</a></li>
+      <li><a name="toc-File-structure-1" href="file-structure">3.2.5 File structure</a></li>
+    </ul></li>
+    <li><a name="toc-Titles-and-headers-1" href="titles-and-headers">3.3 Titles and headers</a>
+    <ul class="toc">
+      <li><a name="toc-Creating-titles-headers-and-footers-1" href="creating-titles-headers-and-footers">3.3.1 Creating titles headers and footers</a>
+      <ul class="toc">
+        <li><a name="toc-Titles-explained-1" href="creating-titles-headers-and-footers#titles-explained">Titles explained</a></li>
+        <li><a name="toc-Default-layout-of-bookpart-and-score-titles-1" href="creating-titles-headers-and-footers#default-layout-of-bookpart-and-score-titles">Default layout of bookpart and score titles</a></li>
+        <li><a name="toc-Default-layout-of-headers-and-footers-1" href="creating-titles-headers-and-footers#default-layout-of-headers-and-footers">Default layout of headers and footers</a></li>
+      </ul></li>
+      <li><a name="toc-Custom-titles-headers-and-footers-1" href="custom-titles-headers-and-footers">3.3.2 Custom titles headers and footers</a>
+      <ul class="toc">
+        <li><a name="toc-Custom-text-formatting-for-titles-1" href="custom-titles-headers-and-footers#custom-text-formatting-for-titles">Custom text formatting for titles</a></li>
+        <li><a name="toc-Custom-layout-for-titles-1" href="custom-titles-headers-and-footers#custom-layout-for-titles">Custom layout for titles</a></li>
+        <li><a name="toc-Custom-layout-for-headers-and-footers-1" href="custom-titles-headers-and-footers#custom-layout-for-headers-and-footers">Custom layout for headers and footers</a></li>
+      </ul></li>
+      <li><a name="toc-Creating-output-file-metadata-1" href="creating-output-file-metadata">3.3.3 Creating output file metadata</a></li>
+      <li><a name="toc-Creating-footnotes-1" href="creating-footnotes">3.3.4 Creating footnotes</a>
+      <ul class="toc">
+        <li><a name="toc-Footnotes-in-music-expressions-1" href="creating-footnotes#footnotes-in-music-expressions">Footnotes in music expressions</a></li>
+        <li><a name="toc-Footnotes-in-stand_002dalone-text-1" href="creating-footnotes#footnotes-in-stand_002dalone-text">Footnotes in stand-alone text</a></li>
+      </ul></li>
+      <li><a name="toc-Reference-to-page-numbers-1" href="reference-to-page-numbers">3.3.5 Reference to page numbers</a></li>
+      <li><a name="toc-Table-of-contents-1" href="table-of-contents">3.3.6 Table of contents</a></li>
+    </ul></li>
+    <li><a name="toc-Working-with-input-files-1" href="working-with-input-files">3.4 Working with input files</a>
+    <ul class="toc">
+      <li><a name="toc-Including-LilyPond-files-1" href="including-lilypond-files">3.4.1 Including LilyPond files</a></li>
+      <li><a name="toc-Different-editions-from-one-source-1" href="different-editions-from-one-source">3.4.2 Different editions from one source</a>
+      <ul class="toc">
+        <li><a name="toc-Using-variables-1" href="different-editions-from-one-source#using-variables">Using variables</a></li>
+        <li><a name="toc-Using-tags-1" href="different-editions-from-one-source#using-tags">Using tags</a></li>
+        <li><a name="toc-Using-global-settings-1" href="different-editions-from-one-source#using-global-settings">Using global settings</a></li>
+      </ul></li>
+      <li><a name="toc-Using-music-functions-1" href="using-music-functions">3.4.3 Using music functions</a>
+      <ul class="toc">
+        <li><a name="toc-Substitution-function-syntax-1" href="substitution-function-syntax">3.4.3.1 Substitution function syntax</a></li>
+        <li><a name="toc-Substitution-function-examples-1" href="substitution-function-examples">3.4.3.2 Substitution function examples</a></li>
+      </ul></li>
+      <li><a name="toc-Special-characters-1" href="special-characters">3.4.4 Special characters</a>
+      <ul class="toc">
+        <li><a name="toc-Text-encoding-1" href="special-characters#text-encoding">Text encoding</a></li>
+        <li><a name="toc-Unicode-1" href="special-characters#unicode">Unicode</a></li>
+        <li><a name="toc-ASCII-aliases-1" href="special-characters#ascii-aliases">ASCII aliases</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Controlling-output-1" href="controlling-output">3.5 Controlling output</a>
+    <ul class="toc">
+      <li><a name="toc-Extracting-fragments-of-music-1" href="extracting-fragments-of-music">3.5.1 Extracting fragments of music</a></li>
+      <li><a name="toc-Skipping-corrected-music-1" href="skipping-corrected-music">3.5.2 Skipping corrected music</a></li>
+      <li><a name="toc-Alternative-output-formats-1" href="alternative-output-formats">3.5.3 Alternative output formats</a>
+      <ul class="toc">
+        <li><a name="toc-SVG-Output-1" href="alternative-output-formats#svg-output">SVG Output</a></li>
+      </ul></li>
+      <li><a name="toc-Replacing-the-notation-font-1" href="replacing-the-notation-font">3.5.4 Replacing the notation font</a></li>
+    </ul></li>
+    <li><a name="toc-Creating-MIDI-output-1" href="creating-midi-output">3.6 Creating MIDI output</a>
+    <ul class="toc">
+      <li><a name="toc-Supported-notation-for-MIDI-1" href="supported-notation-for-midi">3.6.1 Supported notation for MIDI</a></li>
+      <li><a name="toc-Unsupported-notation-for-MIDI-1" href="unsupported-notation-for-midi">3.6.2 Unsupported notation for MIDI</a></li>
+      <li><a name="toc-The-MIDI-block-1" href="the-midi-block">3.6.3 The MIDI block</a></li>
+      <li><a name="toc-Controlling-MIDI-dynamics-1" href="controlling-midi-dynamics">3.6.4 Controlling MIDI dynamics</a>
+      <ul class="toc">
+        <li><a name="toc-Dynamic-marks-in-MIDI-1" href="controlling-midi-dynamics#dynamic-marks-in-midi">Dynamic marks in MIDI</a></li>
+        <li><a name="toc-Setting-MIDI-volume-1" href="controlling-midi-dynamics#setting-midi-volume">Setting MIDI volume</a></li>
+        <li><a name="toc-Setting-MIDI-block-properties-1" href="controlling-midi-dynamics#setting-midi-block-properties">Setting MIDI block properties</a></li>
+      </ul></li>
+      <li><a name="toc-Using-MIDI-instruments-1" href="using-midi-instruments">3.6.5 Using MIDI instruments</a></li>
+      <li><a name="toc-Using-repeats-with-MIDI-1" href="using-repeats-with-midi">3.6.6 Using repeats with MIDI</a></li>
+      <li><a name="toc-MIDI-channel-mapping-1" href="midi-channel-mapping">3.6.7 MIDI channel mapping</a></li>
+      <li><a name="toc-Context-properties-for-MIDI-effects-1" href="context-properties-for-midi-effects">3.6.8 Context properties for MIDI effects</a></li>
+      <li><a name="toc-Enhancing-MIDI-output-1" href="enhancing-midi-output">3.6.9 Enhancing MIDI output</a>
+      <ul class="toc">
+        <li><a name="toc-The-articulate-script-1" href="enhancing-midi-output#the-articulate-script">The &lsquo;<tt>articulate</tt>&rsquo; script</a></li>
+        <li><a name="toc-The-swing-script-1" href="enhancing-midi-output#the-swing-script">The &lsquo;<tt>swing</tt>&rsquo; script</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Extracting-musical-information-1" href="extracting-musical-information">3.7 Extracting musical information</a>
+    <ul class="toc">
+      <li><a name="toc-Displaying-LilyPond-notation-1" href="displaying-lilypond-notation">3.7.1 Displaying LilyPond notation</a></li>
+      <li><a name="toc-Displaying-scheme-music-expressions-1" href="displaying-scheme-music-expressions">3.7.2 Displaying scheme music expressions</a></li>
+      <li><a name="toc-Saving-music-events-to-a-file-1" href="saving-music-events-to-a-file">3.7.3 Saving music events to a file</a></li>
+    </ul>
+</li>
+  </ul></li>
+  <li><a name="toc-Spacing-issues-1" href="spacing-issues">4. Spacing issues</a>
+  <ul class="toc">
+    <li><a name="toc-Page-layout-1" href="page-layout">4.1 Page layout</a>
+    <ul class="toc">
+      <li><a name="toc-The-_005cpaper-block" href="the-paper-block">4.1.1 The <code>\paper</code> block</a></li>
+      <li><a name="toc-Paper-size-and-automatic-scaling-1" href="paper-size-and-automatic-scaling">4.1.2 Paper size and automatic scaling</a>
+      <ul class="toc">
+        <li><a name="toc-Setting-the-paper-size-1" href="paper-size-and-automatic-scaling#setting-the-paper-size">Setting the paper size</a></li>
+        <li><a name="toc-Automatic-scaling-to-paper-size-1" href="paper-size-and-automatic-scaling#automatic-scaling-to-paper-size">Automatic scaling to paper size</a></li>
+      </ul></li>
+      <li><a name="toc-Fixed-vertical-spacing-_005cpaper-variables" href="fixed-vertical-spacing-paper-variables">4.1.3 Fixed vertical spacing <code>\paper</code> variables</a></li>
+      <li><a name="toc-Flexible-vertical-spacing-_005cpaper-variables" href="flexible-vertical-spacing-paper-variables">4.1.4 Flexible vertical spacing <code>\paper</code> variables</a>
+      <ul class="toc">
+        <li><a name="toc-Structure-of-flexible-vertical-spacing-alists-1" href="flexible-vertical-spacing-paper-variables#structure-of-flexible-vertical-spacing-alists">Structure of flexible vertical spacing alists</a></li>
+        <li><a name="toc-List-of-flexible-vertical-spacing-_005cpaper-variables" href="flexible-vertical-spacing-paper-variables#list-of-flexible-vertical-spacing-paper-variables">List of flexible vertical spacing <code>\paper</code> variables</a></li>
+      </ul></li>
+      <li><a name="toc-Horizontal-spacing-_005cpaper-variables" href="horizontal-spacing-paper-variables">4.1.5 Horizontal spacing <code>\paper</code> variables</a>
+      <ul class="toc">
+        <li><a name="toc-_005cpaper-variables-for-widths-and-margins" href="horizontal-spacing-paper-variables#paper-variables-for-widths-and-margins"><code>\paper</code> variables for widths and margins</a></li>
+        <li><a name="toc-_005cpaper-variables-for-two_002dsided-mode" href="horizontal-spacing-paper-variables#paper-variables-for-two_002dsided-mode"><code>\paper</code> variables for two-sided mode</a></li>
+        <li><a name="toc-_005cpaper-variables-for-shifts-and-indents" href="horizontal-spacing-paper-variables#paper-variables-for-shifts-and-indents"><code>\paper</code> variables for shifts and indents</a></li>
+      </ul></li>
+      <li><a name="toc-Other-_005cpaper-variables" href="other-paper-variables">4.1.6 Other <code>\paper</code> variables</a>
+      <ul class="toc">
+        <li><a name="toc-_005cpaper-variables-for-line-breaking" href="other-paper-variables#paper-variables-for-line-breaking"><code>\paper</code> variables for line breaking</a></li>
+        <li><a name="toc-_005cpaper-variables-for-page-breaking" href="other-paper-variables#paper-variables-for-page-breaking"><code>\paper</code> variables for page breaking</a></li>
+        <li><a name="toc-_005cpaper-variables-for-page-numbering" href="other-paper-variables#paper-variables-for-page-numbering"><code>\paper</code> variables for page numbering</a></li>
+        <li><a name="toc-_005cpaper-variables-concerning-headers-and-markups" href="other-paper-variables#paper-variables-concerning-headers-and-markups"><code>\paper</code> variables concerning headers and markups</a></li>
+        <li><a name="toc-_005cpaper-variables-for-debugging" href="other-paper-variables#paper-variables-for-debugging"><code>\paper</code> variables for debugging</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Score-layout-1" href="score-layout">4.2 Score layout</a>
+    <ul class="toc">
+      <li><a name="toc-The-_005clayout-block" href="the-layout-block">4.2.1 The <code>\layout</code> block</a></li>
+      <li><a name="toc-Setting-the-staff-size-1" href="setting-the-staff-size">4.2.2 Setting the staff size</a></li>
+    </ul></li>
+    <li><a name="toc-Breaks-1" href="breaks">4.3 Breaks</a>
+    <ul class="toc">
+      <li><a name="toc-Line-breaking-1" href="line-breaking">4.3.1 Line breaking</a></li>
+      <li><a name="toc-Page-breaking-1" href="page-breaking">4.3.2 Page breaking</a>
+      <ul class="toc">
+        <li><a name="toc-Manual-page-breaking-1" href="page-breaking#manual-page-breaking">Manual page breaking</a></li>
+        <li><a name="toc-Optimal-page-breaking-1" href="page-breaking#optimal-page-breaking">Optimal page breaking</a></li>
+        <li><a name="toc-Minimal-page-breaking-1" href="page-breaking#minimal-page-breaking">Minimal page breaking</a></li>
+        <li><a name="toc-One_002dpage-page-breaking-1" href="page-breaking#one_002dpage-page-breaking">One-page page breaking</a></li>
+        <li><a name="toc-One_002dline-page-breaking-1" href="page-breaking#one_002dline-page-breaking">One-line page breaking</a></li>
+        <li><a name="toc-One_002dline_002dauto_002dheight-page-breaking-1" href="page-breaking#one_002dline_002dauto_002dheight-page-breaking">One-line-auto-height page breaking</a></li>
+        <li><a name="toc-Optimal-page-turning-1" href="page-breaking#optimal-page-turning">Optimal page turning</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Vertical-spacing-1" href="vertical-spacing">4.4 Vertical spacing</a>
+    <ul class="toc">
+      <li><a name="toc-Flexible-vertical-spacing-within-systems-1" href="flexible-vertical-spacing-within-systems">4.4.1 Flexible vertical spacing within systems</a>
+      <ul class="toc">
+        <li><a name="toc-Within_002dsystem-spacing-properties-1" href="flexible-vertical-spacing-within-systems#within_002dsystem-spacing-properties">Within-system spacing properties</a></li>
+        <li><a name="toc-Spacing-of-ungrouped-staves-1" href="flexible-vertical-spacing-within-systems#spacing-of-ungrouped-staves">Spacing of ungrouped staves</a></li>
+        <li><a name="toc-Spacing-of-grouped-staves-1" href="flexible-vertical-spacing-within-systems#spacing-of-grouped-staves">Spacing of grouped staves</a></li>
+        <li><a name="toc-Spacing-of-non_002dstaff-lines-1" href="flexible-vertical-spacing-within-systems#spacing-of-non_002dstaff-lines">Spacing of non-staff lines</a></li>
+      </ul></li>
+      <li><a name="toc-Explicit-staff-and-system-positioning-1" href="explicit-staff-and-system-positioning">4.4.2 Explicit staff and system positioning</a></li>
+      <li><a name="toc-Vertical-collision-avoidance-1" href="vertical-collision-avoidance">4.4.3 Vertical collision avoidance</a></li>
+    </ul></li>
+    <li><a name="toc-Horizontal-spacing-1" href="horizontal-spacing">4.5 Horizontal spacing</a>
+    <ul class="toc">
+      <li><a name="toc-Horizontal-spacing-overview-1" href="horizontal-spacing-overview">4.5.1 Horizontal spacing overview</a></li>
+      <li><a name="toc-New-spacing-section-1" href="new-spacing-section">4.5.2 New spacing section</a></li>
+      <li><a name="toc-Changing-horizontal-spacing-globally-1" href="changing-horizontal-spacing-globally">4.5.3 Changing horizontal spacing globally</a>
+      <ul class="toc">
+        <li><a name="toc-Uniform-stretching-of-tuplets-1" href="changing-horizontal-spacing-globally#uniform-stretching-of-tuplets">Uniform stretching of tuplets</a></li>
+        <li><a name="toc-Strict-note-spacing-1" href="changing-horizontal-spacing-globally#strict-note-spacing">Strict note spacing</a></li>
+      </ul></li>
+      <li><a name="toc-Adjusting-horizontal-spacing-for-specific-layout-objects-1" href="adjusting-horizontal-spacing-for-specific-layout-objects">4.5.4 Adjusting horizontal spacing for specific layout objects</a>
+      <ul class="toc">
+        <li><a name="toc-Overview-of-object_002dspecific-horizontal-spacing-tweaks-1" href="overview-of-object_002dspecific-horizontal-spacing-tweaks">4.5.4.1 Overview of object-specific horizontal spacing tweaks</a></li>
+        <li><a name="toc-Spacing-between-adjacent-non_002dmusical-items-1" href="spacing-between-adjacent-non_002dmusical-items">4.5.4.2 Spacing between adjacent non-musical items</a></li>
+        <li><a name="toc-Spacing-between-adjacent-columns-1" href="spacing-between-adjacent-columns">4.5.4.3 Spacing between adjacent columns</a></li>
+      </ul></li>
+      <li><a name="toc-Line-width-1" href="line-width">4.5.5 Line width</a></li>
+      <li><a name="toc-Proportional-notation-1" href="proportional-notation">4.5.6 Proportional notation</a></li>
+    </ul></li>
+    <li><a name="toc-Fitting-music-onto-fewer-pages-1" href="fitting-music-onto-fewer-pages">4.6 Fitting music onto fewer pages</a>
+    <ul class="toc">
+      <li><a name="toc-Displaying-spacing-1" href="displaying-spacing">4.6.1 Displaying spacing</a></li>
+      <li><a name="toc-Changing-spacing-1" href="changing-spacing">4.6.2 Changing spacing</a></li>
+    </ul>
+</li>
+  </ul></li>
+  <li><a name="toc-Changing-defaults-1" href="changing-defaults">5. Changing defaults</a>
+  <ul class="toc">
+    <li><a name="toc-Interpretation-contexts-1" href="interpretation-contexts">5.1 Interpretation contexts</a>
+    <ul class="toc">
+      <li><a name="toc-Contexts-explained-1" href="contexts-explained">5.1.1 Contexts explained</a>
+      <ul class="toc">
+        <li><a name="toc-Output-definitions-_002d_002d-blueprints-for-contexts-1" href="contexts-explained#output-definitions-_002d-blueprints-for-contexts">Output definitions &ndash; blueprints for contexts</a></li>
+        <li><a name="toc-Score-_002d_002d-the-master-of-all-contexts-1" href="contexts-explained#score-_002d-the-master-of-all-contexts">Score &ndash; the master of all contexts</a></li>
+        <li><a name="toc-Top_002dlevel-contexts-_002d_002d-staff-containers-1" href="contexts-explained#top_002dlevel-contexts-_002d-staff-containers">Top-level contexts &ndash; staff containers</a></li>
+        <li><a name="toc-Intermediate_002dlevel-contexts-_002d_002d-staves-1" href="contexts-explained#intermediate_002dlevel-contexts-_002d-staves">Intermediate-level contexts &ndash; staves</a></li>
+        <li><a name="toc-Bottom_002dlevel-contexts-_002d_002d-voices-1" href="contexts-explained#bottom_002dlevel-contexts-_002d-voices">Bottom-level contexts &ndash; voices</a></li>
+      </ul></li>
+      <li><a name="toc-Creating-and-referencing-contexts-1" href="creating-and-referencing-contexts">5.1.2 Creating and referencing contexts</a></li>
+      <li><a name="toc-Keeping-contexts-alive-1" href="keeping-contexts-alive">5.1.3 Keeping contexts alive</a></li>
+      <li><a name="toc-Modifying-context-plug_002dins-1" href="modifying-context-plug_002dins">5.1.4 Modifying context plug-ins</a></li>
+      <li><a name="toc-Changing-context-default-settings-1" href="changing-context-default-settings">5.1.5 Changing context default settings</a>
+      <ul class="toc">
+        <li><a name="toc-Changing-all-contexts-of-the-same-type-1" href="changing-context-default-settings#changing-all-contexts-of-the-same-type">Changing all contexts of the same type</a></li>
+        <li><a name="toc-Changing-just-one-specific-context-1" href="changing-context-default-settings#changing-just-one-specific-context">Changing just one specific context</a></li>
+        <li><a name="toc-Order-of-precedence-1" href="changing-context-default-settings#order-of-precedence">Order of precedence</a></li>
+      </ul></li>
+      <li><a name="toc-Defining-new-contexts-1" href="defining-new-contexts">5.1.6 Defining new contexts</a>
+      <ul class="toc">
+        <li><a name="toc-Context-definition-overview" href="defining-new-contexts">Context definition overview</a></li>
+        <li><a name="toc-New-contexts-in-MIDI" href="defining-new-contexts">New contexts in MIDI</a></li>
+        <li><a name="toc-Replacing-the-Score-context" href="defining-new-contexts">Replacing the <code>Score</code> context</a></li>
+      </ul></li>
+      <li><a name="toc-Context-layout-order-1" href="context-layout-order">5.1.7 Context layout order</a></li>
+    </ul></li>
+    <li><a name="toc-Explaining-the-Internals-Reference-1" href="explaining-the-internals-reference">5.2 Explaining the Internals Reference</a>
+    <ul class="toc">
+      <li><a name="toc-Navigating-the-program-reference-1" href="navigating-the-program-reference">5.2.1 Navigating the program reference</a></li>
+      <li><a name="toc-Layout-interfaces-1" href="layout-interfaces">5.2.2 Layout interfaces</a></li>
+      <li><a name="toc-Determining-the-grob-property-1" href="determining-the-grob-property">5.2.3 Determining the grob property</a></li>
+    </ul></li>
+    <li><a name="toc-Modifying-properties-1" href="modifying-properties">5.3 Modifying properties</a>
+    <ul class="toc">
+      <li><a name="toc-Overview-of-modifying-properties-1" href="overview-of-modifying-properties">5.3.1 Overview of modifying properties</a></li>
+      <li><a name="toc-The-_005cset-command" href="the-set-command">5.3.2 The <code>\set</code> command</a></li>
+      <li><a name="toc-The-_005coverride-command" href="the-override-command">5.3.3 The <code>\override</code> command</a></li>
+      <li><a name="toc-The-_005ctweak-command" href="the-tweak-command">5.3.4 The <code>\tweak</code> command</a></li>
+      <li><a name="toc-_005cset-vs_002e-_005coverride" href="set-versus-override">5.3.5 <code>\set</code> vs. <code>\override</code></a></li>
+      <li><a name="toc-The-_005coffset-command" href="the-offset-command">5.3.6 The <code>\offset</code> command</a></li>
+      <li><a name="toc-Modifying-alists-1" href="modifying-alists">5.3.7 Modifying alists</a></li>
+    </ul></li>
+    <li><a name="toc-Useful-concepts-and-properties-1" href="useful-concepts-and-properties">5.4 Useful concepts and properties</a>
+    <ul class="toc">
+      <li><a name="toc-Direction-and-placement-1" href="direction-and-placement">5.4.1 Direction and placement</a>
+      <ul class="toc">
+        <li><a name="toc-Articulation-direction-indicators-1" href="direction-and-placement#articulation-direction-indicators">Articulation direction indicators</a></li>
+        <li><a name="toc-The-direction-property-1" href="direction-and-placement#the-direction-property">The direction property</a></li>
+      </ul></li>
+      <li><a name="toc-Distances-and-measurements-1" href="distances-and-measurements">5.4.2 Distances and measurements</a></li>
+      <li><a name="toc-Dimensions-1" href="dimensions">5.4.3 Dimensions</a></li>
+      <li><a name="toc-Spanners-1" href="spanners">5.4.4 Spanners</a>
+      <ul class="toc">
+        <li><a name="toc-Modifying-broken-spanners-1" href="spanners#modifying-broken-spanners">Modifying broken spanners</a></li>
+        <li><a name="toc-Setting-minimum-lengths-for-spanners-1" href="spanners#setting-minimum-lengths-for-spanners">Setting minimum lengths for spanners</a></li>
+        <li><a name="toc-Controlling-spanner-end-points-1" href="spanners#controlling-spanner-end-points">Controlling spanner end points</a></li>
+      </ul></li>
+      <li><a name="toc-Line-styles-1" href="line-styles">5.4.5 Line styles</a></li>
+      <li><a name="toc-Line-spanners-1" href="line-spanners">5.4.6 Line spanners</a></li>
+      <li><a name="toc-Visibility-of-objects-1" href="visibility-of-objects">5.4.7 Visibility of objects</a>
+      <ul class="toc">
+        <li><a name="toc-Removing-the-stencil-1" href="visibility-of-objects#removing-the-stencil">Removing the stencil</a></li>
+        <li><a name="toc-Making-objects-transparent-1" href="visibility-of-objects#making-objects-transparent">Making objects transparent</a></li>
+        <li><a name="toc-Painting-objects-white-1" href="visibility-of-objects#painting-objects-white">Painting objects white</a></li>
+        <li><a name="toc-Using-break_002dvisibility-1" href="visibility-of-objects#using-break_002dvisibility">Using <code>break-visibility</code></a></li>
+        <li><a name="toc-Special-considerations-1" href="visibility-of-objects#special-considerations">Special considerations</a></li>
+      </ul></li>
+      <li><a name="toc-Rotating-objects-1" href="rotating-objects">5.4.8 Rotating objects</a>
+      <ul class="toc">
+        <li><a name="toc-Rotating-layout-objects-1" href="rotating-objects#rotating-layout-objects">Rotating layout objects</a></li>
+        <li><a name="toc-Rotating-markup-1" href="rotating-objects#rotating-markup">Rotating markup</a></li>
+      </ul></li>
+      <li><a name="toc-Aligning-objects-1" href="aligning-objects">5.4.9 Aligning objects</a>
+      <ul class="toc">
+        <li><a name="toc-Setting-X_002doffset-and-Y_002doffset-directly-1" href="aligning-objects#setting-x_002doffset-and-y_002doffset-directly">Setting <code>X-offset</code> and <code>Y-offset</code> directly</a></li>
+        <li><a name="toc-Using-the-side_002dposition_002dinterface-1" href="aligning-objects#using-the-side_002dposition_002dinterface">Using the <code>side-position-interface</code></a></li>
+        <li><a name="toc-Using-the-self_002dalignment_002dinterface-1" href="aligning-objects#using-the-self_002dalignment_002dinterface">Using the <code>self-alignment-interface</code></a></li>
+        <li><a name="toc-Using-the-break_002dalignable_002dinterface-1" href="aligning-objects#using-the-break_002dalignable_002dinterface">Using the <code>break-alignable-interface</code></a></li>
+      </ul></li>
+      <li><a name="toc-Modifying-stencils-1" href="modifying-stencils">5.4.10 Modifying stencils</a></li>
+      <li><a name="toc-Modifying-shapes-1" href="modifying-shapes">5.4.11 Modifying shapes</a>
+      <ul class="toc">
+        <li><a name="toc-Modifying-ties-and-slurs-1" href="modifying-shapes#modifying-ties-and-slurs">Modifying ties and slurs</a></li>
+      </ul>
+</li>
+    </ul>
+</li>
+  </ul></li>
+  <li><a name="toc-Notation-manual-tables-1" href="notation-manual-tables">A. Notation manual tables</a>
+  <ul class="toc">
+    <li><a name="toc-Chord-name-chart-1" href="chord-name-chart">A.1 Chord name chart</a></li>
+    <li><a name="toc-Common-chord-modifiers-1" href="common-chord-modifiers">A.2 Common chord modifiers</a></li>
+    <li><a name="toc-Predefined-string-tunings-1" href="predefined-string-tunings">A.3 Predefined string tunings</a></li>
+    <li><a name="toc-Predefined-fretboard-diagrams-1" href="predefined-fretboard-diagrams">A.4 Predefined fretboard diagrams</a>
+    <ul class="toc">
+      <li><a name="toc-Diagrams-for-Guitar-1" href="predefined-fretboard-diagrams#diagrams-for-guitar">Diagrams for Guitar</a></li>
+      <li><a name="toc-Diagrams-for-Ukulele-1" href="predefined-fretboard-diagrams#diagrams-for-ukulele">Diagrams for Ukulele</a></li>
+      <li><a name="toc-Diagrams-for-Mandolin-1" href="predefined-fretboard-diagrams#diagrams-for-mandolin">Diagrams for Mandolin</a></li>
+    </ul></li>
+    <li><a name="toc-Predefined-paper-sizes-1" href="predefined-paper-sizes">A.5 Predefined paper sizes</a></li>
+    <li><a name="toc-MIDI-instruments-1" href="midi-instruments">A.6 MIDI instruments</a></li>
+    <li><a name="toc-List-of-colors-1" href="list-of-colors">A.7 List of colors</a></li>
+    <li><a name="toc-The-Emmentaler-font-1" href="the-emmentaler-font">A.8 The Emmentaler font</a>
+    <ul class="toc">
+      <li><a name="toc-Clef-glyphs-1" href="the-emmentaler-font#clef-glyphs">Clef glyphs</a></li>
+      <li><a name="toc-Time-Signature-glyphs-1" href="the-emmentaler-font#time-signature-glyphs">Time Signature glyphs</a></li>
+      <li><a name="toc-Number-glyphs-1" href="the-emmentaler-font#number-glyphs">Number glyphs</a></li>
+      <li><a name="toc-Figured-bass-symbol-glyphs-1" href="the-emmentaler-font#figured-bass-symbol-glyphs">Figured bass symbol glyphs</a></li>
+      <li><a name="toc-Accidental-glyphs-1" href="the-emmentaler-font#accidental-glyphs">Accidental glyphs</a></li>
+      <li><a name="toc-Default-note-head-glyphs-1" href="the-emmentaler-font#default-note-head-glyphs">Default note head glyphs</a></li>
+      <li><a name="toc-Special-note-head-glyphs-1" href="the-emmentaler-font#special-note-head-glyphs">Special note head glyphs</a></li>
+      <li><a name="toc-Note-head-glyphs-for-shape-notes-1" href="the-emmentaler-font#note-head-glyphs-for-shape-notes">Note head glyphs for shape notes</a></li>
+      <li><a name="toc-Rest-glyphs-1" href="the-emmentaler-font#rest-glyphs">Rest glyphs</a></li>
+      <li><a name="toc-Flag-glyphs-1" href="the-emmentaler-font#flag-glyphs">Flag glyphs</a></li>
+      <li><a name="toc-Dot-glyphs-1" href="the-emmentaler-font#dot-glyphs">Dot glyphs</a></li>
+      <li><a name="toc-Dynamic-glyphs-1" href="the-emmentaler-font#dynamic-glyphs">Dynamic glyphs</a></li>
+      <li><a name="toc-Script-glyphs-1" href="the-emmentaler-font#script-glyphs">Script glyphs</a></li>
+      <li><a name="toc-Arrowhead-glyphs-1" href="the-emmentaler-font#arrowhead-glyphs">Arrowhead glyphs</a></li>
+      <li><a name="toc-Bracket_002dtip-glyphs-1" href="the-emmentaler-font#bracket_002dtip-glyphs">Bracket-tip glyphs</a></li>
+      <li><a name="toc-Pedal-glyphs-1" href="the-emmentaler-font#pedal-glyphs">Pedal glyphs</a></li>
+      <li><a name="toc-Accordion-glyphs-1" href="the-emmentaler-font#accordion-glyphs">Accordion glyphs</a></li>
+      <li><a name="toc-Tie-glyphs-1" href="the-emmentaler-font#tie-glyphs">Tie glyphs</a></li>
+      <li><a name="toc-Vaticana-glyphs-1" href="the-emmentaler-font#vaticana-glyphs">Vaticana glyphs</a></li>
+      <li><a name="toc-Medicaea-glyphs-1" href="the-emmentaler-font#medicaea-glyphs">Medicaea glyphs</a></li>
+      <li><a name="toc-Hufnagel-glyphs-1" href="the-emmentaler-font#hufnagel-glyphs">Hufnagel glyphs</a></li>
+      <li><a name="toc-Mensural-glyphs-1" href="the-emmentaler-font#mensural-glyphs">Mensural glyphs</a></li>
+      <li><a name="toc-Neomensural-glyphs-1" href="the-emmentaler-font#neomensural-glyphs">Neomensural glyphs</a></li>
+      <li><a name="toc-Petrucci-glyphs-1" href="the-emmentaler-font#petrucci-glyphs">Petrucci glyphs</a></li>
+      <li><a name="toc-Solesmes-glyphs-1" href="the-emmentaler-font#solesmes-glyphs">Solesmes glyphs</a></li>
+      <li><a name="toc-Kievan-Notation-glyphs-1" href="the-emmentaler-font#kievan-notation-glyphs">Kievan Notation glyphs</a></li>
+    </ul></li>
+    <li><a name="toc-Note-head-styles-1" href="note-head-styles">A.9 Note head styles</a></li>
+    <li><a name="toc-Accidental-glyph-sets-1" href="accidental-glyph-sets">A.10 Accidental glyph sets</a></li>
+    <li><a name="toc-Clef-styles-1" href="clef-styles">A.11 Clef styles</a>
+    <ul class="toc">
+      <li><a name="toc-Standard-clefs-1" href="clef-styles#standard-clefs">Standard clefs</a></li>
+      <li><a name="toc-Percussion-staff-clef-1" href="clef-styles#percussion-staff-clef">Percussion staff clef</a></li>
+      <li><a name="toc-Tab-staff-clefs-1" href="clef-styles#tab-staff-clefs">Tab staff clefs</a></li>
+      <li><a name="toc-Ancient-music-clefs-1" href="clef-styles#ancient-music-clefs">Ancient music clefs</a>
+      <ul class="toc">
+        <li><a name="toc-Gregorian" href="clef-styles#ancient-music-clefs">Gregorian</a></li>
+        <li><a name="toc-Mensural" href="clef-styles#ancient-music-clefs">Mensural</a></li>
+        <li><a name="toc-Kievan" href="clef-styles#ancient-music-clefs">Kievan</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Text-markup-commands-1" href="text-markup-commands">A.12 Text markup commands</a>
+    <ul class="toc">
+      <li><a name="toc-Font-1" href="font">A.12.1 Font</a></li>
+      <li><a name="toc-Align-1" href="align">A.12.2 Align</a></li>
+      <li><a name="toc-Graphic-1" href="graphic">A.12.3 Graphic</a></li>
+      <li><a name="toc-Music-1" href="music">A.12.4 Music</a></li>
+      <li><a name="toc-Conditionals-1" href="conditionals">A.12.5 Conditionals</a></li>
+      <li><a name="toc-Instrument-Specific-Markup-1" href="instrument-specific-markup">A.12.6 Instrument Specific Markup</a></li>
+      <li><a name="toc-Accordion-Registers-1" href="accordion-registers">A.12.7 Accordion Registers</a></li>
+      <li><a name="toc-Other-1" href="other">A.12.8 Other</a></li>
+    </ul></li>
+    <li><a name="toc-Text-markup-list-commands-1" href="text-markup-list-commands">A.13 Text markup list commands</a></li>
+    <li><a name="toc-List-of-special-characters-1" href="list-of-special-characters">A.14 List of special characters</a></li>
+    <li><a name="toc-List-of-articulations-1" href="list-of-articulations">A.15 List of articulations</a>
+    <ul class="toc">
+      <li><a name="toc-Articulation-scripts-1" href="list-of-articulations#articulation-scripts">Articulation scripts</a></li>
+      <li><a name="toc-Ornament-scripts-1" href="list-of-articulations#ornament-scripts">Ornament scripts</a></li>
+      <li><a name="toc-Fermata-scripts-1" href="list-of-articulations#fermata-scripts">Fermata scripts</a></li>
+      <li><a name="toc-Instrument_002dspecific-scripts-1" href="list-of-articulations#instrument_002dspecific-scripts">Instrument-specific scripts</a></li>
+      <li><a name="toc-Repeat-sign-scripts-1" href="list-of-articulations#repeat-sign-scripts">Repeat sign scripts</a></li>
+      <li><a name="toc-Ancient-scripts-1" href="list-of-articulations#ancient-scripts">Ancient scripts</a></li>
+    </ul></li>
+    <li><a name="toc-List-of-breath-marks-1" href="list-of-breath-marks">A.16 List of breath marks</a></li>
+    <li><a name="toc-Percussion-notes-1" href="percussion-notes">A.17 Percussion notes</a></li>
+    <li><a name="toc-List-of-bar-lines-1" href="list-of-bar-lines">A.18 List of bar lines</a></li>
+    <li><a name="toc-Default-values-for-outside_002dstaff_002dpriority-1" href="default-values-for-outside_002dstaff_002dpriority">A.19 Default values for <code>outside-staff-priority</code></a></li>
+    <li><a name="toc-Technical-glossary-1" href="technical-glossary">A.20 Technical glossary</a>
+    <ul class="toc">
+      <li><a name="toc-alist-1" href="technical-glossary#alist">alist</a></li>
+      <li><a name="toc-callback-1" href="technical-glossary#callback">callback</a></li>
+      <li><a name="toc-closure-1" href="technical-glossary#closure">closure</a></li>
+      <li><a name="toc-glyph-1" href="technical-glossary#glyph">glyph</a></li>
+      <li><a name="toc-grob-1" href="technical-glossary#grob">grob</a></li>
+      <li><a name="toc-immutable-1" href="technical-glossary#immutable">immutable</a></li>
+      <li><a name="toc-interface-1" href="technical-glossary#interface">interface</a></li>
+      <li><a name="toc-lexer-1" href="technical-glossary#lexer">lexer</a></li>
+      <li><a name="toc-mutable-1" href="technical-glossary#mutable">mutable</a></li>
+      <li><a name="toc-output_002ddef-1" href="technical-glossary#output_002ddef">output-def</a></li>
+      <li><a name="toc-parser-1" href="technical-glossary#parser">parser</a></li>
+      <li><a name="toc-parser-variable-1" href="technical-glossary#parser-variable">parser variable</a></li>
+      <li><a name="toc-prob-1" href="technical-glossary#prob">prob</a></li>
+      <li><a name="toc-smob-1" href="technical-glossary#smob">smob</a></li>
+      <li><a name="toc-spanner-1" href="technical-glossary#spanner">spanner</a></li>
+      <li><a name="toc-stencil-1" href="technical-glossary#stencil">stencil</a></li>
+    </ul></li>
+    <li><a name="toc-Available-music-functions-1" href="available-music-functions">A.21 Available music functions</a></li>
+    <li><a name="toc-Context-modification-identifiers-1" href="context-modification-identifiers">A.22 Context modification identifiers</a></li>
+    <li><a name="toc-Naming-conventions-1" href="naming-conventions">A.23 Naming conventions</a></li>
+    <li><a name="toc-Predefined-type-predicates-1" href="predefined-type-predicates">A.24 Predefined type predicates</a>
+    <ul class="toc">
+      <li><a name="toc-R5RS-primary-predicates-1" href="predefined-type-predicates#r5rs-primary-predicates">R5RS primary predicates</a></li>
+      <li><a name="toc-R5RS-secondary-predicates-1" href="predefined-type-predicates#r5rs-secondary-predicates">R5RS secondary predicates</a></li>
+      <li><a name="toc-Guile-predicates-1" href="predefined-type-predicates#guile-predicates">Guile predicates</a></li>
+      <li><a name="toc-LilyPond-scheme-predicates-1" href="predefined-type-predicates#lilypond-scheme-predicates">LilyPond scheme predicates</a></li>
+      <li><a name="toc-LilyPond-exported-predicates-1" href="predefined-type-predicates#lilypond-exported-predicates">LilyPond exported predicates</a></li>
+    </ul>
+</li>
+  </ul></li>
+  <li><a name="toc-Cheat-sheet-1" href="cheat-sheet">B. Cheat sheet</a></li>
+  <li><a name="toc-GNU-Free-Documentation-License-1" href="gnu-free-documentation-license">C. GNU Free Documentation License</a></li>
+  <li><a name="toc-LilyPond-command-index-1" href="lilypond-command-index">D. LilyPond command index</a></li>
+  <li><a name="toc-LilyPond-index-1" href="lilypond-index">E. LilyPond index</a></li>
+</ul>
+</div>
+<!--
+    Translation of GIT committish: FILL-IN-HEAD-COMMITTISH
+
+    When revising a translation, copy the HEAD committish of the
+    version that you are working on.  For details, see the Contributors'
+    Guide, node Updating translation committishes.
+-->
+
+<form action="https://www.google.com/search"
+      method="get"
+      name="search"
+      onSubmit="search.q.value='site:lilypond.org/doc/v2.24 ' + search.brute_query.value"
+      onMouseMove="search.q.value='site:lilypond.org/doc/v2.24 ' + search.brute_query.value"
+      onKeyUp="search.q.value='site:lilypond.org/doc/v2.24 ' + search.brute_query.value">
+  <input type="hidden" name="btnG" value="Google Search">
+  <input type="text" name="brute_query" onfocus="this.value=''" value="Search">
+  <input type="hidden" name="q" value="">
+</form>
+</div>
+
+</body>
+</html>

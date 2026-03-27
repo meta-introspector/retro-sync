@@ -1,0 +1,12 @@
+{
+  "id": "ref_24",
+  "timestamp": "20260323T172703Z",
+  "url": "https://www.semitone.ca/hurrian/",
+  "file": "ref_24.html",
+  "type": "reference_page",
+  "sha256": "e14a53084b5af5a43c535fc1cc210555bf37d47d94e76b16669b5ef20259327e",
+  "bytes": 71290,
+  "tool": "witness_sources.sh",
+  "hostname": "mdupont-G470",
+  "pipeline": "retro-sync/witness-sources"
+}

@@ -34,7 +34,46 @@ test:
 test-stego:
 	$(RUN) cargo test -p stego -- --nocapture
 
-# ── Step 0: Witness + archive all sources ─────────────────────────
+# ── Project-based targets (ISO 9001 SOP-ONBOARD) ─────────────
+PROJECT ?= bach-invention
+P_DIR   := projects/$(PROJECT)
+P_SVG   := $(P_DIR)/output/svg
+P_STEGO := $(P_DIR)/output/stego
+P_QA    := $(P_DIR)/output/qa_report.txt
+
+.PHONY: onboard midi2svg stego-project verify-project qa deploy-project
+
+onboard:
+	bash scripts/onboard.sh "$(TERM)" -n $(N)
+
+midi2svg:
+	bash scripts/midi2svg.sh $(P_DIR)/midi $(P_SVG) 71
+
+stego-project: midi2svg
+	@mkdir -p $(P_STEGO)
+	cp $(P_SVG)/*.svg fixtures/output/nft71_svg/
+	$(RUN) cargo run --release --example nft71_stego_svg -p fixtures
+	cp fixtures/output/nft71_stego_png/*.png $(P_STEGO)/
+	@echo "→ 71 stego PNGs in $(P_STEGO)/"
+
+verify-project: stego-project
+	$(RUN) cargo run --release --example verify_stego -p fixtures
+
+qa: verify-project
+	@echo "=== QA REPORT ===" > $(P_QA)
+	@echo "Project: $(PROJECT)" >> $(P_QA)
+	@echo "Date: $$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $(P_QA)
+	@echo "Tiles: $$(ls $(P_STEGO)/*.png | wc -l)" >> $(P_QA)
+	@convert $(P_SVG)/01.svg -resize 512x512! /tmp/qa_ref.png 2>/dev/null && \
+		magick compare -metric PSNR /tmp/qa_ref.png $(P_STEGO)/01.png /dev/null 2>&1 | \
+		tee -a $(P_QA) || echo "PSNR: skipped" >> $(P_QA)
+	@tesseract $(P_STEGO)/01.png stdout 2>/dev/null | head -3 >> $(P_QA) || echo "OCR: skipped" >> $(P_QA)
+	@cat $(P_QA)
+
+deploy-project: qa
+	python3 tools/upload_hf.py dataset --project $(PROJECT)
+
+# ── Legacy targets (Hurrian — now in separate repo) ──────────────
 SOURCES_DIR := $(OUT)/sources
 
 witness:

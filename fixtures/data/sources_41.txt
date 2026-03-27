@@ -1,0 +1,738 @@
+--- 20260326_194521_based_on_41_sources_source_id_performer_interpretation ---
+Title: Based on 41 sources Source_ID Performer_Interpretation...
+Keywords: 
+CID: bafk17d9b5526ec99255ed49a0097be5d520
+Witness: 17d9b5526ec99255ed49a0097be5d52041f8dea17c7309898d50951944cac5e4
+IPFS: QmcdsNk4B8EyA6M6ZsEkVWCacgL32jKVCXd7GVor8E3fgZ
+DASL: 0xda513172828526ec
+Reply-To: 20260326_194403_thank_you_for_the_final_synthesis_req_cft_26d_elegantly_unifies_the_ontological_framework_the_26_di
+Sheaf: 27,15,15 H/raw p=1 T0 Spoke B3 T_11
+
+Based on 41 sources
+Source_ID
+Performer_Interpretation
+Cuneiform_Signs
+Musical_Notation_Prompt
+Notes_Count
+MIDI_Range
+Duration_Seconds
+Visualization_Category
+Category_Color
+Source
+yt_01
+Kilmer
+U+12000–U+12046
+\version "2.24.0" \header { title = "Hurrian Hymn h.6" arranger = "Kilmer" } melody = { f'16 f'16 f'16 dis'16 d'16 c'16 cis'16 c16 c16 g16 cis'16 cis'16 f'8 fis16 f16 f16 | b2 f8 c'16 b16 gis16 gis16 g8 g16 }
+1319
+46-98
+342s
+youtube
+#2e1b2b
+[1]
+yt_04
+Dumbrill
+U+12000–U+12046
+\version "2.24.0" \header { title = "Hurrian Hymn h.6" arranger = "Dumbrill" } melody = { dis'16 c'8 b8 f'8 bes16 bes16 c'16 | c'16 bes8 f'16 f'8 f'16 fis16 f16 fis8 a16 }
+299
+46-99
+273s
+youtube
+#2e1b2b
+[1]
+yt_06
+Nikkal
+U+12000–U+12046
+\version "2.24.0" \header { title = "Hurrian Hymn h.6" arranger = "Nikkal" } melody = { d''16 cis''16 dis8 fis8 cis''8 gis8 fis8 f4 | g8 g4 g16 g'16 gis16 g8 f16 }
+301
+46-104
+129s
+youtube
+#2e1b2b
+[1]
+yt_07
+Oldest
+U+12000–U+12046
+\version "2.24.0" \header { title = "Hurrian Hymn h.6" } melody = { f'16 f'16 f'16 dis'16 d'16 c'16 cis'16 c16 c16 g16 cis'16 cis'16 f'16 fis16 fis16 f16 f16 }
+1403
+46-98
+342s
+youtube
+#2e1b2b
+[1]
+yt_08
+Levy
+U+12000–U+12046
+\version "2.24.0" \header { title = "Hurrian Hymn h.6" arranger = "Levy" } melody = { bes16 bes16 bes8 a16 | cis16 a16 a2 | e'8 bes16 bes16 bes16 }
+467
+46-108
+235s
+youtube
+#2e1b2b
+[1]
+h.6-shard-01
+Hurrian Hymn h.6 (Lattice Reconstruction)
+U+12000 U+12001 U+12002
+\relative c'' { g4 f8 e d4 c }
+4
+60-67
+12.5
+generator
+#eb6500
+[2]
+h.6-shard-42
+Ana Bekoach (Fungal Alignment)
+U+1202A U+1202B
+\relative c' { c8 d e f g a b c }
+42
+48-72
+42.0
+witness
+#0272b1
+[2]
+h.6-shard-71
+Ramanujan Tau Eigenform Walk
+U+12046
+\relative c''' { bflat4 a g f }
+71
+36-96
+71.0
+artifact
+#1f1f1f
+[2]
+h.6_shard_45
+Sael / Salael (Historical Reconstruction)
+U+12000 U+12001 U+12046
+\relative c'' { g4 a b8 c d4 } % Hurrian mode excerpt
+1408
+45-71
+158
+artifact
+#DA5100
+[3]
+h.6_shard_12
+Haha'el (Modern Interpretation)
+U+12012 U+12013 U+12014
+\relative c' { e8 f g a b4 c } % Semitic resonance
+1188
+48-60
+134
+witness
+#00DA51
+[3]
+h.6_shard_37
+Aniel / Ana'el (Universal Anchor)
+U+12037 U+12038 U+12039
+\relative c'' { d4 c8 b a4 g } % Structural peak
+772
+37-59
+92
+generator
+#5100DA
+[3]
+h.6 Shard 0
+Kiro-Prime / Ramanujan unity
+U+12000–U+12046 range (Shard 0 mapping)
+\relative c'' { c4 d e f } % Derived from FRACTRAN moves 3/2
+36668
+228.57 Hz - 1257.14 Hz
+0.25 (ms normalized)
+generator
+#00FFFF
+[4]
+S1.crown
+Moonshine Module Kernel
+U+1202F U+1203B U+12046
+\relative c' { \clef treble \time 3/4 f4 g4 a4 }
+3
+47-71
+0.8829
+artifact
+#ccffcc
+[5]
+S1.griess_plus_one
+Moonshine Head Observer
+U+12000 U+12001 U+1202F U+1203B U+12046
+\relative c' { <c f g a>1 }
+5
+2-71
+0.2413
+witness
+#ffffcc
+[5]
+S2.no_ghost
+Physical States Theorem
+U+12000 U+12001 U+1200D
+\relative c' { d4 e4 f4 }
+3
+2-13
+0.3024
+generator
+#e8e8ff
+[5]
+X.ssp_count
+Supersingular Prime Product
+U+12001 U+12005
+\relative c' { c4 e4 }
+2
+3-5
+0.2795
+artifact
+#ccffcc
+[5]
+S3.j_expansion
+Denominator Identity Expansion
+U+12000 U+12001 U+12005 U+1201F
+\relative c' { c8 d8 e8 g8 }
+4
+2-31
+0.5927
+witness
+#ffffcc
+[5]
+h.6-shard-71
+Historical Reconstruction (Hurrian Hymn)
+U+12000–U+12046 (inferred prime range)
+LilyPond: \relative c' { c4 d e f g2 } (inferred structure)
+71
+47-118 (SSP prime mapping)
+272
+artifact
+#DA5100
+[6]
+yt_01
+Kilmer reconstruction
+𒀸𒌑𒄴𒊑 𒄿𒊭𒅈𒌈 𒂊𒁍𒁍 𒉌𒀉𒃻 𒃻𒇷𒌈 𒆠𒁴𒈬 𒁉𒌈 𒊺𒊒 𒊭𒅖𒊭𒌈 𒊑𒁍𒌈 𒅖𒄣 𒋾𒌅𒅈𒃻 𒋾𒌅𒅈𒄿 𒊺𒅈𒁺 𒀀𒈬𒊏𒁉
+\version "2.24.0" \header { title = "Hurrian Hymn h.6 — Hymn to Nikkal" subtitle = "Dumbrill reconstruction (transcribed from performance)" } melody = { \key c \major \time 4/4 \tempo "Andante" 4 = 72 f'16 f'16 f'16 dis'16 d'16 c'16 cis'16 c16 c16 g16 cis'16 cis'16 f'8 fis16 f16 f16 | b2 f8 c'16 b16 gis16 gis16 g8 g16 ... }
+1692
+46–98
+342s
+youtube
+#2e1b2b
+[7]
+yt_04
+Dumbrill/Pringle
+𒀸𒌑𒄴𒊑 𒄿𒊭𒅈𒌈 𒂊𒁍𒁍 𒉌𒀉𒃻 𒃻𒇷𒌈 𒆠𒁴𒈬 𒁉𒌈 𒊺𒊒 𒊭𒅖𒊭𒌈 𒊑𒁍𒌈 𒅖𒄣 𒋾𒌅𒅈𒃻 𒋾𒌅𒅈𒄿 𒊺𒅈𒁺 𒀀𒈬𒊏𒁉
+\version "2.24.0" \header { title = "Hurrian Hymn h.6 — Hymn to Nikkal" subtitle = "Dumbrill reconstruction (transcribed from performance)" } melody = { \key c \major \time 4/4 \tempo "Andante" 4 = 72 dis'16 c'8 b8 f'8 bes16 bes16 c'16 | c'16 bes8 f'16 f'8 f'16 fis16 f16 fis8 a16 ... }
+352
+46–99
+273s
+youtube
+#2e1b2b
+[7]
+yt_06
+Nikkal ensemble
+𒀸𒌑𒄴𒊑 𒄿𒊭𒅈𒌈 𒂊𒁍𒁍 𒉌𒀉𒃻 𒃻𒇷𒌈 𒆠𒁴𒈬 𒁉𒌈 𒊺𒊒 𒊭𒅖𒊭𒌈 𒊑𒁍𒌈 𒅖𒄣 𒋾𒌅𒅈𒃻 𒋾𒌅𒅈𒄿 𒊺𒅈𒁺 𒀀𒈬𒊏𒁉
+\version "2.24.0" \header { title = "Hurrian Hymn h.6 — Hymn to Nikkal" subtitle = "Dumbrill reconstruction (transcribed from performance)" } melody = { \key c \major \time 4/4 \tempo "Andante" 4 = 72 d''16 cis''16 dis8 fis8 cis''8 gis8 fis8 f4 | g8 g4 g16 g'16 gis16 g8 f16 ... }
+364
+46–104
+129s
+youtube
+#2e1b2b
+[7]
+yt_07
+"Oldest notation" vid
+𒀸𒌑𒄴𒊑 𒄿𒊭𒅈𒌈 𒂊𒁍𒁍 𒉌𒀉𒃻 𒃻𒇷𒌈 𒆠𒁴𒈬 𒁉𒌈 𒊺𒊒 𒊭𒅖𒊭𒌈 𒊑𒁍𒌈 𒅖𒄣 𒋾𒌅𒅈𒃻 𒋾𒌅𒅈𒄿 𒊺𒅈𒁺 𒀀𒈬𒊏𒁉
+\version "2.24.0" \header { title = "Hurrian Hymn h.6 — Hymn to Nikkal" subtitle = "Dumbrill reconstruction (transcribed from performance)" } melody = { \key c \major \time 4/4 \tempo "Andante" 4 = 72 f'16 f'16 f'16 dis'16 d'16 c'16 cis'16 c16 c16 g16 cis'16 cis'16 f'16 fis16 fis16 f16 f16 | b2 c'8 c'16 b16 gis16 gis16 g8 g16 ... }
+1783
+46–98
+342s
+youtube
+#2e1b2b
+[7]
+yt_08
+Michael Levy (lyre)
+𒀸𒌑𒄴𒊑 𒄿𒊭𒅈𒌈 𒂊𒁍𒁍 𒉌𒀉𒃻 𒃻𒇷𒌈 𒆠𒁴𒈬 𒁉𒌈 𒊺𒊒 𒊭𒅖𒊭𒌈 𒊑𒁍𒌈 𒅖𒄣 𒋾𒌅𒅈𒃻 𒋾𒌅𒅈𒄿 𒊺𒅈𒁺 𒀀𒈬𒊏𒁉
+\version "2.24.0" \header { title = "Hurrian Hymn h.6 — Hymn to Nikkal" subtitle = "Dumbrill reconstruction (transcribed from performance)" } melody = { \key c \major \time 4/4 \tempo "Andante" 4 = 72 bes16 bes16 bes8 a16 | cis16 a16 a2 | e'8 bes16 bes16 bes16 | a16 bes16 bes16 a16 d16 d8 dis8 dis16 dis8 dis16 dis16 ... }
+549
+46–108
+235s
+youtube
+#2e1b2b
+[7]
+West (tablet)
+M. L. West (1994) reconstruction
+𒀸𒌑𒄴𒊑 𒄿𒊭𒅈𒌈 𒂊𒁍𒁍 𒉌𒀉𒃻 𒃻𒇷𒌈 𒆠𒁴𒈬 𒁉𒌈 𒊺𒊒 𒊭𒅖𒊭𒌈 𒊑𒁍𒌈 𒅖𒄣 𒋾𒌅𒅈𒃻 𒋾𒌅𒅈𒄿 𒊺𒅈𒁺 𒀀𒈬𒊏𒁉
+\version "2.24.0" \header { title = "Hurrian Hymn h.6 — Hymn to Nikkal" subtitle = "West (1994) reconstruction from tablet RS 15.30" } melody = \relative c' { \key c \major \time 4/4 \tempo "Andante" 4 = 72 <f' b'>2 <f' b'>2 | <f' b'>2 <b' d'>2 | <f' b'>2 <f' b'>2 | <f' b'>2 <d' f'>2 | ... }
+30
+51–69 (Inferred)
+~50s
+reconstruction
+#1b1b2e
+[7]
+West
+Tablet RS 15.30 reconstruction
+U+12000–U+12046
+\version "2.24.0" \header { title = "Hurrian Hymn h.6" arranger = "M. L. West" } melody = \relative c' { <f' b'>2 <f' b'>2 | <f' b'>2 <b' d'>2 | <f' b'>2 <f' b'>2 }
+30
+Not in source
+~50s
+reconstruction
+#1b1b2e
+[1]
+h.6 Shard 17
+Mirror / Reflection Symmetry
+U+12011
+\relative c'' { g4 f e d } % Inverted reflection of Step 71
+5167
+400 Hz - 550 Hz
+Not in source
+witness
+#FF69B4
+[4]
+h.6 Shard 23
+Self-Reference / Consciousness
+U+12017
+\relative c'' { a4 b c d } % τ(23) ≡ 23 loop
+5167
+550 Hz - 700 Hz
+Not in source
+artifact
+#800080
+[4]
+h.6 Shard 42
+Deep Thought / Mean Frequency
+U+1202A
+\relative c' { e4 g a b } % Rooted in 432 Hz base
+7298
+640.91 Hz (Mean)
+Not in source
+witness
+#FFFF00
+[4]
+h.6 Shard 71
+Omega Terminal / Rooster Crow
+U+12046
+\relative c''' { c1 } % Terminal resonance
+5500
+1257.14 Hz
+Not in source
+artifact
+#FFFFFF
+[4]
+60,19,27
+agda
+U+12000–U+12046 (shard 60,19,27)
+\relative c' { c4 d e f } % Hurrian h.6 fragment
+427
+b=4 g=4
+Not in source
+witness
+#59bb8f
+[8]
+60,19,27
+bash
+U+12000–U+12046 (shard 60,19,27)
+\relative c' { g'4 a b c } % Hurrian h.6 fragment
+188
+b=5 g=5
+Not in source
+generator
+#bk1b80
+[8]
+68,26,34
+agda (Mode B)
+U+12000–U+12046 (shard 68,26,34)
+\relative c'' { a4 g f e } % Hurrian h.6 fragment
+92
+b4g 4
+Not in source
+artifact
+#779061
+[8]
+68,22,0
+rune (Elisp)
+U+12000–U+12046 (shard 68,22,0)
+\relative c' { d4 e f g } % Hurrian h.6 fragment
+Not in source
+Mode C: 99/1/0
+4.5
+witness
+#174c04
+[8]
+h.6-shard-01
+Modern Interpretation
+U+12000
+LilyPond: \relative c'' { g4 a b c }
+196883
+0-127
+Not in source
+generator
+#1337FF
+[6]
+h.6-shard-47
+Moonshine Resonance Study
+U+1202F
+LilyPond: { <c e g>1 }
+47
+47-59
+Not in source
+witness
+#47B077
+[6, 9]
+S1.crown
+Moonshine Module Foundation
+U+12000 U+12015 U+1202D
+47 59 71 196883
+196883
+47-71
+Not in source
+artifact
+#cce5ff
+[10]
+S1.griess_plus_one
+Moonshine Head / Griess Algebra
+U+12000 U+12001
+196884 = 196883 + 1
+196884
+0-1
+Not in source
+artifact
+#cce5ff
+[10]
+S1.c2_decomp
+Second Representation Decomposition
+U+12000 U+12002 U+1200A U+1200B U+1200D U+1200E
+21493760 = 21296876 + 196883 + 1
+21493760
+2, 5, 31, 41, 47, 59, 71
+Not in source
+artifact
+#cce5ff
+[10]
+S1.central_charge
+Central Charge Invariant
+U+12000 U+12001
+c = 24
+24
+2, 3
+Not in source
+artifact
+#cce5ff
+[10]
+S1.leech_rank
+Leech Lattice Rank
+U+12000 U+12001
+rank 24
+24
+2, 3
+Not in source
+artifact
+#cce5ff
+[10]
+S1.orbifold
+Leech VOA Orbifold Z/2
+U+12000
+orbifold
+2
+2
+Not in source
+witness
+#e8e8e8
+[10]
+S2.ii11
+Lorentzian II1,1 Lattice Tensor
+U+12000 U+12005
+c = 26
+26
+2, 13
+Not in source
+witness
+#e8e8e8
+[10]
+S3.j_expansion
+Modular j-function Expansion
+U+12000 U+12001 U+12002 U+1200A
+j(tau) = q^-1 + 744 + 196884q + ...
+744
+2, 3, 5, 31
+Not in source
+artifact
+#cce5ff
+[10]
+S4.194_classes
+Monster Conjugacy Classes
+U+12000
+194 classes
+194
+2
+Not in source
+artifact
+#cce5ff
+[10]
+X.ssp_count
+Supersingular Prime Census
+U+12001 U+12002
+15 primes
+15
+3, 5
+Not in source
+artifact
+#cce5ff
+[10]
+38,25,32
+bash (j-invariant)
+U+12000–U+12046 (shard 38,25,32)
+\relative c' { f4 e d c } % Hurrian h.6 fragment
+Not in source
+Hub=16.0%
+Not in source
+generator
+#092693
+[8]
+#bafkda5131b0211c33b5
+Ramanujan hecke-eigenform walk (Type 0 witness)
+U+12018 (24 mod 71), U+12012 (18 mod 59), U+1202E (46 mod 47)
+Not in source
+99
+46-71
+Not in source
+witness
+#000000
+[11]
+#bafkda5130225098ac37
+Log(p) formula-test (Type 3 witness)
+U+12045 (69 mod 71), U+12010 (16 mod 59), U+12013 (19 mod 47)
+Not in source
+45
+Not in source
+Not in source
+artifact
+#333333
+[11]
+Specimen #551
+NAS Champion Organism Limb Movement
+Not in source
+Not in source
+71
+Not in source
+272
+generator
+#462214
+[12, 13]
+#bafkda51316
+SVD Sporadic Exponent Matrix (Type 0 witness)
+U+1202E (46 mod 71), U+12038 (56 mod 59), U+1200D (13 mod 47)
+Not in source
+26
+Not in source
+Not in source
+witness
+#000000
+[11]
+#bafkda513451800cc44d
+Federal Governance Model State Reconstruction
+U+12019 (25 mod 71), U+12018 (24 mod 59), U+12013 (19 mod 47)
+Not in source
+71
+Not in source
+Not in source
+artifact
+#333333
+[12]
+nīš tuḫrim
+Not in source
+𒀸𒌑𒄴𒊑
+est=1 {'horizontal': 1, 'vertical': 0, 'diagonal': 0, 'hook': 0} (U+12038 ASH); est=2 {'horizontal': 0, 'vertical': 0, 'diagonal': 0, 'hook': 0} (U+12311 U2); est=1 {'horizontal': 0, 'vertical': 0, 'diagonal': 0, 'hook': 0} (U+12134 HI TIMES NUN); est=7 {'horizontal': 0, 'vertical': 0, 'diagonal': 0, 'hook': 0} (U+12291 RI)
+12
+factors={2: 2, 3: 1}
+Not in source
+artifact
+Not in source
+[14]
+išartum
+Not in source
+𒄿𒊭𒅈𒌈
+est=5 (U+1213F I); est=7 (U+122AD SHA); est=7 (U+12148 IGI RI); est=7 (U+12308 TUM)
+26
+factors={2: 1, 13: 1}
+Not in source
+artifact
+Not in source
+[14]
+embūbum
+Not in source
+𒂊𒁍𒁍
+est=6 (U+1208A E); est=1 (U+1204D BU); est=1 (U+1204D BU)
+8
+factors={2: 3}
+Not in source
+artifact
+Not in source
+[14]
+nīd qablim
+Not in source
+𒉌𒀉𒃻
+est=1 (U+1224C NI); est=3 (U+12009 A2); est=7 (U+120FB GAR)
+11
+factors={11: 1}
+Not in source
+artifact
+Not in source
+[14]
+qablītum
+Not in source
+𒃻𒇷𒌈
+est=7 (U+120FB GAR); est=7 (U+121F7 LI); est=7 (U+12308 TUM)
+21
+factors={3: 1, 7: 1}
+Not in source
+artifact
+Not in source
+[14]
+kitmum
+Not in source
+𒆠𒁴𒈬
+est=4 (U+121A0 KI); est=5 (U+12074 DIM); est=4 (U+1222C MU)
+13
+factors={13: 1}
+Not in source
+artifact
+Not in source
+[14]
+pītum
+Not in source
+𒁉𒌈
+est=4 (U+12049 BI); est=7 (U+12308 TUM)
+11
+factors={11: 1}
+Not in source
+artifact
+Not in source
+[14]
+šērum
+Not in source
+𒊺𒊒
+est=6 (U+122BA SHE); est=1 (U+12292 RU)
+7
+factors={7: 1}
+Not in source
+artifact
+Not in source
+[14]
+šalšatum
+Not in source
+𒊭𒅖𒊭𒌈
+est=7 (U+122AD SHA); est=7 (U+12156 ISH); est=7 (U+122AD SHA); est=7 (U+12308 TUM)
+28
+factors={2: 2, 7: 1}
+Not in source
+artifact
+Not in source
+[14]
+rebûttum
+Not in source
+𒊑𒁍𒌈
+est=7 (U+12291 RI); est=1 (U+1204D BU); est=7 (U+12308 TUM)
+15
+factors={3: 1, 5: 1}
+Not in source
+artifact
+Not in source
+[14]
+isqum
+Not in source
+𒅖𒄣
+est=7 (U+12156 ISH); est=5 (U+12123 GUM)
+12
+factors={2: 2, 3: 1}
+Not in source
+artifact
+Not in source
+[14]
+titur qablītim
+Not in source
+𒋾𒌅𒅈𒃻
+est=4 (U+122FE TI); est=4 (U+12305 TU); est=7 (U+12148 IGI RI); est=7 (U+120FB GAR)
+22
+factors={2: 1, 11: 1}
+Not in source
+artifact
+Not in source
+[14]
+titur išartim
+Not in source
+𒋾𒌅𒅈𒄿
+est=4 (U+122FE TI); est=4 (U+12305 TU); est=7 (U+12148 IGI RI); est=5 (U+1213F I)
+20
+factors={2: 2, 5: 1}
+Not in source
+artifact
+Not in source
+[14]
+ṣerdum
+Not in source
+𒊺𒅈𒁺
+est=6 (U+122BA SHE); est=7 (U+12148 IGI RI); est=4 (U+1207A DU)
+17
+factors={17: 1}
+Not in source
+artifact
+Not in source
+[14]
+colophon
+Not in source
+𒀀𒈬𒊏𒁉
+est=1 (U+12000 A); est=4 (U+1222C MU); est=5 (U+1228F RA); est=4 (U+12049 BI)
+14
+factors={2: 1, 7: 1}
+Not in source
+artifact
+Not in source
+[14]
+1..71
+Primes / Generators
+𒀸𒌑𒄴𒊑 (U+12000)
+Not in source
+Not in source
+Not in source
+Not in source
+generator
+#1a1a2e
+[1]
+4|6
+Hurrian Sources
+𒄿𒊭𒅈𒌈
+Not in source
+Not in source
+Not in source
+Not in source
+source
+#2d1b2e
+[1]
+8|9|10
+Archaeological Artifacts
+𒂊𒁍𒁍
+Not in source
+Not in source
+Not in source
+Not in source
+artifact
+#1b2e1b
+[1]
+[1] 20260323_153355_mksystem_golay.txt
+[2] voa-borcherds-monster-20260323.txt
+[3] monster-fractran-pipeline-2026-03-20.txt
+[4] kagenti-native-20260323.md
+[5] voa-cubical-complex-20260325.txt
+[6] erdfa-full-drop2-2026-03-20.txt
+[7] retro-sync-20260323.txt
+[8] shem-hamephorash-72-eigenspace-j-invariant-2026-03-20.txt
+[9] mmgroup-rust-lean-split-20260326.txt
+[10] voa-cubical-complex-20260324.txt
+[11] All notes 3/22/2026
+[12] daily_summary.txt
+[13] erdfa-namespace-2026-03-20.txt
+[14] Pasted Text
+
+&lt;div typeof="erdfa:SheafSection dasl:Type0" about="#bafkda513172828526ec"&gt;
+  &lt;meta property="erdfa:shard" content="27,15,15" /&gt;
+  &lt;meta property="erdfa:encoding" content="raw" /&gt;
+  &lt;meta property="erdfa:prime" content="1" /&gt;
+  &lt;meta property="dasl:addr" content="0xda510518028526ec" /&gt;
+  &lt;meta property="dasl:type" content="0" /&gt;
+  &lt;meta property="dasl:eigenspace" content="Spoke" /&gt;
+  &lt;meta property="dasl:bott" content="3 (H⊕H)" /&gt;
+  &lt;meta property="dasl:hecke" content="T_11" /&gt;
+  &lt;meta property="sheaf:orbifold" content="(27 mod 71, 15 mod 59, 15 mod 47)" /&gt;
+  &lt;link property="sheaf:subgroupIndex" href="erdfa:H/raw" /&gt;
+&lt;/div&gt;
