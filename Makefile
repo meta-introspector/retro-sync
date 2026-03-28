@@ -73,6 +73,44 @@ qa: verify-project
 deploy-project: qa
 	python3 tools/upload_hf.py dataset --project $(PROJECT)
 
+# ── Server build + deploy (ISO 9001) ─────────────────────────
+.PHONY: build-server install-service start stop status
+
+build-server:
+	$(NIX) build .#backend
+
+build-server-dev:
+	$(RUN) cargo build --release -p backend
+
+install-service: build-server-dev
+	sudo cp ops/retro-sync.service /etc/systemd/system/
+	sudo systemctl daemon-reload
+	sudo systemctl enable retro-sync
+	@echo "✅ service installed"
+
+start: install-service
+	sudo systemctl start retro-sync
+	@sleep 1
+	@curl -sf http://localhost:8443/health && echo " ✅ healthy" || echo " ⚠ not responding"
+
+stop:
+	sudo systemctl stop retro-sync
+
+status:
+	@systemctl is-active retro-sync 2>/dev/null || echo "stopped"
+	@curl -sf http://localhost:8443/health 2>/dev/null && echo "healthy" || echo "unreachable"
+
+# ── Catalog + publish ────────────────────────────────────────
+.PHONY: catalog publish
+
+catalog:
+	python3 scripts/catalog-gen.py
+	python3 scripts/artist-ids.py
+	python3 scripts/export-cwr.py
+
+publish: catalog
+	bash scripts/publish-catalog.sh
+
 # ── Legacy targets (Hurrian — now in separate repo) ──────────────
 SOURCES_DIR := $(OUT)/sources
 
@@ -175,3 +213,10 @@ nix-build:
 
 clean:
 	$(RUN) cargo clean
+
+## ── NotebookLM ──────────────────────────────────────────────────────
+notebooklm: dist/notebooklm-dump.txt
+dist/notebooklm-dump.txt: scripts/notebooklm-dump.sh
+	@mkdir -p dist
+	bash scripts/notebooklm-dump.sh > $@
+	@ls -lh $@

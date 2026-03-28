@@ -2,9 +2,15 @@
 \header {
   title = "Hurrian Hymn h.6 — Hymn to Nikkal"
   subtitle = "West (1994) reconstruction from tablet RS 15.30"
-  composer = "Anonymous (~1400 BC, Ugarit)"
+  composer = "Urẖiya (composer) · Ammurabi (scribe) · ~1400 BC, Ugarit"
   arranger = "Reconstruction: M. L. West (1994)"
-  tagline = ##f
+  piece = "zaluzi (prayer to Nikkal, goddess of orchards)"
+  tagline = \markup {
+    \column {
+      \line { "DA51 · Cl(15,0,0) · 6-layer stego · shard 1/71" }
+      \line { "𒀸𒌑𒄴𒊑  nīš tuḫrim · Tablet RS 15.30 · Yazılıkaya" }
+    }
+  }
   % Tuning: nīd qablim (descending diatonic C–C on 9-string sammûm)
   % Strings: 1=c'' 2=b' 3=a' 4=g' 5=f' 6=e' 7=d' 8=c' 9=b
   % Genre: zaluzi (prayer to Nikkal, goddess of orchards)
@@ -38,35 +44,35 @@ melody = \relative c' {
   \tempo "Andante" 4 = 72
 
   % Line 1: qablīte ×3 (f'+b')
-  <f' b'>2 <f' b'>2 |
+  <f' b'>2^\markup { \small "qablīte" } <f' b'>2 |
   <f' b'>2
   % irbutte ×1 (b'+d')
-  <b' d'>2 |
+  <b' d'>2^\markup { \small "irbutte" } |
   % qablīte ×3 (f'+b')
-  <f' b'>2 <f' b'>2 |
+  <f' b'>2^\markup { \small "qablīte" } <f' b'>2 |
   <f' b'>2
   % šaḫri ×1 (d'+f')
-  <d' f'>2 |
+  <d' f'>2^\markup { \small "šaḫri" } |
 
   % išarte ×10 (b'+e') — the long central section
-  <b e'>2 <b e'>2 |
+  <b e'>2^\markup { \small "išarte ×10" } <b e'>2 |
   <b e'>2 <b e'>2 |
   <b e'>2 <b e'>2 |
   <b e'>2 <b e'>2 |
   <b e'>2 <b e'>2 |
 
   % Line 2: tit.išarte ×2 (a'+f')
-  <a' f'>2 <a' f'>2 |
+  <a' f'>2^\markup { \small "tit.išarte" } <a' f'>2 |
   % zirte ×1 (e'+a')
-  <e' a'>2
+  <e' a'>2^\markup { \small "zirte" }
   % šaḫri ×2 (d'+f')
-  <d' f'>2 |
+  <d' f'>2^\markup { \small "šaḫri" } |
   <d' f'>2
   % šaššate ×2 (c''+e')
-  <c'' e'>2 |
+  <c'' e'>2^\markup { \small "šaššate" } |
   <c'' e'>2
   % irbutte ×2 (b'+d')
-  <b' d'>2 |
+  <b' d'>2^\markup { \small "irbutte" } |
   <b' d'>1 |
 
   \bar "|."

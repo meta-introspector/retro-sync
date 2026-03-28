@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>retro-sync — API Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#e0e0e0;font-family:monospace;padding:1em;max-width:1000px;margin:0 auto}
+h1{color:#0ff;font-size:1.4em;margin-bottom:.5em}
+h2{color:#ffd700;font-size:1em;margin:1em 0 .3em;border-bottom:1px solid #333;padding-bottom:4px}
+.card{background:#111;border:1px solid #333;padding:12px;margin:8px 0;border-radius:6px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+button{background:#222;color:#0ff;border:1px solid #0ff;padding:6px 12px;cursor:pointer;font:12px monospace;border-radius:4px}
+button:hover{background:#0ff;color:#000}
+input,select{background:#111;color:#0f0;border:1px solid #333;padding:6px;font:12px monospace;border-radius:4px}
+input{width:300px}
+pre{background:#0a0a0a;border:1px solid #222;padding:8px;margin:6px 0;overflow:auto;max-height:300px;font-size:11px;color:#0f0}
+.ok{color:#0f0} .err{color:#f44} .warn{color:#ff0}
+a{color:#0ff}
+.status{font-size:24px;margin-right:8px}
+table{width:100%;border-collapse:collapse;margin:8px 0}
+td,th{border:1px solid #333;padding:4px 8px;text-align:left;font-size:11px}
+th{background:#1a1a1a;color:#ffd700}
+</style>
+</head><body>
+
+<h1>🎵 retro-sync — API Dashboard</h1>
+
+<div class="card">
+  <div class="row">
+    <span class="status" id="health-icon">⏳</span>
+    <div>
+      <strong>API Server</strong><br>
+      <span id="health-text">checking...</span>
+    </div>
+    <input id="api-url" value="https://localhost:8443" style="margin-left:auto">
+    <button onclick="checkHealth()">🔄 Check</button>
+  </div>
+</div>
+
+<h2>📋 Catalog</h2>
+<div class="card">
+  <div class="row">
+    <button onclick="loadCatalog()">Load Catalog</button>
+    <button onclick="loadArtists()">Load Artists</button>
+    <a href="/retro-sync/catalog/" target="_blank">📂 Browse files</a>
+    <a href="/retro-sync/catalog/retro-sync.cwr" download>⬇ CWR 2.2</a>
+  </div>
+  <pre id="catalog-out">click Load to view</pre>
+</div>
+
+<h2>🔍 API Explorer</h2>
+<div class="card">
+  <div class="row">
+    <select id="method"><option>GET</option><option>POST</option></select>
+    <input id="endpoint" value="/api/societies" placeholder="/api/endpoint">
+    <button onclick="callApi()">▶ Send</button>
+  </div>
+  <div class="row" style="margin-top:6px">
+    <small>Quick:</small>
+    <button onclick="quick('/health')">health</button>
+    <button onclick="quick('/api/societies')">societies</button>
+    <button onclick="quick('/api/gateway/status')">gateway</button>
+    <button onclick="quick('/api/vault/summary')">vault</button>
+    <button onclick="quick('/metrics')">metrics</button>
+  </div>
+  <pre id="api-out">response will appear here</pre>
+</div>
+
+<h2>📊 Collections</h2>
+<div class="card" id="collections">
+  <button onclick="loadCollections()">Load Collections</button>
+</div>
+
+<h2>🎵 Register Work</h2>
+<div class="card">
+  <div class="row">
+    <input id="work-title" placeholder="Title">
+    <input id="work-writer" placeholder="Writer name">
+    <button onclick="registerWork()">Register</button>
+  </div>
+  <pre id="register-out"></pre>
+</div>
+
+<h2>📡 Endpoints Reference</h2>
+<table>
+<tr><th>Method</th><th>Path</th><th>Description</th></tr>
+<tr><td>GET</td><td>/health</td><td>Health check</td></tr>
+<tr><td>GET</td><td>/metrics</td><td>Prometheus metrics</td></tr>
+<tr><td>POST</td><td>/api/upload</td><td>Upload track (multipart)</td></tr>
+<tr><td>POST</td><td>/api/register</td><td>Register work</td></tr>
+<tr><td>GET</td><td>/api/track/:id</td><td>Track status</td></tr>
+<tr><td>GET</td><td>/api/societies</td><td>List collection societies</td></tr>
+<tr><td>GET</td><td>/api/societies/:id</td><td>Society details</td></tr>
+<tr><td>POST</td><td>/api/societies/route</td><td>Route royalty</td></tr>
+<tr><td>POST</td><td>/api/gateway/ern/push</td><td>DDEX ERN push</td></tr>
+<tr><td>POST</td><td>/api/gateway/dsr/cycle</td><td>DSR royalty cycle</td></tr>
+<tr><td>GET</td><td>/api/manifest/:id</td><td>NFT manifest</td></tr>
+<tr><td>POST</td><td>/api/manifest/mint</td><td>Mint NFT</td></tr>
+<tr><td>POST</td><td>/api/manifest/proof</td><td>Ownership proof</td></tr>
+<tr><td>GET</td><td>/api/vault/summary</td><td>Multi-sig vault</td></tr>
+<tr><td>POST</td><td>/api/takedown</td><td>DMCA takedown</td></tr>
+<tr><td>GET</td><td>/api/privacy/export/:uid</td><td>GDPR export</td></tr>
+</table>
+
+<script>
+const $ = id => document.getElementById(id);
+const base = () => $('api-url').value.replace(/\/+$/, '');
+
+async function checkHealth() {
+  try {
+    const r = await fetch(base() + '/health');
+    const d = await r.json();
+    $('health-icon').textContent = '✅';
+    $('health-text').innerHTML = `<span class="ok">${d.status} — ${d.service}</span>`;
+  } catch(e) {
+    $('health-icon').textContent = '❌';
+    $('health-text').innerHTML = `<span class="err">${e.message}</span>`;
+  }
+}
+
+async function callApi() {
+  const method = $('method').value;
+  const endpoint = $('endpoint').value;
+  try {
+    const r = await fetch(base() + endpoint, {method});
+    const text = await r.text();
+    try { $('api-out').textContent = JSON.stringify(JSON.parse(text), null, 2); }
+    catch { $('api-out').textContent = text; }
+  } catch(e) { $('api-out').textContent = 'Error: ' + e.message; }
+}
+
+function quick(path) { $('endpoint').value = path; $('method').value = 'GET'; callApi(); }
+
+async function loadCatalog() {
+  try {
+    const r = await fetch('/retro-sync/catalog/works.json');
+    const d = await r.json();
+    let out = `${d.total_works} works:\n\n`;
+    for (const w of d.works.slice(0, 20)) {
+      const rs = w.writers[0]?.rs_id || '?';
+      out += `  ${rs}  ${w.title.slice(0,40).padEnd(40)}  ${w.writers[0]?.name || '?'}\n`;
+    }
+    if (d.total_works > 20) out += `  ... (${d.total_works - 20} more)\n`;
+    $('catalog-out').textContent = out;
+  } catch(e) { $('catalog-out').textContent = 'Error: ' + e.message; }
+}
+
+async function loadArtists() {
+  try {
+    const r = await fetch('/retro-sync/catalog/artists.json');
+    const d = await r.json();
+    let out = `${d.count} artists:\n\n`;
+    for (const a of d.artists) {
+      out += `  ${a.id.padEnd(26)} ${a.name.padEnd(30)} ISNI:${a.isni||'?'} QID:${a.qid}\n`;
+    }
+    $('catalog-out').textContent = out;
+  } catch(e) { $('catalog-out').textContent = 'Error: ' + e.message; }
+}
+
+async function loadCollections() {
+  const collections = [
+    {name:'Bach Inventions', slug:'bach-invention', n:15},
+    {name:'Bartók', slug:'bartok', n:20},
+  ];
+  let html = '<table><tr><th>Collection</th><th>Works</th><th>Tiles</th><th>Links</th></tr>';
+  for (const c of collections) {
+    html += `<tr><td>${c.name}</td><td>${c.n}</td><td>71</td>`;
+    html += `<td><a href="/retro-sync/${c.slug}/">View</a> · `;
+    html += `<a href="/retro-sync/${c.slug}/tiles/01.png">Tile 1</a></td></tr>`;
+  }
+  html += '</table>';
+  $('collections').innerHTML = html;
+}
+
+checkHealth();
+</script>
+</body></html>

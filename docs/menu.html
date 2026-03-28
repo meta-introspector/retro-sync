@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>retro-sync — Music NFT Collections</title>
+<style>
+body{background:#0a0a0a;color:#e0e0e0;font-family:monospace;max-width:800px;margin:0 auto;padding:2em}
+h1{color:#0ff;font-size:1.5em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:1em 0}
+.card{background:#111;border:1px solid #333;padding:16px;border-radius:8px;cursor:pointer;transition:border-color 0.2s}
+.card:hover{border-color:#0ff}
+.card h3{color:#ffd700;margin:0 0 4px;font-size:1em}
+.card .meta{color:#888;font-size:0.8em}
+.card .count{color:#0f0;font-size:0.9em;margin-top:8px}
+a{color:#0ff;text-decoration:none}
+.footer{margin-top:2em;color:#555;font-size:0.8em;border-top:1px solid #222;padding-top:1em}
+</style>
+</head><body>
+<h1>🎵 retro-sync — Music NFT Collections</h1>
+<p>Public domain music encoded in steganographic PNG tiles. Click to decode and play.</p>
+
+<div class="grid" id="collections"></div>
+
+<div class="footer">
+  retro-sync · DA51 CBOR · Cl(15,0,0) · 6-layer stego<br>
+  <a href="https://github.com/meta-introspector/retro-sync">GitHub</a> ·
+  <a href="https://huggingface.co/spaces/introspector/retro-sync">HuggingFace</a>
+</div>
+
+<script>
+const collections = [
+  {name:"Bach Inventions", slug:"bach-invention", pieces:15, era:"Baroque 1720", desc:"Two-Part Inventions BWV 772-786"},
+  {name:"Bartók", slug:"bartok", pieces:20, era:"Modern 1908", desc:"Children's pieces, folk songs, Mikrokosmos"},
+  // Add more as onboarded:
+  // {name:"Joplin Ragtime", slug:"joplin", pieces:12, era:"1899", desc:"Maple Leaf Rag, The Entertainer"},
+  // {name:"Satie", slug:"satie", pieces:15, era:"1888", desc:"Gymnopédies, Gnossiennes"},
+  // {name:"Debussy", slug:"debussy", pieces:15, era:"1890", desc:"Clair de Lune, Arabesques"},
+];
+
+const grid = document.getElementById('collections');
+for (const c of collections) {
+  const base = window.location.pathname.replace(/\/[^/]*$/, '');
+  grid.innerHTML += `
+    <a href="${base}/${c.slug}/" class="card">
+      <h3>${c.name}</h3>
+      <div class="meta">${c.era}</div>
+      <div class="meta">${c.desc}</div>
+      <div class="count">🎵 ${c.pieces} pieces · 71 tiles</div>
+    </a>`;
+}
+</script>
+</body></html>

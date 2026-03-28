@@ -1,4 +1,4 @@
-//! Verify stego round-trip: extract NFT7 from project tiles, list all segments.
+//! Verify stego round-trip: extract NFT7 from 71 PNGs, list all segments.
 
 fn read_rgb(path: &std::path::Path) -> Vec<u8> {
     let f = std::fs::File::open(path).unwrap();
@@ -10,30 +10,14 @@ fn read_rgb(path: &std::path::Path) -> Vec<u8> {
 }
 
 fn main() {
-    let platform: toml::Value = toml::from_str(
-        &std::fs::read_to_string("retro-sync.toml").expect("retro-sync.toml not found")
-    ).unwrap();
+    let png_dir = "fixtures/output/nft71_stego_png";
+    let count = 71u64;
 
-    let projects_dir = platform["platform"]["projects_dir"].as_str().unwrap();
-    let project_name = std::env::args().nth(1)
-        .unwrap_or_else(|| platform["platform"]["default"].as_str().unwrap().to_string());
-
-    let project_path = format!("{}/{}/project.toml", projects_dir, project_name);
-    let project: toml::Value = toml::from_str(
-        &std::fs::read_to_string(&project_path).unwrap_or_else(|_| panic!("{} not found", project_path))
-    ).unwrap();
-
-    let png_dir = project["paths"]["stego_png"].as_str().unwrap();
-    let count = project["tiles"]["count"].as_integer().unwrap() as u64;
-    let pattern = project["tiles"]["pattern"].as_str().unwrap();
-    let title = project["project"]["title"].as_str().unwrap_or(&project_name);
-
-    println!("=== {} ===", title);
+    println!("=== Hurrian Hymn h.6 ===");
 
     let mut chunks: Vec<Vec<u8>> = Vec::new();
     for idx in 1..=count {
-        let fname = pattern.replacen("{:02}", &format!("{:02}", idx), 1);
-        let path = std::path::Path::new(png_dir).join(&fname);
+        let path = std::path::Path::new(png_dir).join(format!("{:02}.png", idx));
         let rgb = read_rgb(&path);
         chunks.push(stego::extract(&rgb, stego::TILE_CAP));
     }

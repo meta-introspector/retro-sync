@@ -1,0 +1,19 @@
+[project]
+name        = "bartok"
+title       = "Bartok"
+license     = "PD"
+description = "Auto-generated from MIDI classical dataset, search: bartok"
+created     = "2026-03-27T16:24:11Z"
+
+[sources.midi]
+dir     = "midi"
+count   = 20
+
+[tiles]
+count   = 71
+pattern = "{:02}.png"
+width   = 512
+height  = 512
+
+[segments]
+names = ["midi_bundle", "metadata", "erdfa"]

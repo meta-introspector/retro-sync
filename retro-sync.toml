@@ -37,6 +37,10 @@ btfs_gateway        = "https://gateway.btfs.io"
 ipfs_gateway        = "https://ipfs.io"
 
 [stego]
-# Platform-wide stego defaults
 planes   = 6
 tile_cap = 196608
+
+[tiles]
+count   = 71
+pattern = "{:02}.png"
+stego_png = "fixtures/output/nft71_stego_png"

@@ -1,0 +1,1223 @@
+{
+  "works": [
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent10",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent10",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "01_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent10.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 1,
+        "blade_grade": 8,
+        "orbifold": [
+          12,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent11",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent11",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "02_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent11.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 2,
+        "blade_grade": 5,
+        "orbifold": [
+          39,
+          36,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent12",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent12",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "03_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent12.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 3,
+        "blade_grade": 7,
+        "orbifold": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent13",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent13",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "04_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent13.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 4,
+        "blade_grade": 5,
+        "orbifold": [
+          7,
+          28,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent14",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent14",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "05_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent14.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 5,
+        "blade_grade": 9,
+        "orbifold": [
+          31,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent15",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent15",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "06_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent15.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 6,
+        "blade_grade": 6,
+        "orbifold": [
+          67,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent1",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent1",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "07_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent1.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 7,
+        "blade_grade": 6,
+        "orbifold": [
+          60,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent2",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent2",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "08_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent2.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 8,
+        "blade_grade": 9,
+        "orbifold": [
+          29,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent3",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent3",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "09_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent3.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 9,
+        "blade_grade": 6,
+        "orbifold": [
+          15,
+          17,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent4",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent4",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "10_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent4.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 10,
+        "blade_grade": 4,
+        "orbifold": [
+          21,
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent5",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent5",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "11_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent5.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 11,
+        "blade_grade": 8,
+        "orbifold": [
+          61,
+          48,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent8",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent8",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "12_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent8.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 12,
+        "blade_grade": 3,
+        "orbifold": [
+          36,
+          16,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent9",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent9",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "13_bach-bwv772-786_two_part_inventions-bwv772-786_two_part_inventions-invent9.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 13,
+        "blade_grade": 10,
+        "orbifold": [
+          12,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv772 Invention N01",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv772 Invention N01",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "14_bach-bwv772-786_two_part_inventions-bwv772_invention_n01.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 14,
+        "blade_grade": 6,
+        "orbifold": [
+          70,
+          16,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Bwv772 786 Two Part Inventions Bwv773 Invention N02",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "Johann Sebastian Bach",
+          "ipi": null,
+          "qid": "Q1339",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q1339-df621fc9"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Bwv772 786 Two Part Inventions Bwv773 Invention N02",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "15_bach-bwv772-786_two_part_inventions-bwv773_invention_n02.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bach-invention",
+        "shard_index": 15,
+        "blade_grade": 4,
+        "orbifold": [
+          58,
+          33,
+          0
+        ]
+      }
+    },
+    {
+      "title": "Childrens Piece No2",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Childrens Piece No2",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "01_bartok-childrens_piece_no2.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 1,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Courting Song",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Courting Song",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "02_bartok-courting_song.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 2,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Mikrokosmos",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Mikrokosmos",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "03_bartok-mikrokosmos.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 3,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Rumanian Dance No1",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Rumanian Dance No1",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "04_bartok-rumanian_dance_no1.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 4,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Suite 1Mov",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Suite 1Mov",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "05_bartok-suite_1mov.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 5,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Suite 2Mov",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Suite 2Mov",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "06_bartok-suite_2mov.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 6,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Aurora Mov7",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Aurora Mov7",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "07_bartok-ten_easy_piano_pieces_aurora_mov7.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 7,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Bear Dance Mov10",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Bear Dance Mov10",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "08_bartok-ten_easy_piano_pieces_bear_dance_mov10.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 8,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Dedication Mov0",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Dedication Mov0",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "09_bartok-ten_easy_piano_pieces_dedication_mov0.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 9,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Evening At The Village Mov5",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Evening At The Village Mov5",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "10_bartok-ten_easy_piano_pieces_evening_at_the_village_mov5.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 10,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Finger Exercise Mov9",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Finger Exercise Mov9",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "11_bartok-ten_easy_piano_pieces_finger_exercise_mov9.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 11,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Hungarian Folksong Mov6",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Hungarian Folksong Mov6",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "12_bartok-ten_easy_piano_pieces_hungarian_folksong_mov6.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 12,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Hungarian Folksong Mov8",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Hungarian Folksong Mov8",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "13_bartok-ten_easy_piano_pieces_hungarian_folksong_mov8.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 13,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Painful Wrestling Mov2",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Painful Wrestling Mov2",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "14_bartok-ten_easy_piano_pieces_painful_wrestling_mov2.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 14,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Peasants Song Mov1",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Peasants Song Mov1",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "15_bartok-ten_easy_piano_pieces_peasants_song_mov1.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 15,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Slovak Peasants Dance Mov3",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Slovak Peasants Dance Mov3",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "16_bartok-ten_easy_piano_pieces_slovak_peasants_dance_mov3.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 16,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Ten Easy Piano Pieces Sostenuto Mov4",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Ten Easy Piano Pieces Sostenuto Mov4",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "17_bartok-ten_easy_piano_pieces_sostenuto_mov4.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 17,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Unknown Piano Sonata Mov1",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Unknown Piano Sonata Mov1",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "18_bartok-unknown_piano_sonata_mov1.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 18,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Unknown Piano Sonata Mov2",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Unknown Piano Sonata Mov2",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "19_bartok-unknown_piano_sonata_mov2.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 19,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    },
+    {
+      "title": "Unknown Piano Sonata Mov3",
+      "iswc": null,
+      "writers": [
+        {
+          "name": "B\u00e9la Bart\u00f3k",
+          "ipi": null,
+          "qid": "Q83326",
+          "role": "C",
+          "share": 100,
+          "rs_id": "RS-Q83326-d82d297d"
+        }
+      ],
+      "publishers": [],
+      "performing_artists": [],
+      "recording": {
+        "isrc": null,
+        "title": "Unknown Piano Sonata Mov3",
+        "format": "MIDI",
+        "source": "midi-classical-dataset",
+        "file": "20_bartok-unknown_piano_sonata_mov3.mid"
+      },
+      "territories": [
+        "WW"
+      ],
+      "license": "PD",
+      "retrosync": {
+        "project": "bartok",
+        "shard_index": 20,
+        "blade_grade": null,
+        "orbifold": null
+      }
+    }
+  ],
+  "sender_id": "retro-sync-pd-catalog",
+  "catalog_version": "0.1.0",
+  "total_works": 35,
+  "projects": 14
+}

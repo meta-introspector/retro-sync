@@ -1,12 +1,12 @@
 {
   "step": "01_pdf",
-  "timestamp": "20260323T234952Z",
+  "timestamp": "20260327T233529Z",
   "tool": "lilypond",
   "tool_version": "GNU LilyPond 2.24.4 (running Guile 3.0)",
-  "input_hash": "9f51fead70572779d21f6baba9dd26dedd8d04d39b5d5db8d922e5ecf9b399fe",
+  "input_hash": "ae9f09b882e8a09d19da34deb439f4ffc78c138d50451535ac967931c3ae07d8",
   "output_file": "h6_west.pdf",
-  "output_hash": "cd71a96800afe87c5a32b4f7fedf92d272332cdc2070123e9bb29390d01eff5d",
-  "output_bytes": 71469,
+  "output_hash": "a437cab4b05a23afc84c0fd980f1c3ede701a88dde71785e71f17efa2d77bb21",
+  "output_bytes": 99898,
   "hostname": "mdupont-G470",
   "platform": "Linux-x86_64"
 }

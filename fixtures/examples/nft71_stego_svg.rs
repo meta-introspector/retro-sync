@@ -85,9 +85,50 @@ fn main() {
             continue;
         }
 
-        // SVG → RGB
-        let svg_data = std::fs::read(&svg_path).unwrap();
-        let mut rgb = stego::svg_to_rgb(&svg_data, stego::W as u32, stego::H as u32);
+        // Photo background → RGB (high-entropy carrier for invisible stego)
+        let bg_path = Path::new("fixtures/output/nft71_bg").join(format!("{pad}.png"));
+        let mut rgb = if bg_path.exists() {
+            // Use photo background (Yazılıkaya relief crops)
+            let f = std::fs::File::open(&bg_path).unwrap();
+            let dec = png::Decoder::new(f);
+            let mut reader = dec.read_info().unwrap();
+            let mut buf = vec![0u8; reader.output_buffer_size()];
+            let info = reader.next_frame(&mut buf).unwrap();
+            let bg_rgb = buf[..info.buffer_size()].to_vec();
+
+            // Composite: render SVG text overlay onto photo background
+            let svg_data = std::fs::read(&svg_path).unwrap();
+            let overlay = stego::svg_to_rgb(&svg_data, stego::W as u32, stego::H as u32);
+
+            // Composite: SVG text panels opaque, photo shows through SVG background
+            let mut composited = bg_rgb.clone();
+            for px in 0..stego::PIXELS {
+                let si = px * 3;
+                if si + 2 >= overlay.len() || si + 2 >= composited.len() { break; }
+                let or_ = overlay[si] as u16;
+                let og = overlay[si+1] as u16;
+                let ob = overlay[si+2] as u16;
+                let brightness = (or_ + og + ob) / 3;
+                
+                if brightness > 100 {
+                    // Bright pixel = text or panel → use SVG (opaque)
+                    composited[si]   = overlay[si];
+                    composited[si+1] = overlay[si+1];
+                    composited[si+2] = overlay[si+2];
+                } else if brightness > 60 {
+                    // Mid-tone = SVG background color → blend 50/50
+                    composited[si]   = ((or_ + composited[si] as u16) / 2) as u8;
+                    composited[si+1] = ((og + composited[si+1] as u16) / 2) as u8;
+                    composited[si+2] = ((ob + composited[si+2] as u16) / 2) as u8;
+                }
+                // Dark pixel = SVG empty area → keep photo (100%)
+            }
+            composited
+        } else {
+            // Fallback: rasterize SVG only
+            let svg_data = std::fs::read(&svg_path).unwrap();
+            stego::svg_to_rgb(&svg_data, stego::W as u32, stego::H as u32)
+        };
 
         // Embed stego
         let chunk = &chunks[(idx - 1) as usize];

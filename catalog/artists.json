@@ -1,0 +1,33 @@
+{
+  "artists": [
+    {
+      "id": "RS-Q83326-d82d297d",
+      "name": "B\u00e9la Bart\u00f3k",
+      "qid": "Q83326",
+      "ipi": null,
+      "isni": "0000000121429277",
+      "viaf": "89006617",
+      "orbifold": [
+        40,
+        38,
+        6
+      ],
+      "da51": "0xda51d82d297d"
+    },
+    {
+      "id": "RS-Q1339-df621fc9",
+      "name": "Johann Sebastian Bach",
+      "qid": "Q1339",
+      "ipi": null,
+      "isni": "0000000122764157",
+      "viaf": "12304462",
+      "orbifold": [
+        56,
+        56,
+        42
+      ],
+      "da51": "0xda51df621fc9"
+    }
+  ],
+  "count": 2
+}

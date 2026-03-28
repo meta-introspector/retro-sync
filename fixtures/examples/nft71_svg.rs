@@ -122,10 +122,16 @@ fn tile_svg(idx: u64) -> String {
   <defs>
     <linearGradient id="bg{idx}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="{bg}"/>
-      <stop offset="100%" stop-color="#404060"/>
+      <stop offset="100%" stop-color="#606878"/>
     </linearGradient>
+    <pattern id="grid{idx}" width="32" height="32" patternUnits="userSpaceOnUse">
+      <rect width="32" height="32" fill="none"/>
+      <rect x="0" y="0" width="16" height="16" fill="rgba(128,128,140,0.08)"/>
+      <rect x="16" y="16" width="16" height="16" fill="rgba(128,128,140,0.08)"/>
+    </pattern>
   </defs>
   <rect width="{SZ}" height="{SZ}" fill="url(#bg{idx})"/>
+  <rect width="{SZ}" height="{SZ}" fill="url(#grid{idx})"/>
   <!-- border -->
   <rect x="0" y="0" width="{SZ}" height="4" fill="{border}"/>
   <rect x="0" y="0" width="4" height="{SZ}" fill="{border}"/>
@@ -136,28 +142,29 @@ fn tile_svg(idx: u64) -> String {
   <!-- star/rosette (position = orbifold coords) -->
   <polygon points="{star_points}" fill="#ffd700" opacity="0.5"/>
   <polygon points="{star_points2}" fill="#ffd700" opacity="0.3" transform="translate({sx2},0)"/>
-  <!-- text panel background (high contrast for OCR survival) -->
-  <rect x="40" y="60" width="432" height="60" fill="#808090" rx="4" opacity="0.8"/>
-  <!-- cuneiform -->
-  <text x="256" y="105" text-anchor="middle" fill="#ffd700" font-size="64" font-weight="bold">{cunei}</text>
+  <!-- cuneiform panel -->
+  <rect x="30" y="55" width="452" height="70" fill="#707888" rx="6"/>
+  <text x="256" y="105" text-anchor="middle" fill="#ffd700" font-size="56" font-weight="bold">{cunei}</text>
   <!-- interval panel -->
-  <rect x="60" y="140" width="392" height="40" fill="#707080" rx="4" opacity="0.7"/>
-  <text x="256" y="168" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="24" font-weight="bold">{interval}</text>
-  <!-- notation -->
-  <text x="256" y="230" text-anchor="middle" fill="#a0e8a0" font-family="monospace" font-size="11">{NOTATION_L1}</text>
-  <text x="256" y="248" text-anchor="middle" fill="#a0e8a0" font-family="monospace" font-size="11">{NOTATION_L2}</text>
-  <!-- orbifold coords (visible data) -->
-  <text x="256" y="280" text-anchor="middle" fill="#8888aa" font-family="monospace" font-size="10">orbifold ({o71},{o59},{o47}) mod (71,59,47)</text>
+  <rect x="50" y="135" width="412" height="38" fill="#606878" rx="4"/>
+  <text x="256" y="162" text-anchor="middle" fill="#f0e8d0" font-family="monospace" font-size="22" font-weight="bold">{interval}</text>
+  <!-- notation panel -->
+  <rect x="20" y="185" width="472" height="50" fill="#586070" rx="3"/>
+  <text x="256" y="207" text-anchor="middle" fill="#b0e8b0" font-family="monospace" font-size="11">{NOTATION_L1}</text>
+  <text x="256" y="225" text-anchor="middle" fill="#b0e8b0" font-family="monospace" font-size="11">{NOTATION_L2}</text>
+  <!-- orbifold panel -->
+  <rect x="100" y="245" width="312" height="24" fill="#506068" rx="3"/>
+  <text x="256" y="262" text-anchor="middle" fill="#a0a8c0" font-family="monospace" font-size="10">orbifold ({o71},{o59},{o47}) mod (71,59,47)</text>
   <!-- ziggurat -->
 {zig}
   <!-- orbifold indicator circles -->
-  <circle cx="460" cy="40" r="{orb_r}" fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.6"/>
-  <circle cx="460" cy="40" r="{orb_r2}" fill="none" stroke="#ff6858" stroke-width="1" opacity="0.4"/>
-  <!-- shard info -->
-  <text x="256" y="440" text-anchor="middle" fill="#b0b8c0" font-family="monospace" font-size="16">{marker}{idx:02} {cat}</text>
-  <text x="256" y="465" text-anchor="middle" fill="#78b6ff" font-family="monospace" font-size="12">Hurrian Hymn h.6 · Tablet RS 15.30 · ~1400 BC · Ugarit</text>
-  <text x="256" y="485" text-anchor="middle" fill="#606878" font-family="monospace" font-size="9">DA51 CBOR · Groth16/BN254 · Cl(15,0,0) · 6-layer stego</text>
-  <text x="256" y="500" text-anchor="middle" fill="#505060" font-family="monospace" font-size="8">shard {idx}/71 · prime {prime} · blade grade 8</text>
+  <circle cx="460" cy="40" r="{orb_r}" fill="none" stroke="#78b6ff" stroke-width="2" opacity="0.7"/>
+  <circle cx="460" cy="40" r="{orb_r2}" fill="none" stroke="#ff8868" stroke-width="1.5" opacity="0.5"/>
+  <!-- shard info panel -->
+  <rect x="30" y="425" width="452" height="75" fill="#586070" rx="5"/>
+  <text x="256" y="448" text-anchor="middle" fill="#d0d8e0" font-family="monospace" font-size="16" font-weight="bold">{marker}{idx:02} {cat}</text>
+  <text x="256" y="470" text-anchor="middle" fill="#90c0ff" font-family="monospace" font-size="12">Hurrian Hymn h.6 · Tablet RS 15.30 · ~1400 BC · Ugarit</text>
+  <text x="256" y="490" text-anchor="middle" fill="#808898" font-family="monospace" font-size="9">DA51 CBOR · Groth16/BN254 · Cl(15,0,0) · 6-layer stego · shard {idx}/71</text>
 </svg>"##,
         y_bot = SZ - 4,
         x_rt = SZ - 4,

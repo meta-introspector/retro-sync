@@ -1,0 +1,16 @@
+[Unit]
+Description=retro-sync API server
+After=network.target
+
+[Service]
+Type=simple
+User=mdupont
+WorkingDirectory=/mnt/data1/time-2026/03-march/20/retro-sync
+ExecStart=/mnt/data1/time-2026/03-march/20/retro-sync/target/release/backend
+Restart=on-failure
+RestartSec=5
+Environment=RUST_LOG=info
+EnvironmentFile=/mnt/data1/time-2026/03-march/20/retro-sync/.env.dev
+
+[Install]
+WantedBy=multi-user.target
