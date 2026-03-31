@@ -31,6 +31,7 @@ pub struct CoinbaseCommerceConfig {
 }
 
 impl CoinbaseCommerceConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         let api_key = std::env::var("COINBASE_COMMERCE_API_KEY").unwrap_or_default();
         let webhook_secret = std::env::var("COINBASE_COMMERCE_WEBHOOK_SECRET").unwrap_or_default();
@@ -118,6 +119,7 @@ pub struct WebhookPayload {
 /// `X-CC-Webhook-Signature` header (lowercase hex, 64 chars).
 ///
 /// SECURITY: uses a constant-time comparison to prevent timing attacks.
+#[zkperf_macros::zkperf]
 pub fn verify_webhook_signature(
     config: &CoinbaseCommerceConfig,
     raw_body: &[u8],
@@ -332,6 +334,7 @@ pub async fn get_charge_status(
 ///
 /// Call this after verify_webhook_signature() succeeds.
 /// Returns the event type and charge ID for downstream processing.
+#[zkperf_macros::zkperf]
 pub fn handle_webhook_event(payload: &WebhookPayload) -> Option<(String, String)> {
     let event_type = payload.event.event_type.clone();
     let charge_id = payload

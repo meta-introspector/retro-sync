@@ -42,6 +42,7 @@ pub struct CmrraConfig {
 }
 
 impl CmrraConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         Self {
             base_url: std::env::var("CMRRA_BASE_URL")
@@ -67,6 +68,7 @@ impl CmrraConfig {
 pub struct CmrraRegNumber(pub String);
 
 impl CmrraRegNumber {
+    #[zkperf_macros::zkperf]
     pub fn parse(input: &str) -> Option<Self> {
         let s = input.trim().trim_start_matches("CMRRA-");
         if s.len() == 7 && s.chars().all(|c| c.is_ascii_digit()) {
@@ -95,6 +97,7 @@ pub struct CanadianMechanicalRate {
 }
 
 /// Returns the current Canadian statutory mechanical rates.
+#[zkperf_macros::zkperf]
 pub fn current_canadian_rates() -> CanadianMechanicalRate {
     CanadianMechanicalRate {
         // Tariff 22.A: CAD 8.3¢/unit for songs ≤5 min (Copyright Board 2022)
@@ -123,6 +126,7 @@ pub enum CmrraUseType {
 }
 
 impl CmrraUseType {
+    #[zkperf_macros::zkperf]
     pub fn tariff_ref(&self) -> &'static str {
         match self {
             Self::PhysicalRecording => "Tariff 22.A",
@@ -249,6 +253,7 @@ pub struct CmrraStatementLine {
 /// Generate CMRRA quarterly royalty statement CSV per CMRRA DSP reporting spec.
 ///
 /// CSV format: ISRC, Title, Units, Rate (CAD cents), Royalty (CAD), Use Type, Period
+#[zkperf_macros::zkperf]
 pub fn generate_quarterly_csv(lines: &[CmrraStatementLine]) -> String {
     let mut out = String::new();
     out.push_str("ISRC,Title,Units,Rate_CAD_Cents,Royalty_CAD,UseType,Period\r\n");
@@ -301,6 +306,7 @@ pub struct CsiBlanketLicence {
 }
 
 /// Returns metadata about CSI blanket licence applicability.
+#[zkperf_macros::zkperf]
 pub fn csi_blanket_info() -> CsiBlanketLicence {
     CsiBlanketLicence {
         licensee: "Retrosync Media Group".into(),

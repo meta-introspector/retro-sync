@@ -35,6 +35,7 @@ pub enum Chain {
 }
 
 impl Chain {
+    #[zkperf_macros::zkperf]
     pub fn chain_id(self) -> u64 {
         match self {
             Self::EthereumMainnet => 1,
@@ -47,6 +48,7 @@ impl Chain {
     }
 
     /// Safe Transaction Service base URL for this chain.
+    #[zkperf_macros::zkperf]
     pub fn safe_api_url(self) -> String {
         match self {
             Self::EthereumMainnet => "https://safe-transaction-mainnet.safe.global/api/v1".into(),
@@ -59,6 +61,7 @@ impl Chain {
     }
 
     /// USDC contract address on this chain.
+    #[zkperf_macros::zkperf]
     pub fn usdc_address(self) -> &'static str {
         match self {
             Self::EthereumMainnet => "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
@@ -90,6 +93,7 @@ pub struct VaultConfig {
 }
 
 impl VaultConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         let chain = match std::env::var("VAULT_CHAIN").as_deref() {
             Ok("polygon") => Chain::Polygon,
@@ -134,6 +138,7 @@ pub struct ArtistPayout {
 // ── USDC balance query ────────────────────────────────────────────────────────
 
 /// Query the USDC balance of the Safe vault via `eth_call` → `balanceOf(address)`.
+#[zkperf_macros::zkperf]
 pub async fn query_usdc_balance(config: &VaultConfig) -> anyhow::Result<u64> {
     if config.dev_mode {
         warn!("VAULT_DEV_MODE=1 — returning stub USDC balance 500_000_000 (500 USDC)");
@@ -196,6 +201,7 @@ pub struct SafePendingTx {
 }
 
 /// Fetch pending Safe transactions awaiting confirmation.
+#[zkperf_macros::zkperf]
 pub async fn list_pending_transactions(config: &VaultConfig) -> anyhow::Result<Vec<SafePendingTx>> {
     if config.dev_mode {
         return Ok(vec![]);
@@ -253,6 +259,7 @@ pub enum ProposalStatus {
 ///   1. Pool balance ≥ `config.min_payout_threshold_usdc`
 ///   2. No pending unexecuted Safe tx with same nonce
 ///   3. If `config.require_zk_proof`, a valid proof must be supplied
+#[zkperf_macros::zkperf]
 pub async fn propose_artist_payouts(
     config: &VaultConfig,
     payouts: &[ArtistPayout],
@@ -412,6 +419,7 @@ pub struct IncomingDeposit {
 
 /// Scan recent ERC-20 Transfer events to the Safe address for USDC deposits.
 /// In production, this should be replaced by a webhook from an indexer (e.g. Alchemy).
+#[zkperf_macros::zkperf]
 pub async fn scan_usdc_deposits(
     config: &VaultConfig,
     from_block: u64,
@@ -502,6 +510,7 @@ pub struct ExecutionStatus {
 }
 
 /// Check whether a proposed payout transaction has been executed on-chain.
+#[zkperf_macros::zkperf]
 pub async fn check_execution_status(
     config: &VaultConfig,
     safe_tx_hash: &str,
@@ -546,6 +555,7 @@ pub struct VaultSummary {
     pub queried_at: String,
 }
 
+#[zkperf_macros::zkperf]
 pub async fn vault_summary(config: &VaultConfig) -> anyhow::Result<VaultSummary> {
     let (balance, pending) = tokio::try_join!(
         query_usdc_balance(config),

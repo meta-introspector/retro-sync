@@ -38,6 +38,7 @@ pub enum DspDialect {
 }
 
 impl DspDialect {
+    #[zkperf_macros::zkperf]
     pub fn display_name(self) -> &'static str {
         match self {
             Self::Spotify => "Spotify",
@@ -54,6 +55,7 @@ impl DspDialect {
     }
 
     /// Detect DSP from the first (header) line of a DSR file.
+    #[zkperf_macros::zkperf]
     pub fn detect(header_line: &str) -> Self {
         let h = header_line.to_lowercase();
         if h.contains("spotify") {
@@ -180,6 +182,7 @@ pub enum DsrUseType {
 }
 
 impl DsrUseType {
+    #[zkperf_macros::zkperf]
     pub fn parse(s: &str) -> Self {
         match s.to_lowercase().as_str() {
             "stream" | "streaming" | "on-demand stream" => Self::OnDemandStream,
@@ -235,6 +238,7 @@ pub struct IsrcTotal {
 ///   - Blank-line sheet separators (skipped).
 ///   - Comment lines starting with `#`.
 ///   - Multi-row headers (DDEX standard has a 2-row header — second row is ignored).
+#[zkperf_macros::zkperf]
 pub fn parse_dsr_file(content: &str, hint_dialect: Option<DspDialect>) -> DsrReport {
     let content = content.trim_start_matches('\u{FEFF}'); // strip UTF-8 BOM
 
@@ -425,6 +429,7 @@ fn normalise_territory(s: &str) -> String {
 // ── Convenience: load + parse from filesystem ─────────────────────────────────
 
 /// Read a DSR file from disk and parse it.
+#[zkperf_macros::zkperf]
 pub async fn parse_dsr_path(
     path: &std::path::Path,
     hint: Option<DspDialect>,

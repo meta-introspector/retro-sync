@@ -161,6 +161,7 @@ pub enum CollectionSociety {
 
 impl CollectionSociety {
     /// CISAC 3-digit CWR society code.
+    #[zkperf_macros::zkperf]
     pub fn cwr_code(&self) -> &str {
         match self {
             // Americas
@@ -250,6 +251,7 @@ impl CollectionSociety {
     }
 
     /// Human-readable society name.
+    #[zkperf_macros::zkperf]
     pub fn display_name(&self) -> &str {
         match self {
             Self::Ascap => "ASCAP (US)",
@@ -429,6 +431,7 @@ pub enum WriterRole {
     Publisher,         // E  (alias)
 }
 impl WriterRole {
+    #[zkperf_macros::zkperf]
     pub fn cwr_code(&self) -> &'static str {
         match self {
             Self::Composer => "C",
@@ -462,6 +465,7 @@ pub enum TerritoryScope {
     Iso(String),  // direct ISO 3166-1 alpha-2
 }
 impl TerritoryScope {
+    #[zkperf_macros::zkperf]
     pub fn tis_code(&self) -> &str {
         match self {
             Self::World | Self::Worldwide => "2136",
@@ -508,6 +512,7 @@ pub enum PublisherType {
     OriginalPublisher,        // E
 }
 impl PublisherType {
+    #[zkperf_macros::zkperf]
     pub fn cwr_code(&self) -> &'static str {
         match self {
             Self::AcquisitionAdministrator => "AQ",
@@ -535,6 +540,7 @@ pub enum AltTitleType {
     TitleOfSampler,              // TS
 }
 impl AltTitleType {
+    #[zkperf_macros::zkperf]
     pub fn cwr_code(&self) -> &'static str {
         match self {
             Self::AlternateTitle => "AT",
@@ -573,6 +579,7 @@ pub enum RecordingFormat {
     Audiovisual,
 }
 impl RecordingFormat {
+    #[zkperf_macros::zkperf]
     pub fn cwr_code(&self) -> &'static str {
         match self {
             Self::Audio => "A",
@@ -589,6 +596,7 @@ pub enum RecordingTechnique {
     Unknown,
 }
 impl RecordingTechnique {
+    #[zkperf_macros::zkperf]
     pub fn cwr_code(&self) -> &'static str {
         match self {
             Self::Analogue => "A",
@@ -607,6 +615,7 @@ pub enum MediaType {
     Other,
 }
 impl MediaType {
+    #[zkperf_macros::zkperf]
     pub fn cwr_code(&self) -> &'static str {
         match self {
             Self::Cd => "CD",
@@ -888,6 +897,7 @@ pub fn generate_cwr(works: &[WorkRegistration], sender_id: &str, version: CwrVer
 
 /// JASRAC J-DISC extended CSV (Japan).
 /// J-DISC requires works in a CSV with JASRAC-specific fields before CWR upload.
+#[zkperf_macros::zkperf]
 pub fn generate_jasrac_jdisc_csv(works: &[WorkRegistration]) -> String {
     let mut out = String::from(
         "JASRAC_CODE,WORK_TITLE,COMPOSER_IPI,LYRICIST_IPI,PUBLISHER_IPI,ISWC,LANGUAGE,ARRANGEMENT\r\n"
@@ -920,6 +930,7 @@ pub fn generate_jasrac_jdisc_csv(works: &[WorkRegistration]) -> String {
 
 /// SOCAN/CMRRA joint submission metadata JSON (Canada).
 /// SOCAN accepts CWR + a JSON sidecar for electronic filing via MusicMark portal.
+#[zkperf_macros::zkperf]
 pub fn generate_socan_metadata_json(works: &[WorkRegistration], sender_id: &str) -> String {
     let entries: Vec<serde_json::Value> = works
         .iter()
@@ -958,6 +969,7 @@ pub fn generate_socan_metadata_json(works: &[WorkRegistration], sender_id: &str)
 
 /// APRA AMCOS XML submission wrapper (Australia/New Zealand).
 /// Wraps a CWR payload in the APRA electronic submission XML envelope.
+#[zkperf_macros::zkperf]
 pub fn generate_apra_xml_envelope(cwr_payload: &str, sender_id: &str) -> String {
     let ts = chrono::Utc::now().to_rfc3339();
     format!(
@@ -980,6 +992,7 @@ pub fn generate_apra_xml_envelope(cwr_payload: &str, sender_id: &str) -> String 
 
 /// GEMA online portal submission CSV (Germany).
 /// Required alongside CWR for GEMA's WorkRegistration portal.
+#[zkperf_macros::zkperf]
 pub fn generate_gema_csv(works: &[WorkRegistration]) -> String {
     let mut out = String::from(
         "ISWC,Werktitel,Komponist_IPI,Texter_IPI,Verleger_IPI,Sprache,Arrangement\r\n",
@@ -1011,6 +1024,7 @@ pub fn generate_gema_csv(works: &[WorkRegistration]) -> String {
 
 /// Nordic NCB block submission (STIM/TONO/KODA/TEOSTO/STEF).
 /// Nordic societies accept a single CWR with society codes for all five.
+#[zkperf_macros::zkperf]
 pub fn generate_nordic_cwr_block(works: &[WorkRegistration], sender_id: &str) -> String {
     // Stamp all works with Nordic society territories and generate one CWR
     let nordic_works: Vec<WorkRegistration> = works
@@ -1033,6 +1047,7 @@ pub fn generate_nordic_cwr_block(works: &[WorkRegistration], sender_id: &str) ->
 
 /// MCPS-PRS Alliance extended metadata (UK).
 /// PRS Online requires JSON metadata alongside CWR for mechanical licensing.
+#[zkperf_macros::zkperf]
 pub fn generate_prs_extended_json(works: &[WorkRegistration], sender_id: &str) -> String {
     let entries: Vec<serde_json::Value> = works
         .iter()
@@ -1069,6 +1084,7 @@ pub fn generate_prs_extended_json(works: &[WorkRegistration], sender_id: &str) -
 }
 
 /// SACEM (France) submission report — tab-separated extended format.
+#[zkperf_macros::zkperf]
 pub fn generate_sacem_tsv(works: &[WorkRegistration]) -> String {
     let mut out =
         String::from("ISWC\tTitre\tCompositeursIPI\tParoliersIPI\tEditeurIPI\tSociete\tLangue\r\n");
@@ -1102,6 +1118,7 @@ pub fn generate_sacem_tsv(works: &[WorkRegistration]) -> String {
 }
 
 /// SAMRO (South Africa) registration CSV.
+#[zkperf_macros::zkperf]
 pub fn generate_samro_csv(works: &[WorkRegistration]) -> String {
     let mut out =
         String::from("ISWC,Title,Composer_IPI,Lyricist_IPI,Publisher_IPI,Language,Territory\r\n");
@@ -1168,6 +1185,7 @@ pub struct SoundExchangeRow {
     pub period_end: String,
 }
 
+#[zkperf_macros::zkperf]
 pub fn generate_soundexchange_csv(rows: &[SoundExchangeRow]) -> String {
     let mut out = String::from(
         "ISRC,Title,Featured Artist,Album,Total Plays,Royalty (USD),Period Start,Period End\r\n",
@@ -1204,6 +1222,7 @@ pub struct MlcUsageRow {
     pub period: String,
 }
 
+#[zkperf_macros::zkperf]
 pub fn generate_mlc_csv(rows: &[MlcUsageRow], service_id: &str) -> String {
     let mut out = format!(
         "Service ID: {sid}\r\nReport: {ts}\r\nISRC,ISWC,Title,Artist,Service,Plays,Royalty USD,Territory,Period\r\n",
@@ -1241,6 +1260,7 @@ pub struct NeighboringRightsRow {
     pub period: String,
 }
 
+#[zkperf_macros::zkperf]
 pub fn generate_neighboring_rights_csv(rows: &[NeighboringRightsRow]) -> String {
     let mut out = String::from("ISRC,Artist,Label,Plays,Territory,Society,Period\r\n");
     for r in rows {
@@ -1276,6 +1296,7 @@ pub struct SocietySubmission {
 }
 
 /// Route a work batch to all required society submission formats.
+#[zkperf_macros::zkperf]
 pub fn generate_all_submissions(
     works: &[WorkRegistration],
     sender_id: &str,

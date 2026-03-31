@@ -25,6 +25,7 @@ use tracing::warn;
 //   Permissions-Policy        — opt-out of unused browser APIs
 //   Cache-Control             — API responses must not be cached by shared caches
 
+#[zkperf_macros::zkperf]
 pub async fn add_security_headers(request: Request, next: Next) -> Response {
     use axum::http::header::{HeaderName, HeaderValue};
 
@@ -71,6 +72,7 @@ pub async fn add_security_headers(request: Request, next: Next) -> Response {
     response
 }
 
+#[zkperf_macros::zkperf]
 pub async fn verify_zero_trust(
     State(_state): State<AppState>,
     request: Request,
@@ -270,6 +272,7 @@ fn constant_time_eq(a: &[u8], b: &[u8]) -> bool {
 
 /// Build CORS headers restricted to allowed origins.
 /// Call this in main.rs instead of CorsLayer::new().allow_origin(Any).
+#[zkperf_macros::zkperf]
 pub fn allowed_origins() -> Vec<HeaderValue> {
     let origins = std::env::var("ALLOWED_ORIGINS")
         .unwrap_or_else(|_| "http://localhost:5173,http://localhost:3000".into());
@@ -288,6 +291,7 @@ pub fn allowed_origins() -> Vec<HeaderValue> {
 /// Always performs full HMAC-SHA256 signature verification when JWT_SECRET
 /// is set.  If JWT_SECRET is absent (dev mode), falls back to expiry-only
 /// check with a warning — matching the behaviour of the outer middleware.
+#[zkperf_macros::zkperf]
 pub fn extract_caller(headers: &axum::http::HeaderMap) -> Result<String, axum::http::StatusCode> {
     use axum::http::StatusCode;
 

@@ -52,6 +52,7 @@ pub struct PrivacyStore {
 }
 
 impl PrivacyStore {
+    #[zkperf_macros::zkperf]
     pub fn open(path: &str) -> anyhow::Result<Self> {
         // Two named databases inside the same LMDB directory
         let consent_dir = format!("{path}/consents");
@@ -63,6 +64,7 @@ impl PrivacyStore {
     }
 
     /// Append a consent record; key = user_id (list of consents per user).
+    #[zkperf_macros::zkperf]
     pub fn record_consent(&self, r: ConsentRecord) {
         if let Err(e) = self.consent_db.append(&r.user_id.clone(), r) {
             tracing::error!(err=%e, "Consent persist error");
@@ -70,6 +72,7 @@ impl PrivacyStore {
     }
 
     /// Return the latest consent value for (user_id, purpose).
+    #[zkperf_macros::zkperf]
     pub fn has_consent(&self, user_id: &str, purpose: &ConsentPurpose) -> bool {
         self.consent_db
             .get_list::<ConsentRecord>(user_id)
@@ -82,6 +85,7 @@ impl PrivacyStore {
     }
 
     /// Queue a GDPR deletion request.
+    #[zkperf_macros::zkperf]
     pub fn queue_deletion(&self, r: DeletionRequest) {
         if let Err(e) = self.deletion_db.put(&r.user_id, &r) {
             tracing::error!(err=%e, user=%r.user_id, "Deletion persist error");
@@ -89,6 +93,7 @@ impl PrivacyStore {
     }
 
     /// Export all consent records for a user (GDPR Art.20 portability).
+    #[zkperf_macros::zkperf]
     pub fn export_user_data(&self, user_id: &str) -> serde_json::Value {
         let consents = self
             .consent_db
@@ -100,6 +105,7 @@ impl PrivacyStore {
 
 // ── HTTP handlers ─────────────────────────────────────────────────────────────
 
+#[zkperf_macros::zkperf]
 pub async fn record_consent(
     State(state): State<AppState>,
     headers: HeaderMap,
@@ -130,6 +136,7 @@ pub async fn record_consent(
     Ok(Json(serde_json::json!({ "status": "recorded" })))
 }
 
+#[zkperf_macros::zkperf]
 pub async fn delete_user_data(
     State(state): State<AppState>,
     headers: HeaderMap,
@@ -161,6 +168,7 @@ pub async fn delete_user_data(
     ))
 }
 
+#[zkperf_macros::zkperf]
 pub async fn export_user_data(
     State(state): State<AppState>,
     headers: HeaderMap,

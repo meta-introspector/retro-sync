@@ -13,6 +13,8 @@ name = "backend"
 path = "src/lib.rs"
 
 [dependencies]
+zkperf-macros = { path = "/mnt/data1/time-2026/03-march/19/zkperf/zkperf-macros" }
+zkperf-witness = { path = "/mnt/data1/time-2026/03-march/19/zkperf/zkperf-witness" }
 tokio        = { workspace = true }
 axum         = { workspace = true }
 tower        = { workspace = true }

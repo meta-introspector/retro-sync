@@ -63,6 +63,7 @@ pub struct StemRange {
 impl ShardManifest {
     /// Build a new manifest from a list of ordered shard CIDs.
     /// Call `mint_manifest_nft` afterwards to assign a token ID.
+    #[zkperf_macros::zkperf]
     pub fn new(
         isrc: impl Into<String>,
         track_cid: impl Into<String>,
@@ -91,11 +92,13 @@ impl ShardManifest {
     }
 
     /// True if this manifest uses encrypted shards.
+    #[zkperf_macros::zkperf]
     pub fn is_encrypted(&self) -> bool {
         self.enc_key_hex.is_some()
     }
 
     /// Return the ordered CIDs for a specific stem.
+    #[zkperf_macros::zkperf]
     pub fn stem_cids(&self, stem: &str) -> Option<&[String]> {
         let r = self.stems.get(stem)?;
         let end = r.end_index.min(self.shard_order.len());
@@ -106,6 +109,7 @@ impl ShardManifest {
     }
 
     /// Serialise the manifest to a canonical JSON byte string for BTFS upload.
+    #[zkperf_macros::zkperf]
     pub fn to_canonical_bytes(&self) -> Vec<u8> {
         // Canonical: sorted keys, no extra whitespace
         serde_json::to_vec(self).unwrap_or_default()
@@ -114,6 +118,7 @@ impl ShardManifest {
 
 /// Compute the ZK commitment hash: SHA-256(concat(shard_order CIDs) || enc_key_hex).
 /// This is the public input to the ZK circuit for ownership proof.
+#[zkperf_macros::zkperf]
 pub fn compute_zk_commit(shard_order: &[String], enc_key_hex: Option<&str>) -> String {
     let mut h = Sha256::new();
     for cid in shard_order {
@@ -146,6 +151,7 @@ pub struct MintReceipt {
 ///
 /// The contract event `ManifestMinted(tokenId, isrc, manifestCid, zkCommitHash)`
 /// is indexed by the gateway so holders can look up their manifest by token ID.
+#[zkperf_macros::zkperf]
 pub async fn mint_manifest_nft(manifest: &mut ShardManifest) -> anyhow::Result<MintReceipt> {
     let dev_mode = std::env::var("BTTC_DEV_MODE").unwrap_or_default() == "1";
 
@@ -186,6 +192,7 @@ pub async fn mint_manifest_nft(manifest: &mut ShardManifest) -> anyhow::Result<M
 ///   1. Call `tokenURI(tokenId)` on the NFT contract → BTFS CID or IPFS URI.
 ///   2. Fetch the manifest JSON from BTFS.
 ///   3. Validate the `zk_commit_hash` matches the on-chain value.
+#[zkperf_macros::zkperf]
 pub async fn lookup_manifest_by_token(token_id: u64) -> anyhow::Result<ShardManifest> {
     let dev_mode = std::env::var("BTTC_DEV_MODE").unwrap_or_default() == "1";
 
@@ -256,6 +263,7 @@ pub struct ManifestOwnershipProof {
     pub proven_at: String,
 }
 
+#[zkperf_macros::zkperf]
 pub fn generate_manifest_ownership_proof_stub(
     token_id: u64,
     wallet: &str,

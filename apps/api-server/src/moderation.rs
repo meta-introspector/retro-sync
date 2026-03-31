@@ -23,6 +23,7 @@ pub enum ReportCategory {
 }
 
 impl ReportCategory {
+    #[zkperf_macros::zkperf]
     pub fn sla_hours(&self) -> u32 {
         match self {
             Self::Csam => 0,
@@ -75,26 +76,31 @@ pub struct ModerationQueue {
 }
 
 impl ModerationQueue {
+    #[zkperf_macros::zkperf]
     pub fn open(path: &str) -> anyhow::Result<Self> {
         Ok(Self {
             db: crate::persist::LmdbStore::open(path, "mod_reports")?,
         })
     }
 
+    #[zkperf_macros::zkperf]
     pub fn add(&self, r: ContentReport) {
         if let Err(e) = self.db.put(&r.id, &r) {
             tracing::error!(err=%e, id=%r.id, "Moderation persist error");
         }
     }
 
+    #[zkperf_macros::zkperf]
     pub fn get(&self, id: &str) -> Option<ContentReport> {
         self.db.get(id).ok().flatten()
     }
 
+    #[zkperf_macros::zkperf]
     pub fn all(&self) -> Vec<ContentReport> {
         self.db.all_values().unwrap_or_default()
     }
 
+    #[zkperf_macros::zkperf]
     pub fn resolve(&self, id: &str, status: ReportStatus, resolution: String) {
         let _ = self.db.update::<ContentReport>(id, |r| {
             r.status = status.clone();
@@ -179,6 +185,7 @@ async fn submit_ncmec_report(report_id: &str, isrc: &str) -> anyhow::Result<Stri
     Ok(ncmec_id)
 }
 
+#[zkperf_macros::zkperf]
 pub async fn submit_report(
     State(state): State<AppState>,
     Json(req): Json<ReportRequest>,
@@ -250,6 +257,7 @@ pub async fn submit_report(
 ///
 /// In development (var not set), a warning is logged and access is denied so
 /// developers are reminded to configure admin wallets before shipping.
+#[zkperf_macros::zkperf]
 pub async fn get_queue(
     State(state): State<AppState>,
     request: axum::extract::Request,
@@ -295,6 +303,7 @@ pub async fn get_queue(
     Ok(Json(state.mod_queue.all()))
 }
 
+#[zkperf_macros::zkperf]
 pub async fn resolve_report(
     State(state): State<AppState>,
     Path(id): Path<String>,

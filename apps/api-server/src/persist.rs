@@ -30,6 +30,7 @@ unsafe impl Sync for LmdbStore {}
 impl LmdbStore {
     /// Open (or create) an LMDB environment at `dir` and a named database inside it.
     /// Idempotent: calling this multiple times on the same directory is safe.
+    #[zkperf_macros::zkperf]
     pub fn open(dir: &str, db_name: &'static str) -> anyhow::Result<Self> {
         std::fs::create_dir_all(dir)?;
         // SAFETY: we are the sole process opening this environment directory.
@@ -47,6 +48,7 @@ impl LmdbStore {
     }
 
     /// Write a JSON-serialised value under `key`. Durable after commit.
+    #[zkperf_macros::zkperf]
     pub fn put<V: Serialize>(&self, key: &str, value: &V) -> anyhow::Result<()> {
         let val_bytes = serde_json::to_vec(value)?;
         let mut wtxn = self.env.write_txn()?;
@@ -57,6 +59,7 @@ impl LmdbStore {
 
     /// Append `item` to a JSON array stored under `key`.
     /// If the key does not exist, a new single-element array is created.
+    #[zkperf_macros::zkperf]
     pub fn append<V: Serialize + for<'de> Deserialize<'de>>(
         &self,
         key: &str,
@@ -77,6 +80,7 @@ impl LmdbStore {
     }
 
     /// Read the value at `key`, returning `None` if absent.
+    #[zkperf_macros::zkperf]
     pub fn get<V: for<'de> Deserialize<'de>>(&self, key: &str) -> anyhow::Result<Option<V>> {
         let rtxn = self.env.read_txn()?;
         match self.db.get(&rtxn, key.as_bytes())? {
@@ -86,6 +90,7 @@ impl LmdbStore {
     }
 
     /// Read a JSON array stored under `key`, returning an empty vec if absent.
+    #[zkperf_macros::zkperf]
     pub fn get_list<V: for<'de> Deserialize<'de>>(&self, key: &str) -> anyhow::Result<Vec<V>> {
         let rtxn = self.env.read_txn()?;
         match self.db.get(&rtxn, key.as_bytes())? {
@@ -95,6 +100,7 @@ impl LmdbStore {
     }
 
     /// Iterate all values in the database.
+    #[zkperf_macros::zkperf]
     pub fn all_values<V: for<'de> Deserialize<'de>>(&self) -> anyhow::Result<Vec<V>> {
         let rtxn = self.env.read_txn()?;
         let mut out = Vec::new();
@@ -113,6 +119,7 @@ impl LmdbStore {
     ///
     /// Note: reads first in a read-txn, then writes in a write-txn.
     /// This is safe for the access patterns in this codebase (low concurrency).
+    #[zkperf_macros::zkperf]
     pub fn update<V: Serialize + for<'de> Deserialize<'de>>(
         &self,
         key: &str,

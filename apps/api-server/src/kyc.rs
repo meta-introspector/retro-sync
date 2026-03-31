@@ -63,22 +63,26 @@ pub struct KycStore {
 }
 
 impl KycStore {
+    #[zkperf_macros::zkperf]
     pub fn open(path: &str) -> anyhow::Result<Self> {
         Ok(Self {
             db: crate::persist::LmdbStore::open(path, "kyc_records")?,
         })
     }
 
+    #[zkperf_macros::zkperf]
     pub fn get(&self, uid: &str) -> Option<KycRecord> {
         self.db.get(uid).ok().flatten()
     }
 
+    #[zkperf_macros::zkperf]
     pub fn upsert(&self, r: KycRecord) {
         if let Err(e) = self.db.put(&r.user_id, &r) {
             tracing::error!(err=%e, user=%r.user_id, "KYC persist error");
         }
     }
 
+    #[zkperf_macros::zkperf]
     pub fn payout_permitted(&self, uid: &str, amount_usd: f64) -> bool {
         match self.get(uid) {
             None => false,
@@ -110,6 +114,7 @@ async fn screen_ofac(name: &str, country: &str) -> OfacStatus {
     OfacStatus::Clear
 }
 
+#[zkperf_macros::zkperf]
 pub async fn submit_kyc(
     State(state): State<AppState>,
     headers: HeaderMap,
@@ -159,6 +164,7 @@ pub async fn submit_kyc(
     })))
 }
 
+#[zkperf_macros::zkperf]
 pub async fn kyc_status(
     State(state): State<AppState>,
     headers: HeaderMap,

@@ -44,6 +44,7 @@ pub enum DqiTier {
 }
 
 impl DqiTier {
+    #[zkperf_macros::zkperf]
     pub fn as_str(&self) -> &'static str {
         match self {
             Self::Gold => "Gold",
@@ -108,6 +109,7 @@ pub struct DqiInput {
 // ── DQI evaluation engine ─────────────────────────────────────────────────────
 
 /// Evaluate a track's metadata and return a DQI report.
+#[zkperf_macros::zkperf]
 pub fn evaluate(input: &DqiInput) -> DqiReport {
     let mut fields: Vec<DqiField> = Vec::new();
     let mut issues: Vec<String> = Vec::new();

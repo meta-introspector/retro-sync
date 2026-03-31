@@ -52,6 +52,7 @@ impl Default for ChallengeStore {
 }
 
 impl ChallengeStore {
+    #[zkperf_macros::zkperf]
     pub fn new() -> Self {
         Self {
             pending: Mutex::new(HashMap::new()),
@@ -95,6 +96,7 @@ impl ChallengeStore {
 }
 
 /// Public alias for use by other modules (e.g., moderation.rs ID generation).
+#[zkperf_macros::zkperf]
 pub fn random_hex_pub(n: usize) -> String {
     random_hex(n)
 }
@@ -161,6 +163,7 @@ pub struct ChallengeResponse {
     pub instructions: &'static str,
 }
 
+#[zkperf_macros::zkperf]
 pub async fn issue_challenge(
     State(state): State<AppState>,
     Path(address): Path<String>,
@@ -212,6 +215,7 @@ pub struct VerifyResponse {
     pub expires_in_secs: u64,
 }
 
+#[zkperf_macros::zkperf]
 pub async fn verify_challenge(
     State(state): State<AppState>,
     Json(req): Json<VerifyRequest>,
@@ -375,6 +379,7 @@ fn recover_evm_address(
 /// Issue a 24-hour JWT with `sub` = wallet address.
 /// The token is HMAC-SHA256 signed using JWT_SECRET env var.
 /// JWT_SECRET must be set — there is no insecure fallback.
+#[zkperf_macros::zkperf]
 pub fn issue_jwt(wallet_address: &str) -> anyhow::Result<String> {
     let secret = std::env::var("JWT_SECRET").map_err(|_| {
         anyhow::anyhow!("JWT_SECRET is not configured — set it before starting the server")

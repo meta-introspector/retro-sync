@@ -33,6 +33,7 @@ fn xml_escape(s: &str) -> String {
         .collect()
 }
 
+#[zkperf_macros::zkperf]
 pub fn build_ern_xml_with_contributors(
     title: &str,
     isrc: &str,
@@ -157,6 +158,7 @@ pub fn build_ern_xml_with_contributors(
     )
 }
 
+#[zkperf_macros::zkperf]
 pub async fn register(
     title: &str,
     isrc: &shared::types::Isrc,
@@ -167,6 +169,7 @@ pub async fn register(
     register_with_contributors(title, isrc, cid, fp, wiki, &[]).await
 }
 
+#[zkperf_macros::zkperf]
 pub async fn register_with_contributors(
     title: &str,
     isrc: &shared::types::Isrc,

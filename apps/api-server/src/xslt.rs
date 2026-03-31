@@ -55,6 +55,7 @@ fn resolve_society(slug: &str) -> Option<(CollectionSociety, &'static str)> {
 
 /// Serialise a slice of `WorkRegistration` into Retrosync canonical CWR-XML.
 /// All XSLT stylesheets consume this intermediate representation.
+#[zkperf_macros::zkperf]
 pub fn to_canonical_xml(works: &[WorkRegistration]) -> anyhow::Result<String> {
     let mut buf = Vec::new();
     let mut writer = XmlWriter::new_with_indent(Cursor::new(&mut buf), b' ', 2);
@@ -256,6 +257,7 @@ fn xslt_dir() -> std::path::PathBuf {
 /// Currently validates both the source XML and the stylesheet via `xot`,
 /// then returns the canonical XML as-is. Full XSLT 1.0 transform support
 /// requires an XSLT engine (e.g. libxslt bindings) — tracked for future work.
+#[zkperf_macros::zkperf]
 pub fn apply_xslt(xml_input: &str, xsl_filename: &str) -> anyhow::Result<String> {
     let xsl_path = xslt_dir().join(xsl_filename);
     let xsl_src = std::fs::read_to_string(&xsl_path)
@@ -277,6 +279,7 @@ pub fn apply_xslt(xml_input: &str, xsl_filename: &str) -> anyhow::Result<String>
 /// POST /api/royalty/xslt/:society
 /// Body: JSON array of WorkRegistration
 /// Returns: application/xml transformed for the named society
+#[zkperf_macros::zkperf]
 pub async fn transform_submission(
     State(state): State<AppState>,
     Path(society_slug): Path<String>,
@@ -316,6 +319,7 @@ pub async fn transform_submission(
 /// POST /api/royalty/xslt/all
 /// Body: JSON array of WorkRegistration
 /// Returns: JSON map of society → XML string (all societies in one call)
+#[zkperf_macros::zkperf]
 pub async fn transform_all_submissions(
     State(state): State<AppState>,
     Json(works): Json<Vec<WorkRegistration>>,

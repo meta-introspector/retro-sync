@@ -37,6 +37,7 @@ pub struct BbsConfig {
 }
 
 impl BbsConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         Self {
             base_url: std::env::var("BBS_BASE_URL")
@@ -78,6 +79,7 @@ pub enum BbsLicenceType {
 }
 
 impl BbsLicenceType {
+    #[zkperf_macros::zkperf]
     pub fn display_name(&self) -> &'static str {
         match self {
             Self::BackgroundMusic => "Background Music (Public Premises)",
@@ -167,6 +169,7 @@ pub struct CueValidationError {
 }
 
 /// Validate a batch of broadcast cues.
+#[zkperf_macros::zkperf]
 pub fn validate_cue_batch(cues: &[BroadcastCue]) -> Vec<CueValidationError> {
     let mut errors = Vec::new();
     if cues.len() > MAX_CUES_PER_BATCH {
@@ -278,6 +281,7 @@ pub async fn submit_cue_sheet(
 }
 
 /// Generate a BMAT-compatible broadcast monitoring report CSV.
+#[zkperf_macros::zkperf]
 pub fn generate_bmat_csv(cues: &[BroadcastCue]) -> String {
     let mut out = String::new();
     out.push_str(
@@ -316,6 +320,7 @@ fn csv_field(s: &str) -> String {
 // ── Blanket Rate Calculator ────────────────────────────────────────────────────
 
 /// Compute estimated blanket licence fee for a venue/broadcaster.
+#[zkperf_macros::zkperf]
 pub fn estimate_blanket_fee(
     licence_type: &BbsLicenceType,
     territory: &str,

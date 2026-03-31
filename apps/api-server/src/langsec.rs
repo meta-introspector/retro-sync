@@ -116,6 +116,7 @@ fn base58_decode(input: &str) -> Option<Vec<u8>> {
 
 /// Validate a Tron Base58Check address.
 /// Returns `Ok(lowercase_hex_account_bytes)` on success.
+#[zkperf_macros::zkperf]
 pub fn validate_tron_address(input: &str) -> Result<String, LangsecError> {
     let mk_err = |reason: &str| LangsecError {
         field: "tron_address".into(),
@@ -159,6 +160,7 @@ pub fn validate_tron_address(input: &str) -> Result<String, LangsecError> {
 
 /// Validate a Tron transaction hash.
 /// Format: 64 hex characters (optionally prefixed by "0x").
+#[zkperf_macros::zkperf]
 pub fn validate_tron_tx_hash(input: &str) -> Result<String, LangsecError> {
     let s = input.strip_prefix("0x").unwrap_or(input);
     if s.len() != 64 {
@@ -184,6 +186,7 @@ pub fn validate_tron_tx_hash(input: &str) -> Result<String, LangsecError> {
 ///   - No Unicode BOM (U+FEFF)
 ///   - No null bytes
 ///   - Max `max_len` codepoints
+#[zkperf_macros::zkperf]
 pub fn validate_free_text(input: &str, field: &str, max_len: usize) -> Result<(), LangsecError> {
     let codepoints: Vec<char> = input.chars().collect();
     if codepoints.len() > max_len {
@@ -216,6 +219,7 @@ pub fn validate_free_text(input: &str, field: &str, max_len: usize) -> Result<()
 /// Sanitise a value destined for a SAP field (OData/IDoc).
 /// SAP ABAP fields do not support certain characters that trigger formula
 /// injection in downstream SAP exports to Excel/CSV.
+#[zkperf_macros::zkperf]
 pub fn sanitise_sap_str(input: &str) -> String {
     input
         .chars()
@@ -232,6 +236,7 @@ pub fn sanitise_sap_str(input: &str) -> String {
 
 /// Sanitise a value destined for a DURP CSV cell.
 /// Rejects formula-injection prefixes; strips to printable ASCII+UTF-8.
+#[zkperf_macros::zkperf]
 pub fn sanitise_csv_cell(input: &str) -> String {
     let s = input.trim();
     // Strip formula injection prefixes
@@ -249,6 +254,7 @@ pub fn sanitise_csv_cell(input: &str) -> String {
 
 /// Validate that a given XSLT stylesheet name is in the pre-approved allowlist.
 /// Prevents path traversal / SSRF via stylesheet parameter.
+#[zkperf_macros::zkperf]
 pub fn validate_xslt_name(name: &str) -> Result<(), LangsecError> {
     const ALLOWED: &[&str] = &[
         "work_registration",

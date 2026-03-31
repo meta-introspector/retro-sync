@@ -38,6 +38,7 @@ pub struct TronConfig {
 }
 
 impl TronConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         let api_url =
             std::env::var("TRON_API_URL").unwrap_or_else(|_| "https://api.trongrid.io".into());
@@ -121,6 +122,7 @@ pub struct TronAuthResult {
 }
 
 /// Issue a Tron wallet authentication challenge.
+#[zkperf_macros::zkperf]
 pub fn issue_tron_challenge(raw_address: &str) -> Result<TronChallenge, String> {
     // LangSec validation
     langsec::validate_tron_address(raw_address).map_err(|e| e.to_string())?;

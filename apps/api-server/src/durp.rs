@@ -91,6 +91,7 @@ pub struct DurpValidationError {
 
 /// Validate a batch of DURP records before CSV generation.
 /// Returns a list of validation errors (empty = valid).
+#[zkperf_macros::zkperf]
 pub fn validate_records(records: &[DurpRecord]) -> Vec<DurpValidationError> {
     let mut errors = Vec::new();
     for (idx, rec) in records.iter().enumerate() {
@@ -208,6 +209,7 @@ const DURP_HEADERS: &[&str] = &[
 ///   - CRLF line endings
 ///   - Fields with commas, quotes, or newlines wrapped in double-quotes
 ///   - Embedded double-quotes escaped as ""
+#[zkperf_macros::zkperf]
 pub fn generate_csv(records: &[DurpRecord]) -> String {
     let mut lines: Vec<String> = Vec::with_capacity(records.len() + 1);
 
@@ -264,6 +266,7 @@ pub struct DurpConfig {
 }
 
 impl DurpConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         Self {
             sftp_host: std::env::var("MLC_SFTP_HOST").ok(),
@@ -278,6 +281,7 @@ impl DurpConfig {
 }
 
 /// Build a DurpRecord from a track upload.
+#[zkperf_macros::zkperf]
 pub fn build_record(
     config: &DurpConfig,
     isrc: &str,

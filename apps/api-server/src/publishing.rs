@@ -104,6 +104,7 @@ fn validate_role(role: &str) -> bool {
 
 // ── Handler ───────────────────────────────────────────────────────────────────
 
+#[zkperf_macros::zkperf]
 pub async fn register_track(
     State(state): State<AppState>,
     headers: HeaderMap,

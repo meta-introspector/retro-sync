@@ -220,3 +220,69 @@ dist/notebooklm-dump.txt: scripts/notebooklm-dump.sh
 	@mkdir -p dist
 	bash scripts/notebooklm-dump.sh > $@
 	@ls -lh $@
+
+## ── Fuzz ─────────────────────────────────────────────────────────────
+fuzz:
+	CYCLES=1 bash scripts/fuzz-apis.sh
+
+fuzz-all:
+	CYCLES=10 bash scripts/fuzz-apis.sh
+
+fuzz-outbound:
+	bash scripts/fuzz-outbound.sh
+
+stubs:
+	python3 scripts/outbound-stubs.py
+
+## ── Jocko Fuzz ──────────────────────────────────────────────────────
+jocko-fuzz:
+	swipl -q -s /mnt/data1/time-2026/03-march/26/jocko_retrosync_fuzz.pl
+
+## ── OmniSearch ──────────────────────────────────────────────────────
+search:
+	@test -n "$(Q)" || (echo "usage: make search Q=query [SVC=retro-sync]" && exit 1)
+	bash scripts/omnisearch-service.sh $(or $(SVC),retro-sync) "$(Q)"
+
+## ── M3M3 F4RM ───────────────────────────────────────────────────────
+m3m3:
+	python3 scripts/m3m3-f4rm-sops.py
+
+m3m3-report:
+	python3 scripts/m3m3-report.py
+
+## ── Publish ─────────────────────────────────────────────────────────
+mint:
+	python3 scripts/mint-catalog.py --chain=bttc
+
+publish-mints:
+	bash scripts/publish-mints.sh --target all
+
+publish-hf:
+	bash scripts/publish-mints.sh --target hf
+
+publish-ia:
+	bash scripts/publish-mints.sh --target ia
+
+publish-paste:
+	bash scripts/publish-mints.sh --target paste
+
+## ── Solana ───────────────────────────────────────────────────────────
+solana-perf:
+	bash scripts/zkperf-validator.sh
+
+solana-mint:
+	bash scripts/zkperf-validator.sh --run "python3 scripts/mint-catalog.py --chain=solana"
+
+## ── Prove ────────────────────────────────────────────────────────────
+prove:
+	bash scripts/prove-it.sh
+
+## ── Breed ────────────────────────────────────────────────────────────
+breed:
+	python3 scripts/breed-from-coverage.py
+
+coverage:
+	python3 scripts/zkperf-coverage.py
+
+jocko-breed:
+	swipl -q -s /mnt/data1/time-2026/03-march/26/jocko_retrosync_breed.pl

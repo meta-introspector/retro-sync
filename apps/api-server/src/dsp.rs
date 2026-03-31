@@ -13,6 +13,7 @@ pub enum Dsp {
 }
 
 impl Dsp {
+    #[zkperf_macros::zkperf]
     pub fn all() -> &'static [Dsp] {
         &[
             Dsp::Spotify,
@@ -23,6 +24,7 @@ impl Dsp {
             Dsp::Tidal,
         ]
     }
+    #[zkperf_macros::zkperf]
     pub fn name(&self) -> &'static str {
         match self {
             Dsp::Spotify => "Spotify",
@@ -50,6 +52,7 @@ pub struct DspSpec {
 }
 
 impl DspSpec {
+    #[zkperf_macros::zkperf]
     pub fn for_dsp(d: &Dsp) -> Self {
         match d {
             Dsp::Spotify => Self {
@@ -140,6 +143,7 @@ pub struct TrackMeta {
     pub cover_art_px: Option<u32>,
 }
 
+#[zkperf_macros::zkperf]
 pub fn validate_all(qc: &AudioQcReport, meta: &TrackMeta) -> Vec<DspValidationResult> {
     Dsp::all()
         .iter()
@@ -147,6 +151,7 @@ pub fn validate_all(qc: &AudioQcReport, meta: &TrackMeta) -> Vec<DspValidationRe
         .collect()
 }
 
+#[zkperf_macros::zkperf]
 pub fn validate_for(dsp: &Dsp, qc: &AudioQcReport, meta: &TrackMeta) -> DspValidationResult {
     let spec = DspSpec::for_dsp(dsp);
     let mut def = Vec::new();

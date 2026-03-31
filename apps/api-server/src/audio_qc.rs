@@ -31,6 +31,7 @@ pub struct AudioQcReport {
     pub defects: Vec<String>,
 }
 
+#[zkperf_macros::zkperf]
 pub fn detect_format(b: &[u8]) -> AudioFormat {
     if b.len() < 4 {
         return AudioFormat::Unknown("too short".into());
@@ -42,6 +43,7 @@ pub fn detect_format(b: &[u8]) -> AudioFormat {
     }
 }
 
+#[zkperf_macros::zkperf]
 pub fn parse_wav_header(b: &[u8]) -> (u32, u8, u16) {
     if b.len() < 36 {
         return (44100, 2, 16);
@@ -52,6 +54,7 @@ pub fn parse_wav_header(b: &[u8]) -> (u32, u8, u16) {
     (sr, ch, bd)
 }
 
+#[zkperf_macros::zkperf]
 pub fn run_qc(bytes: &[u8], lufs: Option<f64>, true_peak: Option<f64>) -> AudioQcReport {
     let fmt = detect_format(bytes);
     let (sr, ch, _) = parse_wav_header(bytes);

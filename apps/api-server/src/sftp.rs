@@ -50,6 +50,7 @@ impl SftpConfig {
     /// Optional:
     ///   SFTP_KNOWN_HOSTS, SFTP_TIMEOUT_SECS (default 60)
     ///   SFTP_DEV_MODE=1 (uses local filesystem)
+    #[zkperf_macros::zkperf]
     pub fn from_env(prefix: &str) -> Self {
         let pf = |var: &str| format!("{prefix}_{var}");
         let dev = std::env::var(pf("DEV_MODE")).unwrap_or_default() == "1";
@@ -125,6 +126,7 @@ fn dev_path(remote: &str) -> PathBuf {
 ///
 /// `local_path` is the file to upload.
 /// `remote_filename` is placed into `config.remote_inbound_dir/remote_filename`.
+#[zkperf_macros::zkperf]
 pub async fn sftp_put(
     config: &SftpConfig,
     local_path: &Path,
@@ -183,6 +185,7 @@ pub async fn sftp_put(
 }
 
 /// List filenames in the remote DSR drop directory.
+#[zkperf_macros::zkperf]
 pub async fn sftp_list(config: &SftpConfig) -> anyhow::Result<Vec<String>> {
     if config.dev_mode {
         let drop = dev_path(&config.remote_drop_dir);
@@ -251,6 +254,7 @@ pub async fn sftp_list(config: &SftpConfig) -> anyhow::Result<Vec<String>> {
 
 /// Download a single DSR file from the remote drop directory to a local temp path.
 /// Returns `(local_path, TransferReceipt)`.
+#[zkperf_macros::zkperf]
 pub async fn sftp_get(
     config: &SftpConfig,
     remote_filename: &str,
@@ -317,6 +321,7 @@ pub async fn sftp_get(
 }
 
 /// Delete a remote file after successful ingestion (optional, DSP-dependent).
+#[zkperf_macros::zkperf]
 pub async fn sftp_delete(config: &SftpConfig, remote_filename: &str) -> anyhow::Result<()> {
     if remote_filename.contains('/') || remote_filename.contains("..") {
         anyhow::bail!("sftp_delete: remote_filename must not contain path separators");

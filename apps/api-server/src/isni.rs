@@ -35,6 +35,7 @@ pub struct IsniConfig {
 }
 
 impl IsniConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         Self {
             base_url: std::env::var("ISNI_BASE_URL")
@@ -82,6 +83,7 @@ impl std::fmt::Display for Isni {
 ///
 /// The check digit uses the ISO 27729 MOD 11-2 algorithm (identical to
 /// ISBN-13 but over 16 digits).
+#[zkperf_macros::zkperf]
 pub fn validate_isni(input: &str) -> Result<Isni, IsniError> {
     // Strip optional "ISNI" prefix (case-insensitive) and whitespace
     let stripped = input
@@ -274,6 +276,7 @@ pub async fn search_isni_by_name(
 // ── Cross-reference helpers ────────────────────────────────────────────────────
 
 /// Parse a formatted ISNI string (with spaces) into compact form for storage.
+#[zkperf_macros::zkperf]
 pub fn normalise_isni(input: &str) -> String {
     input
         .trim()
@@ -285,6 +288,7 @@ pub fn normalise_isni(input: &str) -> String {
 
 /// Cross-reference an ISNI against an IPI name number.
 /// Both must pass independent validation before cross-referencing.
+#[zkperf_macros::zkperf]
 pub fn cross_reference_isni_ipi(isni: &Isni, ipi: &str) -> CrossRefResult {
     // IPI format: 11 digits, optionally prefixed "IPI:"
     let ipi_clean = ipi.trim().trim_start_matches("IPI:").trim();

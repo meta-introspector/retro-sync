@@ -68,21 +68,25 @@ pub struct TakedownStore {
 }
 
 impl TakedownStore {
+    #[zkperf_macros::zkperf]
     pub fn open(path: &str) -> anyhow::Result<Self> {
         Ok(Self {
             db: crate::persist::LmdbStore::open(path, "dmca_notices")?,
         })
     }
 
+    #[zkperf_macros::zkperf]
     pub fn add(&self, n: TakedownNotice) -> anyhow::Result<()> {
         self.db.put(&n.id, &n)?;
         Ok(())
     }
 
+    #[zkperf_macros::zkperf]
     pub fn get(&self, id: &str) -> Option<TakedownNotice> {
         self.db.get(id).ok().flatten()
     }
 
+    #[zkperf_macros::zkperf]
     pub fn update_status(&self, id: &str, status: NoticeStatus) {
         let _ = self.db.update::<TakedownNotice>(id, |n| {
             n.status = status.clone();
@@ -90,6 +94,7 @@ impl TakedownStore {
         });
     }
 
+    #[zkperf_macros::zkperf]
     pub fn set_counter(&self, id: &str, counter: CounterNotice) {
         let _ = self.db.update::<TakedownNotice>(id, |n| {
             n.counter_notice = Some(counter.clone());
@@ -103,6 +108,7 @@ fn rand_id() -> String {
     crate::wallet_auth::random_hex_pub(4)
 }
 
+#[zkperf_macros::zkperf]
 pub async fn submit_notice(
     State(state): State<AppState>,
     Json(req): Json<TakedownRequest>,
@@ -147,6 +153,7 @@ pub async fn submit_notice(
     })))
 }
 
+#[zkperf_macros::zkperf]
 pub async fn submit_counter_notice(
     State(state): State<AppState>,
     Path(id): Path<String>,
@@ -177,6 +184,7 @@ pub async fn submit_counter_notice(
     ))
 }
 
+#[zkperf_macros::zkperf]
 pub async fn get_notice(
     State(state): State<AppState>,
     Path(id): Path<String>,

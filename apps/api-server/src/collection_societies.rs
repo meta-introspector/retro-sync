@@ -82,16 +82,19 @@ pub struct CollectionSociety {
 // ── Full Registry ─────────────────────────────────────────────────────────────
 
 /// Returns the complete registry of 150+ worldwide collection societies.
+#[zkperf_macros::zkperf]
 pub fn all_societies() -> Vec<&'static CollectionSociety> {
     REGISTRY.iter().collect()
 }
 
 /// Look up a society by its ID.
+#[zkperf_macros::zkperf]
 pub fn society_by_id(id: &str) -> Option<&'static CollectionSociety> {
     REGISTRY.iter().find(|s| s.id.eq_ignore_ascii_case(id))
 }
 
 /// Find all societies serving a territory (ISO 3166-1 alpha-2).
+#[zkperf_macros::zkperf]
 pub fn societies_for_territory(territory: &str) -> Vec<&'static CollectionSociety> {
     REGISTRY
         .iter()
@@ -104,6 +107,7 @@ pub fn societies_for_territory(territory: &str) -> Vec<&'static CollectionSociet
 }
 
 /// Find societies for a territory filtered by right type.
+#[zkperf_macros::zkperf]
 pub fn societies_for_territory_and_right(
     territory: &str,
     right: &RightType,
@@ -137,6 +141,7 @@ pub struct SocietyPayoutInstruction {
 }
 
 /// Route a royalty amount to the correct societies for a territory + right type.
+#[zkperf_macros::zkperf]
 pub fn route_royalty(
     territory: &str,
     right: RightType,
@@ -162,6 +167,7 @@ pub fn route_royalty(
 }
 
 /// Summarise global payout routing across all territories.
+#[zkperf_macros::zkperf]
 pub fn global_routing_summary() -> HashMap<String, usize> {
     let mut map = HashMap::new();
     for society in REGISTRY.iter() {

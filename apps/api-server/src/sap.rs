@@ -49,6 +49,7 @@ pub struct SapConfig {
 }
 
 impl SapConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         let ev = |k: &str, d: &str| std::env::var(k).unwrap_or_else(|_| d.to_string());
         Self {
@@ -82,6 +83,7 @@ pub struct SapClient {
 }
 
 impl SapClient {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         Self {
             cfg: SapConfig::from_env(),
@@ -257,6 +259,7 @@ fn build_bp_payload(v: &VendorRecord, _cfg: &SapConfig) -> serde_json::Value {
 ///   E1FIKPF  — document header
 ///   E1FISEG  — one debit line (royalty expense)
 ///   E1FISEG  — one credit line (royalty liability AP)
+#[zkperf_macros::zkperf]
 pub fn build_royalty_idoc(p: &RoyaltyPosting, cfg: &SapConfig) -> String {
     let now = chrono::Utc::now();
     let ts = now.format("%Y%m%d%H%M%S").to_string();
@@ -344,6 +347,7 @@ pub fn build_royalty_idoc(p: &RoyaltyPosting, cfg: &SapConfig) -> String {
 /// POST /api/sap/royalty-posting
 /// Post a royalty accrual to S/4HANA FI (OData v4 journal entry).
 /// Falls back to IDoc if SAP_ECC_MODE=1.
+#[zkperf_macros::zkperf]
 pub async fn post_royalty_document(
     State(state): State<AppState>,
     Json(posting): Json<RoyaltyPosting>,
@@ -465,6 +469,7 @@ pub async fn post_royalty_document(
 
 /// POST /api/sap/vendor-sync
 /// Create or update a business partner / vendor in S/4HANA.
+#[zkperf_macros::zkperf]
 pub async fn sync_vendor(
     State(state): State<AppState>,
     Json(vendor): Json<VendorRecord>,
@@ -543,6 +548,7 @@ pub async fn sync_vendor(
 
 /// POST /api/sap/idoc/royalty
 /// Explicitly emit a FIDCCP02 IDoc to ECC (bypasses S/4HANA path).
+#[zkperf_macros::zkperf]
 pub async fn emit_royalty_idoc(
     State(state): State<AppState>,
     Json(posting): Json<RoyaltyPosting>,
@@ -605,6 +611,7 @@ pub async fn emit_royalty_idoc(
 }
 
 /// GET /api/sap/health
+#[zkperf_macros::zkperf]
 pub async fn sap_health(State(state): State<AppState>) -> Json<serde_json::Value> {
     let cfg = &state.sap_client.cfg;
     Json(serde_json::json!({

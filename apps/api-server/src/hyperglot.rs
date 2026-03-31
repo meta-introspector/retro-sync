@@ -55,6 +55,7 @@ pub enum Script {
 
 impl Script {
     /// ISO 15924 4-letter code.
+    #[zkperf_macros::zkperf]
     pub fn iso_code(&self) -> &'static str {
         match self {
             Self::Latin => "Latn",
@@ -93,6 +94,7 @@ impl Script {
     }
 
     /// Human-readable English name for logging / metadata.
+    #[zkperf_macros::zkperf]
     pub fn display_name(&self) -> &'static str {
         match self {
             Self::Latin => "Latin",
@@ -131,6 +133,7 @@ impl Script {
     }
 
     /// Writing direction.
+    #[zkperf_macros::zkperf]
     pub fn is_rtl(&self) -> bool {
         matches!(self, Self::Arabic | Self::Hebrew)
     }
@@ -363,6 +366,7 @@ pub fn detect_scripts(text: &str) -> HyperglotResult {
 
 /// Validate that a track title's script matches the declared language.
 /// Returns `true` if the title is plausibly in the declared BCP-47 language.
+#[zkperf_macros::zkperf]
 pub fn validate_title_language(title: &str, bcp47_lang: &str) -> bool {
     let result = detect_scripts(title);
     let primary = match &result.primary_script {

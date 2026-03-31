@@ -59,6 +59,7 @@ pub enum DspId {
 }
 
 impl DspId {
+    #[zkperf_macros::zkperf]
     pub fn display_name(&self) -> &str {
         match self {
             Self::Spotify => "Spotify",
@@ -74,6 +75,7 @@ impl DspId {
         }
     }
 
+    #[zkperf_macros::zkperf]
     pub fn dsr_dialect(&self) -> DspDialect {
         match self {
             Self::Spotify => DspDialect::Spotify,
@@ -117,6 +119,7 @@ pub struct GatewayConfig {
 }
 
 impl GatewayConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         let dev = std::env::var("GATEWAY_DEV_MODE").unwrap_or_default() == "1";
         // Load the "default" DSP from env; real deployments configure per-DSP SFTP creds.
@@ -262,6 +265,7 @@ pub struct ErnDeliveryResult {
 /// Push an ERN for a single release to all target DSPs.
 ///
 /// Returns one `ErnDeliveryResult` per DSP attempted.
+#[zkperf_macros::zkperf]
 pub async fn push_ern(config: &GatewayConfig, release: &PendingRelease) -> Vec<ErnDeliveryResult> {
     let mut results = Vec::new();
 
@@ -375,6 +379,7 @@ pub struct DsrIngestionResult {
 
 /// Poll one DSP SFTP drop, download all new DSR files, parse them, and return
 /// aggregated royalty data.
+#[zkperf_macros::zkperf]
 pub async fn ingest_dsr_from_dsp(
     config: &GatewayConfig,
     ep: &DspEndpointConfig,
@@ -547,6 +552,7 @@ pub async fn ingest_dsr_from_dsp(
 }
 
 /// Run a full DSR ingestion cycle across ALL configured DSPs that drop DSR files.
+#[zkperf_macros::zkperf]
 pub async fn run_dsr_cycle(config: &GatewayConfig) -> Vec<DsrIngestionResult> {
     let mut results = Vec::new();
     for ep in &config.endpoints {
@@ -560,6 +566,7 @@ pub async fn run_dsr_cycle(config: &GatewayConfig) -> Vec<DsrIngestionResult> {
 }
 
 /// Run a full ERN push cycle for a list of pending releases.
+#[zkperf_macros::zkperf]
 pub async fn run_ern_cycle(
     config: &GatewayConfig,
     releases: &[PendingRelease],
@@ -583,6 +590,7 @@ pub struct GatewayStatus {
     pub dev_mode: bool,
 }
 
+#[zkperf_macros::zkperf]
 pub fn gateway_status(config: &GatewayConfig) -> GatewayStatus {
     let ern_capable: Vec<String> = config
         .endpoints

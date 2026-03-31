@@ -43,6 +43,7 @@ pub enum RightsState {
 }
 
 impl RightsState {
+    #[zkperf_macros::zkperf]
     pub fn as_str(&self) -> &'static str {
         match self {
             Self::Unregistered => "Unregistered",
@@ -168,6 +169,7 @@ pub struct BwarmRecord {
 
 impl BwarmRecord {
     /// Create a new BWARM record with minimal required fields.
+    #[zkperf_macros::zkperf]
     pub fn new(title: &str, isrc: Option<&str>) -> Self {
         let now = chrono::Utc::now().to_rfc3339();
         Self {
@@ -219,6 +221,7 @@ pub enum ConflictType {
 }
 
 /// Detect rights conflicts in a BWARM record.
+#[zkperf_macros::zkperf]
 pub fn detect_conflicts(record: &BwarmRecord) -> Vec<RightsConflict> {
     let mut conflicts = Vec::new();
 
@@ -315,6 +318,7 @@ pub fn detect_conflicts(record: &BwarmRecord) -> Vec<RightsConflict> {
 }
 
 /// Compute the rights lifecycle state from the record.
+#[zkperf_macros::zkperf]
 pub fn compute_state(record: &BwarmRecord) -> RightsState {
     if record.isrc.is_none() && record.iswc.is_none() {
         return RightsState::Unregistered;
@@ -353,6 +357,7 @@ pub fn compute_state(record: &BwarmRecord) -> RightsState {
 
 /// Generate a BWARM XML document for submission to rights management systems.
 /// Uses xml_escape() on all user-controlled values.
+#[zkperf_macros::zkperf]
 pub fn generate_bwarm_xml(record: &BwarmRecord) -> String {
     let esc = |s: &str| {
         s.chars()

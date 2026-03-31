@@ -48,6 +48,7 @@ pub enum AudioScale {
 
 #[allow(dead_code)]
 impl AudioScale {
+    #[zkperf_macros::zkperf]
     pub fn tag(&self) -> &'static str {
         match self {
             Self::Track => "cft.track",
@@ -58,6 +59,7 @@ impl AudioScale {
             Self::Byte => "cft.byte",
         }
     }
+    #[zkperf_macros::zkperf]
     pub fn depth(&self) -> u8 {
         match self {
             Self::Track => 0,
@@ -69,6 +71,7 @@ impl AudioScale {
         }
     }
     /// Corresponding text-domain scale for cross-tower morphisms.
+    #[zkperf_macros::zkperf]
     pub fn text_analogue(&self) -> TextScale {
         match self {
             Self::Track => TextScale::Post,
@@ -101,14 +104,17 @@ pub enum ShardQuality {
 pub struct ShardStore(pub RwLock<HashMap<String, serde_json::Value>>);
 
 impl ShardStore {
+    #[zkperf_macros::zkperf]
     pub fn new() -> Self {
         Self(RwLock::new(HashMap::new()))
     }
 
+    #[zkperf_macros::zkperf]
     pub fn insert(&self, cid: &str, data: serde_json::Value) {
         self.0.write().unwrap().insert(cid.to_string(), data);
     }
 
+    #[zkperf_macros::zkperf]
     pub fn get(&self, cid: &str) -> Option<serde_json::Value> {
         self.0.read().unwrap().get(cid).cloned()
     }
@@ -128,6 +134,7 @@ impl Default for ShardStore {
 ///   - one Track-level shard
 ///   - one Stem shard per stem label
 ///   - one Segment shard per segment label
+#[zkperf_macros::zkperf]
 pub fn decompose_track(isrc: &Isrc, stems: &[&str], segments: &[&str]) -> Vec<Shard> {
     let prefix = &isrc.0;
     let mut shards = Vec::new();
@@ -207,6 +214,7 @@ use crate::AppState;
 ///
 /// The optional `x-wallet-address` header is accepted but only logged for
 /// analytics; it does not alter the response.
+#[zkperf_macros::zkperf]
 pub async fn get_shard(
     State(state): State<AppState>,
     Path(cid): Path<String>,
@@ -240,6 +248,7 @@ pub async fn get_shard(
 /// Accepts `{ "isrc": "...", "stems": [...], "segments": [...] }`, runs
 /// `decompose_track`, stores shards in the in-process index, and returns
 /// the shard CID list.
+#[zkperf_macros::zkperf]
 pub async fn decompose_and_index(
     State(state): State<AppState>,
     Json(body): Json<serde_json::Value>,

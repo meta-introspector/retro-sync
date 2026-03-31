@@ -55,6 +55,7 @@ impl Default for RateLimiter {
 }
 
 impl RateLimiter {
+    #[zkperf_macros::zkperf]
     pub fn new() -> Self {
         Self {
             windows: Mutex::new(HashMap::new()),
@@ -62,6 +63,7 @@ impl RateLimiter {
     }
 
     /// Returns `true` if the request is within the limit, `false` to reject.
+    #[zkperf_macros::zkperf]
     pub fn check(&self, key: &str, limit: usize) -> bool {
         let now = Instant::now();
         let window = std::time::Duration::from_secs(WINDOW_SECS);
@@ -131,6 +133,7 @@ fn bucket(path: &str) -> (&'static str, usize) {
 }
 
 /// Axum middleware: enforce per-IP rate limits.
+#[zkperf_macros::zkperf]
 pub async fn enforce(
     State(state): State<AppState>,
     request: Request,

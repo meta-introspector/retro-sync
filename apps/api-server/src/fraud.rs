@@ -59,6 +59,7 @@ impl Default for FraudDetector {
 }
 
 impl FraudDetector {
+    #[zkperf_macros::zkperf]
     pub fn new() -> Self {
         Self {
             ip_vel: Mutex::new(HashMap::new()),
@@ -66,6 +67,7 @@ impl FraudDetector {
             blocked: Mutex::new(HashSet::new()),
         }
     }
+    #[zkperf_macros::zkperf]
     pub fn analyse(&self, e: &PlayEvent) -> FraudAnalysis {
         let mut signals = Vec::new();
         let mut risk = RiskLevel::Clean;
@@ -125,11 +127,13 @@ impl FraudDetector {
             0
         }
     }
+    #[zkperf_macros::zkperf]
     pub fn block_isrc(&self, isrc: &str) {
         if let Ok(mut s) = self.blocked.lock() {
             s.insert(isrc.to_string());
         }
     }
+    #[zkperf_macros::zkperf]
     pub fn is_blocked(&self, isrc: &str) -> bool {
         self.blocked
             .lock()

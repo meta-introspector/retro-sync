@@ -14,6 +14,7 @@ pub use shared::types::Bowi;
 #[allow(dead_code)]
 /// Mint a fresh BOWI for a work with no existing registration.
 /// Returns a valid bowi:{uuid4} — artist should then register at https://bowi.org/register
+#[zkperf_macros::zkperf]
 pub fn mint_bowi() -> Bowi {
     use std::time::{SystemTime, UNIX_EPOCH};
     let t = SystemTime::now()
@@ -38,6 +39,7 @@ pub fn mint_bowi() -> Bowi {
 #[allow(dead_code)]
 /// Resolve BOWI from Wikidata enrichment or mint a new one.
 /// Returns (bowi, is_existing): is_existing=true means Wikidata had P10836.
+#[zkperf_macros::zkperf]
 pub async fn resolve_or_mint_bowi(wiki_bowi: Option<&str>) -> (Bowi, bool) {
     if let Some(b) = wiki_bowi {
         if let Ok(parsed) = recognize_bowi(b) {

@@ -79,6 +79,7 @@ pub enum Incoterm {
     Cif, // Cost, Insurance and Freight
 }
 impl Incoterm {
+    #[zkperf_macros::zkperf]
     pub fn code(&self) -> &'static str {
         match self {
             Self::Exw => "EXW",
@@ -94,6 +95,7 @@ impl Incoterm {
             Self::Cif => "CIF",
         }
     }
+    #[zkperf_macros::zkperf]
     pub fn transport_mode(&self) -> &'static str {
         match self {
             Self::Fas | Self::Fob | Self::Cfr | Self::Cif => "SEA",
@@ -166,6 +168,7 @@ pub enum ProductType {
 impl ProductType {
     /// Preliminary ECCN based on product type.
     /// Final ECCN requires full technical review; this is a default assignment.
+    #[zkperf_macros::zkperf]
     pub fn preliminary_eccn(&self) -> &'static str {
         match self {
             Self::DigitalDownload => "EAR99", // unless encryption >64-bit keys
@@ -180,6 +183,7 @@ impl ProductType {
     }
 
     /// HS code (6-digit WCO) for physical goods; None for digital/licensing.
+    #[zkperf_macros::zkperf]
     pub fn hs_code(&self) -> Option<&'static str> {
         match self {
             Self::VinylRecord => Some("852491"), // gramophone records
@@ -283,6 +287,7 @@ impl Default for GtmsStore {
 }
 
 impl GtmsStore {
+    #[zkperf_macros::zkperf]
     pub fn new() -> Self {
         Self {
             classifications: Mutex::new(HashMap::new()),
@@ -291,19 +296,23 @@ impl GtmsStore {
         }
     }
 
+    #[zkperf_macros::zkperf]
     pub fn save_classification(&self, r: ClassificationResult) {
         if let Ok(mut m) = self.classifications.lock() {
             m.insert(r.request_id.clone(), r);
         }
     }
+    #[zkperf_macros::zkperf]
     pub fn save_screening(&self, r: ScreeningResult) {
         if let Ok(mut m) = self.screenings.lock() {
             m.insert(r.screening_id.clone(), r);
         }
     }
+    #[zkperf_macros::zkperf]
     pub fn get_declaration(&self, id: &str) -> Option<ExportDeclaration> {
         self.declarations.lock().ok()?.get(id).cloned()
     }
+    #[zkperf_macros::zkperf]
     pub fn save_declaration(&self, d: ExportDeclaration) {
         if let Ok(mut m) = self.declarations.lock() {
             m.insert(d.declaration_id.clone(), d);
@@ -463,6 +472,7 @@ fn screen(req: &ScreeningRequest) -> ScreeningResult {
 // ── HTTP handlers ─────────────────────────────────────────────────────────────
 
 /// POST /api/gtms/classify
+#[zkperf_macros::zkperf]
 pub async fn classify_work(
     State(state): State<AppState>,
     Json(req): Json<ClassificationRequest>,
@@ -495,6 +505,7 @@ pub async fn classify_work(
 }
 
 /// POST /api/gtms/screen
+#[zkperf_macros::zkperf]
 pub async fn screen_distribution(
     State(state): State<AppState>,
     Json(req): Json<ScreeningRequest>,
@@ -536,6 +547,7 @@ pub async fn screen_distribution(
 }
 
 /// GET /api/gtms/declaration/:id
+#[zkperf_macros::zkperf]
 pub async fn get_declaration(
     State(state): State<AppState>,
     Path(id): Path<String>,

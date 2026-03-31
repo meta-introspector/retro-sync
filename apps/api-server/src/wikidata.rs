@@ -27,6 +27,7 @@ struct SparqlResults {
     bindings: Vec<serde_json::Value>,
 }
 
+#[zkperf_macros::zkperf]
 pub async fn lookup_artist(name: &str) -> WikidataArtist {
     match lookup_inner(name).await {
         Ok(a) => a,
@@ -110,6 +111,7 @@ WHERE {{
     Ok(a)
 }
 
+#[zkperf_macros::zkperf]
 pub async fn isrc_exists(isrc: &str) -> bool {
     let query = format!(
         r#"ASK {{ ?item wdt:P1243 "{}" }}"#,

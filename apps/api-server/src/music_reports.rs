@@ -36,6 +36,7 @@ pub struct MusicReportsConfig {
 }
 
 impl MusicReportsConfig {
+    #[zkperf_macros::zkperf]
     pub fn from_env() -> Self {
         let api_key = std::env::var("MUSIC_REPORTS_API_KEY").unwrap_or_default();
         let enabled = !api_key.is_empty();
@@ -84,6 +85,7 @@ pub struct MechanicalRate {
 }
 
 /// Current (2024) CRB Phonorecords IV rates.
+#[zkperf_macros::zkperf]
 pub fn current_mechanical_rate() -> MechanicalRate {
     MechanicalRate {
         rate_per_copy_cents: 9.1,    // $0.091 per copy (physical/download)
@@ -297,6 +299,7 @@ pub async fn fetch_statements(
 
 /// Reconcile Music Reports royalties against Retrosync on-chain distributions.
 /// Returns ISRCs where reported royalty differs from on-chain amount by > 5%.
+#[zkperf_macros::zkperf]
 pub fn reconcile_royalties(
     statement: &RoyaltyStatement,
     onchain_distributions: &std::collections::HashMap<String, f64>,
@@ -335,6 +338,7 @@ pub struct DspLicenceCoverage {
 }
 
 /// Return licensing requirements for major DSPs.
+#[zkperf_macros::zkperf]
 pub fn dsp_licence_requirements() -> Vec<DspLicenceCoverage> {
     vec![
         DspLicenceCoverage {

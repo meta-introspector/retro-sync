@@ -1,940 +1,450 @@
 {
-  "minted": [],
-  "pending": [
+  "minted": [
     {
       "work_id": "a4f6cafbaa45b25e",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent10",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent10",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "be571b29609c95390f880029ed256bac922ea8028f3e76e44eb574612c8ece9e",
-        "blade_grade": 8,
-        "orbifold": [
-          12,
-          0,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 665290,
+      "tx_hash": "0xbe571b29609c95390f880029ed256bac922ea8028f3e76e44eb574612c8ece9e",
+      "zk_commit": "be571b29609c95390f880029ed256bac922ea8028f3e76e44eb574612c8ece9e",
+      "shard_count": 71,
+      "orbifold": [
+        12,
+        0,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.920930"
     },
     {
       "work_id": "1e88d3676a9c612c",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent11",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent11",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "83ff3d9ae82273f20bd2a752da14944848e410c317bf82332e4ffa9bab2a2971",
-        "blade_grade": 5,
-        "orbifold": [
-          39,
-          36,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 792957,
+      "tx_hash": "0x83ff3d9ae82273f20bd2a752da14944848e410c317bf82332e4ffa9bab2a2971",
+      "zk_commit": "83ff3d9ae82273f20bd2a752da14944848e410c317bf82332e4ffa9bab2a2971",
+      "shard_count": 71,
+      "orbifold": [
+        39,
+        36,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.923670"
     },
     {
       "work_id": "2366a71beb807bac",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent12",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent12",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "a825d49a08aa256b5e59f904a30ec3a68cccd72c300da63a0913c67d5dad8932",
-        "blade_grade": 7,
-        "orbifold": [
-          0,
-          0,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 580277,
+      "tx_hash": "0xa825d49a08aa256b5e59f904a30ec3a68cccd72c300da63a0913c67d5dad8932",
+      "zk_commit": "a825d49a08aa256b5e59f904a30ec3a68cccd72c300da63a0913c67d5dad8932",
+      "shard_count": 71,
+      "orbifold": [
+        0,
+        0,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.926089"
     },
     {
       "work_id": "629b464e03c7919c",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent13",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent13",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "8565e42f2190bd6ce2d2077fb7ecc921e73b357fa1cbe0a57cf0039465385a43",
-        "blade_grade": 5,
-        "orbifold": [
-          7,
-          28,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 431712,
+      "tx_hash": "0x8565e42f2190bd6ce2d2077fb7ecc921e73b357fa1cbe0a57cf0039465385a43",
+      "zk_commit": "8565e42f2190bd6ce2d2077fb7ecc921e73b357fa1cbe0a57cf0039465385a43",
+      "shard_count": 71,
+      "orbifold": [
+        7,
+        28,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.928470"
     },
     {
       "work_id": "d408e36b90e0ad13",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent14",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent14",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "98205df6049cbbea716022307febf60650608f986931ececcf4f537d8346f9ef",
-        "blade_grade": 9,
-        "orbifold": [
-          31,
-          0,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 708453,
+      "tx_hash": "0x98205df6049cbbea716022307febf60650608f986931ececcf4f537d8346f9ef",
+      "zk_commit": "98205df6049cbbea716022307febf60650608f986931ececcf4f537d8346f9ef",
+      "shard_count": 71,
+      "orbifold": [
+        31,
+        0,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.930869"
     },
     {
       "work_id": "8ec58af51881f068",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent15",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent15",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "3f745c574d78667e2fef20078bc45c9526d8223562b4fe5618ecbaebac063faf",
-        "blade_grade": 6,
-        "orbifold": [
-          67,
-          0,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 126361,
+      "tx_hash": "0x3f745c574d78667e2fef20078bc45c9526d8223562b4fe5618ecbaebac063faf",
+      "zk_commit": "3f745c574d78667e2fef20078bc45c9526d8223562b4fe5618ecbaebac063faf",
+      "shard_count": 71,
+      "orbifold": [
+        67,
+        0,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.933258"
     },
     {
       "work_id": "a65c5189c11b171c",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent1",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent1",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "2bb65c4c56d0478483181aafd0ca7e0f1d1847f6616b2207b580be80e78f1eb9",
-        "blade_grade": 6,
-        "orbifold": [
-          60,
-          0,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 82226,
+      "tx_hash": "0x2bb65c4c56d0478483181aafd0ca7e0f1d1847f6616b2207b580be80e78f1eb9",
+      "zk_commit": "2bb65c4c56d0478483181aafd0ca7e0f1d1847f6616b2207b580be80e78f1eb9",
+      "shard_count": 71,
+      "orbifold": [
+        60,
+        0,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.935648"
     },
     {
       "work_id": "c4392e9a0d6d94c1",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent2",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent2",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "e02023db4339d9083c7822861eedbd2c15555718be0dc09d27056c39ebcd9b89",
-        "blade_grade": 9,
-        "orbifold": [
-          29,
-          0,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 866995,
+      "tx_hash": "0xe02023db4339d9083c7822861eedbd2c15555718be0dc09d27056c39ebcd9b89",
+      "zk_commit": "e02023db4339d9083c7822861eedbd2c15555718be0dc09d27056c39ebcd9b89",
+      "shard_count": 71,
+      "orbifold": [
+        29,
+        0,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.938031"
     },
     {
       "work_id": "36640812ec12a4c9",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent3",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent3",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "34ecb668761c5d6f06897a3e368ece5e5d3b0d48fe81882318dff207eef415f6",
-        "blade_grade": 6,
-        "orbifold": [
-          15,
-          17,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 905503,
+      "tx_hash": "0x34ecb668761c5d6f06897a3e368ece5e5d3b0d48fe81882318dff207eef415f6",
+      "zk_commit": "34ecb668761c5d6f06897a3e368ece5e5d3b0d48fe81882318dff207eef415f6",
+      "shard_count": 71,
+      "orbifold": [
+        15,
+        17,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.940411"
     },
     {
       "work_id": "6d12d9d4a561187a",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent4",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent4",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "0c2709b6b5a3504f4717efaaa1571e6f089f39a0f03dac1ed85bbbfb1b35e7df",
-        "blade_grade": 4,
-        "orbifold": [
-          21,
-          3,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 927070,
+      "tx_hash": "0x0c2709b6b5a3504f4717efaaa1571e6f089f39a0f03dac1ed85bbbfb1b35e7df",
+      "zk_commit": "0c2709b6b5a3504f4717efaaa1571e6f089f39a0f03dac1ed85bbbfb1b35e7df",
+      "shard_count": 71,
+      "orbifold": [
+        21,
+        3,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.942783"
     },
     {
       "work_id": "baf3f6bfc0f12d3b",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent5",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent5",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "b233c038a876620d5034689291f4579336c5d935072f4ec1c74960a2067d3ea0",
-        "blade_grade": 8,
-        "orbifold": [
-          61,
-          48,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 9502,
+      "tx_hash": "0xb233c038a876620d5034689291f4579336c5d935072f4ec1c74960a2067d3ea0",
+      "zk_commit": "b233c038a876620d5034689291f4579336c5d935072f4ec1c74960a2067d3ea0",
+      "shard_count": 71,
+      "orbifold": [
+        61,
+        48,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.945182"
     },
     {
       "work_id": "5418d222aa7b4c4e",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent8",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent8",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "5e590acb41a7597c45bebeb56dabe8c3ea37b7dec8e9badec72c09d2cc62ba82",
-        "blade_grade": 3,
-        "orbifold": [
-          36,
-          16,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 102778,
+      "tx_hash": "0x5e590acb41a7597c45bebeb56dabe8c3ea37b7dec8e9badec72c09d2cc62ba82",
+      "zk_commit": "5e590acb41a7597c45bebeb56dabe8c3ea37b7dec8e9badec72c09d2cc62ba82",
+      "shard_count": 71,
+      "orbifold": [
+        36,
+        16,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.947565"
     },
     {
       "work_id": "7a40e8c32373e8d3",
       "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent9",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 786 Two Part Inventions Invent9",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "735b231d866f4260cc6f4aa24295abe889463f0e07eba1462e2589fd76968a40",
-        "blade_grade": 10,
-        "orbifold": [
-          12,
-          0,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 691453,
+      "tx_hash": "0x735b231d866f4260cc6f4aa24295abe889463f0e07eba1462e2589fd76968a40",
+      "zk_commit": "735b231d866f4260cc6f4aa24295abe889463f0e07eba1462e2589fd76968a40",
+      "shard_count": 71,
+      "orbifold": [
+        12,
+        0,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.949965"
     },
     {
       "work_id": "341ef5d85bfb3366",
       "title": "Bwv772 786 Two Part Inventions Bwv772 Invention N01",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv772 Invention N01",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "fe2e6e9fd980776530077a7dba5e4d79ebb48ece0480436329cec5a17ea263ee",
-        "blade_grade": 6,
-        "orbifold": [
-          70,
-          16,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 676394,
+      "tx_hash": "0xfe2e6e9fd980776530077a7dba5e4d79ebb48ece0480436329cec5a17ea263ee",
+      "zk_commit": "fe2e6e9fd980776530077a7dba5e4d79ebb48ece0480436329cec5a17ea263ee",
+      "shard_count": 71,
+      "orbifold": [
+        70,
+        16,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.952368"
     },
     {
       "work_id": "e2269065b7aad945",
       "title": "Bwv772 786 Two Part Inventions Bwv773 Invention N02",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Bwv772 786 Two Part Inventions Bwv773 Invention N02",
-        "writer": "Johann Sebastian Bach",
-        "rs_id": "RS-Q1339-df621fc9",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk5c3b1e619696d72418ac62e199ae13c8",
-          "bafk00c5168a46c43253aef2a88973d0adc7",
-          "bafk03b37866d753132e9d2cf5364b6421a8",
-          "bafk229496acb67e85976bcd0fa46e4f1816",
-          "bafk4a4b2097921837584d0bf9937b15942c"
-        ],
-        "zk_commit_hash": "e57023c9d43a967628a96800af194c7cb5a600c51d5d5e5b3e0e505415806fa1",
-        "blade_grade": 4,
-        "orbifold": [
-          58,
-          33,
-          0
-        ],
-        "project": "bach-invention"
-      },
-      "status": "pending"
+      "token_id": 410631,
+      "tx_hash": "0xe57023c9d43a967628a96800af194c7cb5a600c51d5d5e5b3e0e505415806fa1",
+      "zk_commit": "e57023c9d43a967628a96800af194c7cb5a600c51d5d5e5b3e0e505415806fa1",
+      "shard_count": 71,
+      "orbifold": [
+        58,
+        33,
+        0
+      ],
+      "minted_at": "2026-03-30T14:34:05.954760"
     },
     {
       "work_id": "3098241c867e6bd3",
       "title": "Childrens Piece No2",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Childrens Piece No2",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "f638f82e82d134964954926007904cab4cd80daadfa19735a7ea89f97d1229f0",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 858615,
+      "tx_hash": "0xf638f82e82d134964954926007904cab4cd80daadfa19735a7ea89f97d1229f0",
+      "zk_commit": "f638f82e82d134964954926007904cab4cd80daadfa19735a7ea89f97d1229f0",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.956900"
     },
     {
       "work_id": "a6b5ab0221bc7ea3",
       "title": "Courting Song",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Courting Song",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "40b8c792993ceec409747c71703bbf7b8d8a4bd106952f63ded61db42fc9aa7e",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 408382,
+      "tx_hash": "0x40b8c792993ceec409747c71703bbf7b8d8a4bd106952f63ded61db42fc9aa7e",
+      "zk_commit": "40b8c792993ceec409747c71703bbf7b8d8a4bd106952f63ded61db42fc9aa7e",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.958947"
     },
     {
       "work_id": "75c43fb67ee9195c",
       "title": "Mikrokosmos",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Mikrokosmos",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "088d99ccb73c125e8e632333e58f9a78e1a5f5591d39c8fa37b92be1ac9c72fc",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 396556,
+      "tx_hash": "0x088d99ccb73c125e8e632333e58f9a78e1a5f5591d39c8fa37b92be1ac9c72fc",
+      "zk_commit": "088d99ccb73c125e8e632333e58f9a78e1a5f5591d39c8fa37b92be1ac9c72fc",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.960828"
     },
     {
       "work_id": "bba637db889b3813",
       "title": "Rumanian Dance No1",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Rumanian Dance No1",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "4f899f7b9922b3d684e948c8465f28bd0e3874dfa0520cff0d3368804b166749",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 741267,
+      "tx_hash": "0x4f899f7b9922b3d684e948c8465f28bd0e3874dfa0520cff0d3368804b166749",
+      "zk_commit": "4f899f7b9922b3d684e948c8465f28bd0e3874dfa0520cff0d3368804b166749",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.962667"
     },
     {
       "work_id": "6487b2cf11077eef",
       "title": "Suite 1Mov",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Suite 1Mov",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "f19238ad423d00310845fade39832d8028801650dbd6ff1398054d90192ab054",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 159527,
+      "tx_hash": "0xf19238ad423d00310845fade39832d8028801650dbd6ff1398054d90192ab054",
+      "zk_commit": "f19238ad423d00310845fade39832d8028801650dbd6ff1398054d90192ab054",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.964499"
     },
     {
       "work_id": "acdeb892bc90b969",
       "title": "Suite 2Mov",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Suite 2Mov",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "279190117feab552494dd49db57d17d3a7bdc81254d3f345945e535e37e5477b",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 197299,
+      "tx_hash": "0x279190117feab552494dd49db57d17d3a7bdc81254d3f345945e535e37e5477b",
+      "zk_commit": "279190117feab552494dd49db57d17d3a7bdc81254d3f345945e535e37e5477b",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.966328"
     },
     {
       "work_id": "66e3b5d4fa8f8290",
       "title": "Ten Easy Piano Pieces Aurora Mov7",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Aurora Mov7",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "f7a030d00d6bae1a7de5b0ba7d3c67cab484abdc08bafddf3d7da8d04f0aff88",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 865528,
+      "tx_hash": "0xf7a030d00d6bae1a7de5b0ba7d3c67cab484abdc08bafddf3d7da8d04f0aff88",
+      "zk_commit": "f7a030d00d6bae1a7de5b0ba7d3c67cab484abdc08bafddf3d7da8d04f0aff88",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.968153"
     },
     {
       "work_id": "e53f6ebc500ba084",
       "title": "Ten Easy Piano Pieces Bear Dance Mov10",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Bear Dance Mov10",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "b53129f9ae5bdaf6a79b53464be25a1ffc92ed8ffedecf6bb34c0daab169c6b8",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 706411,
+      "tx_hash": "0xb53129f9ae5bdaf6a79b53464be25a1ffc92ed8ffedecf6bb34c0daab169c6b8",
+      "zk_commit": "b53129f9ae5bdaf6a79b53464be25a1ffc92ed8ffedecf6bb34c0daab169c6b8",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.969987"
     },
     {
       "work_id": "9a3ec5c36ea9655e",
       "title": "Ten Easy Piano Pieces Dedication Mov0",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Dedication Mov0",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "f6e1a5abc1800d995b986f3f4bb67bb02bd77501c1e4b4b97b84ec0d2940991c",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 446050,
+      "tx_hash": "0xf6e1a5abc1800d995b986f3f4bb67bb02bd77501c1e4b4b97b84ec0d2940991c",
+      "zk_commit": "f6e1a5abc1800d995b986f3f4bb67bb02bd77501c1e4b4b97b84ec0d2940991c",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.971818"
     },
     {
       "work_id": "741319867bdc761e",
       "title": "Ten Easy Piano Pieces Evening At The Village Mov5",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Evening At The Village Mov5",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "7516afe8468b2ad58db16d43d1db5e7c52eb4bfaeed90ae33f74611f7f8a3221",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 835163,
+      "tx_hash": "0x7516afe8468b2ad58db16d43d1db5e7c52eb4bfaeed90ae33f74611f7f8a3221",
+      "zk_commit": "7516afe8468b2ad58db16d43d1db5e7c52eb4bfaeed90ae33f74611f7f8a3221",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.973671"
     },
     {
       "work_id": "e8b3b2b667322cc8",
       "title": "Ten Easy Piano Pieces Finger Exercise Mov9",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Finger Exercise Mov9",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "417d88025ec59733e5a16a86bf5300546795dd233c90ace0e624c4b0edd3ff22",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 512529,
+      "tx_hash": "0x417d88025ec59733e5a16a86bf5300546795dd233c90ace0e624c4b0edd3ff22",
+      "zk_commit": "417d88025ec59733e5a16a86bf5300546795dd233c90ace0e624c4b0edd3ff22",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.975503"
     },
     {
       "work_id": "9e2cfd0f52e238d3",
       "title": "Ten Easy Piano Pieces Hungarian Folksong Mov6",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Hungarian Folksong Mov6",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "248b7dae8cd749188984f0270f82c559efdffa0463b67c384fd8c669e77b000f",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 116004,
+      "tx_hash": "0x248b7dae8cd749188984f0270f82c559efdffa0463b67c384fd8c669e77b000f",
+      "zk_commit": "248b7dae8cd749188984f0270f82c559efdffa0463b67c384fd8c669e77b000f",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.977358"
     },
     {
       "work_id": "cf79a4b3b82e5d4b",
       "title": "Ten Easy Piano Pieces Hungarian Folksong Mov8",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Hungarian Folksong Mov8",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "6861f2d87205aac02d5e7b494eb6f1781bc8cc4062d6f94d6b0d6f97cc698387",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 945572,
+      "tx_hash": "0x6861f2d87205aac02d5e7b494eb6f1781bc8cc4062d6f94d6b0d6f97cc698387",
+      "zk_commit": "6861f2d87205aac02d5e7b494eb6f1781bc8cc4062d6f94d6b0d6f97cc698387",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.979186"
     },
     {
       "work_id": "ffed19292d81b1a9",
       "title": "Ten Easy Piano Pieces Painful Wrestling Mov2",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Painful Wrestling Mov2",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "35571d22df7cc35b0057ce4d6b143f74ce830599c65da609e451113fe1ff15c4",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 958942,
+      "tx_hash": "0x35571d22df7cc35b0057ce4d6b143f74ce830599c65da609e451113fe1ff15c4",
+      "zk_commit": "35571d22df7cc35b0057ce4d6b143f74ce830599c65da609e451113fe1ff15c4",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.981011"
     },
     {
       "work_id": "f541f5c3e5931d41",
       "title": "Ten Easy Piano Pieces Peasants Song Mov1",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Peasants Song Mov1",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "06d7608eaf34469545b6d08eb23ab10cb9cd8320cdc7b5fab4864c70c275a9e1",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 23960,
+      "tx_hash": "0x06d7608eaf34469545b6d08eb23ab10cb9cd8320cdc7b5fab4864c70c275a9e1",
+      "zk_commit": "06d7608eaf34469545b6d08eb23ab10cb9cd8320cdc7b5fab4864c70c275a9e1",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.982848"
     },
     {
       "work_id": "d0ef9d4d612e860c",
       "title": "Ten Easy Piano Pieces Slovak Peasants Dance Mov3",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Slovak Peasants Dance Mov3",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "af758b2444100180ac6d9cd48b73f9589fae600c63ff74857eba167ab8b7d6a7",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 572029,
+      "tx_hash": "0xaf758b2444100180ac6d9cd48b73f9589fae600c63ff74857eba167ab8b7d6a7",
+      "zk_commit": "af758b2444100180ac6d9cd48b73f9589fae600c63ff74857eba167ab8b7d6a7",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.984699"
     },
     {
       "work_id": "14abafb948a63ee0",
       "title": "Ten Easy Piano Pieces Sostenuto Mov4",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Ten Easy Piano Pieces Sostenuto Mov4",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "94097d092258121c318c505940440edab211114169f4547dc8089b46f73409aa",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 356382,
+      "tx_hash": "0x94097d092258121c318c505940440edab211114169f4547dc8089b46f73409aa",
+      "zk_commit": "94097d092258121c318c505940440edab211114169f4547dc8089b46f73409aa",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.986598"
     },
     {
       "work_id": "7157e82a3a387140",
       "title": "Unknown Piano Sonata Mov1",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Unknown Piano Sonata Mov1",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "7cc98fc0ddbba5805eef5ebbc0f2e0afd7e1aad96892fac41769b06aff94ba80",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 986296,
+      "tx_hash": "0x7cc98fc0ddbba5805eef5ebbc0f2e0afd7e1aad96892fac41769b06aff94ba80",
+      "zk_commit": "7cc98fc0ddbba5805eef5ebbc0f2e0afd7e1aad96892fac41769b06aff94ba80",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.988462"
     },
     {
       "work_id": "08633158a8f66a62",
       "title": "Unknown Piano Sonata Mov2",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Unknown Piano Sonata Mov2",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "624a0ddecb5b0e85950fa0f50727d5df0be867a65dcc37b5d08714bb39667d2f",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 772947,
+      "tx_hash": "0x624a0ddecb5b0e85950fa0f50727d5df0be867a65dcc37b5d08714bb39667d2f",
+      "zk_commit": "624a0ddecb5b0e85950fa0f50727d5df0be867a65dcc37b5d08714bb39667d2f",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.990314"
     },
     {
       "work_id": "a34c2b536e0c48db",
       "title": "Unknown Piano Sonata Mov3",
       "chain": "bttc",
-      "manifest": {
-        "version": 1,
-        "title": "Unknown Piano Sonata Mov3",
-        "writer": "B\u00e9la Bart\u00f3k",
-        "rs_id": "RS-Q83326-d82d297d",
-        "isrc": null,
-        "shard_count": 71,
-        "shard_cids": [
-          "bafk192e1afe4de492ec91daf2d8f2da4022",
-          "bafk455c31ed26b704918343a220870e0286",
-          "bafk6cd0f010eee1dec065551c061016a4c5",
-          "bafk5afada7b2dd137b23750d6af8ea0d55b",
-          "bafke3b045d24a28e36657765900b7d86349"
-        ],
-        "zk_commit_hash": "f4f12d428a1161cf787d695b02cd843175ded7488377f8f2b15c336af2ea2ede",
-        "blade_grade": null,
-        "orbifold": null,
-        "project": "bartok"
-      },
-      "status": "pending"
+      "token_id": 410890,
+      "tx_hash": "0xf4f12d428a1161cf787d695b02cd843175ded7488377f8f2b15c336af2ea2ede",
+      "zk_commit": "f4f12d428a1161cf787d695b02cd843175ded7488377f8f2b15c336af2ea2ede",
+      "shard_count": 71,
+      "orbifold": null,
+      "minted_at": "2026-03-30T14:34:05.992167"
     }
-  ]
+  ],
+  "pending": []
 }

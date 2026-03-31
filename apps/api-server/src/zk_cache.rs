@@ -12,6 +12,7 @@ pub struct ZkProofCache {
 }
 
 impl ZkProofCache {
+    #[zkperf_macros::zkperf]
     pub fn open(path: &str) -> anyhow::Result<Self> {
         Ok(Self {
             db: crate::persist::LmdbStore::open(path, "zk_proofs")?,
@@ -19,6 +20,7 @@ impl ZkProofCache {
     }
 
     /// Build the 33-byte cache key (band byte ‖ SHA-256 of inputs).
+    #[zkperf_macros::zkperf]
     pub fn cache_key(band: u8, n_artists: u32, total_btt: u64, splits_bps: &[u16]) -> [u8; 33] {
         let mut h = Sha256::new();
         h.update(n_artists.to_le_bytes());
@@ -38,6 +40,7 @@ impl ZkProofCache {
     }
 
     /// Retrieve a cached proof. Returns `None` on miss.
+    #[zkperf_macros::zkperf]
     pub fn get(
         &self,
         band: u8,
@@ -51,6 +54,7 @@ impl ZkProofCache {
     }
 
     /// Store a proof. The proof bytes are hex-encoded to stay JSON-compatible.
+    #[zkperf_macros::zkperf]
     pub fn put(
         &self,
         band: u8,
@@ -67,6 +71,7 @@ impl ZkProofCache {
     }
 
     /// Prometheus-compatible metrics line.
+    #[zkperf_macros::zkperf]
     pub fn metrics_text(&self) -> String {
         let count = self.db.all_values::<String>().map(|v| v.len()).unwrap_or(0);
         format!("retrosync_zk_cache_entries {count}\n")
